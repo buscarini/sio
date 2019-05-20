@@ -15,3 +15,11 @@ public func id<a>(_ a: a) -> a {
 public func absurd<A>(_ n: Never) -> A {
 	switch n {}
 }
+
+precedencegroup ApplyPrecedence {
+	associativity: left
+	higherThan: AssignmentPrecedence
+	lowerThan: TernaryPrecedence
+}
+
+infix operator <*>: ApplyPrecedence

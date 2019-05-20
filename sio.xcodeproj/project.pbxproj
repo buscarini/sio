@@ -23,6 +23,11 @@
 		AC2BF3422292809F00D4953E /* SIO+BiMonad.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF3412292809F00D4953E /* SIO+BiMonad.swift */; };
 		AC2BF3582292C03300D4953E /* SIO+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF3572292C03300D4953E /* SIO+Error.swift */; };
 		AC2BF35A2292DB0F00D4953E /* SIO+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF3592292DB0F00D4953E /* SIO+Utils.swift */; };
+		AC2BF35C2292E42100D4953E /* SIO+Fold.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF35B2292E42100D4953E /* SIO+Fold.swift */; };
+		AC2BF35E2292E46300D4953E /* SIO+Applicative.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF35D2292E46300D4953E /* SIO+Applicative.swift */; };
+		AC2BF3602292F21700D4953E /* Curry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF35F2292F21600D4953E /* Curry.swift */; };
+		AC2BF3622292F22B00D4953E /* SIO+Monad.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF3612292F22B00D4953E /* SIO+Monad.swift */; };
+		AC2BF3642292F26A00D4953E /* Array+SIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF3632292F26A00D4953E /* Array+SIO.swift */; };
 		DD7502881C68FEDE006590AF /* sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6DA0F1BF000BD002C0205 /* sio.framework */; };
 		DD7502921C690C7A006590AF /* sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D9F01BEFFFBE002C0205 /* sio.framework */; };
 /* End PBXBuildFile section */
@@ -67,6 +72,11 @@
 		AC2BF3412292809F00D4953E /* SIO+BiMonad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+BiMonad.swift"; sourceTree = "<group>"; };
 		AC2BF3572292C03300D4953E /* SIO+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Error.swift"; sourceTree = "<group>"; };
 		AC2BF3592292DB0F00D4953E /* SIO+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Utils.swift"; sourceTree = "<group>"; };
+		AC2BF35B2292E42100D4953E /* SIO+Fold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Fold.swift"; sourceTree = "<group>"; };
+		AC2BF35D2292E46300D4953E /* SIO+Applicative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Applicative.swift"; sourceTree = "<group>"; };
+		AC2BF35F2292F21600D4953E /* Curry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Curry.swift; sourceTree = "<group>"; };
+		AC2BF3612292F22B00D4953E /* SIO+Monad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Monad.swift"; sourceTree = "<group>"; };
+		AC2BF3632292F26A00D4953E /* Array+SIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+SIO.swift"; sourceTree = "<group>"; };
 		AD2FAA261CD0B6D800659CF4 /* sio.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sio.plist; sourceTree = "<group>"; };
 		AD2FAA281CD0B6E100659CF4 /* sioTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sioTests.plist; sourceTree = "<group>"; };
 		DD75027A1C68FCFC006590AF /* sio-macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "sio-macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,15 +175,20 @@
 		8933C7811EB5B7E0000D00A4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				AC2BF35F2292F21600D4953E /* Curry.swift */,
 				8933C7841EB5B820000D00A4 /* SIO.swift */,
 				AC2BF3592292DB0F00D4953E /* SIO+Utils.swift */,
 				AC2BF33722927E9F00D4953E /* SIO+Creation.swift */,
 				AC2BF33922927F6C00D4953E /* SIO+Conversions.swift */,
 				AC2BF33B22927FAB00D4953E /* SIO+Functor.swift */,
 				AC2BF33F22927FDE00D4953E /* SIO+BiFunctor.swift */,
+				AC2BF3612292F22B00D4953E /* SIO+Monad.swift */,
 				AC2BF3412292809F00D4953E /* SIO+BiMonad.swift */,
 				AC2BF3572292C03300D4953E /* SIO+Error.swift */,
+				AC2BF35B2292E42100D4953E /* SIO+Fold.swift */,
+				AC2BF35D2292E46300D4953E /* SIO+Applicative.swift */,
 				AC2BF33D22927FC800D4953E /* Prelude.swift */,
+				AC2BF3632292F26A00D4953E /* Array+SIO.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -485,14 +500,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC2BF35A2292DB0F00D4953E /* SIO+Utils.swift in Sources */,
+				AC2BF3622292F22B00D4953E /* SIO+Monad.swift in Sources */,
 				AC2BF3422292809F00D4953E /* SIO+BiMonad.swift in Sources */,
 				AC2BF34022927FDE00D4953E /* SIO+BiFunctor.swift in Sources */,
 				AC2BF3582292C03300D4953E /* SIO+Error.swift in Sources */,
+				AC2BF35C2292E42100D4953E /* SIO+Fold.swift in Sources */,
+				AC2BF35E2292E46300D4953E /* SIO+Applicative.swift in Sources */,
 				AC2BF33822927E9F00D4953E /* SIO+Creation.swift in Sources */,
+				AC2BF3602292F21700D4953E /* Curry.swift in Sources */,
 				8933C7851EB5B820000D00A4 /* SIO.swift in Sources */,
 				AC2BF33A22927F6C00D4953E /* SIO+Conversions.swift in Sources */,
 				AC2BF33C22927FAB00D4953E /* SIO+Functor.swift in Sources */,
 				AC2BF33E22927FC800D4953E /* Prelude.swift in Sources */,
+				AC2BF3642292F26A00D4953E /* Array+SIO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
