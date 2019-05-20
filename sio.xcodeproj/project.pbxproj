@@ -33,6 +33,7 @@
 		AC2BF36A2292F49900D4953E /* SIO+Alt.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF3692292F49800D4953E /* SIO+Alt.swift */; };
 		AC2BF36C2292F6DD00D4953E /* SIO+Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF36B2292F6DD00D4953E /* SIO+Run.swift */; };
 		AC2BF36E2292F78200D4953E /* SIO+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF36D2292F78200D4953E /* SIO+Zip.swift */; };
+		AC2BF3702292F81500D4953E /* SIO+Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF36F2292F81500D4953E /* SIO+Schedule.swift */; };
 		DD7502881C68FEDE006590AF /* sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6DA0F1BF000BD002C0205 /* sio.framework */; };
 		DD7502921C690C7A006590AF /* sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D9F01BEFFFBE002C0205 /* sio.framework */; };
 /* End PBXBuildFile section */
@@ -87,6 +88,7 @@
 		AC2BF3692292F49800D4953E /* SIO+Alt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Alt.swift"; sourceTree = "<group>"; };
 		AC2BF36B2292F6DD00D4953E /* SIO+Run.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Run.swift"; sourceTree = "<group>"; };
 		AC2BF36D2292F78200D4953E /* SIO+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Zip.swift"; sourceTree = "<group>"; };
+		AC2BF36F2292F81500D4953E /* SIO+Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Schedule.swift"; sourceTree = "<group>"; };
 		AD2FAA261CD0B6D800659CF4 /* sio.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sio.plist; sourceTree = "<group>"; };
 		AD2FAA281CD0B6E100659CF4 /* sioTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sioTests.plist; sourceTree = "<group>"; };
 		DD75027A1C68FCFC006590AF /* sio-macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "sio-macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -202,6 +204,7 @@
 				AC2BF3672292F42A00D4953E /* SIO+Retry.swift */,
 				AC2BF36B2292F6DD00D4953E /* SIO+Run.swift */,
 				AC2BF36D2292F78200D4953E /* SIO+Zip.swift */,
+				AC2BF36F2292F81500D4953E /* SIO+Schedule.swift */,
 				AC2BF33D22927FC800D4953E /* Prelude.swift */,
 				AC2BF3632292F26A00D4953E /* Array+SIO.swift */,
 			);
@@ -521,6 +524,7 @@
 				AC2BF3422292809F00D4953E /* SIO+BiMonad.swift in Sources */,
 				AC2BF34022927FDE00D4953E /* SIO+BiFunctor.swift in Sources */,
 				AC2BF36E2292F78200D4953E /* SIO+Zip.swift in Sources */,
+				AC2BF3702292F81500D4953E /* SIO+Schedule.swift in Sources */,
 				AC2BF3582292C03300D4953E /* SIO+Error.swift in Sources */,
 				AC2BF35C2292E42100D4953E /* SIO+Fold.swift in Sources */,
 				AC2BF3682292F42A00D4953E /* SIO+Retry.swift in Sources */,
