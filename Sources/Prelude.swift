@@ -16,6 +16,7 @@ public func absurd<A>(_ n: Never) -> A {
 	switch n {}
 }
 
+// MARK: Operators
 precedencegroup ApplyPrecedence {
 	associativity: left
 	higherThan: AssignmentPrecedence
@@ -23,3 +24,5 @@ precedencegroup ApplyPrecedence {
 }
 
 infix operator <*>: ApplyPrecedence
+
+infix operator <|>: AdditionPrecedence
