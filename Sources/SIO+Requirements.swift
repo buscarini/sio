@@ -15,3 +15,11 @@ public extension SIO {
 		})
 	}
 }
+
+public extension SIO where R == Void {
+	func require<R>(_ type: R.Type) -> SIO<R, E, A> {
+		return SIO<R, E, A>({ _, reject, resolve in
+			self.fork((), reject, resolve)
+		})
+	}
+}
