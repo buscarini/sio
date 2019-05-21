@@ -37,6 +37,9 @@
 		AC2BF3722292F8A000D4953E /* SIO+Effects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF3712292F8A000D4953E /* SIO+Effects.swift */; };
 		AC2BF3742292FAFB00D4953E /* SIO+Contravariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF3732292FAFB00D4953E /* SIO+Contravariant.swift */; };
 		AC2BF3762292FB7400D4953E /* SIO+Profunctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF3752292FB7400D4953E /* SIO+Profunctor.swift */; };
+		ACD639CE22943EA900F03B19 /* SIO+Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD639CD22943EA900F03B19 /* SIO+Console.swift */; };
+		ACD639D02294401B00F03B19 /* SIO+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD639CF2294401B00F03B19 /* SIO+Date.swift */; };
+		ACD639D22294406E00F03B19 /* SIO+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD639D12294406E00F03B19 /* SIO+Typealias.swift */; };
 		DD7502881C68FEDE006590AF /* sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6DA0F1BF000BD002C0205 /* sio.framework */; };
 		DD7502921C690C7A006590AF /* sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D9F01BEFFFBE002C0205 /* sio.framework */; };
 /* End PBXBuildFile section */
@@ -95,6 +98,9 @@
 		AC2BF3712292F8A000D4953E /* SIO+Effects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Effects.swift"; sourceTree = "<group>"; };
 		AC2BF3732292FAFB00D4953E /* SIO+Contravariant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Contravariant.swift"; sourceTree = "<group>"; };
 		AC2BF3752292FB7400D4953E /* SIO+Profunctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Profunctor.swift"; sourceTree = "<group>"; };
+		ACD639CD22943EA900F03B19 /* SIO+Console.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Console.swift"; sourceTree = "<group>"; };
+		ACD639CF2294401B00F03B19 /* SIO+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Date.swift"; sourceTree = "<group>"; };
+		ACD639D12294406E00F03B19 /* SIO+Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Typealias.swift"; sourceTree = "<group>"; };
 		AD2FAA261CD0B6D800659CF4 /* sio.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sio.plist; sourceTree = "<group>"; };
 		AD2FAA281CD0B6E100659CF4 /* sioTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sioTests.plist; sourceTree = "<group>"; };
 		DD75027A1C68FCFC006590AF /* sio-macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "sio-macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,6 +199,7 @@
 		8933C7811EB5B7E0000D00A4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				ACD639CC22943E9D00F03B19 /* Effects */,
 				AC2BF35F2292F21600D4953E /* Curry.swift */,
 				8933C7841EB5B820000D00A4 /* SIO.swift */,
 				AC2BF3592292DB0F00D4953E /* SIO+Requirements.swift */,
@@ -214,6 +221,7 @@
 				AC2BF36D2292F78200D4953E /* SIO+Zip.swift */,
 				AC2BF36F2292F81500D4953E /* SIO+Schedule.swift */,
 				AC2BF3712292F8A000D4953E /* SIO+Effects.swift */,
+				ACD639D12294406E00F03B19 /* SIO+Typealias.swift */,
 				AC2BF33D22927FC800D4953E /* Prelude.swift */,
 				AC2BF3632292F26A00D4953E /* Array+SIO.swift */,
 			);
@@ -227,6 +235,15 @@
 			);
 			name = Tests;
 			path = Tests/sioTests;
+			sourceTree = "<group>";
+		};
+		ACD639CC22943E9D00F03B19 /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				ACD639CD22943EA900F03B19 /* SIO+Console.swift */,
+				ACD639CF2294401B00F03B19 /* SIO+Date.swift */,
+			);
+			path = Effects;
 			sourceTree = "<group>";
 		};
 		DD7502721C68FC1B006590AF /* Frameworks */ = {
@@ -532,6 +549,7 @@
 				AC2BF3622292F22B00D4953E /* SIO+Monad.swift in Sources */,
 				AC2BF3422292809F00D4953E /* SIO+BiMonad.swift in Sources */,
 				AC2BF34022927FDE00D4953E /* SIO+BiFunctor.swift in Sources */,
+				ACD639D22294406E00F03B19 /* SIO+Typealias.swift in Sources */,
 				AC2BF3722292F8A000D4953E /* SIO+Effects.swift in Sources */,
 				AC2BF36E2292F78200D4953E /* SIO+Zip.swift in Sources */,
 				AC2BF3742292FAFB00D4953E /* SIO+Contravariant.swift in Sources */,
@@ -539,6 +557,7 @@
 				AC2BF3582292C03300D4953E /* SIO+Error.swift in Sources */,
 				AC2BF35C2292E42100D4953E /* SIO+Fold.swift in Sources */,
 				AC2BF3682292F42A00D4953E /* SIO+Retry.swift in Sources */,
+				ACD639CE22943EA900F03B19 /* SIO+Console.swift in Sources */,
 				AC2BF3662292F3BE00D4953E /* SIO+Delay.swift in Sources */,
 				AC2BF3762292FB7400D4953E /* SIO+Profunctor.swift in Sources */,
 				AC2BF35E2292E46300D4953E /* SIO+Applicative.swift in Sources */,
@@ -548,6 +567,7 @@
 				AC2BF33A22927F6C00D4953E /* SIO+Conversions.swift in Sources */,
 				AC2BF33C22927FAB00D4953E /* SIO+Functor.swift in Sources */,
 				AC2BF33E22927FC800D4953E /* Prelude.swift in Sources */,
+				ACD639D02294401B00F03B19 /* SIO+Date.swift in Sources */,
 				AC2BF3642292F26A00D4953E /* Array+SIO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

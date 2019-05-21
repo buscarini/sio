@@ -16,6 +16,9 @@ public func absurd<A>(_ n: Never) -> A {
 	switch n {}
 }
 
+public func discard<A>(_ value: A) -> Void {	
+}
+
 // MARK: Operators
 precedencegroup ApplyPrecedence {
 	associativity: left
