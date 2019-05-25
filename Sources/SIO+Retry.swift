@@ -8,31 +8,27 @@
 
 import Foundation
 
-public func retry<R, E, A>(_ times: Int) -> (SIO<R, E, A>) -> SIO<R, E, A> {
-	return { io in
+public extension SIO {
+	func retry(_ times: Int) -> SIO<R, E, A> {
 		guard times > 0 else {
-			return io
+			return self
 		}
 		
-		return io <|> retry(times - 1)(io)
+		return self <|> self.retry(times - 1)
 	}
-}
-
-public func retry<R, E, A>(times: Int, modify: @escaping (SIO<R, E, A>) -> SIO<R, E, A>) -> (SIO<R, E, A>) -> SIO<R, E, A> {
-	return { io in
+	
+	func retry(times: Int, modify: @escaping (SIO<R, E, A>) -> SIO<R, E, A>) -> SIO<R, E, A> {
 		guard times > 0 else {
-			return io
+			return self
 		}
 		
-		return io <|> retry(times: times - 1, modify: modify)(modify(io))
+		return self <|> modify(self).retry(times: times - 1, modify: modify)
+	
 	}
-}
-
-public func retry<R, E, A>(times: Int, delay: TimeInterval) -> (SIO<R, E, A>) -> SIO<R, E, A> {
-	return { io in
-		return retry(times: times, modify: { io in
+	
+	func retry(times: Int, delay: TimeInterval) -> SIO<R, E, A> {
+		return self.retry(times: times, modify: { io in
 			io.delay(delay)
-		})(io)
+		})
 	}
 }
-

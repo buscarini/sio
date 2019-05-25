@@ -8,14 +8,17 @@
 
 import Foundation
 
+@inlinable
 public func id<a>(_ a: a) -> a {
 	return a
 }
 
+@inlinable
 public func absurd<A>(_ n: Never) -> A {
 	switch n {}
 }
 
+@inlinable
 public func discard<A>(_ value: A) -> Void {	
 }
 

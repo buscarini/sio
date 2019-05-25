@@ -15,6 +15,10 @@
 		8933C78E1EB5B82C000D00A4 /* sioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* sioTests.swift */; };
 		8933C78F1EB5B82C000D00A4 /* sioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* sioTests.swift */; };
 		8933C7901EB5B82D000D00A4 /* sioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* sioTests.swift */; };
+		AC2352D2229744DB000ADE5E /* RaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2352D0229742E6000ADE5E /* RaceTests.swift */; };
+		AC2352D4229749F3000ADE5E /* SIO+Timeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2352D3229749F3000ADE5E /* SIO+Timeout.swift */; };
+		AC2352D622974B04000ADE5E /* TimeoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2352D522974B04000ADE5E /* TimeoutTests.swift */; };
+		AC2352D922975085000ADE5E /* SIO+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2352D722974FFF000ADE5E /* SIO+Random.swift */; };
 		AC2BF33822927E9F00D4953E /* SIO+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF33722927E9F00D4953E /* SIO+Creation.swift */; };
 		AC2BF33A22927F6C00D4953E /* SIO+Conversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF33922927F6C00D4953E /* SIO+Conversions.swift */; };
 		AC2BF33C22927FAB00D4953E /* SIO+Functor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF33B22927FAB00D4953E /* SIO+Functor.swift */; };
@@ -37,6 +41,7 @@
 		AC2BF3722292F8A000D4953E /* SIO+Effects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF3712292F8A000D4953E /* SIO+Effects.swift */; };
 		AC2BF3742292FAFB00D4953E /* SIO+Contravariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF3732292FAFB00D4953E /* SIO+Contravariant.swift */; };
 		AC2BF3762292FB7400D4953E /* SIO+Profunctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF3752292FB7400D4953E /* SIO+Profunctor.swift */; };
+		ACB600962296E15C00651078 /* SIO+Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB600952296E15C00651078 /* SIO+Race.swift */; };
 		ACD639CE22943EA900F03B19 /* SIO+Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD639CD22943EA900F03B19 /* SIO+Console.swift */; };
 		ACD639D02294401B00F03B19 /* SIO+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD639CF2294401B00F03B19 /* SIO+Date.swift */; };
 		ACD639D22294406E00F03B19 /* SIO+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD639D12294406E00F03B19 /* SIO+Typealias.swift */; };
@@ -76,6 +81,10 @@
 		52D6DA0F1BF000BD002C0205 /* sio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = sio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8933C7841EB5B820000D00A4 /* SIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SIO.swift; sourceTree = "<group>"; };
 		8933C7891EB5B82A000D00A4 /* sioTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sioTests.swift; sourceTree = "<group>"; };
+		AC2352D0229742E6000ADE5E /* RaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceTests.swift; sourceTree = "<group>"; };
+		AC2352D3229749F3000ADE5E /* SIO+Timeout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Timeout.swift"; sourceTree = "<group>"; };
+		AC2352D522974B04000ADE5E /* TimeoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeoutTests.swift; sourceTree = "<group>"; };
+		AC2352D722974FFF000ADE5E /* SIO+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Random.swift"; sourceTree = "<group>"; };
 		AC2BF33722927E9F00D4953E /* SIO+Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Creation.swift"; sourceTree = "<group>"; };
 		AC2BF33922927F6C00D4953E /* SIO+Conversions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Conversions.swift"; sourceTree = "<group>"; };
 		AC2BF33B22927FAB00D4953E /* SIO+Functor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Functor.swift"; sourceTree = "<group>"; };
@@ -98,6 +107,7 @@
 		AC2BF3712292F8A000D4953E /* SIO+Effects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Effects.swift"; sourceTree = "<group>"; };
 		AC2BF3732292FAFB00D4953E /* SIO+Contravariant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Contravariant.swift"; sourceTree = "<group>"; };
 		AC2BF3752292FB7400D4953E /* SIO+Profunctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Profunctor.swift"; sourceTree = "<group>"; };
+		ACB600952296E15C00651078 /* SIO+Race.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Race.swift"; sourceTree = "<group>"; };
 		ACD639CD22943EA900F03B19 /* SIO+Console.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Console.swift"; sourceTree = "<group>"; };
 		ACD639CF2294401B00F03B19 /* SIO+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Date.swift"; sourceTree = "<group>"; };
 		ACD639D12294406E00F03B19 /* SIO+Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Typealias.swift"; sourceTree = "<group>"; };
@@ -202,6 +212,8 @@
 				ACD639CC22943E9D00F03B19 /* Effects */,
 				AC2BF35F2292F21600D4953E /* Curry.swift */,
 				8933C7841EB5B820000D00A4 /* SIO.swift */,
+				ACB600952296E15C00651078 /* SIO+Race.swift */,
+				AC2352D3229749F3000ADE5E /* SIO+Timeout.swift */,
 				AC2BF3592292DB0F00D4953E /* SIO+Requirements.swift */,
 				AC2BF33722927E9F00D4953E /* SIO+Creation.swift */,
 				AC2BF33922927F6C00D4953E /* SIO+Conversions.swift */,
@@ -232,6 +244,8 @@
 			isa = PBXGroup;
 			children = (
 				8933C7891EB5B82A000D00A4 /* sioTests.swift */,
+				AC2352D0229742E6000ADE5E /* RaceTests.swift */,
+				AC2352D522974B04000ADE5E /* TimeoutTests.swift */,
 			);
 			name = Tests;
 			path = Tests/sioTests;
@@ -242,6 +256,7 @@
 			children = (
 				ACD639CD22943EA900F03B19 /* SIO+Console.swift */,
 				ACD639CF2294401B00F03B19 /* SIO+Date.swift */,
+				AC2352D722974FFF000ADE5E /* SIO+Random.swift */,
 			);
 			path = Effects;
 			sourceTree = "<group>";
@@ -548,10 +563,12 @@
 				AC2BF36A2292F49900D4953E /* SIO+Alt.swift in Sources */,
 				AC2BF3622292F22B00D4953E /* SIO+Monad.swift in Sources */,
 				AC2BF3422292809F00D4953E /* SIO+BiMonad.swift in Sources */,
+				ACB600962296E15C00651078 /* SIO+Race.swift in Sources */,
 				AC2BF34022927FDE00D4953E /* SIO+BiFunctor.swift in Sources */,
 				ACD639D22294406E00F03B19 /* SIO+Typealias.swift in Sources */,
 				AC2BF3722292F8A000D4953E /* SIO+Effects.swift in Sources */,
 				AC2BF36E2292F78200D4953E /* SIO+Zip.swift in Sources */,
+				AC2352D922975085000ADE5E /* SIO+Random.swift in Sources */,
 				AC2BF3742292FAFB00D4953E /* SIO+Contravariant.swift in Sources */,
 				AC2BF3702292F81500D4953E /* SIO+Schedule.swift in Sources */,
 				AC2BF3582292C03300D4953E /* SIO+Error.swift in Sources */,
@@ -563,6 +580,7 @@
 				AC2BF35E2292E46300D4953E /* SIO+Applicative.swift in Sources */,
 				AC2BF33822927E9F00D4953E /* SIO+Creation.swift in Sources */,
 				AC2BF3602292F21700D4953E /* Curry.swift in Sources */,
+				AC2352D4229749F3000ADE5E /* SIO+Timeout.swift in Sources */,
 				8933C7851EB5B820000D00A4 /* SIO.swift in Sources */,
 				AC2BF33A22927F6C00D4953E /* SIO+Conversions.swift in Sources */,
 				AC2BF33C22927FAB00D4953E /* SIO+Functor.swift in Sources */,
@@ -576,6 +594,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC2352D622974B04000ADE5E /* TimeoutTests.swift in Sources */,
+				AC2352D2229744DB000ADE5E /* RaceTests.swift in Sources */,
 				8933C7901EB5B82D000D00A4 /* sioTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

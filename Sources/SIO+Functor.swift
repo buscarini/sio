@@ -12,4 +12,16 @@ extension SIO {
 	public func map<B>(_ f: @escaping (A) -> (B)) -> SIO<R, E, B> {
 		return self.bimap(id, f)
 	}
+	
+	public func map2<Element, B>(_ f: @escaping (Element) -> (B)) -> SIO<R, E, [B]> where A == [Element] {
+		return self.bimap(id, { $0.map(f) })
+	}
+	
+	public func map2<Element, B>(_ f: @escaping (Element) -> (B)) -> SIO<R, E, B?> where A == Element? {
+		return self.bimap(id, { $0.map(f) })
+	}
+	
+	public var void: SIO<R, E, Void> {
+		return self.map { _ in () }
+	}
 }
