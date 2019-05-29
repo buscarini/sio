@@ -20,7 +20,7 @@
 		AC2352D622974B04000ADE5E /* TimeoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2352D522974B04000ADE5E /* TimeoutTests.swift */; };
 		AC2352D922975085000ADE5E /* SIO+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2352D722974FFF000ADE5E /* SIO+Random.swift */; };
 		AC2BF33822927E9F00D4953E /* SIO+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF33722927E9F00D4953E /* SIO+Creation.swift */; };
-		AC2BF33A22927F6C00D4953E /* SIO+Conversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF33922927F6C00D4953E /* SIO+Conversions.swift */; };
+		AC2BF33A22927F6C00D4953E /* SIO+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF33922927F6C00D4953E /* SIO+Optional.swift */; };
 		AC2BF33C22927FAB00D4953E /* SIO+Functor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF33B22927FAB00D4953E /* SIO+Functor.swift */; };
 		AC2BF33E22927FC800D4953E /* Prelude.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF33D22927FC800D4953E /* Prelude.swift */; };
 		AC2BF34022927FDE00D4953E /* SIO+BiFunctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF33F22927FDE00D4953E /* SIO+BiFunctor.swift */; };
@@ -41,6 +41,8 @@
 		AC2BF3722292F8A000D4953E /* SIO+Effects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF3712292F8A000D4953E /* SIO+Effects.swift */; };
 		AC2BF3742292FAFB00D4953E /* SIO+Contravariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF3732292FAFB00D4953E /* SIO+Contravariant.swift */; };
 		AC2BF3762292FB7400D4953E /* SIO+Profunctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF3752292FB7400D4953E /* SIO+Profunctor.swift */; };
+		AC5FB773229EF827008F8D8A /* SIO+Bracket.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5FB772229EF827008F8D8A /* SIO+Bracket.swift */; };
+		AC5FB775229EF957008F8D8A /* SIO+Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5FB774229EF957008F8D8A /* SIO+Result.swift */; };
 		ACB600962296E15C00651078 /* SIO+Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB600952296E15C00651078 /* SIO+Race.swift */; };
 		ACD639CE22943EA900F03B19 /* SIO+Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD639CD22943EA900F03B19 /* SIO+Console.swift */; };
 		ACD639D02294401B00F03B19 /* SIO+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD639CF2294401B00F03B19 /* SIO+Date.swift */; };
@@ -86,7 +88,7 @@
 		AC2352D522974B04000ADE5E /* TimeoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeoutTests.swift; sourceTree = "<group>"; };
 		AC2352D722974FFF000ADE5E /* SIO+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Random.swift"; sourceTree = "<group>"; };
 		AC2BF33722927E9F00D4953E /* SIO+Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Creation.swift"; sourceTree = "<group>"; };
-		AC2BF33922927F6C00D4953E /* SIO+Conversions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Conversions.swift"; sourceTree = "<group>"; };
+		AC2BF33922927F6C00D4953E /* SIO+Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Optional.swift"; sourceTree = "<group>"; };
 		AC2BF33B22927FAB00D4953E /* SIO+Functor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Functor.swift"; sourceTree = "<group>"; };
 		AC2BF33D22927FC800D4953E /* Prelude.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prelude.swift; sourceTree = "<group>"; };
 		AC2BF33F22927FDE00D4953E /* SIO+BiFunctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+BiFunctor.swift"; sourceTree = "<group>"; };
@@ -107,6 +109,8 @@
 		AC2BF3712292F8A000D4953E /* SIO+Effects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Effects.swift"; sourceTree = "<group>"; };
 		AC2BF3732292FAFB00D4953E /* SIO+Contravariant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Contravariant.swift"; sourceTree = "<group>"; };
 		AC2BF3752292FB7400D4953E /* SIO+Profunctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Profunctor.swift"; sourceTree = "<group>"; };
+		AC5FB772229EF827008F8D8A /* SIO+Bracket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Bracket.swift"; sourceTree = "<group>"; };
+		AC5FB774229EF957008F8D8A /* SIO+Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Result.swift"; sourceTree = "<group>"; };
 		ACB600952296E15C00651078 /* SIO+Race.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Race.swift"; sourceTree = "<group>"; };
 		ACD639CD22943EA900F03B19 /* SIO+Console.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Console.swift"; sourceTree = "<group>"; };
 		ACD639CF2294401B00F03B19 /* SIO+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Date.swift"; sourceTree = "<group>"; };
@@ -216,7 +220,7 @@
 				AC2352D3229749F3000ADE5E /* SIO+Timeout.swift */,
 				AC2BF3592292DB0F00D4953E /* SIO+Requirements.swift */,
 				AC2BF33722927E9F00D4953E /* SIO+Creation.swift */,
-				AC2BF33922927F6C00D4953E /* SIO+Conversions.swift */,
+				AC2BF33922927F6C00D4953E /* SIO+Optional.swift */,
 				AC2BF3732292FAFB00D4953E /* SIO+Contravariant.swift */,
 				AC2BF3752292FB7400D4953E /* SIO+Profunctor.swift */,
 				AC2BF33B22927FAB00D4953E /* SIO+Functor.swift */,
@@ -229,6 +233,8 @@
 				AC2BF3692292F49800D4953E /* SIO+Alt.swift */,
 				AC2BF3652292F3BE00D4953E /* SIO+Delay.swift */,
 				AC2BF3672292F42A00D4953E /* SIO+Retry.swift */,
+				AC5FB772229EF827008F8D8A /* SIO+Bracket.swift */,
+				AC5FB774229EF957008F8D8A /* SIO+Result.swift */,
 				AC2BF36B2292F6DD00D4953E /* SIO+Run.swift */,
 				AC2BF36D2292F78200D4953E /* SIO+Zip.swift */,
 				AC2BF36F2292F81500D4953E /* SIO+Schedule.swift */,
@@ -570,6 +576,7 @@
 				AC2BF36E2292F78200D4953E /* SIO+Zip.swift in Sources */,
 				AC2352D922975085000ADE5E /* SIO+Random.swift in Sources */,
 				AC2BF3742292FAFB00D4953E /* SIO+Contravariant.swift in Sources */,
+				AC5FB773229EF827008F8D8A /* SIO+Bracket.swift in Sources */,
 				AC2BF3702292F81500D4953E /* SIO+Schedule.swift in Sources */,
 				AC2BF3582292C03300D4953E /* SIO+Error.swift in Sources */,
 				AC2BF35C2292E42100D4953E /* SIO+Fold.swift in Sources */,
@@ -580,9 +587,10 @@
 				AC2BF35E2292E46300D4953E /* SIO+Applicative.swift in Sources */,
 				AC2BF33822927E9F00D4953E /* SIO+Creation.swift in Sources */,
 				AC2BF3602292F21700D4953E /* Curry.swift in Sources */,
+				AC5FB775229EF957008F8D8A /* SIO+Result.swift in Sources */,
 				AC2352D4229749F3000ADE5E /* SIO+Timeout.swift in Sources */,
 				8933C7851EB5B820000D00A4 /* SIO.swift in Sources */,
-				AC2BF33A22927F6C00D4953E /* SIO+Conversions.swift in Sources */,
+				AC2BF33A22927F6C00D4953E /* SIO+Optional.swift in Sources */,
 				AC2BF33C22927FAB00D4953E /* SIO+Functor.swift in Sources */,
 				AC2BF33E22927FC800D4953E /* Prelude.swift in Sources */,
 				ACD639D02294401B00F03B19 /* SIO+Date.swift in Sources */,
