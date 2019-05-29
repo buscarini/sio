@@ -1,69 +1,49 @@
 //
-//  sio.swift
-//  sio
+//  SIO.swift
+//  sio-iOS
 //
-//  Created by José Manuel Sánchez on 19/5/19.
+//  Created by José Manuel Sánchez Peñarroja on 26/05/2019.
 //  Copyright © 2019 sio. All rights reserved.
 //
 
 import Foundation
 
-/// Swift IO R: Requirements, E: Error, A: Success Value
-public struct SIO<R, E, A> {
-	public typealias ErrorCallback = (E) -> ()
-	public typealias ResultCallback = (A) -> ()
-	public typealias EmptyCallback = () -> ()
-	
-	public typealias Computation = (R, @escaping ErrorCallback, @escaping ResultCallback) -> ()
+public enum SIO<R, E, A> {
+	case zero
+	case effect(Eff<R, E, A>)
+}
 
-	private var _fork: Computation
-	let _cancel: EmptyCallback?
-	
-	private var _cancelled = false
-	private let cancelSyncQueue = DispatchQueue(label: "task_cancel")
-	private var cancelled: Bool {
-		get {
-			var result = false
-			
-			cancelSyncQueue.sync {
-				result = self._cancelled
-			}
-			return result
-		}
-		
-		set {
-			cancelSyncQueue.sync {
-				self._cancelled = newValue
-			}
-		}
-	}
-	
-	public init(_ computation: @escaping Computation) {
-		self._fork = computation
-		self._cancel = nil
-	}
+public extension SIO {
+	typealias ErrorCallback = (E) -> ()
+	typealias ResultCallback = (A) -> ()
+	typealias EmptyCallback = () -> ()
 
-	public init(_ computation: @escaping Computation, cancel: EmptyCallback?) {
-		self._fork = computation
-		self._cancel = cancel
+	typealias Computation = (R, @escaping ErrorCallback, @escaping ResultCallback) -> ()
+
+	init(_ computation: @escaping Computation) {
+		self = .effect(Eff.init(computation))
 	}
 	
-	public func fork(_ requirement: R, _ reject: @escaping ErrorCallback, _ resolve: @escaping ResultCallback) {
-		self._fork(
-			requirement,
-			{ error in
-				guard !self.cancelled else { return }
-				reject(error)
-			},
-			{ result in
-				guard !self.cancelled else { return }
-				resolve(result)
-			}
-		)
+	init(_ computation: @escaping Computation, cancel: EmptyCallback?) {
+		self = .effect(Eff.init(computation, cancel: cancel))
 	}
 	
-	public mutating func cancel() {
-		self.cancelled = true
-		self._cancel?()
+	func fork(_ requirement: R, _ reject: @escaping ErrorCallback, _ resolve:
+		@escaping ResultCallback) {
+		switch self {
+		case .zero:
+			return
+		case let .effect(io):
+			return io.fork(requirement, reject, resolve)
+		}
+	}
+	
+	func cancel() {
+		switch self {
+		case .zero:
+			return
+		case let .effect(io):
+			io.cancel()
+		}
 	}
 }

@@ -10,16 +10,21 @@ import Foundation
 
 extension SIO {
 	public func biFlatMap<F, B>(_ f: @escaping (E) -> SIO<R, F, B>, _ g: @escaping (A) -> SIO<R, F, B>) -> SIO<R, F, B> {
-		return SIO<R, F, B>({ (env, reject: @escaping (F) -> (), resolve: @escaping (B) -> ()) in
-			return self.fork(
-				env,
-				{ error in
-					f(error).fork(env, reject, resolve)
-				},
-				{ value in
-					g(value).fork(env, reject, resolve)
-				}
-			)
-		}, cancel: _cancel)
+		switch self {
+		case .zero:
+			return .zero
+		case .effect:
+			return SIO<R, F, B>({ (env, reject: @escaping (F) -> (), resolve: @escaping (B) -> ()) in
+				return self.fork(
+					env,
+					{ error in
+						f(error).fork(env, reject, resolve)
+					},
+					{ value in
+						g(value).fork(env, reject, resolve)
+					}
+				)
+			}, cancel: cancel)
+		}
 	}
 }

@@ -20,6 +20,6 @@ extension SIO {
 					resolve(g(value))
 				}
 			)
-		}, cancel: _cancel)
+		}, cancel: cancel)
 	}
 }

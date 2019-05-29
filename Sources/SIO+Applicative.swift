@@ -20,9 +20,6 @@ public func ap<R, E, A, B, C>(_ iof: SIO<R, E, (A, B) -> C>, _ first: SIO<R, E, 
 
 public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -> SIO<R, E, B> {
 	
-	var l = left
-	var r = right
-	
 	return SIO<R, E, B>({ (env, reject: @escaping (E) -> (), resolve: @escaping (B) -> ()) in
 		var f: ((A)->B)?
 		var val: A?
@@ -41,7 +38,7 @@ public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -
 			resolve(f(val))
 		}
 		
-		l.fork(env, guardReject, { loadedF in
+		left.fork(env, guardReject, { loadedF in
 			guard !rejected else {
 				return
 			}
@@ -51,7 +48,7 @@ public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -
 			tryResolve()
 		})
 		
-		r.fork(env, guardReject, { loadedVal in
+		right.fork(env, guardReject, { loadedVal in
 			guard !rejected else {
 				return
 			}
@@ -61,7 +58,7 @@ public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -
 			tryResolve()
 		})
 	}, cancel: {
-		l.cancel()
-		r.cancel()
+		left.cancel()
+		right.cancel()
 	})
 }
