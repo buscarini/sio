@@ -43,7 +43,12 @@
 		AC2BF3762292FB7400D4953E /* SIO+Profunctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF3752292FB7400D4953E /* SIO+Profunctor.swift */; };
 		AC5FB773229EF827008F8D8A /* SIO+Bracket.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5FB772229EF827008F8D8A /* SIO+Bracket.swift */; };
 		AC5FB775229EF957008F8D8A /* SIO+Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5FB774229EF957008F8D8A /* SIO+Result.swift */; };
+		AC5FB777229EFB1D008F8D8A /* SIO+FS.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5FB776229EFB1D008F8D8A /* SIO+FS.swift */; };
+		AC5FB77A229EFD09008F8D8A /* SIOError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5FB779229EFD09008F8D8A /* SIOError.swift */; };
 		ACB600962296E15C00651078 /* SIO+Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB600952296E15C00651078 /* SIO+Race.swift */; };
+		ACC5C735229FE94A0026FE17 /* Compose.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC5C734229FE94A0026FE17 /* Compose.swift */; };
+		ACC5C737229FE9840026FE17 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC5C736229FE9840026FE17 /* Operators.swift */; };
+		ACC5C739229FE9A40026FE17 /* PrecedenceGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC5C738229FE9A40026FE17 /* PrecedenceGroups.swift */; };
 		ACD639CE22943EA900F03B19 /* SIO+Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD639CD22943EA900F03B19 /* SIO+Console.swift */; };
 		ACD639D02294401B00F03B19 /* SIO+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD639CF2294401B00F03B19 /* SIO+Date.swift */; };
 		ACD639D22294406E00F03B19 /* SIO+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD639D12294406E00F03B19 /* SIO+Typealias.swift */; };
@@ -111,7 +116,12 @@
 		AC2BF3752292FB7400D4953E /* SIO+Profunctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Profunctor.swift"; sourceTree = "<group>"; };
 		AC5FB772229EF827008F8D8A /* SIO+Bracket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Bracket.swift"; sourceTree = "<group>"; };
 		AC5FB774229EF957008F8D8A /* SIO+Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Result.swift"; sourceTree = "<group>"; };
+		AC5FB776229EFB1D008F8D8A /* SIO+FS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+FS.swift"; sourceTree = "<group>"; };
+		AC5FB779229EFD09008F8D8A /* SIOError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIOError.swift; sourceTree = "<group>"; };
 		ACB600952296E15C00651078 /* SIO+Race.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Race.swift"; sourceTree = "<group>"; };
+		ACC5C734229FE94A0026FE17 /* Compose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compose.swift; sourceTree = "<group>"; };
+		ACC5C736229FE9840026FE17 /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
+		ACC5C738229FE9A40026FE17 /* PrecedenceGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecedenceGroups.swift; sourceTree = "<group>"; };
 		ACD639CD22943EA900F03B19 /* SIO+Console.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Console.swift"; sourceTree = "<group>"; };
 		ACD639CF2294401B00F03B19 /* SIO+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Date.swift"; sourceTree = "<group>"; };
 		ACD639D12294406E00F03B19 /* SIO+Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Typealias.swift"; sourceTree = "<group>"; };
@@ -215,6 +225,7 @@
 			children = (
 				ACD639CC22943E9D00F03B19 /* Effects */,
 				AC2BF35F2292F21600D4953E /* Curry.swift */,
+				ACC5C734229FE94A0026FE17 /* Compose.swift */,
 				8933C7841EB5B820000D00A4 /* SIO.swift */,
 				ACB600952296E15C00651078 /* SIO+Race.swift */,
 				AC2352D3229749F3000ADE5E /* SIO+Timeout.swift */,
@@ -241,7 +252,10 @@
 				AC2BF3712292F8A000D4953E /* SIO+Effects.swift */,
 				ACD639D12294406E00F03B19 /* SIO+Typealias.swift */,
 				AC2BF33D22927FC800D4953E /* Prelude.swift */,
+				ACC5C736229FE9840026FE17 /* Operators.swift */,
+				ACC5C738229FE9A40026FE17 /* PrecedenceGroups.swift */,
 				AC2BF3632292F26A00D4953E /* Array+SIO.swift */,
+				AC5FB779229EFD09008F8D8A /* SIOError.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -263,6 +277,7 @@
 				ACD639CD22943EA900F03B19 /* SIO+Console.swift */,
 				ACD639CF2294401B00F03B19 /* SIO+Date.swift */,
 				AC2352D722974FFF000ADE5E /* SIO+Random.swift */,
+				AC5FB776229EFB1D008F8D8A /* SIO+FS.swift */,
 			);
 			path = Effects;
 			sourceTree = "<group>";
@@ -572,13 +587,17 @@
 				ACB600962296E15C00651078 /* SIO+Race.swift in Sources */,
 				AC2BF34022927FDE00D4953E /* SIO+BiFunctor.swift in Sources */,
 				ACD639D22294406E00F03B19 /* SIO+Typealias.swift in Sources */,
+				ACC5C735229FE94A0026FE17 /* Compose.swift in Sources */,
 				AC2BF3722292F8A000D4953E /* SIO+Effects.swift in Sources */,
 				AC2BF36E2292F78200D4953E /* SIO+Zip.swift in Sources */,
 				AC2352D922975085000ADE5E /* SIO+Random.swift in Sources */,
+				AC5FB77A229EFD09008F8D8A /* SIOError.swift in Sources */,
 				AC2BF3742292FAFB00D4953E /* SIO+Contravariant.swift in Sources */,
 				AC5FB773229EF827008F8D8A /* SIO+Bracket.swift in Sources */,
 				AC2BF3702292F81500D4953E /* SIO+Schedule.swift in Sources */,
+				ACC5C737229FE9840026FE17 /* Operators.swift in Sources */,
 				AC2BF3582292C03300D4953E /* SIO+Error.swift in Sources */,
+				AC5FB777229EFB1D008F8D8A /* SIO+FS.swift in Sources */,
 				AC2BF35C2292E42100D4953E /* SIO+Fold.swift in Sources */,
 				AC2BF3682292F42A00D4953E /* SIO+Retry.swift in Sources */,
 				ACD639CE22943EA900F03B19 /* SIO+Console.swift in Sources */,
@@ -591,6 +610,7 @@
 				AC2352D4229749F3000ADE5E /* SIO+Timeout.swift in Sources */,
 				8933C7851EB5B820000D00A4 /* SIO.swift in Sources */,
 				AC2BF33A22927F6C00D4953E /* SIO+Optional.swift in Sources */,
+				ACC5C739229FE9A40026FE17 /* PrecedenceGroups.swift in Sources */,
 				AC2BF33C22927FAB00D4953E /* SIO+Functor.swift in Sources */,
 				AC2BF33E22927FC800D4953E /* Prelude.swift in Sources */,
 				ACD639D02294401B00F03B19 /* SIO+Date.swift in Sources */,

@@ -19,10 +19,10 @@ public extension SIO {
 }
 
 public extension SIO where E == Error {
-	init(catching: @escaping () throws -> A) {
+	init(catching: @escaping (R) throws -> A) {
 		self.init({ (env, reject, resolve) in
 			do {
-				resolve(try catching())
+				resolve(try catching(env))
 			}
 			catch let error {
 				reject(error)

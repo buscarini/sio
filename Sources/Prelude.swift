@@ -22,13 +22,7 @@ public func absurd<A>(_ n: Never) -> A {
 public func discard<A>(_ value: A) -> Void {	
 }
 
-// MARK: Operators
-precedencegroup ApplyPrecedence {
-	associativity: left
-	higherThan: AssignmentPrecedence
-	lowerThan: TernaryPrecedence
+@inlinable
+public func const<A, B>(_ b: B) -> (_ a: A) -> B {
+	return { _ in b }
 }
-
-infix operator <*>: ApplyPrecedence
-
-infix operator <|>: AdditionPrecedence

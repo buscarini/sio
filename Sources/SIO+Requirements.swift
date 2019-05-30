@@ -9,10 +9,16 @@
 import Foundation
 
 public extension SIO {
-	func provide(_ req: R) -> SIO<Void, E, A> {
-		return SIO<Void, E, A>({ _, reject, resolve in
-			self.fork(req, reject, resolve)
+	func provideSome<R0>(_ f: @escaping (R0) -> R) -> SIO<R0, E, A> {
+		return SIO<R0, E, A>({ r, reject, resolve in
+			self.fork(f(r), reject, resolve)
 		})
+	}
+	
+	func provide(_ req: R) -> SIO<Void, E, A> {
+		return self.provideSome { _ in
+			return req
+		}
 	}
 }
 

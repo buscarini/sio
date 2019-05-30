@@ -10,11 +10,7 @@ import Foundation
 
 public extension SIO {
 	func retry(_ times: Int) -> SIO<R, E, A> {
-		guard times > 0 else {
-			return self
-		}
-		
-		return self <|> self.retry(times - 1)
+		return retry(times: times, modify: id)
 	}
 	
 	func retry(times: Int, modify: @escaping (SIO<R, E, A>) -> SIO<R, E, A>) -> SIO<R, E, A> {

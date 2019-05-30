@@ -9,13 +9,25 @@
 import Foundation
 
 public extension SIO {
-	func bracket<S, B>(_ pre: SIO<S, E, R>, _ post: SIO<A, E, B>) -> SIO<S, E, B> {
-		return pre
-			.flatMap { env in
-				self.provide(env).require(S.self)
-			}
+	func bracket<B>(
+		_ release: @escaping (A) -> SIO<R, Never, Void>,
+		_ use: @escaping (A) -> SIO<R, E, B>) -> SIO<R, E, B> {
+		return SIO.bracket(self, release, use)
+	}
+	
+	static func bracket<B>(
+		_ acquire: SIO<R, E, A>,
+		_ release: @escaping (A) -> SIO<R, Never, Void>,
+		_ use: @escaping (A) -> SIO<R, E, B>) -> SIO<R, E, B> {
+		
+		return acquire
 			.flatMap { a in
-				post.provide(a).require(S.self)
+				use(a)
+				.flatMap { b in
+					release(a)
+						.map(const(b))
+						.mapError(absurd)
+				}
 			}
 	}
 }

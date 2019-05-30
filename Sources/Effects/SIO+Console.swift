@@ -8,26 +8,21 @@
 
 import Foundation
 
-public enum ConsoleError: Error {
-	case noData
+public func printLine(_ string: String) -> UIO<Void> {
+	return UIO<Void>({ env, reject, resolve in
+		Swift.print(string)
+		resolve(())
+	})
 }
 
-public extension SIO {
-	static var print: SIO<String, Never, Void> {
-		return SIO<String, Never, Void>({ env, reject, resolve in
-			Swift.print(env)
-			resolve(())
-		})
-	}
-	
-	static var getLine: IO<ConsoleError, String> {
-		return IO<ConsoleError, String>({ _, reject, resolve in
-			guard let line = readLine() else {
-				reject(.noData)
-				return
-			}
-			
-			resolve(line)
-		})
-	}
+public var getLine: IO<SIOError, String> {
+	return IO<SIOError, String>({ _, reject, resolve in
+		guard let line = readLine() else {
+			reject(.empty)
+			return
+		}
+		
+		resolve(line)
+	})
 }
+
