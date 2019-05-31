@@ -20,6 +20,16 @@ public extension SIO {
 			return req
 		}
 	}
+	
+	static var environment: SIO<R, Never, R> {
+		return access(id)
+	}
+	
+	static func access<S>(_ f: @escaping (R) -> S) -> SIO<R, Never, S> {
+		return SIO<R, Never, S>({ env, _, resolve in
+			resolve(f(env))
+		})
+	}
 }
 
 public extension SIO where R == Void {
