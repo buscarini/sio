@@ -8,15 +8,33 @@
 
 import Foundation
 
-public enum Console {
-	public static func printLine(_ string: String) -> UIO<Void> {
+public struct Console {
+	public var printLine: (String) -> UIO<Void>
+	public var getLine: () -> IO<SIOError, String>
+	
+	public static var `default`: Console {
+		return Console(
+			printLine: defaultPrintLine,
+			getLine: defaultGetLine
+		)
+	}
+	
+	public init(
+		printLine: @escaping (String) -> UIO<Void>,
+		getLine: @escaping () -> IO<SIOError, String>
+	) {
+		self.printLine = printLine
+		self.getLine = getLine
+	}
+	
+	public static func defaultPrintLine(_ string: String) -> UIO<Void> {
 		return UIO<Void>({ env, reject, resolve in
 			Swift.print(string)
 			resolve(())
 		})
 	}
 
-	public static var getLine: IO<SIOError, String> {
+	public static func defaultGetLine() -> IO<SIOError, String> {
 		return IO<SIOError, String>({ _, reject, resolve in
 			guard let line = readLine() else {
 				reject(.empty)

@@ -41,6 +41,7 @@
 		AC2BF3722292F8A000D4953E /* SIO+Effects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF3712292F8A000D4953E /* SIO+Effects.swift */; };
 		AC2BF3742292FAFB00D4953E /* SIO+Contravariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF3732292FAFB00D4953E /* SIO+Contravariant.swift */; };
 		AC2BF3762292FB7400D4953E /* SIO+Profunctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF3752292FB7400D4953E /* SIO+Profunctor.swift */; };
+		AC3F33C322A2912900E93AEA /* SIO+Adapt.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3F33C222A2912900E93AEA /* SIO+Adapt.swift */; };
 		AC5FB773229EF827008F8D8A /* SIO+Bracket.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5FB772229EF827008F8D8A /* SIO+Bracket.swift */; };
 		AC5FB775229EF957008F8D8A /* SIO+Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5FB774229EF957008F8D8A /* SIO+Result.swift */; };
 		AC5FB777229EFB1D008F8D8A /* SIO+FS.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5FB776229EFB1D008F8D8A /* SIO+FS.swift */; };
@@ -114,6 +115,7 @@
 		AC2BF3712292F8A000D4953E /* SIO+Effects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Effects.swift"; sourceTree = "<group>"; };
 		AC2BF3732292FAFB00D4953E /* SIO+Contravariant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Contravariant.swift"; sourceTree = "<group>"; };
 		AC2BF3752292FB7400D4953E /* SIO+Profunctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Profunctor.swift"; sourceTree = "<group>"; };
+		AC3F33C222A2912900E93AEA /* SIO+Adapt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Adapt.swift"; sourceTree = "<group>"; };
 		AC5FB772229EF827008F8D8A /* SIO+Bracket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Bracket.swift"; sourceTree = "<group>"; };
 		AC5FB774229EF957008F8D8A /* SIO+Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Result.swift"; sourceTree = "<group>"; };
 		AC5FB776229EFB1D008F8D8A /* SIO+FS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+FS.swift"; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				ACB600952296E15C00651078 /* SIO+Race.swift */,
 				AC2352D3229749F3000ADE5E /* SIO+Timeout.swift */,
 				AC2BF3592292DB0F00D4953E /* SIO+Requirements.swift */,
+				AC3F33C222A2912900E93AEA /* SIO+Adapt.swift */,
 				AC2BF33722927E9F00D4953E /* SIO+Creation.swift */,
 				AC2BF33922927F6C00D4953E /* SIO+Optional.swift */,
 				AC2BF3732292FAFB00D4953E /* SIO+Contravariant.swift */,
@@ -590,6 +593,7 @@
 				ACC5C735229FE94A0026FE17 /* Compose.swift in Sources */,
 				AC2BF3722292F8A000D4953E /* SIO+Effects.swift in Sources */,
 				AC2BF36E2292F78200D4953E /* SIO+Zip.swift in Sources */,
+				AC3F33C322A2912900E93AEA /* SIO+Adapt.swift in Sources */,
 				AC2352D922975085000ADE5E /* SIO+Random.swift in Sources */,
 				AC5FB77A229EFD09008F8D8A /* SIOError.swift in Sources */,
 				AC2BF3742292FAFB00D4953E /* SIO+Contravariant.swift in Sources */,

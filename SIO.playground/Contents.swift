@@ -7,12 +7,14 @@ struct Environment {
 	var resourceUrl: (String, String) -> SIO<Void, SIOError, URL>
 	var loadFileUrl: (Data.ReadingOptions) -> (URL) -> SIO<Void, SIOError, Data>
 	var stringFromData: (Data) -> SIO<Void, SIOError, String>
+	var console: Console
 	
 	static var real: Environment {
 		return Environment(
 			resourceUrl: bundleResourceUrl,
 			loadFileUrl: loadFileUrlData,
-			stringFromData: utfStringFromData
+			stringFromData: utfStringFromData,
+			console: Console.default
 		)
 	}
 	
@@ -20,11 +22,14 @@ struct Environment {
 		return Environment(
 			resourceUrl: { _, _ in .of(URL.init(fileURLWithPath: "/tmp")) },
 			loadFileUrl: { _ in { _ in .of("test".data(using: .utf8)!) } },
-			stringFromData: { _ in .of("blah") }
+			stringFromData: { _ in .of("blah") },
+			console: Console(
+				printLine: { _ in .of(()) },
+				getLine: { .of("hello") }
+			)
 		)
 	}
 }
-
 
 func bundleResourceUrl(_ name: String, _ ext: String) -> SIO<Void, SIOError, URL> {
 	return SIO.from { _ in
@@ -45,7 +50,7 @@ func utfStringFromData(_ data: Data) -> SIO<Void, SIOError, String> {
 	return SIO.from { _  in String.init(data: data, encoding: .utf8) }
 }
 
-let loadStringFile: SIO<Environment, SIOError, String> = SIO<Environment, Never, Environment>.environment
+let loadStringFile = environment(Environment.self)
 	.mapError(absurd)
 	.flatMap { e in
 		e.resourceUrl("resource", "txt")
@@ -54,24 +59,22 @@ let loadStringFile: SIO<Environment, SIOError, String> = SIO<Environment, Never,
 			.require(Environment.self)
 	}
 
-loadStringFile
-	.flatMap { Console.printLine($0).require(Environment.self).mapError(absurd) }
-	.provide(Environment.mock)
-	.fork({ error in
-		error
-	}, { string in
+let program = loadStringFile
+	.fold({ e in "Error: \(e)" }, id)
+	.flatMapR( { r, s in
+		r.console.printLine(s)
+			.require(Environment.self)
 	})
 
-//
-//let loadStringFile = resourceUrl("resource", "txt")
-//	.flatMap(loadFileUrl([]))
-//	.flatMap(stringFromData)
-//	.flatMap({ printLine($0).mapError(absurd) })
-//
-//loadStringFile
-//	.fork({ error in
-//		error
-//	}, { string in
-//
-//	})
+var errorEnv = Environment.real
+errorEnv.resourceUrl = { _, _ in SIO<Void, SIOError, URL>.rejected(.empty) }
+
+program
+	.provide(errorEnv)
+	.fork({ error in
+		print("Finished with error: \(error)")
+	}, { string in
+		Swift.print("Finished with success: \(string)")
+	})
+
 

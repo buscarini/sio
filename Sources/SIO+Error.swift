@@ -16,6 +16,10 @@ public extension SIO {
 	func flatMapError<F>(_ f: @escaping (E) -> (SIO<R, F, A>)) -> SIO<R, F, A> {
 		return self.biFlatMap(f, { SIO<R, F, A>.of($0) })
 	}
+	
+	func ignore() -> SIO<R, Void, A> {
+		return mapError(const(()))
+	}
 }
 
 public extension SIO where E == Error {

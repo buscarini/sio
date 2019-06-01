@@ -10,7 +10,11 @@ import Foundation
 
 extension SIO {
 	public func flatMap<B>(_ f: @escaping (A) -> (SIO<R, E, B>)) -> SIO<R, E, B> {
-		return self.biFlatMap({ SIO<R, E, B>.rejected($0) }, f)
+		return self.flatMapR({ _, a in f(a) })
+	}
+	
+	public func flatMapR<B>(_ f: @escaping (R, A) -> (SIO<R, E, B>)) -> SIO<R, E, B> {
+		return self.biFlatMapR({ _, e in SIO<R, E, B>.rejected(e) }, f)
 	}
 	
 	public func replicateM(_ count: Int) -> SIO<R, E, [A]> {
