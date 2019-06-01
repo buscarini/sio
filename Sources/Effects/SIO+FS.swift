@@ -8,3 +8,19 @@
 
 import Foundation
 
+public struct FS {
+	
+	public var removeItem = defaultRemoveItem
+
+	public init(
+		removeItem: @escaping (URL) -> Task<Void>
+	) {
+		self.removeItem = removeItem
+	}
+	
+	static func defaultRemoveItem(at url: URL) -> Task<Void> {
+		return Task<Void>.init(catching: { _ in
+			try FileManager.default.removeItem(at: url)
+		})
+	}
+}

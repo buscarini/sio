@@ -8,8 +8,16 @@
 
 import Foundation
 
-public extension SIO {
-	static var date: UIO<Date> {
+public struct Dates {
+	public var date = defaultDate
+	
+	public init(
+		date: UIO<Date>
+	) {
+		self.date = date
+	}
+	
+	static var defaultDate: UIO<Date> {
 		return UIO<Date>({ _, reject, resolve in
 			resolve(Date())
 		})

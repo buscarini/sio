@@ -76,4 +76,3 @@ program
 		Swift.print("Finished with success: \(string)")
 	})
 
-
