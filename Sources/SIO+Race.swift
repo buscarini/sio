@@ -9,8 +9,8 @@
 import Foundation
 
 public func race<R, E, A>(_ left: SIO<R, E, A>, _ right: SIO<R, E, A>) -> SIO<R, E, A> {
-	var l: SIO<R, E, A> = left
-	var r: SIO<R, E, A> = right
+	let l: SIO<R, E, A> = left
+	let r: SIO<R, E, A> = right
 	return SIO<R, E, A>.init({ env, reject, resolve in
 		
 		let queue = DispatchQueue.init(label: "Race Queue")

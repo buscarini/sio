@@ -15,7 +15,7 @@ extension SIO {
 	}
 	
 	public func biFlatMapR<F, B>(_ f: @escaping (R, E) -> SIO<R, F, B>, _ g: @escaping (R, A) -> SIO<R, F, B>) -> SIO<R, F, B> {
-		return SIO<R, F, B>({ (env, reject: @escaping (F) -> (), resolve: @escaping (B) -> ()) in
+		let result = SIO<R, F, B>({ (env, reject: @escaping (F) -> (), resolve: @escaping (B) -> ()) in
 			return self.fork(
 				env,
 				{ error in
@@ -25,6 +25,8 @@ extension SIO {
 					g(env, value).fork(env, reject, resolve)
 			}
 			)
-		}, cancel: _cancel)
+		}, cancel: self.cancel)
+		
+		return result
 	}
 }

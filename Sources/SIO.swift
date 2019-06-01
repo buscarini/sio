@@ -9,7 +9,7 @@
 import Foundation
 
 /// Swift IO R: Requirements, E: Error, A: Success Value
-public struct SIO<R, E, A> {
+public class SIO<R, E, A> {
 	public typealias ErrorCallback = (E) -> ()
 	public typealias ResultCallback = (A) -> ()
 	public typealias EmptyCallback = () -> ()
@@ -62,7 +62,7 @@ public struct SIO<R, E, A> {
 		)
 	}
 	
-	public mutating func cancel() {
+	public func cancel() {
 		self.cancelled = true
 		self._cancel?()
 	}

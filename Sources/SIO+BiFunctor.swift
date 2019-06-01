@@ -30,6 +30,6 @@ extension SIO {
 					resolve(g(env, value))
 			}
 			)
-		}, cancel: _cancel)
+		}, cancel: self.cancel)
 	}
 }
