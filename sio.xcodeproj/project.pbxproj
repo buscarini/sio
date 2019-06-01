@@ -42,6 +42,9 @@
 		AC2BF3742292FAFB00D4953E /* SIO+Contravariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF3732292FAFB00D4953E /* SIO+Contravariant.swift */; };
 		AC2BF3762292FB7400D4953E /* SIO+Profunctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BF3752292FB7400D4953E /* SIO+Profunctor.swift */; };
 		AC3F33C322A2912900E93AEA /* SIO+Adapt.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3F33C222A2912900E93AEA /* SIO+Adapt.swift */; };
+		AC3F33C622A31E2B00E93AEA /* SpringAnimationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3F33C522A31E2B00E93AEA /* SpringAnimationOptions.swift */; };
+		AC3F33CA22A31F6E00E93AEA /* AnimationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3F33C922A31F6E00E93AEA /* AnimationOptions.swift */; };
+		AC3F33CC22A31FFB00E93AEA /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3F33CB22A31FFB00E93AEA /* Animation.swift */; };
 		AC5FB773229EF827008F8D8A /* SIO+Bracket.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5FB772229EF827008F8D8A /* SIO+Bracket.swift */; };
 		AC5FB775229EF957008F8D8A /* SIO+Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5FB774229EF957008F8D8A /* SIO+Result.swift */; };
 		AC5FB777229EFB1D008F8D8A /* SIO+FS.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5FB776229EFB1D008F8D8A /* SIO+FS.swift */; };
@@ -116,6 +119,9 @@
 		AC2BF3732292FAFB00D4953E /* SIO+Contravariant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Contravariant.swift"; sourceTree = "<group>"; };
 		AC2BF3752292FB7400D4953E /* SIO+Profunctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Profunctor.swift"; sourceTree = "<group>"; };
 		AC3F33C222A2912900E93AEA /* SIO+Adapt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Adapt.swift"; sourceTree = "<group>"; };
+		AC3F33C522A31E2B00E93AEA /* SpringAnimationOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringAnimationOptions.swift; sourceTree = "<group>"; };
+		AC3F33C922A31F6E00E93AEA /* AnimationOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationOptions.swift; sourceTree = "<group>"; };
+		AC3F33CB22A31FFB00E93AEA /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		AC5FB772229EF827008F8D8A /* SIO+Bracket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Bracket.swift"; sourceTree = "<group>"; };
 		AC5FB774229EF957008F8D8A /* SIO+Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Result.swift"; sourceTree = "<group>"; };
 		AC5FB776229EFB1D008F8D8A /* SIO+FS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+FS.swift"; sourceTree = "<group>"; };
@@ -225,6 +231,7 @@
 		8933C7811EB5B7E0000D00A4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				AC3F33C422A31DC900E93AEA /* Animations */,
 				ACD639CC22943E9D00F03B19 /* Effects */,
 				AC2BF35F2292F21600D4953E /* Curry.swift */,
 				ACC5C734229FE94A0026FE17 /* Compose.swift */,
@@ -272,6 +279,16 @@
 			);
 			name = Tests;
 			path = Tests/sioTests;
+			sourceTree = "<group>";
+		};
+		AC3F33C422A31DC900E93AEA /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				AC3F33C922A31F6E00E93AEA /* AnimationOptions.swift */,
+				AC3F33C522A31E2B00E93AEA /* SpringAnimationOptions.swift */,
+				AC3F33CB22A31FFB00E93AEA /* Animation.swift */,
+			);
+			path = Animations;
 			sourceTree = "<group>";
 		};
 		ACD639CC22943E9D00F03B19 /* Effects */ = {
@@ -585,11 +602,13 @@
 				AC2BF36C2292F6DD00D4953E /* SIO+Run.swift in Sources */,
 				AC2BF35A2292DB0F00D4953E /* SIO+Requirements.swift in Sources */,
 				AC2BF36A2292F49900D4953E /* SIO+Alt.swift in Sources */,
+				AC3F33C622A31E2B00E93AEA /* SpringAnimationOptions.swift in Sources */,
 				AC2BF3622292F22B00D4953E /* SIO+Monad.swift in Sources */,
 				AC2BF3422292809F00D4953E /* SIO+BiMonad.swift in Sources */,
 				ACB600962296E15C00651078 /* SIO+Race.swift in Sources */,
 				AC2BF34022927FDE00D4953E /* SIO+BiFunctor.swift in Sources */,
 				ACD639D22294406E00F03B19 /* SIO+Typealias.swift in Sources */,
+				AC3F33CA22A31F6E00E93AEA /* AnimationOptions.swift in Sources */,
 				ACC5C735229FE94A0026FE17 /* Compose.swift in Sources */,
 				AC2BF3722292F8A000D4953E /* SIO+Effects.swift in Sources */,
 				AC2BF36E2292F78200D4953E /* SIO+Zip.swift in Sources */,
@@ -598,6 +617,7 @@
 				AC5FB77A229EFD09008F8D8A /* SIOError.swift in Sources */,
 				AC2BF3742292FAFB00D4953E /* SIO+Contravariant.swift in Sources */,
 				AC5FB773229EF827008F8D8A /* SIO+Bracket.swift in Sources */,
+				AC3F33CC22A31FFB00E93AEA /* Animation.swift in Sources */,
 				AC2BF3702292F81500D4953E /* SIO+Schedule.swift in Sources */,
 				ACC5C737229FE9840026FE17 /* Operators.swift in Sources */,
 				AC2BF3582292C03300D4953E /* SIO+Error.swift in Sources */,
