@@ -9,16 +9,26 @@
 import Foundation
 
 extension SIO {
-	public func bimap<F, B>(_ f: @escaping (E) -> F, _ g: @escaping (A) -> B) -> SIO<R, F, B> {
+	public func bimap<F, B>(
+		_ f: @escaping (E) -> F,
+		_ g: @escaping (A) -> B
+	) -> SIO<R, F, B> {
+		return self.bimapR({ _, e in f(e) }, { _, a in g(a) })
+	}
+	
+	public func bimapR<F, B>(
+		_ f: @escaping (R, E) -> F,
+		_ g: @escaping (R, A) -> B
+	) -> SIO<R, F, B> {
 		return SIO<R, F, B>({ env, reject, resolve in
 			return self.fork(
 				env,
 				{ error in
-					reject(f(error))
-				},
+					reject(f(env, error))
+			},
 				{ value in
-					resolve(g(value))
-				}
+					resolve(g(env, value))
+			}
 			)
 		}, cancel: _cancel)
 	}

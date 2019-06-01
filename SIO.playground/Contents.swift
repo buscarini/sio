@@ -62,8 +62,7 @@ let loadStringFile = environment(Environment.self)
 let program = loadStringFile
 	.fold({ e in "Error: \(e)" }, id)
 	.flatMapR( { r, s in
-		r.console.printLine(s)
-			.require(Environment.self)
+		r.console.printLine(s).require(Environment.self)
 	})
 
 var errorEnv = Environment.real
