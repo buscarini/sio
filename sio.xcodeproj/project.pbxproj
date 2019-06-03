@@ -15,7 +15,7 @@
 		8933C78E1EB5B82C000D00A4 /* sioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* sioTests.swift */; };
 		8933C78F1EB5B82C000D00A4 /* sioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* sioTests.swift */; };
 		8933C7901EB5B82D000D00A4 /* sioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* sioTests.swift */; };
-		AC2352D2229744DB000ADE5E /* RaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2352D0229742E6000ADE5E /* RaceTests.swift */; };
+		AC2352D2229744DB000ADE5E /* ConcurrencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2352D0229742E6000ADE5E /* ConcurrencyTests.swift */; };
 		AC2352D4229749F3000ADE5E /* SIO+Timeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2352D3229749F3000ADE5E /* SIO+Timeout.swift */; };
 		AC2352D622974B04000ADE5E /* TimeoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2352D522974B04000ADE5E /* TimeoutTests.swift */; };
 		AC2352D922975085000ADE5E /* SIO+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2352D722974FFF000ADE5E /* SIO+Random.swift */; };
@@ -45,6 +45,8 @@
 		AC3F33C622A31E2B00E93AEA /* SpringAnimationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3F33C522A31E2B00E93AEA /* SpringAnimationOptions.swift */; };
 		AC3F33CA22A31F6E00E93AEA /* AnimationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3F33C922A31F6E00E93AEA /* AnimationOptions.swift */; };
 		AC3F33CC22A31FFB00E93AEA /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3F33CB22A31FFB00E93AEA /* Animation.swift */; };
+		AC3F33D122A3DB4500E93AEA /* CwlMutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3F33CF22A3DA8600E93AEA /* CwlMutex.swift */; };
+		AC3F33D422A417A700E93AEA /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3F33D222A4177E00E93AEA /* Either.swift */; };
 		AC5FB773229EF827008F8D8A /* SIO+Bracket.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5FB772229EF827008F8D8A /* SIO+Bracket.swift */; };
 		AC5FB775229EF957008F8D8A /* SIO+Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5FB774229EF957008F8D8A /* SIO+Result.swift */; };
 		AC5FB777229EFB1D008F8D8A /* SIO+FS.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5FB776229EFB1D008F8D8A /* SIO+FS.swift */; };
@@ -92,7 +94,7 @@
 		52D6DA0F1BF000BD002C0205 /* sio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = sio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8933C7841EB5B820000D00A4 /* SIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SIO.swift; sourceTree = "<group>"; };
 		8933C7891EB5B82A000D00A4 /* sioTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sioTests.swift; sourceTree = "<group>"; };
-		AC2352D0229742E6000ADE5E /* RaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceTests.swift; sourceTree = "<group>"; };
+		AC2352D0229742E6000ADE5E /* ConcurrencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrencyTests.swift; sourceTree = "<group>"; };
 		AC2352D3229749F3000ADE5E /* SIO+Timeout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Timeout.swift"; sourceTree = "<group>"; };
 		AC2352D522974B04000ADE5E /* TimeoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeoutTests.swift; sourceTree = "<group>"; };
 		AC2352D722974FFF000ADE5E /* SIO+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Random.swift"; sourceTree = "<group>"; };
@@ -122,6 +124,8 @@
 		AC3F33C522A31E2B00E93AEA /* SpringAnimationOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringAnimationOptions.swift; sourceTree = "<group>"; };
 		AC3F33C922A31F6E00E93AEA /* AnimationOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationOptions.swift; sourceTree = "<group>"; };
 		AC3F33CB22A31FFB00E93AEA /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
+		AC3F33CF22A3DA8600E93AEA /* CwlMutex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlMutex.swift; sourceTree = "<group>"; };
+		AC3F33D222A4177E00E93AEA /* Either.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Either.swift; sourceTree = "<group>"; };
 		AC5FB772229EF827008F8D8A /* SIO+Bracket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Bracket.swift"; sourceTree = "<group>"; };
 		AC5FB774229EF957008F8D8A /* SIO+Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Result.swift"; sourceTree = "<group>"; };
 		AC5FB776229EFB1D008F8D8A /* SIO+FS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+FS.swift"; sourceTree = "<group>"; };
@@ -236,7 +240,6 @@
 				AC2BF35F2292F21600D4953E /* Curry.swift */,
 				ACC5C734229FE94A0026FE17 /* Compose.swift */,
 				8933C7841EB5B820000D00A4 /* SIO.swift */,
-				ACB600952296E15C00651078 /* SIO+Race.swift */,
 				AC2352D3229749F3000ADE5E /* SIO+Timeout.swift */,
 				AC2BF3592292DB0F00D4953E /* SIO+Requirements.swift */,
 				AC3F33C222A2912900E93AEA /* SIO+Adapt.swift */,
@@ -250,7 +253,9 @@
 				AC2BF3412292809F00D4953E /* SIO+BiMonad.swift */,
 				AC2BF3572292C03300D4953E /* SIO+Error.swift */,
 				AC2BF35B2292E42100D4953E /* SIO+Fold.swift */,
+				AC2BF3632292F26A00D4953E /* Array+SIO.swift */,
 				AC2BF35D2292E46300D4953E /* SIO+Applicative.swift */,
+				ACB600952296E15C00651078 /* SIO+Race.swift */,
 				AC2BF3692292F49800D4953E /* SIO+Alt.swift */,
 				AC2BF3652292F3BE00D4953E /* SIO+Delay.swift */,
 				AC2BF3672292F42A00D4953E /* SIO+Retry.swift */,
@@ -262,10 +267,11 @@
 				AC2BF3712292F8A000D4953E /* SIO+Effects.swift */,
 				ACD639D12294406E00F03B19 /* SIO+Typealias.swift */,
 				AC2BF33D22927FC800D4953E /* Prelude.swift */,
+				AC3F33D222A4177E00E93AEA /* Either.swift */,
 				ACC5C736229FE9840026FE17 /* Operators.swift */,
 				ACC5C738229FE9A40026FE17 /* PrecedenceGroups.swift */,
-				AC2BF3632292F26A00D4953E /* Array+SIO.swift */,
 				AC5FB779229EFD09008F8D8A /* SIOError.swift */,
+				AC3F33CF22A3DA8600E93AEA /* CwlMutex.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -274,7 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				8933C7891EB5B82A000D00A4 /* sioTests.swift */,
-				AC2352D0229742E6000ADE5E /* RaceTests.swift */,
+				AC2352D0229742E6000ADE5E /* ConcurrencyTests.swift */,
 				AC2352D522974B04000ADE5E /* TimeoutTests.swift */,
 			);
 			name = Tests;
@@ -610,6 +616,7 @@
 				ACD639D22294406E00F03B19 /* SIO+Typealias.swift in Sources */,
 				AC3F33CA22A31F6E00E93AEA /* AnimationOptions.swift in Sources */,
 				ACC5C735229FE94A0026FE17 /* Compose.swift in Sources */,
+				AC3F33D122A3DB4500E93AEA /* CwlMutex.swift in Sources */,
 				AC2BF3722292F8A000D4953E /* SIO+Effects.swift in Sources */,
 				AC2BF36E2292F78200D4953E /* SIO+Zip.swift in Sources */,
 				AC3F33C322A2912900E93AEA /* SIO+Adapt.swift in Sources */,
@@ -626,6 +633,7 @@
 				AC2BF3682292F42A00D4953E /* SIO+Retry.swift in Sources */,
 				ACD639CE22943EA900F03B19 /* SIO+Console.swift in Sources */,
 				AC2BF3662292F3BE00D4953E /* SIO+Delay.swift in Sources */,
+				AC3F33D422A417A700E93AEA /* Either.swift in Sources */,
 				AC2BF3762292FB7400D4953E /* SIO+Profunctor.swift in Sources */,
 				AC2BF35E2292E46300D4953E /* SIO+Applicative.swift in Sources */,
 				AC2BF33822927E9F00D4953E /* SIO+Creation.swift in Sources */,
@@ -647,7 +655,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC2352D622974B04000ADE5E /* TimeoutTests.swift in Sources */,
-				AC2352D2229744DB000ADE5E /* RaceTests.swift in Sources */,
+				AC2352D2229744DB000ADE5E /* ConcurrencyTests.swift in Sources */,
 				8933C7901EB5B82D000D00A4 /* sioTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

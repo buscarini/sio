@@ -16,15 +16,14 @@ public class SIO<R, E, A> {
 	
 	public typealias Computation = (R, @escaping ErrorCallback, @escaping ResultCallback) -> ()
 
-	private var _fork: Computation
+	var _fork: Computation
 	let _cancel: EmptyCallback?
 	
 	private var _cancelled = false
-	private let cancelSyncQueue = DispatchQueue(label: "task_cancel")
+	private let cancelSyncQueue = DispatchQueue(label: "task_cancel", attributes: .concurrent)
 	private var cancelled: Bool {
 		get {
 			var result = false
-			
 			cancelSyncQueue.sync {
 				result = self._cancelled
 			}
@@ -32,7 +31,7 @@ public class SIO<R, E, A> {
 		}
 		
 		set {
-			cancelSyncQueue.sync {
+			cancelSyncQueue.async(flags: .barrier) {
 				self._cancelled = newValue
 			}
 		}

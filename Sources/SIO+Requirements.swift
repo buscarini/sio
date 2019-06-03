@@ -12,6 +12,10 @@ public func environment<R>(_ type: R.Type) -> SIO<R, Never, R> {
 	return SIO<R, Never, R>.environment()
 }
 
+public func access<R, V>(_ keyPath: KeyPath<R, V>) -> SIO<R, Never, V> {
+	return SIO<R, Never, V>.access { $0[keyPath: keyPath] }
+}
+
 public extension SIO {
 	func provideSome<R0>(_ f: @escaping (R0) -> R) -> SIO<R0, E, A> {
 		return SIO<R0, E, A>({ r, reject, resolve in

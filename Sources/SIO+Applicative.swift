@@ -19,47 +19,58 @@ public func ap<R, E, A, B, C>(_ iof: SIO<R, E, (A, B) -> C>, _ first: SIO<R, E, 
 }
 
 public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -> SIO<R, E, B> {
+
+	let group = DispatchGroup()
 	
 	let l = left
 	let r = right
 	
 	return SIO<R, E, B>({ (env, reject: @escaping (E) -> (), resolve: @escaping (B) -> ()) in
+		
 		var f: ((A)->B)?
 		var val: A?
 		
-		var rejected = false
+		var errorL: E?
+		var errorR: E?
 		
-		let guardReject: (E) -> () = { x in
-			if (!rejected) {
-				rejected = true;
-				reject(x)
+		group.enter()
+		l.fork(env, { error in
+			errorL = error
+			group.leave()
+			
+		}, { loadedF in
+			f = loadedF
+			
+			group.leave()
+		})
+		
+		group.enter()
+		r.fork(env, { error in
+			errorR = error
+			group.leave()
+		}, { loadedVal in
+			val = loadedVal
+			group.leave()
+		})
+		
+		group.notify(queue: .main) {
+			if let error = errorR {
+				reject(error)
+				return
 			}
-		}
+			
+			if let error = errorL {
+				reject(error)
+				return
+			}
+			
+			guard let f = f, let val = val else {
+				return
+			}
 		
-		let tryResolve = {
-			guard let f = f, let val = val else { return }
 			resolve(f(val))
 		}
 		
-		l.fork(env, guardReject, { loadedF in
-			guard !rejected else {
-				return
-			}
-			
-			f = loadedF
-			
-			tryResolve()
-		})
-		
-		r.fork(env, guardReject, { loadedVal in
-			guard !rejected else {
-				return
-			}
-			
-			val = loadedVal
-			
-			tryResolve()
-		})
 	}, cancel: {
 		l.cancel()
 		r.cancel()

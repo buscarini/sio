@@ -9,6 +9,7 @@
 import Foundation
 
 extension SIO {
+	@inlinable
 	public func biFlatMap<F, B>(_ f: @escaping (E) -> SIO<R, F, B>, _ g: @escaping (A) -> SIO<R, F, B>) -> SIO<R, F, B> {
 		
 		return biFlatMapR({ _, e in f(e) }, { _, a in g(a) })
@@ -16,16 +17,33 @@ extension SIO {
 	
 	public func biFlatMapR<F, B>(_ f: @escaping (R, E) -> SIO<R, F, B>, _ g: @escaping (R, A) -> SIO<R, F, B>) -> SIO<R, F, B> {
 		let result = SIO<R, F, B>({ (env, reject: @escaping (F) -> (), resolve: @escaping (B) -> ()) in
-			return self.fork(
+			
+			let group = DispatchGroup()
+			
+			var cont: (() -> SIO<R, F, B>)?
+			
+			group.enter()
+			self._fork(
 				env,
 				{ error in
-					f(env, error).fork(env, reject, resolve)
+					cont = {
+						f(env, error) //.fork(env, reject, resolve)
+					}
+					group.leave()
 				},
 				{ value in
-					g(env, value).fork(env, reject, resolve)
-			}
-			)
-		}, cancel: self.cancel)
+//					g(env, value)._fork(env, reject, resolve)
+					cont = {
+						g(env, value) //.fork(env, reject, resolve)
+					}
+					group.leave()
+				})
+				
+				group.notify(queue: .main, execute: {
+					cont!()._fork(env, reject, resolve)
+				})
+			
+		}, cancel: self._cancel)
 		
 		return result
 	}

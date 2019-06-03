@@ -28,7 +28,7 @@ public struct Animation {
 	}
 	
 	static func defaultAnimation(_ animate: @escaping () -> Void, _ options: AnimationOptions) -> UIO<Bool> {
-		return UIO<Bool>.init { _, _, resolve in
+		return UIO<Bool>.init({ _, _, resolve in
 			UIView.animate(
 				withDuration: options.duration,
 				delay: options.delay,
@@ -36,7 +36,9 @@ public struct Animation {
 				animations: animate,
 				completion: resolve
 			)
-		}
+		}, cancel: {
+			// TODO: I need the view here to do view.layer.removeAllAnimations()
+		})
 	}
 	
 	static func defaultSpringAnimation(_ animate: @escaping () -> Void, _ options: SpringAnimationOptions) -> UIO<Bool> {

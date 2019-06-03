@@ -15,8 +15,27 @@ extension SIO where E == Never {
 }
 
 extension SIO where R == Void {
+	@inlinable
 	public func fork(_ reject: @escaping ErrorCallback, _ resolve: @escaping ResultCallback) {
 		self.fork((), reject, resolve)
+	}
+	
+	@inlinable
+	public func forkMain(_ reject: @escaping ErrorCallback, _ resolve: @escaping ResultCallback) {
+		self.fork(in: DispatchQueue.main, reject, resolve)
+	}
+	
+	@inlinable
+	public func fork(in queue: DispatchQueue, _ reject: @escaping ErrorCallback, _ resolve: @escaping ResultCallback) {
+			self.fork((), { e in
+				queue.async {
+					reject(e)
+				}
+			}, { a in
+				queue.async {
+					resolve(a)
+				}
+			})
 	}
 }
 

@@ -9,6 +9,8 @@
 import Foundation
 
 extension SIO {
+	
+	@inlinable
 	public func bimap<F, B>(
 		_ f: @escaping (E) -> F,
 		_ g: @escaping (A) -> B
@@ -21,7 +23,7 @@ extension SIO {
 		_ g: @escaping (R, A) -> B
 	) -> SIO<R, F, B> {
 		return SIO<R, F, B>({ env, reject, resolve in
-			return self.fork(
+			return self._fork(
 				env,
 				{ error in
 					reject(f(env, error))
@@ -30,6 +32,6 @@ extension SIO {
 					resolve(g(env, value))
 			}
 			)
-		}, cancel: self.cancel)
+		}, cancel: self._cancel)
 	}
 }
