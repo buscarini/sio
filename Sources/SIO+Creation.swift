@@ -10,9 +10,11 @@ import Foundation
 
 public extension SIO {
 	static func of(_ value: A) -> SIO {
-		return SIO({ (_, _, resolve) in
-			return resolve(value)
-		})
+		return SIO(.success(value), cancel: nil)
+		
+//		return SIO({ (_, _, resolve) in
+//			return resolve(value)
+//		})
 	}
 	
 	static func lazy(_ value: @autoclosure @escaping () -> A) -> SIO {
@@ -20,8 +22,12 @@ public extension SIO {
 			return resolve(value())
 		})
 	}
+
+	static func rejected(_ error: E) -> SIO {
+		return SIO(.fail(error), cancel: nil)
+	}
 	
-	static func rejected(_ error: @autoclosure @escaping () -> E) -> SIO {
+	static func rejectedLazy(_ error: @autoclosure @escaping () -> E) -> SIO {
 		return SIO({ (_, reject, _) in
 			return reject(error())
 		})

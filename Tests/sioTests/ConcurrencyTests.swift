@@ -80,7 +80,7 @@ class ConcurrencyTests: XCTestCase {
 			finish.fulfill()
 		})
 		
-		wait(for: [finish], timeout: 1)
+		wait(for: [finish], timeout: 10)
 	}
 	
 	func testForEachGlobalQueueDebug() {
@@ -251,21 +251,25 @@ class ConcurrencyTests: XCTestCase {
 		wait(for: [finish], timeout: 5)
 	}
 	
-//	func testForEachPerformance() {
-//		measureMetrics([.wallClockTime], automaticallyStartMeasuring: false) {
-//
-//			startMeasuring()
-//
-//			let values = Array(1...1000)
-//
-//			let task = values.forEach {
-//				UIO<Int>.of($0).scheduleOn(DispatchQueue.global())
-//			}
-//
-//			task.forkMain(absurd, { result in
-//				self.stopMeasuring()
-//			})
-//
-//		}
-//	}
+	func testForEachPerformance() {
+		
+		measureMetrics([.wallClockTime], automaticallyStartMeasuring: true) {
+			let finish = expectation(description: "finish")
+
+			let values = Array(1...10000)
+
+			let task = values.forEach {
+				UIO<Int>.of($0)
+			}.scheduleOn(DispatchQueue.global())
+
+			task.forkMain(absurd, { result in
+				finish.fulfill()
+			})
+			
+			waitForExpectations(timeout: 5, handler: { _ in
+				self.stopMeasuring()
+			})
+		}
+		
+	}
 }

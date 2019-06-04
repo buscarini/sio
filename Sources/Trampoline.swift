@@ -9,8 +9,6 @@
 import Foundation
 
 enum Trampoline<A, E>{
-	case success(A)
-	case fail(E)
-	case nextFail(() -> Trampoline<A, E>)
-	case nextSuccess(() -> Trampoline<A, E>)
+	case done(Either<E, A>)
+	case next(() -> Trampoline<A, E>)
 }

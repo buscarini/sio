@@ -16,38 +16,44 @@ extension SIO {
 	}
 	
 	public func biFlatMapR<F, B>(_ f: @escaping (R, E) -> SIO<R, F, B>, _ g: @escaping (R, A) -> SIO<R, F, B>) -> SIO<R, F, B> {
-				
+		
+//		return SIO<R, F, B>.init(SIO<R, F, B>.Trampoline.biFlatMap(
+//				self as! SIO<R, Any, Any>,
+//				f as! (R, Any) -> SIO<R, F, B>,
+//				g as! (R, Any) -> SIO<R, F, B>),
+//			cancel: self.cancel
+//		)
+		
+		
 		let result = SIO<R, F, B>({ (env, reject: @escaping (F) -> (), resolve: @escaping (B) -> ()) in
-			
+
 			let group = DispatchGroup()
-			
+
 			var cont: (() -> SIO<R, F, B>)?
-			
+
 			group.enter()
-			self._fork(
+			self.fork(
 				env,
 				{ error in
-					guard !self.cancelled else { return }
 					cont = {
 						f(env, error) //.fork(env, reject, resolve)
 					}
 					group.leave()
 				},
 				{ value in
-					guard !self.cancelled else { return }
 //					g(env, value)._fork(env, reject, resolve)
 					cont = {
 						g(env, value) //.fork(env, reject, resolve)
 					}
 					group.leave()
 				})
-				
+
 				group.notify(queue: .global(), execute: {
 					cont!().fork(env, reject, resolve)
 				})
-			
+
 		}, cancel: self.cancel)
-		
+
 		return result
 	}
 }
