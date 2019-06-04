@@ -8,6 +8,7 @@
 
 import Foundation
 
+@inlinable
 public func zip<R, E, A, B>(_ left: SIO<R, E, A>, _ right: SIO<R, E, B>) -> SIO<R, E, (A, B)> {
 	return liftA2(SIO.of({ a in
 		{ b in
@@ -16,6 +17,7 @@ public func zip<R, E, A, B>(_ left: SIO<R, E, A>, _ right: SIO<R, E, B>) -> SIO<
 	}), left, right)
 }
 
+@inlinable
 public func zip<R, E, A, B, C>(with f: @escaping (A, B) -> C)
 	-> (SIO<R, E, A>, SIO<R, E, B>)
 	-> SIO<R, E, C> {
@@ -24,16 +26,19 @@ public func zip<R, E, A, B, C>(with f: @escaping (A, B) -> C)
 		}
 }
 
+@inlinable
 public func zip2<R, E, A, B>(_ left: SIO<R, E, A>, _ right: SIO<R, E, B>) -> SIO<R, E, (A, B)> {
 	return zip(left, right)
 }
 
+@inlinable
 public func zip2<R, E, A, B, C>(with f: @escaping (A, B) -> C)
 	-> (SIO<R, E, A>, SIO<R, E, B>)
 	-> SIO<R, E, C> {
 		return zip(with: f)
 }
 
+@inlinable
 public func zip3<R, E, A, B, C>(
 	_ xs: SIO<R, E, A>, _ ys: SIO<R, E, B>, _ zs: SIO<R, E, C>
 	) -> SIO<R, E, (A, B, C)> {
@@ -42,6 +47,7 @@ public func zip3<R, E, A, B, C>(
 		.map { a, bc in (a, bc.0, bc.1) }
 }
 
+@inlinable
 func zip3<R, E, A, B, C, D>(
 	with f: @escaping (A, B, C) -> D
 	) -> (SIO<R, E, A>, SIO<R, E, B>, SIO<R, E, C>) -> SIO<R, E, D> {

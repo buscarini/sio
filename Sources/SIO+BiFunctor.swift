@@ -23,7 +23,7 @@ extension SIO {
 		_ g: @escaping (R, A) -> B
 	) -> SIO<R, F, B> {
 		return SIO<R, F, B>({ env, reject, resolve in
-			return self._fork(
+			return self.fork(
 				env,
 				{ error in
 					reject(f(env, error))
@@ -32,6 +32,6 @@ extension SIO {
 					resolve(g(env, value))
 			}
 			)
-		}, cancel: self._cancel)
+		}, cancel: self.cancel)
 	}
 }

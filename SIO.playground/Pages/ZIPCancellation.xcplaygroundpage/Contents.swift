@@ -1,8 +1,9 @@
 import Foundation
 import sio
+import PlaygroundSupport
 
 
-let long = Array(1...10).forEach { item in
+let long = Array(1...800).forEach { item in
 	environment(Console.self)
 		.flatMap { console in
 			console.printLine("\(item)").require(Console.self)
@@ -20,7 +21,7 @@ let long = Array(1...10).forEach { item in
 //}
 
 let long2 = UIO<[Int]>.init { (_, _, resolve) in
-	(0...80).forEach { Swift.print("\($0)") }
+	(0...800).forEach { Swift.print("\($0)") }
 	
 	print("-------------")
 	
@@ -37,6 +38,17 @@ task.fork(absurd, { a in
 	print("Success \(a)")
 })
 
+PlaygroundPage.current.needsIndefiniteExecution = true
+
 print("before cancel zip")
-task.cancel()
+//DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+//	task.cancel()
+//}
+
 print("after cancel zip")
+
+DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+	PlaygroundPage.current.finishExecution()
+}
+
+

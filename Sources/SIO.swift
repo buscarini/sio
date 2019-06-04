@@ -21,7 +21,7 @@ public class SIO<R, E, A> {
 	
 	private var _cancelled = false
 	private let cancelSyncQueue = DispatchQueue(label: "task_cancel", attributes: .concurrent)
-	private var cancelled: Bool {
+	public var cancelled: Bool {
 		get {
 			var result = false
 			cancelSyncQueue.sync {

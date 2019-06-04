@@ -11,6 +11,60 @@ import XCTest
 import sio
 
 class ConcurrencyTests: XCTestCase {
+	func testZip() {
+		let finish = expectation(description: "finish")
+		
+		let values = Array(1...100)
+		
+		let left = values.forEach {
+			UIO<Int>.of($0)
+		}
+		
+		let right = values.forEach {
+			UIO<Int>.of($0)
+		}
+		
+		zip(
+			left,
+			right
+		)
+		.scheduleOn(DispatchQueue.global())
+		.run((), { result in
+			XCTAssert(result.0 == values)
+			XCTAssert(result.1 == values)
+			finish.fulfill()
+		})
+		
+		wait(for: [finish], timeout: 1)
+	}
+	
+	func testZipStackOverflow() {
+		let finish = expectation(description: "finish")
+		
+		let values = Array(1...900)
+		
+		let left = values.forEach {
+			UIO<Int>.of($0)
+		}
+		
+		let right = values.forEach {
+			UIO<Int>.of($0)
+		}
+		
+		zip(
+			left,
+			right
+			)
+			.scheduleOn(DispatchQueue.global())
+			.run((), { result in
+				XCTAssert(result.0 == values)
+				XCTAssert(result.1 == values)
+				finish.fulfill()
+			})
+		
+		wait(for: [finish], timeout: 1)
+	}
+	
 	func testForEach() {
 		let finish = expectation(description: "finish")
 		
@@ -109,6 +163,88 @@ class ConcurrencyTests: XCTestCase {
 		race(left, right).run { value in
 			XCTAssert(value == 1)
 			
+			finish.fulfill()
+		}
+		
+		wait(for: [finish], timeout: 5)
+	}
+	
+	func testCancel() {
+		let finish = expectation(description: "finish")
+		
+		
+		let task = UIO.of(1).scheduleOn(DispatchQueue.global())
+		
+		task.cancel()
+		
+		task.fork(absurd, { _ in
+			XCTFail()
+		})
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+			finish.fulfill()
+		}
+		
+		wait(for: [finish], timeout: 5)
+	}
+	
+	func testCancelAfterFork() {
+		let finish = expectation(description: "finish")
+		
+		
+		let task = UIO.of(1).scheduleOn(DispatchQueue.global())
+		
+		task.fork(absurd, { _ in
+			XCTFail()
+		})
+		
+		task.cancel()
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+			finish.fulfill()
+		}
+		
+		wait(for: [finish], timeout: 5)
+	}
+	
+	func testCancelZip() {
+		let finish = expectation(description: "finish")
+		
+		let left = UIO.of(1).scheduleOn(DispatchQueue.global())
+		let right = UIO.of(2).scheduleOn(DispatchQueue.global())
+		
+		let task = zip(left, right)
+			
+		task
+			.fork(absurd, { values in
+				print(values)
+				XCTFail()
+			})
+		
+		task.cancel()
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+			finish.fulfill()
+		}
+		
+		wait(for: [finish], timeout: 5)
+	}
+	
+	func testCancelZipLeft() {
+		let finish = expectation(description: "finish")
+		
+		let left = UIO.of(1).scheduleOn(DispatchQueue.global())
+		let right = UIO.of(2).scheduleOn(DispatchQueue.global())
+		
+		left.cancel()
+		
+		zip(left, right)
+		.fork(absurd, { values in
+			print(values)
+			XCTFail()
+		})
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 			finish.fulfill()
 		}
 		
