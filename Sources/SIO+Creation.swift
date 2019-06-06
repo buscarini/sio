@@ -11,10 +11,6 @@ import Foundation
 public extension SIO {
 	static func of(_ value: A) -> SIO {
 		return SIO(.success(value), cancel: nil)
-		
-//		return SIO({ (_, _, resolve) in
-//			return resolve(value)
-//		})
 	}
 	
 	static func lazy(_ value: @autoclosure @escaping () -> A) -> SIO {

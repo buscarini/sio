@@ -11,12 +11,21 @@ import Foundation
 extension SIO {
 	@inlinable
 	public func flatMap<B>(_ f: @escaping (A) -> (SIO<R, E, B>)) -> SIO<R, E, B> {
-		return self.flatMapR({ _, a in f(a) })
+//		return self.flatMapR({ _, a in f(a) })
+		
+		return self.biFlatMap({ e in .rejected(e)}, f)
+		
 	}
 	
 	@inlinable
 	public func flatMapR<B>(_ f: @escaping (R, A) -> (SIO<R, E, B>)) -> SIO<R, E, B> {
-		return self.biFlatMapR({ _, e in SIO<R, E, B>.rejected(e) }, f)
+		
+		return zip(
+			sio.environment(R.self).mapError(absurd),
+			self
+		).flatMap(f)
+		
+//		return self.biFlatMapR({ _, e in SIO<R, E, B>.rejected(e) }, f)
 	}
 	
 	@inlinable

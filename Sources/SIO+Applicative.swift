@@ -29,63 +29,80 @@ public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -
 	
 	return SIO<R, E, B>({ (env, reject: @escaping (E) -> (), resolve: @escaping (B) -> ()) in
 		
-		let group = DispatchGroup()
-		
-		var f: ((A) -> B)?
-		var val: A?
-		
-		var errorL: E?
-		var errorR: E?
-		
-		group.enter()
-		l.fork(env, { error in
-//			Swift.print("ap left \(l) error")
-			errorL = error
-			group.leave()
-			
-		}, { loadedF in
-//			Swift.print("ap left \(l) success")
-			f = loadedF
-			group.leave()
-		})
-		
-		group.enter()
-		r.fork(env, { error in
-//			Swift.print("ap right \(r) error")
-			errorR = error
-			group.leave()
-		}, { loadedVal in
-//			Swift.print("ap right \(r) success")
-			val = loadedVal
-			group.leave()
-		})
-		
-		group.notify(queue: .main) {
-			guard localCancelled == false else {
-//				Swift.print("ap local cancelled")
-				return
-			}
-			
-			if let error = errorR {
-//				Swift.print("ap right error")
-				reject(error)
-				return
-			}
-			
-			if let error = errorL {
-//				Swift.print("ap left error")
-				reject(error)
-				return
-			}
-			
-			guard let f = f, let val = val else {
-//				Swift.print("ap missing values")
-				return
-			}
-		
-//			Swift.print("ap success")
-			resolve(f(val))
+		guard
+			let left = l.forkSync(env),
+			let right = r.forkSync(env)
+		else {
+			return
 		}
+		
+		switch (left, right) {
+		case let (.left(err), _):
+			reject(err)
+		case let (_, .left(err)):
+			reject(err)
+		case let (.right(f), .right(a)):
+			resolve(f(a))
+		}
+//
+//
+//		let group = DispatchGroup()
+//
+//		var f: ((A) -> B)?
+//		var val: A?
+//
+//		var errorL: E?
+//		var errorR: E?
+//
+//		group.enter()
+//		l.fork(env, { error in
+////			Swift.print("ap left \(l) error")
+//			errorL = error
+//			group.leave()
+//
+//		}, { loadedF in
+////			Swift.print("ap left \(l) success")
+//			f = loadedF
+//			group.leave()
+//		})
+//
+//		group.enter()
+//		r.fork(env, { error in
+////			Swift.print("ap right \(r) error")
+//			errorR = error
+//			group.leave()
+//		}, { loadedVal in
+////			Swift.print("ap right \(r) success")
+//			val = loadedVal
+//			group.leave()
+//		})
+//
+//		group.notify(queue: .main) {
+//			guard localCancelled == false else {
+////				Swift.print("ap local cancelled")
+//				return
+//			}
+//
+//			if let error = errorR {
+////				Swift.print("ap right error")
+//				reject(error)
+//				return
+//			}
+//
+//			if let error = errorL {
+////				Swift.print("ap left error")
+//				reject(error)
+//				return
+//			}
+//
+//			guard let f = f, let val = val else {
+////				Swift.print("ap missing values")
+//				return
+//			}
+//
+////			Swift.print("ap success")
+//			resolve(f(val))
+//		}
 		
 	}, cancel: {
 //		Swift.print("cancel applicative \(l) \(r)")

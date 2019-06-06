@@ -52,24 +52,24 @@ public func sequence<R, E, A>(
 	_ ios: [SIO<R, E, [A]>]
 ) -> SIO<R, E, [A]> {
 	
-	return ios.reduce(SIO<R, E, [A]>.of([]), { acc, item in
-		let concat = SIO<R, E, ([A], [A]) -> [A]>.of(+)
-		return ap(concat, acc, item)
-	})
-//
-//	guard var previous = ios.first else {
-//		return SIO<R, E, [A]>.of([])
-//	}
-//
-//	let rest = ios.dropFirst()
-//
-//	for io in rest {
-//		previous = previous.flatMap({ left in
-//			io.map { right in
-//				left + right
-//			}
-//		})
-//	}
-//
-//	return previous
+//	return ios.reduce(SIO<R, E, [A]>.of([]), { acc, item in
+//		let concat = SIO<R, E, ([A], [A]) -> [A]>.of(+)
+//		return ap(concat, acc, item)
+//	})
+
+	guard var previous = ios.first else {
+		return SIO<R, E, [A]>.of([])
+	}
+
+	let rest = ios.dropFirst()
+
+	for io in rest {
+		previous = previous.flatMap({ left in
+			io.map { right in
+				left + right
+			}
+		})
+	}
+
+	return previous
 }

@@ -23,7 +23,7 @@ public class SIO<R, E, A> {
 //		case biFlatMap(SIO<R, Any, Any>, (R, Any) -> SIO<R, E, A>, (R, Any) -> SIO<R, E, A>)
 	}
 
-	var trampoline: Trampoline?
+	var trampoline: Trampoline
 	
 //	var _fork: Computation
 	let _cancel: EmptyCallback?
@@ -70,12 +70,37 @@ public class SIO<R, E, A> {
 		self._cancel = cancel
 	}
 	
-	public func fork(_ requirement: R, _ reject: @escaping ErrorCallback, _ resolve: @escaping ResultCallback) {
-		guard let t = self.trampoline else {
-			return
+	public func forkSync(_ requirement: R) -> Either<E, A>? {
+		let queue = DispatchQueue(label: "Sync")
+		
+		var result: Either<E, A>?
+		
+		switch self.trampoline {
+		case let .success(a):
+			result = .right(a)
+		case let .fail(e):
+			result = .left(e)
+		case let .eff(c):
+			queue.sync {
+				c(
+					requirement,
+					{ e in
+						guard !self.cancelled else { return }
+						result = .left(e)
+					},
+					{ a in
+						guard !self.cancelled else { return }
+						result = .right(a)
+					}
+				)
+			}
 		}
 		
-		switch t {
+		return result
+	}
+	
+	public func fork(_ requirement: R, _ reject: @escaping ErrorCallback, _ resolve: @escaping ResultCallback) {		
+		switch self.trampoline {
 		case let .success(a):
 			resolve(a)
 		case let .fail(e):

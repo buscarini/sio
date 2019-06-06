@@ -12,7 +12,6 @@ public struct Random {
 	public var int = randomInt
 	public var uint = randomUInt
 	public var float = randomFloat
-	public var float80 = randomFloat80
 	public var double = randomDouble
 //	public var element = randomElement
 //	public var shuffled = randomShuffled
@@ -21,7 +20,6 @@ public struct Random {
 		int: @escaping (Range<Int>) -> SIO<Void, Never, Int>,
 		uint: @escaping (Range<UInt>) -> SIO<Void, Never, UInt>,
 		float: @escaping (Range<Float>) -> SIO<Void, Never, Float>,
-		float80: @escaping (Range<Float80>) -> SIO<Void, Never, Float80>,
 		double: @escaping (Range<Double>) -> SIO<Void, Never, Double>
 //		element: @escaping ([A]) -> SIO<Void, Never, A?>,
 //		shuffled: @escaping ([A]) -> SIO<Void, Never, [A]>
@@ -29,7 +27,6 @@ public struct Random {
 		self.int = int
 		self.uint = uint
 		self.float = float
-		self.float80 = float80
 		self.double = double
 //		self.element = element
 //		self.shuffled = shuffled
@@ -50,12 +47,6 @@ public struct Random {
 	static func randomFloat(_ range: Range<Float>) -> SIO<Void, Never, Float> {
 		return SIO<Void, Never, Float>.init({ _ , reject, resolve in
 			resolve(Float.random(in: range))
-		})
-	}
-	
-	static func randomFloat80(_ range: Range<Float80>) -> SIO<Void, Never, Float80> {
-		return SIO<Void, Never, Float80>.init({ _ , reject, resolve in
-			resolve(Float80.random(in: range))
 		})
 	}
 	

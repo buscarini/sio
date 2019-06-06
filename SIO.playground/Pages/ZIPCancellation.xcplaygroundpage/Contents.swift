@@ -2,12 +2,11 @@ import Foundation
 import sio
 import PlaygroundSupport
 
-
 let long = Array(1...800).forEach { item in
 	environment(Console.self)
 		.flatMap { console in
-			console.printLine("\(item)").require(Console.self)
-	}
+			console.printLine("long \(item)").require(Console.self)
+		}
 }
 //.map(const(1000))
 .provide(Console.default)
@@ -42,7 +41,7 @@ PlaygroundPage.current.needsIndefiniteExecution = true
 
 print("before cancel zip")
 //DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-//	task.cancel()
+	task.cancel()
 //}
 
 print("after cancel zip")
