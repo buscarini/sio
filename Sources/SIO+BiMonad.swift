@@ -11,28 +11,50 @@ import Foundation
 extension SIO {
 	public func biFlatMap<F, B>(_ f: @escaping (E) -> SIO<R, F, B>, _ g: @escaping (A) -> SIO<R, F, B>) -> SIO<R, F, B> {
 		
-		switch self.trampoline {
-		case let .success(val):
-			return g(val)
-		case let .fail(e):
-			return f(e)
-		case .eff:
-			return SIO<R, F, B>({ env, reject, resolve in
-				guard let result = self.forkSync(env) else {
-					// Cancelled
-					return
-				}
-				
-				switch result {
-				case let .left(e):
-					f(e).fork(env, reject, resolve)
-				case let .right(a):
-					g(a).fork(env, reject, resolve)
-				}
-			})
+		let specific = BiFlatMap(sio: self, err: f, succ: g)
+		
+		return SIO<R, F, B>.init(
+			.biFlatMap(specific),
+			cancel: self.cancel
+		)
 			
-			
-			
+		
+		
+		
+//		switch self.trampoline {
+//		case let .success(val):
+//			return g(val)
+//		case let .fail(e):
+//			return f(e)
+//		case .eff:
+//			return SIO<R, F, B>({ env, reject, resolve in
+//				guard let result = self.forkSync(env) else {
+//					// Cancelled
+//					return
+//				}
+//
+//				switch result {
+//				case let .left(e):
+//					f(e).fork(env, reject, resolve)
+//				case let .right(a):
+//					g(a).fork(env, reject, resolve)
+//				}
+//			})
+//		case let .biFlatMap(impl):
+//			return SIO<R, F, B>({ env, reject, resolve in
+//				guard let result = impl.forkSync(env) else {
+//					// Cancelled
+//					return
+//				}
+//
+//				switch result {
+//				case let .left(e):
+//					f(e).fork(env, reject, resolve)
+//				case let .right(a):
+//					g(a).fork(env, reject, resolve)
+//				}
+//			})
+		
 //			let result = SIO<R, F, B>({ (env, reject: @escaping (F) -> (), resolve: @escaping (B) -> ()) in
 //
 //				let group = DispatchGroup()
@@ -61,7 +83,7 @@ extension SIO {
 //
 //			}, cancel: self.cancel)
 //			return result
-		}
+//		}
 		
 //		return biFlatMapR({ _, e in f(e) }, { _, a in g(a) })
 	}

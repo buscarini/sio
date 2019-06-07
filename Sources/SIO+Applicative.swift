@@ -30,8 +30,8 @@ public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -
 	return SIO<R, E, B>({ (env, reject: @escaping (E) -> (), resolve: @escaping (B) -> ()) in
 		
 		guard
-			let left = l.forkSync(env),
-			let right = r.forkSync(env)
+			let left = l.forkSync(env)?.run(env),
+			let right = r.forkSync(env)?.run(env)
 		else {
 			return
 		}
