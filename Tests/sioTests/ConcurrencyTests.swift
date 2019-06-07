@@ -68,14 +68,14 @@ class ConcurrencyTests: XCTestCase {
 	func testForEach() {
 		let finish = expectation(description: "finish")
 		
-		let values = Array(1...10000)
+		let values = Array(1...3)
 
 		
 		let task = values.forEach {
-			UIO<Int>.of($0)
+			UIO.of($0)
 		}
 		
-		task.run((), { result in
+		task.fork((), { _ in }, { result in
 			XCTAssert(result == values)
 			finish.fulfill()
 		})

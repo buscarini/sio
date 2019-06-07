@@ -11,13 +11,69 @@ import Foundation
 extension SIO {
 	public func biFlatMap<F, B>(_ f: @escaping (E) -> SIO<R, F, B>, _ g: @escaping (A) -> SIO<R, F, B>) -> SIO<R, F, B> {
 		
-		let specific = BiFlatMap(sio: self, err: f, succ: g)
 		
-		return SIO<R, F, B>.init(
-			.biFlatMap(specific),
-			cancel: self.cancel
-		)
+		switch self.implementation {
+			case let .success(val):
+				return g(val)
+			case let .fail(e):
+				return f(e)
+			case .eff:
 			
+				let specific = BiFlatMap(sio: self, err: f, succ: g)
+				return SIO<R, F, B>.init(
+					.biFlatMap(specific),
+					cancel: self.cancel
+				)
+			
+//				return SIO<R, F, B>({ env, reject, resolve in
+//					self.forkSync(r)
+//
+//
+//					guard let result = self.forkSync(env) else {
+//						// Cancelled
+//						return
+//					}
+//
+//					switch result {
+//					case let .left(e):
+//						f(e).fork(env, reject, resolve)
+//					case let .right(a):
+//						g(a).fork(env, reject, resolve)
+//					}
+//				})
+			case let .biFlatMap(impl):
+				return impl.biFlatMap(f, g)
+			
+//
+//				let specific = BiFlatMap(sio: self, err: f, succ: g)
+//				return SIO<R, F, B>.init(
+//					.biFlatMap(specific),
+//					cancel: self.cancel
+//				)
+			
+//				return SIO<R, F, B>({ env, reject, resolve in
+//					guard let result = impl.forkSync(env) else {
+//						// Cancelled
+//						return
+//					}
+//
+//					switch result {
+//					case let .left(e):
+//						f(e).fork(env, reject, resolve)
+//					case let .right(a):
+//						g(a).fork(env, reject, resolve)
+//					}
+//				})
+		}
+		
+		
+//		let specific = BiFlatMap(sio: self, err: f, succ: g)
+//
+//		return SIO<R, F, B>.init(
+//			.biFlatMap(specific),
+//			cancel: self.cancel
+//		)
+//
 		
 		
 		

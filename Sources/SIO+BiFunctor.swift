@@ -22,16 +22,29 @@ extension SIO {
 		_ f: @escaping (R, E) -> F,
 		_ g: @escaping (R, A) -> B
 	) -> SIO<R, F, B> {
-		return SIO<R, F, B>({ env, reject, resolve in
-			return self.fork(
-				env,
-				{ error in
-					reject(f(env, error))
-			},
-				{ value in
-					resolve(g(env, value))
+		return biFlatMap({ e in
+			SIO<R, F, B>.environment()
+				.flatMap { r in
+					.rejected(f(r, e))
+				}
+			
+		}, { a in
+			SIO<R, F, B>.environment()
+				.map { r in
+					g(r, a)
 			}
-			)
-		}, cancel: self.cancel)
+		})
+		
+//		return SIO<R, F, B>({ env, reject, resolve in
+//			return self.fork(
+//				env,
+//				{ error in
+//					reject(f(env, error))
+//			},
+//				{ value in
+//					resolve(g(env, value))
+//			}
+//			)
+//		}, cancel: self.cancel)
 	}
 }

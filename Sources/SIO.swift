@@ -33,7 +33,7 @@ public class SIO<R, E, A> {
 			
 			var t: Trampoline? = self
 			
-			while t != nil, t?.isFinal == false {
+			while t != nil {
 				switch t {
 				case let .result(res)?:
 					return res
@@ -213,6 +213,10 @@ class BiFlatMapBase<R, E, A> {
 	func forkSync(_ r: R) -> SIO<R, E, A>.Trampoline? {
 		fatalError()
 	}
+	
+	func biFlatMap<F, B>(_ f: @escaping (E) -> SIO<R, F, B>, _ g: @escaping (A) -> SIO<R, F, B>) -> SIO<R, F, B> {
+		fatalError()
+	}
 }
 
 class BiFlatMap<R, E0, E, A0, A>: BiFlatMapBase<R, E, A> {
@@ -228,6 +232,35 @@ class BiFlatMap<R, E0, E, A0, A>: BiFlatMapBase<R, E, A> {
 		self.sio = sio
 		self.err = err
 		self.succ = succ
+	}
+	
+	override func biFlatMap<F, B>(_ f: @escaping (E) -> SIO<R, F, B>, _ g: @escaping (A) -> SIO<R, F, B>) -> SIO<R, F, B> {
+		let specific = BiFlatMap<R, E0, F, A0, B>(
+			sio: self.sio,
+			err: { e0 in
+				return self.err(e0).biFlatMap(f, g)
+				
+				//
+				//
+				//						let bfmE = BiFlatMap<R, Any, F, Any, B>(
+				//							sio: bfm.err(anye) as! SIO<R, Any, Any>,
+				//							err: f,
+				//							succ: g
+				//						)
+				//
+				//						return SIO<R, F, B>.init(.biFlatMap(bfmE), cancel: self.cancel)
+			},
+			succ: { a0 in
+				return self.succ(a0).biFlatMap(f, g)
+				
+			}
+		)
+		
+		return SIO<R, F, B>.init(
+			.biFlatMap(specific),
+			cancel: self.sio.cancel
+		)
+		
 	}
 	
 	@inlinable
