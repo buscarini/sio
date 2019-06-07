@@ -68,7 +68,7 @@ class ConcurrencyTests: XCTestCase {
 	func testForEach() {
 		let finish = expectation(description: "finish")
 		
-		let values = Array(1...3)
+		let values = Array(1...10000)
 
 		
 		let task = values.forEach {

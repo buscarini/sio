@@ -14,10 +14,10 @@ extension SIO {
 		return self.bimap(id, f)
 	}
 	
-	@inlinable
-	public func mapR<B>(_ f: @escaping (R, A) -> (B)) -> SIO<R, E, B> {
-		return self.bimapR({ _, e in e }, f)
-	}
+//	@inlinable
+//	public func mapR<B>(_ f: @escaping (R, A) -> (B)) -> SIO<R, E, B> {
+//		return self.bimapR({ _, e in e }, f)
+//	}
 	
 	@inlinable
 	public func map2<Element, B>(_ f: @escaping (Element) -> (B)) -> SIO<R, E, [B]> where A == [Element] {

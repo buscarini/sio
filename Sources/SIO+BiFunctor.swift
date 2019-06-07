@@ -15,10 +15,17 @@ extension SIO {
 		_ f: @escaping (E) -> F,
 		_ g: @escaping (A) -> B
 	) -> SIO<R, F, B> {
-		return self.bimapR({ _, e in f(e) }, { _, a in g(a) })
+		
+		return biFlatMap({ e in
+			SIO<R, F, B>.rejected(f(e))
+		}, { a in
+			SIO<R, F, B>.of(g(a))
+		})
+		
+//		return self.bimapR({ _, e in f(e) }, { _, a in g(a) })
 	}
 	
-	public func bimapR<F, B>(
+	/*public func bimapR<F, B>(
 		_ f: @escaping (R, E) -> F,
 		_ g: @escaping (R, A) -> B
 	) -> SIO<R, F, B> {
@@ -46,5 +53,5 @@ extension SIO {
 //			}
 //			)
 //		}, cancel: self.cancel)
-	}
+	}*/
 }
