@@ -10,7 +10,7 @@ import Foundation
 
 public extension SIO {
 	func timeout(_ timeout: TimeInterval) -> SIO<R, E, A?> {
-		return self.map(A?.some).timeoutTo(nil, timeout)
+		return race(self.map(A?.some), SIO<R, E, A?>.of(nil).delay(timeout))
 	}
 	
 	func timeoutTo(_ value: A, _ timeout: TimeInterval) -> SIO<R, E, A> {

@@ -68,7 +68,7 @@ class ConcurrencyTests: XCTestCase {
 	func testForEach() {
 		let finish = expectation(description: "finish")
 		
-		let values = Array(1...10000)
+		let values = Array(1...100000)
 
 		
 		let task = values.forEach {
@@ -122,7 +122,7 @@ class ConcurrencyTests: XCTestCase {
 	func testForEachGlobalQueueMultiple() {
 		let finish = expectation(description: "finish")
 
-		let values = Array(1...1000)
+		let values = Array(1...10)
 
 		let task = values.forEach {
 			UIO<Int>.of($0).scheduleOn(DispatchQueue.global())
@@ -133,7 +133,27 @@ class ConcurrencyTests: XCTestCase {
 			finish.fulfill()
 		})
 		
-		wait(for: [finish], timeout: 2)
+		wait(for: [finish], timeout: 20)
+	}
+	
+	func testTraverse() {
+		let finish = expectation(description: "finish")
+		
+		let values = Array(1...10)
+		
+		let task = values.traverse { index in
+			Console.defaultPrintLine("\(index)")
+				.flatMap {
+					UIO<Int>.of(index)
+				}
+			}
+		
+		task.run((), { result in
+			XCTAssert(result == values)
+			finish.fulfill()
+		})
+		
+		wait(for: [finish], timeout: 1)
 	}
 
 	func testTraverseIsParallel() {
@@ -155,7 +175,7 @@ class ConcurrencyTests: XCTestCase {
 			finish.fulfill()
 		})
 		
-		wait(for: [finish], timeout: 1)
+		wait(for: [finish], timeout: 5)
 	}
 	
 	func testRace() {

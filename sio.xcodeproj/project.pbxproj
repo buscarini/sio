@@ -57,6 +57,7 @@
 		ACC5C735229FE94A0026FE17 /* Compose.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC5C734229FE94A0026FE17 /* Compose.swift */; };
 		ACC5C737229FE9840026FE17 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC5C736229FE9840026FE17 /* Operators.swift */; };
 		ACC5C739229FE9A40026FE17 /* PrecedenceGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC5C738229FE9A40026FE17 /* PrecedenceGroups.swift */; };
+		ACCA22D722AF076B00631166 /* NoSyncValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCA22D622AF076B00631166 /* NoSyncValue.swift */; };
 		ACD639CE22943EA900F03B19 /* SIO+Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD639CD22943EA900F03B19 /* SIO+Console.swift */; };
 		ACD639D02294401B00F03B19 /* SIO+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD639CF2294401B00F03B19 /* SIO+Date.swift */; };
 		ACD639D22294406E00F03B19 /* SIO+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD639D12294406E00F03B19 /* SIO+Typealias.swift */; };
@@ -138,6 +139,7 @@
 		ACC5C734229FE94A0026FE17 /* Compose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compose.swift; sourceTree = "<group>"; };
 		ACC5C736229FE9840026FE17 /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		ACC5C738229FE9A40026FE17 /* PrecedenceGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecedenceGroups.swift; sourceTree = "<group>"; };
+		ACCA22D622AF076B00631166 /* NoSyncValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSyncValue.swift; sourceTree = "<group>"; };
 		ACD639CD22943EA900F03B19 /* SIO+Console.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Console.swift"; sourceTree = "<group>"; };
 		ACD639CF2294401B00F03B19 /* SIO+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Date.swift"; sourceTree = "<group>"; };
 		ACD639D12294406E00F03B19 /* SIO+Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Typealias.swift"; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				ACC5C734229FE94A0026FE17 /* Compose.swift */,
 				AC64331022A9BD05007B0D38 /* Remove.swift */,
 				AC78988222AEAA5A003954E0 /* SyncValue.swift */,
+				ACCA22D622AF076B00631166 /* NoSyncValue.swift */,
 				8933C7841EB5B820000D00A4 /* SIO.swift */,
 				AC2352D3229749F3000ADE5E /* SIO+Timeout.swift */,
 				AC2BF3592292DB0F00D4953E /* SIO+Requirements.swift */,
@@ -644,6 +647,7 @@
 				AC2BF3762292FB7400D4953E /* SIO+Profunctor.swift in Sources */,
 				AC2BF35E2292E46300D4953E /* SIO+Applicative.swift in Sources */,
 				AC2BF33822927E9F00D4953E /* SIO+Creation.swift in Sources */,
+				ACCA22D722AF076B00631166 /* NoSyncValue.swift in Sources */,
 				AC2BF3602292F21700D4953E /* Curry.swift in Sources */,
 				AC5FB775229EF957008F8D8A /* SIO+Result.swift in Sources */,
 				AC2352D4229749F3000ADE5E /* SIO+Timeout.swift in Sources */,

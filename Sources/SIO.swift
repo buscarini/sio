@@ -111,11 +111,20 @@ public class SIO<R, E, A> {
 			return .result(.left(e))
 		case let .eff(c):
 			
-			let value = SyncValue<E, A>()
+			let semaphore = DispatchSemaphore(value: 1)
 			
+			let value = NoSyncValue<E, A>()
+			
+//			print("wait")
+			semaphore.wait()
 			c(
 				requirement,
 				{ e in
+					defer {
+//						print("signal")
+						semaphore.signal()
+					}
+					
 					guard !self.cancelled else {
 						value.result = .cancelled
 						return
@@ -124,6 +133,11 @@ public class SIO<R, E, A> {
 					value.result = .loaded(.left(e))
 				},
 				{ a in
+					defer {
+//						print("signal")
+						semaphore.signal()
+					}
+					
 					guard !self.cancelled else {
 						value.result = .cancelled
 						return
@@ -132,10 +146,16 @@ public class SIO<R, E, A> {
 					value.result = .loaded(.right(a))
 				}
 			)
+
+//			print("wait2")
+			semaphore.wait()
+			semaphore.signal()
 			
-			while value.notLoaded {
-				usleep(useconds_t(100))
-			}
+//			while value.notLoaded {
+//				usleep(useconds_t(2000))
+//			}
+			
+			print(value.result)
 			
 			switch value.result {
 			case .notLoaded, .cancelled:
