@@ -110,22 +110,40 @@ public class SIO<R, E, A> {
 		case let .fail(e):
 			return .result(.left(e))
 		case let .eff(c):
-			let queue = DispatchQueue(label: "Sync")
-			var result: Either<E, A>?
-			queue.sync {
-				c(
-					requirement,
-					{ e in
-						guard !self.cancelled else { return }
-						result = .left(e)
-					},
-					{ a in
-						guard !self.cancelled else { return }
-						result = .right(a)
+			
+			let value = SyncValue<E, A>()
+			
+			c(
+				requirement,
+				{ e in
+					guard !self.cancelled else {
+						value.result = .cancelled
+						return
 					}
-				)
+					
+					value.result = .loaded(.left(e))
+				},
+				{ a in
+					guard !self.cancelled else {
+						value.result = .cancelled
+						return
+					}
+					
+					value.result = .loaded(.right(a))
+				}
+			)
+			
+			while value.notLoaded {
+				usleep(useconds_t(100))
 			}
-			return .result(result)
+			
+			switch value.result {
+			case .notLoaded, .cancelled:
+				return nil
+			case let .loaded(res):
+				return .result(res)
+			}
+			
 		case let .biFlatMap(impl):
 			return .next(impl.forkSync)
 		}

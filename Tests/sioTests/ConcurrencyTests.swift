@@ -139,10 +139,14 @@ class ConcurrencyTests: XCTestCase {
 	func testTraverseIsParallel() {
 		let finish = expectation(description: "finish")
 
-		let values = Array(1...100)
+		let values = Array(1...10)
 
-		let task = values.traverse {
-			UIO<Int>.of($0).scheduleOn(DispatchQueue.init(label: "\($0)")).delay(0.5)
+		let task = values.traverse { index in
+			Console.defaultPrintLine("\(index)")
+				.flatMap {
+					UIO<Int>.of(index)
+				}
+				.scheduleOn(DispatchQueue.init(label: "\(index)")).delay(0.5)
 		}
 		.scheduleOn(DispatchQueue.global())
 		
