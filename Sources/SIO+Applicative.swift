@@ -15,9 +15,12 @@ public func liftA2<R, E, A, B, C>(_ iof: SIO<R, E, (A) -> (B) -> C>, _ first: SI
 
 @inlinable
 public func ap<R, E, A, B, C>(_ iof: SIO<R, E, (A, B) -> C>, _ first: SIO<R, E, A>, _ second: SIO<R, E, B>) -> SIO<R, E, C> {
-	return iof.flatMap { f in
-		return liftA2(SIO<R, E, (A) -> (B) -> C>.of(curry(f)), first, second)
-	}
+	
+	return liftA2(iof.map(curry), first, second)
+	
+//	return iof.flatMap { f in
+//		return liftA2(SIO<R, E, (A) -> (B) -> C>.of(curry(f)), first, second)
+//	}
 }
 
 public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -> SIO<R, E, B> {
@@ -39,7 +42,7 @@ public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -
 				rightVal.result = .cancelled
 			}
 			
-//			print("\(leftVal.result) \(rightVal.result)")
+			print("\(leftVal.result) \(rightVal.result)")
 			
 			switch (leftVal.result, rightVal.result) {
 			case let (.loaded(.right(ab)), .loaded(.right(a))):
@@ -53,18 +56,20 @@ public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -
 				return
 			}
 		}
-
+		
+		print("fork l")
 		l.fork(env, { error in
 			leftVal.result = .loaded(.left(error))
 			
 			checkContinue()
-
+			
 		}, { loadedF in
 			leftVal.result = .loaded(.right(loadedF))
 			
 			checkContinue()
 		})
-
+	
+		print("fork r")
 		r.fork(env, { error in
 			rightVal.result = .loaded(.left(error))
 			
@@ -74,6 +79,7 @@ public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -
 			
 			checkContinue()
 		})
+		
 	}, cancel: {
 		l.cancel()
 		r.cancel()

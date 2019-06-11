@@ -159,14 +159,17 @@ class ConcurrencyTests: XCTestCase {
 	func testTraverseIsParallel() {
 		let finish = expectation(description: "finish")
 
-		let values = Array(1...10)
+		let values = Array(1...100)
 
-		let task = values.traverse { index in
-			Console.defaultPrintLine("\(index)")
+		let task = values.traverse { index -> UIO<Int> in
+			let queue = DispatchQueue.init(label: "\(index)", attributes: .concurrent)
+			
+			return Console.defaultPrintLine("\(index)")
 				.flatMap {
 					UIO<Int>.of(index)
 				}
-				.scheduleOn(DispatchQueue.init(label: "\(index)")).delay(0.5)
+//				.scheduleOn(queue)
+				.delay(0.5, .global())
 		}
 		.scheduleOn(DispatchQueue.global())
 		
@@ -175,14 +178,14 @@ class ConcurrencyTests: XCTestCase {
 			finish.fulfill()
 		})
 		
-		wait(for: [finish], timeout: 5)
+		wait(for: [finish], timeout: 2.0)
 	}
 	
 	func testRace() {
 		let finish = expectation(description: "finish")
 		
-		let left = UIO.of(1).scheduleOn(DispatchQueue.init(label: "left")).delay(0.5)
-		let right = UIO.of(2).scheduleOn(DispatchQueue.init(label: "right")).delay(5)
+		let left = UIO.of(1).scheduleOn(DispatchQueue.init(label: "left")).delay(0.5, DispatchQueue.main)
+		let right = UIO.of(2).scheduleOn(DispatchQueue.init(label: "right")).delay(5, DispatchQueue.main)
 		
 		race(left, right).run { value in
 			XCTAssert(value == 1)

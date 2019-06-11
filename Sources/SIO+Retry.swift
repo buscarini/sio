@@ -22,9 +22,9 @@ public extension SIO {
 	
 	}
 	
-	func retry(times: Int, delay: TimeInterval) -> SIO<R, E, A> {
+	func retry(times: Int, delay: TimeInterval, queue: DispatchQueue) -> SIO<R, E, A> {
 		return self.retry(times: times, modify: { io in
-			io.delay(delay)
+			io.delay(delay, queue)
 		})
 	}
 }

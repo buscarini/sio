@@ -16,10 +16,29 @@ extension Array {
 	
 	@inlinable
 	public func traverse<R, E, A>(_ f: @escaping (Element) -> SIO<R, E, A>) -> SIO<R, E, [A]> {
-		return self.map(f).reduce(SIO.of([]), { acc, item in
-			let concat = SIO<R, E, ([A], [A]) -> [A]>.of(+)
-			return ap(concat, acc, item.map { [$0] })
-		})
+		guard let first = self.first else {
+			return .of([])
+		}
+		
+		guard self.count > 1 else {
+			return f(first).map { [$0] }
+		}
+		
+		let concat = SIO<R, E, ([A], [A]) -> [A]>.of(+)
+		let half = self.count/2
+		let left = self[0..<half]
+		let right = self[half..<count]
+		
+		return ap(
+			concat,
+			Array(left).traverse(f),
+			Array(right).traverse(f)
+		)
+		
+//		return self.map(f).reduce(SIO.of([]), { acc, item in
+//			let concat = SIO<R, E, ([A], [A]) -> [A]>.of(+)
+//			return ap(concat, acc, item.map { [$0] })
+//		})
 	}
 }
 
