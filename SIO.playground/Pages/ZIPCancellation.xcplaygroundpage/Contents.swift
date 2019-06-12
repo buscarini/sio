@@ -41,7 +41,7 @@ PlaygroundPage.current.needsIndefiniteExecution = true
 
 print("before cancel zip")
 //DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-	task.cancel()
+	long.cancel()
 //}
 
 print("after cancel zip")

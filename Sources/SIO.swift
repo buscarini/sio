@@ -155,7 +155,7 @@ public class SIO<R, E, A> {
 //				usleep(useconds_t(2000))
 //			}
 			
-			print(value.result)
+//			print(value.result)
 			
 			switch value.result {
 			case .notLoaded, .cancelled:
@@ -204,6 +204,14 @@ public class SIO<R, E, A> {
 	public func cancel() {
 		self.cancelled = true
 		self._cancel?()
+		
+		switch self.implementation {
+		case let .biFlatMap(bfm):
+			bfm.cancel()
+		default:
+			break
+		}
+		
 	}
 }
 
@@ -213,6 +221,7 @@ protocol SIOImpl {
 	associatedtype A
 	
 	func forkSync(_ r: R) -> SIO<R, E, A>.Trampoline?
+	func cancel()
 }
 
 class BiFlatMapBase<R, E, A> {
@@ -223,12 +232,16 @@ class BiFlatMapBase<R, E, A> {
 	func biFlatMap<F, B>(_ f: @escaping (E) -> SIO<R, F, B>, _ g: @escaping (A) -> SIO<R, F, B>) -> SIO<R, F, B> {
 		fatalError()
 	}
+	
+	func cancel() {
+	}
 }
 
 class BiFlatMap<R, E0, E, A0, A>: BiFlatMapBase<R, E, A> {
 	var sio: SIO<R, E0, A0>
 	var err: (E0) -> SIO<R, E, A>
 	var succ: (A0) -> SIO<R, E, A>
+	private var cancelled = false
 	
 	init(
 		sio: SIO<R, E0, A0>,
@@ -259,6 +272,11 @@ class BiFlatMap<R, E0, E, A0, A>: BiFlatMapBase<R, E, A> {
 		
 	}
 	
+	override func cancel() {
+		self.cancelled = true
+		self.sio.cancel()
+	}
+	
 	@inlinable
 	override func forkSync(_ r: R) -> SIO<R, E, A>.Trampoline? {
 			switch sio.implementation {
@@ -279,7 +297,6 @@ class BiFlatMap<R, E0, E, A0, A>: BiFlatMapBase<R, E, A> {
 				}
 
 			case let .biFlatMap(impl):
-				
 				let value = self.sio.forkSync(r)?.run(r)
 				
 				switch value {
