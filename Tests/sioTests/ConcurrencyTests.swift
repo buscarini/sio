@@ -41,7 +41,7 @@ class ConcurrencyTests: XCTestCase {
 	func testZipStackOverflow() {
 		let finish = expectation(description: "finish")
 		
-		let values = Array(1...900)
+		let values = Array(1...10000)
 		
 		let left = values.forEach {
 			UIO<Int>.of($0)
@@ -68,7 +68,7 @@ class ConcurrencyTests: XCTestCase {
 	func testForEach() {
 		let finish = expectation(description: "finish")
 		
-		let values = Array(1...10000)
+		let values = Array(1...100000)
 
 		
 		let task = values.forEach {
@@ -80,7 +80,7 @@ class ConcurrencyTests: XCTestCase {
 			finish.fulfill()
 		})
 		
-		wait(for: [finish], timeout: 10)
+		wait(for: [finish], timeout: 20)
 	}
 	
 	func testForEachGlobalQueueDebug() {
