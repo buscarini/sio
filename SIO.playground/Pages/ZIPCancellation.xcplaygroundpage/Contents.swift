@@ -7,6 +7,7 @@ let long = Array(1...800).forEach { item in
 		.flatMap { console in
 			console.printLine("long \(item)").require(Console.self)
 		}
+		.scheduleOn(.global())
 }
 //.map(const(1000))
 .provide(Console.default)
@@ -41,8 +42,10 @@ PlaygroundPage.current.needsIndefiniteExecution = true
 
 print("before cancel zip")
 //DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-	long.cancel()
+//	long.cancel()
 //}
+
+task.cancel()
 
 print("after cancel zip")
 

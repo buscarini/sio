@@ -28,6 +28,8 @@ public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -
 	let l = left
 	let r = right
 	
+	var cancelled = false
+	
 	return SIO<R, E, B>({ (env, reject: @escaping (E) -> (), resolve: @escaping (B) -> ()) in
 	
 		let resolved = SyncValue<Never, Bool>()
@@ -35,7 +37,7 @@ public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -
 		let rightVal = SyncValue<E, A>()
 		
 		let checkContinue = {
-			guard resolved.notLoaded else { return }
+			guard resolved.notLoaded, cancelled == false else { return }
 
 			if l.cancelled {
 				leftVal.result = .cancelled
@@ -95,6 +97,7 @@ public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -
 		})
 		
 	}, cancel: {
+		cancelled = true
 		l.cancel()
 		r.cancel()
 	})

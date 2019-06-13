@@ -279,7 +279,10 @@ class BiFlatMap<R, E0, E, A0, A>: BiFlatMapBase<R, E, A> {
 	var sio: SIO<R, E0, A0>
 	var err: (E0) -> SIO<R, E, A>
 	var succ: (A0) -> SIO<R, E, A>
+	
 	private var cancelled = false
+	private var nextErr: SIO<R, E, A>?
+	private var nextSucc: SIO<R, E, A>?
 	
 	init(
 		sio: SIO<R, E0, A0>,
@@ -313,14 +316,29 @@ class BiFlatMap<R, E0, E, A0, A>: BiFlatMapBase<R, E, A> {
 	override func cancel() {
 		self.cancelled = true
 		self.sio.cancel()
+		self.nextErr?.cancel()
+		self.nextSucc?.cancel()
 	}
 	
 	@inlinable
     override func fork(_ r: R, _ reject: @escaping (E) -> Void, _ resolve: @escaping (A) -> Void) {
         self.sio.fork(r, { e in
-            self.err(e).fork(r, reject, resolve)
+			guard self.cancelled == false else {
+				return
+			}
+			
+			let nextE = self.err(e)
+			self.nextErr = nextE
+            nextE.fork(r, reject, resolve)
+			
         }) { a in
-            self.succ(a).fork(r, reject, resolve)
+			guard self.cancelled == false else {
+				return
+			}
+			
+			let nextA = self.succ(a)
+			self.nextSucc = nextA
+            nextA.fork(r, reject, resolve)
         }
         
 //
