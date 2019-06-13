@@ -34,6 +34,15 @@ public class SyncValue<E, A> {
 		}
 	}
 	
+	public var loaded: Bool {
+		switch self.result {
+		case .loaded:
+			return true
+		default:
+			return false
+		}
+	}
+	
 	public var notLoaded: Bool {
 		switch self.result {
 		case .notLoaded:

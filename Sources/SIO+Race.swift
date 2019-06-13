@@ -13,15 +13,13 @@ public func race<R, E, A>(_ left: SIO<R, E, A>, _ right: SIO<R, E, A>) -> SIO<R,
 	let r: SIO<R, E, A> = right
 	return SIO<R, E, A>.init({ env, reject, resolve in
 		
-//		let queue = DispatchQueue.init(label: "Race Queue")
+		let resolved = SyncValue<Never, Bool>()
 		let leftVal = SyncValue<E, A>()
 		let rightVal = SyncValue<E, A>()
 		
-//		var finished = false
-//		var leftFailed = false
-//		var rightFailed = false
-		
 		let checkContinue = {
+			guard resolved.notLoaded else { return }
+			
 			if l.cancelled {
 				leftVal.result = .cancelled
 			}
@@ -32,15 +30,19 @@ public func race<R, E, A>(_ left: SIO<R, E, A>, _ right: SIO<R, E, A>) -> SIO<R,
 			
 			switch (leftVal.result, rightVal.result) {
 			case let (.loaded(.right(a)), _):
+				resolved.result = .loaded(.right(true))
 				r.cancel()
 				resolve(a)
 			case let (.loaded(.left(e)), _):
+				resolved.result = .loaded(.right(true))
 				r.cancel()
 				reject(e)
 			case let (_, .loaded(.left(e))):
+				resolved.result = .loaded(.right(true))
 				l.cancel()
 				reject(e)
 			case let (_, .loaded(.right(a))):
+				resolved.result = .loaded(.right(true))
 				l.cancel()
 				resolve(a)
 			default:
