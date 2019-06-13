@@ -18,7 +18,7 @@ extension SIO {
 				result = g(val)
 			case let .fail(e):
 				result = f(e)
-			case .eff:
+			case .sync, .async:
 				let specific = BiFlatMap(sio: self, err: f, succ: g)
 				result = SIO<R, F, B>.init(
 					.biFlatMap(specific),

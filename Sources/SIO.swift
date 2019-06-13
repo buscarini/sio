@@ -14,49 +14,62 @@ public class SIO<R, E, A> {
 	public typealias ResultCallback = (A) -> ()
 	public typealias EmptyCallback = () -> ()
 	
-	public typealias Computation = (R, @escaping ErrorCallback, @escaping ResultCallback) -> ()
+	public typealias Sync = (R) -> Either<E, A>?
+	public typealias Async = (R, @escaping ErrorCallback, @escaping ResultCallback) -> ()
     
     public var queue: DispatchQueue?
     public var delay: TimeInterval = 0
 	
 	indirect enum Trampoline {
 		case result(Either<E, A>?)
-		case next((R) -> Trampoline?)
+		case sync((R) -> Trampoline)
+		case async((R, @escaping (Trampoline) -> Void) -> Void)
+		
+		var isSync: Bool {
+			switch self {
+			case .result, .sync:
+				return true
+			case .async:
+				return false
+			}
+		}
 		
 		var isFinal: Bool {
 			switch self {
 			case .result:
 				return true
-			case .next:
+			case .sync, .async:
 				return false
 			}
 		}
 		
-		func run(_ r: R) -> Either<E, A>? {
-			
+		func run(_ r: R, _ completion: @escaping (Either<E, A>?) -> Void) {
 			var t: Trampoline? = self
 			
 			while t != nil {
 				switch t {
 				case let .result(res)?:
-					return res
-				case let .next(f)?:
-					t = f(r)
+					return completion(res)
+				case let .sync(sync)?:
+					t = sync(r)
+				case let .async(async)?:
+					async(r, { t in
+						t.run(r, completion)
+					})
+					return
 				case nil:
-					return nil
+					return
 				}
 			}
-			
-			return nil
 		}
 	}
 	
 	enum Implementation {
 		case success(A)
 		case fail(E)
-		case eff(Computation)
+		case sync(Sync)
+		case async(Async)
 		case biFlatMap(BiFlatMapBase<R, E, A>)
-//		case biFlatMap(SIO<R, Any, Any>, (R, Any) -> SIO<R, E, A>, (R, Any) -> SIO<R, E, A>)
 	}
 
 	var implementation: Implementation
@@ -82,21 +95,19 @@ public class SIO<R, E, A> {
 		}
 	}
 	
-	public init(_ computation: @escaping Computation) {
-//		self.implementation = .next({
-//
-//		})
-		
-		self.implementation = .eff(computation)
-		
-//		self._fork = computation
+	public init(_ sync: @escaping Sync) {
+		self.implementation = .sync(sync)
+		self._cancel = nil
+	}
+	
+	public init(_ async: @escaping Async) {
+		self.implementation = .async(async)
 		self._cancel = nil
 	}
 
-	public init(_ computation: @escaping Computation, cancel: EmptyCallback?) {
-		self.implementation = .eff(computation)
+	public init(_ async: @escaping Async, cancel: EmptyCallback?) {
+		self.implementation = .async(async)
 
-//		self._fork = computation
 		self._cancel = cancel
 	}
 	
@@ -106,86 +117,6 @@ public class SIO<R, E, A> {
 		self._cancel = cancel
 	}
 	
-	/*func forkSync(_ requirement: R) -> Trampoline? {
-		switch self.implementation {
-		case let .success(a):
-			print("fork sync success")
-			return .result(.right(a))
-		case let .fail(e):
-			print("fork sync fail")
-			return .result(.left(e))
-		case let .eff(c):
-			
-			let queue = DispatchQueue(label: "Sync")
-			
-//			let semaphore = DispatchSemaphore(value: 1)
-//
-			let value = SyncValue<E, A>()
-			
-//			print("wait")
-//			semaphore.wait()
-			print("fork sync eff")
-//			queue.sync {
-				c(
-					requirement,
-					{ e in
-//						defer {
-//	//						print("signal")
-//							semaphore.signal()
-//						}
-						
-						guard !self.cancelled else {
-							value.result = .cancelled
-							return
-						}
-						
-						value.result = .loaded(.left(e))
-					},
-					{ a in
-//						defer {
-//	//						print("signal")
-////							semaphore.signal()
-//						}
-						
-						guard !self.cancelled else {
-							value.result = .cancelled
-							return
-						}
-						
-						value.result = .loaded(.right(a))
-					}
-				)
-				
-//			}
-
-			
-			
-			
-//			print("wait2")
-//			semaphore.wait()
-//			semaphore.signal()
-		
-			while value.notLoaded {
-				usleep(useconds_t(10))
-			}
-		
-//			print(value.result)
-			
-			switch value.result {
-			case .notLoaded, .cancelled:
-				print("eff not loaded or cancelled")
-				return nil
-			case let .loaded(res):
-				print("eff loaded")
-				return .result(res)
-			}
-			
-		case let .biFlatMap(impl):
-			print("fork sync biflatmap")
-			return .next(impl.forkSync)
-		}
-	}*/
-	
 	public func fork(_ requirement: R, _ reject: @escaping ErrorCallback, _ resolve: @escaping ResultCallback) {
         
         let run = {
@@ -194,8 +125,17 @@ public class SIO<R, E, A> {
                 resolve(a)
             case let .fail(e):
                 reject(e)
-            case let .eff(c):
-                c(
+			case let .sync(sync):
+				switch sync(requirement) {
+				case let .left(e)?:
+					reject(e)
+				case let .right(a)?:
+					resolve(a)
+				case nil:
+					return
+				}
+            case let .async(async):
+                async(
                     requirement,
                     { error in
                         guard !self.cancelled else { return }
@@ -208,18 +148,6 @@ public class SIO<R, E, A> {
                 )
             case let .biFlatMap(impl):
                 impl.fork(requirement, reject, resolve)
-                
-                
-                //                guard let result = impl.fork() else {
-                //                    return
-                //                }
-                //
-                //                switch result {
-                //                case let .left(e):
-                //                    reject(e)
-                //                case let .right(a):
-                //                    resolve(a)
-                //                }
             }
         }
         
@@ -229,9 +157,6 @@ public class SIO<R, E, A> {
         else {
             run()
         }
-        
-        
-        
 	}
 	
 	public func cancel() {

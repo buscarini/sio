@@ -34,8 +34,8 @@ public extension SIO {
 	}
 	
 	static func access<S, R, E>(_ f: @escaping (R) -> S) -> SIO<R, E, S> {
-		return SIO<R, E, S>({ env, _, resolve in
-			resolve(f(env))
+		return SIO<R, E, S>({ r in
+			return .right(f(r))
 		})
 	}
 }
