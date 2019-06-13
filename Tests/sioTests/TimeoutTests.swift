@@ -26,7 +26,7 @@ class TimeoutTests: XCTestCase {
 	
 	func testTimeout() {
 		let finish = expectation(description: "finish")
-		
+        
 		let task = UIO.of(1).delay(10, DispatchQueue.main).timeout(0.1)
 		
 		task.run((), { value in

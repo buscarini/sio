@@ -11,12 +11,15 @@ import Foundation
 public extension SIO {
 	func timeout(_ timeout: TimeInterval) -> SIO<R, E, A?> {
 		return race(
-			SIO<R, E, A?>.of(nil).delay(timeout, DispatchQueue.main),
-			self.map(A?.some)
+            self.map(A?.some),
+			SIO<R, E, A?>.of(nil).delay(timeout, DispatchQueue.main)
 		)
 	}
 	
 	func timeoutTo(_ value: A, _ timeout: TimeInterval) -> SIO<R, E, A> {
-		return race(self, SIO<R, E, A>.of(value).delay(timeout, DispatchQueue.main))
+		return race(
+            self,
+            SIO<R, E, A>.of(value).delay(timeout, DispatchQueue.main)
+        )
 	}
 }

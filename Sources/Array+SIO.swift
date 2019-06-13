@@ -19,16 +19,16 @@ extension Array {
 		guard let first = self.first else {
 			return .of([])
 		}
-		
+
 		guard self.count > 1 else {
 			return f(first).map { [$0] }
 		}
-		
+
 		let concat = SIO<R, E, ([A], [A]) -> [A]>.of(+)
 		let half = self.count/2
 		let left = self[0..<half]
 		let right = self[half..<count]
-		
+
 		return ap(
 			concat,
 			Array(left).traverse(f),

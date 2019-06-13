@@ -41,7 +41,7 @@ class ConcurrencyTests: XCTestCase {
 	func testZipStackOverflow() {
 		let finish = expectation(description: "finish")
 		
-		let values = Array(1...900)
+		let values = Array(1...10000)
 		
 		let left = values.forEach {
 			UIO<Int>.of($0)
@@ -68,7 +68,7 @@ class ConcurrencyTests: XCTestCase {
 	func testForEach() {
 		let finish = expectation(description: "finish")
 		
-		let values = Array(1...100000)
+		let values = Array(1...100_000)
 
 		
 		let task = values.forEach {
@@ -122,7 +122,7 @@ class ConcurrencyTests: XCTestCase {
 	func testForEachGlobalQueueMultiple() {
 		let finish = expectation(description: "finish")
 
-		let values = Array(1...10)
+		let values = Array(1...100)
 
 		let task = values.forEach {
 			UIO<Int>.of($0).scheduleOn(DispatchQueue.global())
@@ -133,7 +133,7 @@ class ConcurrencyTests: XCTestCase {
 			finish.fulfill()
 		})
 		
-		wait(for: [finish], timeout: 20)
+		wait(for: [finish], timeout: 1)
 	}
 	
 	func testTraverse() {
@@ -164,12 +164,13 @@ class ConcurrencyTests: XCTestCase {
 		let task = values.traverse { index -> UIO<Int> in
 			let queue = DispatchQueue.init(label: "\(index)", attributes: .concurrent)
 			
-			return Console.defaultPrintLine("\(index)")
+			return
+				Console.defaultPrintLine("\(index)")
 				.flatMap {
 					UIO<Int>.of(index)
 				}
 //				.scheduleOn(queue)
-				.delay(0.5, .global())
+				.delay(1, .global())
 		}
 		.scheduleOn(DispatchQueue.global())
 		
@@ -178,7 +179,9 @@ class ConcurrencyTests: XCTestCase {
 			finish.fulfill()
 		})
 		
-		wait(for: [finish], timeout: 2.0)
+		waitForExpectations(timeout: 10.0) { _ in
+			
+		}
 	}
 	
 	func testRace() {
@@ -283,7 +286,7 @@ class ConcurrencyTests: XCTestCase {
 		measureMetrics([.wallClockTime], automaticallyStartMeasuring: true) {
 			let finish = expectation(description: "finish")
 
-			let values = Array(1...10000)
+			let values = Array(1...100_000)
 
 			let task = values.forEach {
 				UIO<Int>.of($0)
