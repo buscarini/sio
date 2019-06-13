@@ -11,21 +11,26 @@ import Foundation
 extension SIO {
 	public func biFlatMap<F, B>(_ f: @escaping (E) -> SIO<R, F, B>, _ g: @escaping (A) -> SIO<R, F, B>) -> SIO<R, F, B> {
 		
+		let result: SIO<R, F, B>
+		
 		switch self.implementation {
 			case let .success(val):
-				return g(val)
+				result = g(val)
 			case let .fail(e):
-				return f(e)
+				result = f(e)
 			case .eff:
-			
 				let specific = BiFlatMap(sio: self, err: f, succ: g)
-				return SIO<R, F, B>.init(
+				result = SIO<R, F, B>.init(
 					.biFlatMap(specific),
 					cancel: self.cancel
 				)
 			
 			case let .biFlatMap(impl):
-				return impl.biFlatMap(f, g)
+				result = impl.biFlatMap(f, g)
 		}
+		
+		result.queue = self.queue
+		result.delay = self.delay
+		return result
 	}
 }

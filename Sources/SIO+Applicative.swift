@@ -30,10 +30,13 @@ public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -
 	
 	return SIO<R, E, B>({ (env, reject: @escaping (E) -> (), resolve: @escaping (B) -> ()) in
 	
+		let resolved = SyncValue<Never, Bool>()
 		let leftVal = SyncValue<E, (A) -> B>()
 		let rightVal = SyncValue<E, A>()
 		
 		let checkContinue = {
+			guard resolved.notLoaded else { return }
+
 			if l.cancelled {
 				leftVal.result = .cancelled
 			}
@@ -46,10 +49,13 @@ public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -
 			
 			switch (leftVal.result, rightVal.result) {
 			case let (.loaded(.right(ab)), .loaded(.right(a))):
+				resolved.result = .loaded(.right(true))
 				resolve(ab(a))
 			case let (.loaded(.left(e)), .loaded):
+				resolved.result = .loaded(.right(false))
 				reject(e)
 			case let (.loaded, .loaded(.left(e))):
+				resolved.result = .loaded(.right(false))
 				reject(e)
 				
 			default:
