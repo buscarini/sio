@@ -283,16 +283,45 @@ class ConcurrencyTests: XCTestCase {
 	}
 	
 	func testForEachPerformance() {
-		
 		measureMetrics([.wallClockTime], automaticallyStartMeasuring: true) {
 			let finish = expectation(description: "finish")
 
 			let values = Array(1...100_000)
-
+			
 			let task = values.forEach {
 				UIO<Int>.of($0)
 			}.scheduleOn(DispatchQueue.global())
-
+			
+			task.forkMain(absurd, { result in
+				finish.fulfill()
+			})
+			
+			waitForExpectations(timeout: 5, handler: { _ in
+				self.stopMeasuring()
+			})
+		}
+		
+	}
+	
+	func testReduceRegularPerformance() {
+		measureMetrics([.wallClockTime], automaticallyStartMeasuring: true) {
+			let values = Array(1...100_000)
+			_ = values.reduce(0, { res, value in
+				res + value
+			})
+		}
+	}
+	
+	func testFoldMPerformance() {
+		measureMetrics([.wallClockTime], automaticallyStartMeasuring: true) {
+			let finish = expectation(description: "finish")
+			
+			let values = Array(1...100_000)
+			
+			let task: UIO<Int> = values.foldM(0) {
+				.of($0 + $1)
+			}.scheduleOn(DispatchQueue.global())
+			
 			task.forkMain(absurd, { result in
 				finish.fulfill()
 			})

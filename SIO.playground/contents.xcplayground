@@ -6,5 +6,6 @@
         <page name='ZIPCancellation'/>
         <page name='Race'/>
         <page name='Animations'/>
+        <page name='fold'/>
     </pages>
 </playground>

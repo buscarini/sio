@@ -47,8 +47,6 @@ public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -
 				rightVal.result = .cancelled
 			}
 			
-			print("\(leftVal.result) \(rightVal.result)")
-			
 			switch (leftVal.result, rightVal.result) {
 			case let (.loaded(.right(ab)), .loaded(.right(a))):
 				resolved.result = .loaded(.right(true))
@@ -65,33 +63,23 @@ public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -
 			}
 		}
 		
-		print("fork l")
 		l.fork(env, { error in
 			leftVal.result = .loaded(.left(error))
-		
-			print("left error")
 			
 			checkContinue()
 			
 		}, { loadedF in
 			leftVal.result = .loaded(.right(loadedF))
 			
-			print("left loaded")
-			
 			checkContinue()
 		})
 	
-		print("fork r \(r.implementation)")
 		r.fork(env, { error in
 			rightVal.result = .loaded(.left(error))
-			
-			print("right error")
 			
 			checkContinue()
 		}, { loadedVal in
 			rightVal.result = .loaded(.right(loadedVal))
-			
-			print("right loaded")
 			
 			checkContinue()
 		})

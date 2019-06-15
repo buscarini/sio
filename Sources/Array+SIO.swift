@@ -34,11 +34,14 @@ extension Array {
 			Array(left).traverse(f),
 			Array(right).traverse(f)
 		)
-		
-//		return self.map(f).reduce(SIO.of([]), { acc, item in
-//			let concat = SIO<R, E, ([A], [A]) -> [A]>.of(+)
-//			return ap(concat, acc, item.map { [$0] })
-//		})
+	}
+	
+	public func foldM<R, E, S>(_ initial: S, _ f: @escaping (S, Element) -> SIO<R, E, S>) -> SIO<R, E, S> {
+		return self.reduce(SIO<R, E, S>.of(initial)) { acc, item in
+			acc.flatMap { s in
+				f(s, item)
+			}
+		}
 	}
 }
 
@@ -71,11 +74,6 @@ public func sequence<R, E, A>(
 	_ ios: [SIO<R, E, [A]>]
 ) -> SIO<R, E, [A]> {
 	
-//	return ios.reduce(SIO<R, E, [A]>.of([]), { acc, item in
-//		let concat = SIO<R, E, ([A], [A]) -> [A]>.of(+)
-//		return ap(concat, acc, item)
-//	})
-
 	guard var previous = ios.first else {
 		return SIO<R, E, [A]>.of([])
 	}
