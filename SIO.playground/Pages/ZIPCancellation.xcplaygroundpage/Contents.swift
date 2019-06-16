@@ -34,6 +34,7 @@ let task = zip(
 )
 .scheduleOn(DispatchQueue.global())
 
+
 task.fork(absurd, { a in
 	print("Success \(a)")
 })

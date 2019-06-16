@@ -52,6 +52,7 @@
 		AC5FB777229EFB1D008F8D8A /* SIO+FS.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5FB776229EFB1D008F8D8A /* SIO+FS.swift */; };
 		AC5FB77A229EFD09008F8D8A /* SIOError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5FB779229EFD09008F8D8A /* SIOError.swift */; };
 		AC64331122A9BD05007B0D38 /* Remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC64331022A9BD05007B0D38 /* Remove.swift */; };
+		AC6E036122B6362F00134048 /* CancellationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6E035F22B6362900134048 /* CancellationTests.swift */; };
 		AC78988322AEAA5A003954E0 /* SyncValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC78988222AEAA5A003954E0 /* SyncValue.swift */; };
 		ACB600962296E15C00651078 /* SIO+Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB600952296E15C00651078 /* SIO+Race.swift */; };
 		ACC5C735229FE94A0026FE17 /* Compose.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC5C734229FE94A0026FE17 /* Compose.swift */; };
@@ -134,6 +135,7 @@
 		AC5FB776229EFB1D008F8D8A /* SIO+FS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+FS.swift"; sourceTree = "<group>"; };
 		AC5FB779229EFD09008F8D8A /* SIOError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIOError.swift; sourceTree = "<group>"; };
 		AC64331022A9BD05007B0D38 /* Remove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remove.swift; sourceTree = "<group>"; };
+		AC6E035F22B6362900134048 /* CancellationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellationTests.swift; sourceTree = "<group>"; };
 		AC78988222AEAA5A003954E0 /* SyncValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncValue.swift; sourceTree = "<group>"; };
 		ACB600952296E15C00651078 /* SIO+Race.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Race.swift"; sourceTree = "<group>"; };
 		ACC5C734229FE94A0026FE17 /* Compose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compose.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 			children = (
 				8933C7891EB5B82A000D00A4 /* sioTests.swift */,
 				AC2352D0229742E6000ADE5E /* ConcurrencyTests.swift */,
+				AC6E035F22B6362900134048 /* CancellationTests.swift */,
 				AC2352D522974B04000ADE5E /* TimeoutTests.swift */,
 			);
 			name = Tests;
@@ -668,6 +671,7 @@
 			files = (
 				AC2352D622974B04000ADE5E /* TimeoutTests.swift in Sources */,
 				AC2352D2229744DB000ADE5E /* ConcurrencyTests.swift in Sources */,
+				AC6E036122B6362F00134048 /* CancellationTests.swift in Sources */,
 				8933C7901EB5B82D000D00A4 /* sioTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,12 +14,12 @@ extension SIO {
 		return self.biFlatMap({ e in .rejected(e)}, f)
 	}
 	
-	@inlinable
-	public func flatMap<B>(_ f: @escaping (A) -> (SIO<Void, E, B>)) -> SIO<R, E, B> {
-		return self.biFlatMap({ e in .rejected(e) }, {
-			f($0).require(R.self)
-		})
-	}
+//	@inlinable
+//	public func flatMap<B>(_ f: @escaping (A) -> (SIO<Void, E, B>)) -> SIO<R, E, B> {
+//		return self.biFlatMap({ e in .rejected(e) }, {
+//			f($0).require(R.self)
+//		})
+//	}
 	
 	@inlinable
 	public func flatMapR<B>(_ f: @escaping (R, A) -> (SIO<R, E, B>)) -> SIO<R, E, B> {

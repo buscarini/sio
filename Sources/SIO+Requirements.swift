@@ -20,7 +20,7 @@ public extension SIO {
 	func provideSome<R0>(_ f: @escaping (R0) -> R) -> SIO<R0, E, A> {
 		return SIO<R0, E, A>({ r, reject, resolve in
 			self.fork(f(r), reject, resolve)
-		})
+		},cancel: self.cancel)
 	}
 	
 	func provide(_ req: R) -> SIO<Void, E, A> {

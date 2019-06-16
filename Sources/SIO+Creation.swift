@@ -28,4 +28,8 @@ public extension SIO {
 			return reject(error())
 		})
 	}
+	
+	static func fromFunc(_ f: @escaping (R) -> A) -> SIO<R, Never, A> {
+		return environment().map(f)
+	}
 }

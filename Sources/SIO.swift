@@ -118,8 +118,11 @@ public class SIO<R, E, A> {
 	}
 	
 	public func fork(_ requirement: R, _ reject: @escaping ErrorCallback, _ resolve: @escaping ResultCallback) {
-        
         let run = {
+			guard self.cancelled == false else {
+				return
+			}
+			
             switch self.implementation {
             case let .success(a):
                 resolve(a)
@@ -140,11 +143,11 @@ public class SIO<R, E, A> {
                     { error in
                         guard !self.cancelled else { return }
                         reject(error)
-                },
+                	},
                     { result in
                         guard !self.cancelled else { return }
                         resolve(result)
-                }
+                	}
                 )
             case let .biFlatMap(impl):
                 impl.fork(requirement, reject, resolve)
@@ -163,12 +166,12 @@ public class SIO<R, E, A> {
 		self.cancelled = true
 		self._cancel?()
 		
-		switch self.implementation {
-		case let .biFlatMap(bfm):
-			bfm.cancel()
-		default:
-			break
-		}
+//		switch self.implementation {
+//		case let .biFlatMap(bfm):
+//			bfm.cancel()
+//		default:
+//			break
+//		}
 		
 	}
 }
@@ -233,7 +236,7 @@ class BiFlatMap<R, E0, E, A0, A>: BiFlatMapBase<R, E, A> {
 		
 		return SIO<R, F, B>.init(
 			.biFlatMap(specific),
-			cancel: self.sio.cancel
+			cancel: specific.cancel
 		)
 		
 	}
@@ -247,6 +250,10 @@ class BiFlatMap<R, E0, E, A0, A>: BiFlatMapBase<R, E, A> {
 	
 	@inlinable
     override func fork(_ r: R, _ reject: @escaping (E) -> Void, _ resolve: @escaping (A) -> Void) {
+		guard self.cancelled == false else {
+			return
+		}
+		
         self.sio.fork(r, { e in
 			guard self.cancelled == false else {
 				return
