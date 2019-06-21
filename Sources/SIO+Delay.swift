@@ -12,15 +12,17 @@ public func delayed<R, E, A>(_ delay: TimeInterval, _ queue: DispatchQueue = .ma
 	return { io in
         
         
-        io.queue = queue
-        io.delay = delay
-        return io
-        
-//		let res = SIO({ env, reject, resolve in
-//			queue.asyncAfter(deadline: .now() + delay) {
-//				io.fork(env, reject, resolve)
-//			}
-//		})
+//        io.queue = queue
+//        io.delay = delay
+//        return io
+
+		
+		return SIO({ env, reject, resolve in
+			print("delay \(delay)")
+			queue.asyncAfter(deadline: .now() + delay) {
+				io.fork(env, reject, resolve)
+			}
+		})
 	}
 }
 

@@ -58,6 +58,9 @@
 		ACB36E7422BCE8BA002FDA4F /* Arrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB36E7322BCE8B9002FDA4F /* Arrays.swift */; };
 		ACB36E7622BCEB94002FDA4F /* Chunked.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB36E7522BCEB94002FDA4F /* Chunked.swift */; };
 		ACB36E7822BCEC0A002FDA4F /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB36E7722BCEC0A002FDA4F /* Delay.swift */; };
+		ACB36E7A22BCF318002FDA4F /* Functor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB36E7922BCF318002FDA4F /* Functor.swift */; };
+		ACB36E7C22BCF33C002FDA4F /* Monad.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB36E7B22BCF33C002FDA4F /* Monad.swift */; };
+		ACB36E7E22BCF364002FDA4F /* Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB36E7D22BCF364002FDA4F /* Retry.swift */; };
 		ACB600962296E15C00651078 /* SIO+Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB600952296E15C00651078 /* SIO+Race.swift */; };
 		ACC5C735229FE94A0026FE17 /* Compose.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC5C734229FE94A0026FE17 /* Compose.swift */; };
 		ACC5C737229FE9840026FE17 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC5C736229FE9840026FE17 /* Operators.swift */; };
@@ -145,6 +148,9 @@
 		ACB36E7322BCE8B9002FDA4F /* Arrays.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Arrays.swift; sourceTree = "<group>"; };
 		ACB36E7522BCEB94002FDA4F /* Chunked.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chunked.swift; sourceTree = "<group>"; };
 		ACB36E7722BCEC0A002FDA4F /* Delay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
+		ACB36E7922BCF318002FDA4F /* Functor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functor.swift; sourceTree = "<group>"; };
+		ACB36E7B22BCF33C002FDA4F /* Monad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Monad.swift; sourceTree = "<group>"; };
+		ACB36E7D22BCF364002FDA4F /* Retry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Retry.swift; sourceTree = "<group>"; };
 		ACB600952296E15C00651078 /* SIO+Race.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Race.swift"; sourceTree = "<group>"; };
 		ACC5C734229FE94A0026FE17 /* Compose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compose.swift; sourceTree = "<group>"; };
 		ACC5C736229FE9840026FE17 /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
@@ -303,6 +309,9 @@
 				ACB36E7322BCE8B9002FDA4F /* Arrays.swift */,
 				ACB36E7522BCEB94002FDA4F /* Chunked.swift */,
 				ACB36E7722BCEC0A002FDA4F /* Delay.swift */,
+				ACB36E7922BCF318002FDA4F /* Functor.swift */,
+				ACB36E7B22BCF33C002FDA4F /* Monad.swift */,
+				ACB36E7D22BCF364002FDA4F /* Retry.swift */,
 				AC2352D0229742E6000ADE5E /* ConcurrencyTests.swift */,
 				AC6E035F22B6362900134048 /* CancellationTests.swift */,
 				AC2352D522974B04000ADE5E /* TimeoutTests.swift */,
@@ -682,11 +691,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACB36E7622BCEB94002FDA4F /* Chunked.swift in Sources */,
+				ACB36E7C22BCF33C002FDA4F /* Monad.swift in Sources */,
 				AC2352D622974B04000ADE5E /* TimeoutTests.swift in Sources */,
 				ACB36E7422BCE8BA002FDA4F /* Arrays.swift in Sources */,
+				ACB36E7E22BCF364002FDA4F /* Retry.swift in Sources */,
 				AC2352D2229744DB000ADE5E /* ConcurrencyTests.swift in Sources */,
 				AC6E036122B6362F00134048 /* CancellationTests.swift in Sources */,
 				ACB36E7822BCEC0A002FDA4F /* Delay.swift in Sources */,
+				ACB36E7A22BCF318002FDA4F /* Functor.swift in Sources */,
 				8933C7901EB5B82D000D00A4 /* sioTests.swift in Sources */,
 				ACB36E7222BCE706002FDA4F /* Applicative.swift in Sources */,
 			);

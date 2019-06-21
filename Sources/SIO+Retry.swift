@@ -18,7 +18,7 @@ public extension SIO {
 			return self
 		}
 		
-		return self <|> modify(self).retry(times: times - 1, modify: modify)
+		return self <|> modify(self.retry(times: times - 1, modify: modify))
 	
 	}
 	
