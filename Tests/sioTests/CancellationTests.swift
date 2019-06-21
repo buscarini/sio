@@ -13,6 +13,7 @@ import sio
 class CancellationTests: XCTestCase {
 	func testCancellation() {
 		var cancelled = false
+		var task: UIO<Void>?
 		
 		let finish = expectation(description: "cancel")
 		
@@ -20,11 +21,11 @@ class CancellationTests: XCTestCase {
 			return Array(1...800).forEach { item in
 			environment(Console.self)
 				.flatMap { console -> SIO<Console, Never, Void> in
-					
 					return console.printLine("\(string) \(item)").require(Console.self)
 				}
 				.flatMap { _ in
 					return SIO<Console, Never, Void> { _ in
+						let tmp = task?.cancelled
 						XCTAssert(cancelled == false)
 						return .right(())
 					}
@@ -35,19 +36,18 @@ class CancellationTests: XCTestCase {
 			.map(const(()))
 		}
 		
-		let task = long("long")
+		task = long("long").scheduleOn(DispatchQueue.global())
 		
 //		task
 //		.scheduleOn(DispatchQueue.global())
 		
-		task
-			.scheduleOn(DispatchQueue.global())
+		task?
 			.fork(absurd, { a in
 			XCTFail()
 		})
 		
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-			task.cancel()
+			task?.cancel()
 			cancelled = true
 		}
 		

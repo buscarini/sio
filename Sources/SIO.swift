@@ -70,6 +70,15 @@ public class SIO<R, E, A> {
 		case sync(Sync)
 		case async(Async)
 		case biFlatMap(BiFlatMapBase<R, E, A>)
+		
+		var bfm: BiFlatMapBase<R, E, A>? {
+			switch self {
+			case let .biFlatMap(bfm):
+				return bfm
+			default:
+				return nil
+			}
+		}
 	}
 
 	var implementation: Implementation
@@ -208,7 +217,7 @@ class BiFlatMap<R, E0, E, A0, A>: BiFlatMapBase<R, E, A> {
 	var err: (E0) -> SIO<R, E, A>
 	var succ: (A0) -> SIO<R, E, A>
 	
-	private var cancelled = false
+	public var cancelled = false
 	private var nextErr: SIO<R, E, A>?
 	private var nextSucc: SIO<R, E, A>?
 	
