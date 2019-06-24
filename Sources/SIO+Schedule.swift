@@ -13,15 +13,18 @@ public extension SIO {
 //		self.queue = queue
 //		return self
 		
-//		let copy = self
-//		copy.queue = queue
-//		return copy
+		let copy = self
+		copy.queue = queue
+		return copy
 		
-		return SIO({ (env, reject, resolve) in
-			queue.async {
-				self.fork(env, reject, resolve)
-			}
-		}, cancel: self.cancel)
+//		return SIO({ (env, reject, resolve) in
+//			queue.async {
+//				guard self.cancelled == false else {
+//					return
+//				}
+//				self.fork(env, reject, resolve)
+//			}
+//		}, cancel: self.cancel)
 	}
 	
 	func forkOn(_ queue: DispatchQueue) -> SIO<R, E, A> {

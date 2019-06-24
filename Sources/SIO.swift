@@ -83,6 +83,8 @@ public class SIO<R, E, A> {
 
 	var implementation: Implementation
 	
+	public var running = false
+	
 //	var _fork: Computation
 	let _cancel: EmptyCallback?
 	
@@ -132,13 +134,24 @@ public class SIO<R, E, A> {
 				return
 			}
 			
-            switch self.implementation {
+			self.running = true
+
+			switch self.implementation {
             case let .success(a):
                 resolve(a)
+				self.running = false
             case let .fail(e):
                 reject(e)
+				self.running = false
 			case let .sync(sync):
-				switch sync(requirement) {
+				defer { self.running = false }
+				
+				let res = sync(requirement)
+				guard self.cancelled == false else {
+					return
+				}
+				
+				switch res {
 				case let .left(e)?:
 					reject(e)
 				case let .right(a)?:
@@ -150,25 +163,36 @@ public class SIO<R, E, A> {
                 async(
                     requirement,
                     { error in
+						self.running = false
                         guard !self.cancelled else { return }
                         reject(error)
                 	},
                     { result in
+						self.running = false
                         guard !self.cancelled else { return }
                         resolve(result)
                 	}
                 )
             case let .biFlatMap(impl):
-                impl.fork(requirement, reject, resolve)
+				impl.fork(requirement, { e in
+					reject(e)
+					self.running = false
+				}, { a in
+					resolve(a)
+					self.running = false
+				})
             }
         }
-        
-        if let queue = self.queue {
-            queue.asyncAfter(deadline: .now() + self.delay, execute: run)
-        }
-        else {
-            run()
-        }
+		
+		let queue = self.queue ?? .global()
+        queue.asyncAfter(deadline: .now() + self.delay, execute: run)
+		
+//        if let queue = self.queue {
+//
+//        }
+//        else {
+//            run()
+//        }
 	}
 	
 	public func cancel() {
@@ -231,6 +255,42 @@ class BiFlatMap<R, E0, E, A0, A>: BiFlatMapBase<R, E, A> {
 		self.succ = succ
 	}
 	
+//	override func biFlatMap<F, B>(_ f: @escaping (E) -> SIO<R, F, B>, _ g: @escaping (A) -> SIO<R, F, B>) -> SIO<R, F, B> {
+//
+//		let specific = BiFlatMap<R, E0, F, A0, B>(
+//			sio: self.sio,
+//			err: { e0 in
+//				return self.err(e0).biFlatMap(f, g)
+//			},
+//			succ: { a0 in
+//				return self.succ(a0).biFlatMap(f, g)
+//
+//			}
+//		)
+//
+//		switch self.sio.implementation {
+//		case let .success(a):
+//			return self.succ(a).biFlatMap(f, g)
+//		case let .fail(e):
+//			return self.err(e).biFlatMap(f, g)
+//		case let .sync(sync):
+//			return SIO<R, F, B>.init(
+//				.biFlatMap(specific),
+//				cancel: specific.cancel
+//			)
+//		case let .async(async):
+//			return SIO<R, F, B>.init(
+//				.biFlatMap(specific),
+//				cancel: specific.cancel
+//			)
+//		case let .biFlatMap(bfm):
+//			return SIO<R, F, B>.init(
+//				.biFlatMap(specific),
+//				cancel: specific.cancel
+//			)
+//		}
+//	}
+	
 	override func biFlatMap<F, B>(_ f: @escaping (E) -> SIO<R, F, B>, _ g: @escaping (A) -> SIO<R, F, B>) -> SIO<R, F, B> {
 		let specific = BiFlatMap<R, E0, F, A0, B>(
 			sio: self.sio,
@@ -270,6 +330,11 @@ class BiFlatMap<R, E0, E, A0, A>: BiFlatMapBase<R, E, A> {
 			
 			let nextE = self.err(e)
 			self.nextErr = nextE
+			
+			guard self.cancelled == false else {
+				return
+			}
+			
             nextE.fork(r, reject, resolve)
 			
         }) { a in
@@ -279,29 +344,12 @@ class BiFlatMap<R, E0, E, A0, A>: BiFlatMapBase<R, E, A> {
 			
 			let nextA = self.succ(a)
 			self.nextSucc = nextA
+			
+			guard self.cancelled == false else {
+				return
+			}
+			
             nextA.fork(r, reject, resolve)
         }
-        
-//
-//    			switch sio.implementation {
-//			case let .success(a):
-//                succ(a).fork(r, reject, resolve)
-//			case let .fail(e):
-//                err(e).fork(r, reject, resolve)
-//
-//			case let .eff(c):
-//                c(r, { e in
-//                    self.err(e).fork(r, reject, resolve)
-//                }, { a in
-//                    self.succ(a).fork(r, reject, resolve)
-//                })
-//
-//			case let .biFlatMap(impl):
-//                impl.fork(r, { e in
-//                    self.err(e).fork(r, reject, resolve)
-//                }) { a in
-//                    self.succ(a).fork(r, reject, resolve)
-//                }
-//		}
 	}
 }

@@ -11,35 +11,64 @@ import XCTest
 import sio
 
 class CancellationTests: XCTestCase {
+	
+	func testNoCancellation() {
+		var lastValue: Int = 0
+		var task: UIO<Void>?
+		
+		let finish = expectation(description: "finish")
+		
+		func long() -> UIO<Void> {
+			return Array(1...800).forEach { item in
+				IO<Never, Int>.init { _ in
+					print(item)
+					return .right(item)
+					}
+					.flatMap { int in
+						return IO<Never, Int> { _ in
+							lastValue = int
+							return .right(int)
+						}
+				}
+				}
+				.map(const(()))
+		}
+		
+		task = long().scheduleOn(DispatchQueue.global())
+		
+		task?
+		.fork(absurd, { a in
+			finish.fulfill()
+		})
+		
+		waitForExpectations(timeout: 10, handler: nil)
+	}
+	
 	func testCancellation() {
-		var cancelled = false
+		var lastValue: Int = 0
 		var task: UIO<Void>?
 		
 		let finish = expectation(description: "cancel")
 		
-		func long(_ string: String) -> UIO<Void> {
+		func long() -> UIO<Void> {
 			return Array(1...800).forEach { item in
-			environment(Console.self)
-				.flatMap { console -> SIO<Console, Never, Void> in
-					return console.printLine("\(string) \(item)").require(Console.self)
+				IO<Never, Int>.init { _ in
+					print(item)
+					return .right(item)
 				}
-				.flatMap { _ in
-					return SIO<Console, Never, Void> { _ in
+				.flatMap { int in
+					return IO<Never, Int> { _ in
 						let tmp = task?.cancelled
-						XCTAssert(cancelled == false)
-						return .right(())
+						XCTAssert(tmp == false)
+						lastValue = int
+						return .right(int)
 					}
 				}
-				.scheduleOn(.global())
 			}
-			.provide(Console.default)
 			.map(const(()))
 		}
 		
-		task = long("long").scheduleOn(DispatchQueue.global())
-		
-//		task
-//		.scheduleOn(DispatchQueue.global())
+		task = long().scheduleOn(DispatchQueue.global())
 		
 		task?
 			.fork(absurd, { a in
@@ -48,13 +77,13 @@ class CancellationTests: XCTestCase {
 		
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 			task?.cancel()
-			cancelled = true
 		}
 		
 		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+			XCTAssert(lastValue < 800)
 			finish.fulfill()
 		}
 		
-		waitForExpectations(timeout: 8, handler: nil)
+		waitForExpectations(timeout: 10, handler: nil)
 	}
 }
