@@ -53,7 +53,7 @@ public extension ValueStore where A == B {
 		}
 	}
 	
-	func copy<C, S>(to store: ValueStore<S, E, C, C>, adapt f: @escaping (B) -> C) -> SIO<(R, S), E, C> {
+	func copy<C, S>(to store: ValueStoreA<S, E, C>, adapt f: @escaping (B) -> C) -> SIO<(R, S), E, C> {
 		return environment((R, S).self)
 			.mapError(absurd)
 			.flatMap { rs in
