@@ -270,6 +270,8 @@ class ConcurrencyTests: XCTestCase {
 			values.forEach {
 				last = $0
 			}
+			
+			XCTAssert(last == 100_000)
 		}		
 	}
 	

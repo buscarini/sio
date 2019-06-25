@@ -54,3 +54,20 @@ func zip3<R, E, A, B, C, D>(
 	return { xs, ys, zs in zip3(xs, ys, zs).map(f) }
 }
 
+@inlinable
+public func zip4<R, E, A, B, C, D>(
+	_ xs: SIO<R, E, A>,
+	_ ys: SIO<R, E, B>,
+	_ zs: SIO<R, E, C>,
+	_ ws: SIO<R, E, D>
+) -> SIO<R, E, (A, B, C, D)> {
+	return zip2(xs, zip3(ys, zs, ws)) // SIO<R, E, (A, (B, C))>
+		.map { a, bcd in (a, bcd.0, bcd.1, bcd.2) }
+}
+
+@inlinable
+func zip4<R, E, A, B, C, D, F>(
+	with f: @escaping (A, B, C, D) -> F
+) -> (SIO<R, E, A>, SIO<R, E, B>, SIO<R, E, C>, SIO<R, E, D>) -> SIO<R, E, F> {
+	return { xs, ys, zs, ws in zip4(xs, ys, zs, ws).map(f) }
+}
