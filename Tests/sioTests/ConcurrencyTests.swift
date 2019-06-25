@@ -282,6 +282,17 @@ class ConcurrencyTests: XCTestCase {
 		wait(for: [finish], timeout: 5)
 	}
 	
+	func testForEachPerformanceNoSIO() {
+		measureMetrics([.wallClockTime], automaticallyStartMeasuring: true) {
+			let values = Array(1...100_000)
+			
+			var last: Int = 0
+			values.forEach {
+				last = $0
+			}
+		}		
+	}
+	
 	func testForEachPerformance() {
 		measureMetrics([.wallClockTime], automaticallyStartMeasuring: true) {
 			let finish = expectation(description: "finish")

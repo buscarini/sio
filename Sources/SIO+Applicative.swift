@@ -23,6 +23,8 @@ public func ap<R, E, A, B, C>(_ iof: SIO<R, E, (A, B) -> C>, _ first: SIO<R, E, 
 //	}
 }
 
+let apQueue = DispatchQueue.init(label: "ap")
+
 public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -> SIO<R, E, B> {
 	
 	let l = left
@@ -37,29 +39,24 @@ public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -
 		let rightVal = SyncValue<E, A>()
 		
 		let checkContinue = {
-			guard resolved.notLoaded, cancelled == false else { return }
-
-			if l.cancelled {
-				leftVal.result = .cancelled
-			}
-			
-			if r.cancelled {
-				rightVal.result = .cancelled
-			}
-			
-			switch (leftVal.result, rightVal.result) {
-			case let (.loaded(.right(ab)), .loaded(.right(a))):
-				resolved.result = .loaded(.right(true))
-				resolve(ab(a))
-			case let (.loaded(.left(e)), .loaded):
-				resolved.result = .loaded(.right(false))
-				reject(e)
-			case let (.loaded, .loaded(.left(e))):
-				resolved.result = .loaded(.right(false))
-				reject(e)
+			apQueue.async {
+				guard resolved.notLoaded, cancelled == false, l.cancelled == false, r.cancelled == false else { return }
 				
-			default:
-				return
+				switch (leftVal.result, rightVal.result) {
+				case let (.loaded(.right(ab)), .loaded(.right(a))):
+					resolved.result = .loaded(.right(true))
+					print("resolve ab \(Unmanaged.passUnretained(l).toOpaque()) \(Unmanaged.passUnretained(r).toOpaque())")
+					resolve(ab(a))
+				case let (.loaded(.left(e)), .loaded):
+					resolved.result = .loaded(.right(false))
+					reject(e)
+				case let (.loaded, .loaded(.left(e))):
+					resolved.result = .loaded(.right(false))
+					reject(e)
+					
+				default:
+					return
+				}
 			}
 		}
 		
