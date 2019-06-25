@@ -66,6 +66,13 @@
 		ACC5C737229FE9840026FE17 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC5C736229FE9840026FE17 /* Operators.swift */; };
 		ACC5C739229FE9A40026FE17 /* PrecedenceGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC5C738229FE9A40026FE17 /* PrecedenceGroups.swift */; };
 		ACCA22D722AF076B00631166 /* NoSyncValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCA22D622AF076B00631166 /* NoSyncValue.swift */; };
+		ACCB00E422C21DEF008FDA73 /* Either+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCB00E322C21DEF008FDA73 /* Either+Zip.swift */; };
+		ACCB00E622C21E01008FDA73 /* Either+Alt.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCB00E522C21E01008FDA73 /* Either+Alt.swift */; };
+		ACCB00E822C21E12008FDA73 /* Either+Applicative.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCB00E722C21E12008FDA73 /* Either+Applicative.swift */; };
+		ACCB00EA22C21E23008FDA73 /* Either+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCB00E922C21E23008FDA73 /* Either+Codable.swift */; };
+		ACCB00EC22C21E31008FDA73 /* Either+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCB00EB22C21E31008FDA73 /* Either+Error.swift */; };
+		ACCB00EE22C21E4B008FDA73 /* Either+Monad.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCB00ED22C21E4B008FDA73 /* Either+Monad.swift */; };
+		ACCB00F022C21E61008FDA73 /* Either+Traversable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCB00EF22C21E61008FDA73 /* Either+Traversable.swift */; };
 		ACD639CE22943EA900F03B19 /* SIO+Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD639CD22943EA900F03B19 /* SIO+Console.swift */; };
 		ACD639D02294401B00F03B19 /* SIO+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD639CF2294401B00F03B19 /* SIO+Date.swift */; };
 		ACD639D22294406E00F03B19 /* SIO+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD639D12294406E00F03B19 /* SIO+Typealias.swift */; };
@@ -156,6 +163,13 @@
 		ACC5C736229FE9840026FE17 /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		ACC5C738229FE9A40026FE17 /* PrecedenceGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecedenceGroups.swift; sourceTree = "<group>"; };
 		ACCA22D622AF076B00631166 /* NoSyncValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSyncValue.swift; sourceTree = "<group>"; };
+		ACCB00E322C21DEF008FDA73 /* Either+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Zip.swift"; sourceTree = "<group>"; };
+		ACCB00E522C21E01008FDA73 /* Either+Alt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Alt.swift"; sourceTree = "<group>"; };
+		ACCB00E722C21E12008FDA73 /* Either+Applicative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Applicative.swift"; sourceTree = "<group>"; };
+		ACCB00E922C21E23008FDA73 /* Either+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Codable.swift"; sourceTree = "<group>"; };
+		ACCB00EB22C21E31008FDA73 /* Either+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Error.swift"; sourceTree = "<group>"; };
+		ACCB00ED22C21E4B008FDA73 /* Either+Monad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Monad.swift"; sourceTree = "<group>"; };
+		ACCB00EF22C21E61008FDA73 /* Either+Traversable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Traversable.swift"; sourceTree = "<group>"; };
 		ACD639CD22943EA900F03B19 /* SIO+Console.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Console.swift"; sourceTree = "<group>"; };
 		ACD639CF2294401B00F03B19 /* SIO+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Date.swift"; sourceTree = "<group>"; };
 		ACD639D12294406E00F03B19 /* SIO+Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Typealias.swift"; sourceTree = "<group>"; };
@@ -293,7 +307,7 @@
 				AC2BF3712292F8A000D4953E /* SIO+Effects.swift */,
 				ACD639D12294406E00F03B19 /* SIO+Typealias.swift */,
 				AC2BF33D22927FC800D4953E /* Prelude.swift */,
-				AC3F33D222A4177E00E93AEA /* Either.swift */,
+				ACCB00E222C21DE1008FDA73 /* Either */,
 				ACC5C736229FE9840026FE17 /* Operators.swift */,
 				ACC5C738229FE9A40026FE17 /* PrecedenceGroups.swift */,
 				AC5FB779229EFD09008F8D8A /* SIOError.swift */,
@@ -329,6 +343,21 @@
 				ACD639CD22943EA900F03B19 /* SIO+Console.swift */,
 			);
 			path = Animations;
+			sourceTree = "<group>";
+		};
+		ACCB00E222C21DE1008FDA73 /* Either */ = {
+			isa = PBXGroup;
+			children = (
+				AC3F33D222A4177E00E93AEA /* Either.swift */,
+				ACCB00E922C21E23008FDA73 /* Either+Codable.swift */,
+				ACCB00EB22C21E31008FDA73 /* Either+Error.swift */,
+				ACCB00E722C21E12008FDA73 /* Either+Applicative.swift */,
+				ACCB00E322C21DEF008FDA73 /* Either+Zip.swift */,
+				ACCB00E522C21E01008FDA73 /* Either+Alt.swift */,
+				ACCB00ED22C21E4B008FDA73 /* Either+Monad.swift */,
+				ACCB00EF22C21E61008FDA73 /* Either+Traversable.swift */,
+			);
+			path = Either;
 			sourceTree = "<group>";
 		};
 		ACD639CC22943E9D00F03B19 /* Effects */ = {
@@ -645,14 +674,18 @@
 				AC2BF3622292F22B00D4953E /* SIO+Monad.swift in Sources */,
 				AC2BF3422292809F00D4953E /* SIO+BiMonad.swift in Sources */,
 				ACB600962296E15C00651078 /* SIO+Race.swift in Sources */,
+				ACCB00EC22C21E31008FDA73 /* Either+Error.swift in Sources */,
 				AC78988322AEAA5A003954E0 /* SyncValue.swift in Sources */,
 				AC2BF34022927FDE00D4953E /* SIO+BiFunctor.swift in Sources */,
 				ACD639D22294406E00F03B19 /* SIO+Typealias.swift in Sources */,
+				ACCB00E422C21DEF008FDA73 /* Either+Zip.swift in Sources */,
 				AC3F33CA22A31F6E00E93AEA /* AnimationOptions.swift in Sources */,
+				ACCB00E622C21E01008FDA73 /* Either+Alt.swift in Sources */,
 				ACC5C735229FE94A0026FE17 /* Compose.swift in Sources */,
 				AC2BF3722292F8A000D4953E /* SIO+Effects.swift in Sources */,
 				AC2BF36E2292F78200D4953E /* SIO+Zip.swift in Sources */,
 				AC3F33C322A2912900E93AEA /* SIO+Adapt.swift in Sources */,
+				ACCB00E822C21E12008FDA73 /* Either+Applicative.swift in Sources */,
 				AC2352D922975085000ADE5E /* SIO+Random.swift in Sources */,
 				AC5FB77A229EFD09008F8D8A /* SIOError.swift in Sources */,
 				ACB36E7022BCE69A002FDA4F /* Collection+Chunks.swift in Sources */,
@@ -664,6 +697,7 @@
 				AC2BF3582292C03300D4953E /* SIO+Error.swift in Sources */,
 				AC5FB777229EFB1D008F8D8A /* SIO+FS.swift in Sources */,
 				AC2BF35C2292E42100D4953E /* SIO+Fold.swift in Sources */,
+				ACCB00EA22C21E23008FDA73 /* Either+Codable.swift in Sources */,
 				AC2BF3682292F42A00D4953E /* SIO+Retry.swift in Sources */,
 				ACD639CE22943EA900F03B19 /* SIO+Console.swift in Sources */,
 				AC2BF3662292F3BE00D4953E /* SIO+Delay.swift in Sources */,
@@ -675,6 +709,8 @@
 				AC2BF3602292F21700D4953E /* Curry.swift in Sources */,
 				AC5FB775229EF957008F8D8A /* SIO+Result.swift in Sources */,
 				AC2352D4229749F3000ADE5E /* SIO+Timeout.swift in Sources */,
+				ACCB00F022C21E61008FDA73 /* Either+Traversable.swift in Sources */,
+				ACCB00EE22C21E4B008FDA73 /* Either+Monad.swift in Sources */,
 				8933C7851EB5B820000D00A4 /* SIO.swift in Sources */,
 				AC2BF33A22927F6C00D4953E /* SIO+Optional.swift in Sources */,
 				AC64331122A9BD05007B0D38 /* Remove.swift in Sources */,
