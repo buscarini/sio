@@ -33,4 +33,11 @@ extension SIO {
 	public var void: SIO<R, E, Void> {
 		return self.map { _ in () }
 	}
+	
+	@inlinable
+	public func const<B>(_ value: B) -> SIO<R, E, B> {
+		return self.map { _ in
+			value
+		}
+	}
 }

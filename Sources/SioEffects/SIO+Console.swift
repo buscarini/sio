@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Sio
 
 public struct Console {
 	public var printLine: (String) -> UIO<Void>

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Sio
 
 public struct Random {
 	public var int = randomInt

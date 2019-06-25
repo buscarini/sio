@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import sio
+import Sio
 
 class Arrays: XCTestCase {
 	

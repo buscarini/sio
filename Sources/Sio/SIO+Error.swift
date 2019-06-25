@@ -18,7 +18,9 @@ public extension SIO {
 	}
 	
 	func ignore() -> SIO<R, Void, A> {
-		return mapError(const(()))
+		return mapError { _ in
+			()
+		}
 	}
 }
 

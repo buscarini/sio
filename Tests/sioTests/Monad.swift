@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import sio
+import Sio
 
 class Monad: XCTestCase {
 	func exampleError() -> Error {

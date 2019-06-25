@@ -8,7 +8,7 @@
 
 import Foundation
 import XCTest
-import sio
+import Sio
 
 class ConcurrencyTests: XCTestCase {
 	func testZip() {
@@ -129,26 +129,6 @@ class ConcurrencyTests: XCTestCase {
 		}
 
 		task.forkMain(absurd, { result in
-			XCTAssert(result == values)
-			finish.fulfill()
-		})
-		
-		wait(for: [finish], timeout: 1)
-	}
-	
-	func testTraverse() {
-		let finish = expectation(description: "finish")
-		
-		let values = Array(1...10)
-		
-		let task = values.traverse { index in
-			Console.defaultPrintLine("\(index)")
-				.flatMap {
-					UIO<Int>.of(index)
-				}
-			}
-		
-		task.run((), { result in
 			XCTAssert(result == values)
 			finish.fulfill()
 		})

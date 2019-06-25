@@ -14,6 +14,13 @@ extension SIO {
 		return self.biFlatMap({ e in .rejected(e)}, f)
 	}
 	
+	@inlinable
+	public func `default`(_ a: A) -> SIO<R, E, A> {
+		return self.flatMapError { _ in
+			SIO.of(a)
+		}
+	}
+	
 //	@inlinable
 //	public func flatMap<B>(_ f: @escaping (A) -> (SIO<Void, E, B>)) -> SIO<R, E, B> {
 //		return self.biFlatMap({ e in .rejected(e) }, {
@@ -25,7 +32,7 @@ extension SIO {
 	public func flatMapR<B>(_ f: @escaping (R, A) -> (SIO<R, E, B>)) -> SIO<R, E, B> {
 		
 		return zip(
-			sio.environment(R.self).mapError(absurd),
+			Sio.environment(R.self).mapError(absurd),
 			self
 		).flatMap(f)
 		

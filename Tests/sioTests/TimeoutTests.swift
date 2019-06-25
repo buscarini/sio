@@ -8,7 +8,7 @@
 
 import Foundation
 import XCTest
-import sio
+import Sio
 
 class TimeoutTests: XCTestCase {
 	func testTimeoutTo() {

@@ -11,7 +11,7 @@ import Foundation
 extension Array {
 	@inlinable
 	public func forEach<R, E, A>(_ f: @escaping (Element) -> SIO<R, E, A>) -> SIO<R, E, [A]> {
-		return sio.sequence(self.map(f))
+		return Sio.sequence(self.map(f))
 	}
 	
 	@inlinable

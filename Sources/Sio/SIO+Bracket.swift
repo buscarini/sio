@@ -25,7 +25,7 @@ public extension SIO {
 				use(a)
 				.flatMap { b in
 					release(a)
-						.map(const(b))
+						.const(b)
 						.mapError(absurd)
 				}
 			}

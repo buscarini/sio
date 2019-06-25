@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import sio
+import Sio
 
 class Chunked: XCTestCase {
     

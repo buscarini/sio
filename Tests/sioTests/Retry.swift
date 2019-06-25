@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import sio
+import Sio
 
 class Retry: XCTestCase {
 	var value:Int = 0
