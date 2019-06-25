@@ -67,7 +67,7 @@ class sioTests: XCTestCase {
 		
 		print("after cancel zip")
 		
-		waitForExpectations(timeout: 5, handler: nil)
+		waitForExpectations(timeout: 15, handler: nil)
 	}
 	
 	func testFlip() {
@@ -92,6 +92,33 @@ class sioTests: XCTestCase {
 		}, { _ in
 			XCTFail()
 		})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testEitherLeft() {
+		let finish = expectation(description: "finish tasks")
+		
+		IO.from(Either<String, Int>.left("ok")).fork({ value in
+			XCTAssert(value == "ok")
+			finish.fulfill()
+		}) { _ in
+			XCTFail()
+		}
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testEitherRight() {
+		let finish = expectation(description: "finish tasks")
+
+		
+		IO.from(Either<String, Int>.right(1)).fork({ _ in
+			XCTFail()
+		}) { value in
+			XCTAssert(value == 1)
+			finish.fulfill()
+		}
 		
 		waitForExpectations(timeout: 1, handler: nil)
 	}
