@@ -69,4 +69,30 @@ class sioTests: XCTestCase {
 		
 		waitForExpectations(timeout: 5, handler: nil)
 	}
+	
+	func testFlip() {
+		let finish = expectation(description: "finish tasks")
+
+		SIO<Void, String, Int>.rejected("ok").flip().fork({ _ in
+			XCTFail()
+		}, { value in
+			XCTAssert(value == "ok")
+			finish.fulfill()
+		})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testFlipInverse() {
+		let finish = expectation(description: "finish tasks")
+		
+		SIO<Void, String, Int>.of(1).flip().fork({ value in
+			XCTAssert(value == 1)
+			finish.fulfill()
+		}, { _ in
+			XCTFail()
+		})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
 }
