@@ -24,6 +24,7 @@
 
 /* Begin PBXBuildFile section */
 		ACCB012E22C264BE008FDA73 /* ValueStore+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCB012D22C264BE008FDA73 /* ValueStore+Typealias.swift */; };
+		ACCB013322C26F99008FDA73 /* SIO+Tap.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCB013222C26F99008FDA73 /* SIO+Tap.swift */; };
 		OBJ_100 /* Array+SIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Array+SIO.swift */; };
 		OBJ_101 /* Collection+Chunks.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Collection+Chunks.swift */; };
 		OBJ_102 /* Compose.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Compose.swift */; };
@@ -161,10 +162,32 @@
 			remoteGlobalIDString = "Sio::Sio";
 			remoteInfo = Sio;
 		};
+		ACCB012F22C264BF008FDA73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioValueStoreTests";
+			remoteInfo = SioValueStoreTests;
+		};
+		ACCB013022C264BF008FDA73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioEffectsTests";
+			remoteInfo = SioEffectsTests;
+		};
+		ACCB013122C264BF008FDA73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioTests";
+			remoteInfo = SioTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		ACCB012D22C264BE008FDA73 /* ValueStore+Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Typealias.swift"; sourceTree = "<group>"; };
+		ACCB013222C26F99008FDA73 /* SIO+Tap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Tap.swift"; sourceTree = "<group>"; };
 		OBJ_10 /* Collection+Chunks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Chunks.swift"; sourceTree = "<group>"; };
 		OBJ_11 /* Compose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compose.swift; sourceTree = "<group>"; };
 		OBJ_12 /* Curry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Curry.swift; sourceTree = "<group>"; };
@@ -437,6 +460,7 @@
 				OBJ_50 /* SIO+Timeout.swift */,
 				OBJ_51 /* SIO+Typealias.swift */,
 				OBJ_52 /* SIO+Zip.swift */,
+				ACCB013222C26F99008FDA73 /* SIO+Tap.swift */,
 				OBJ_53 /* SIO.swift */,
 				OBJ_54 /* SIOError.swift */,
 				OBJ_55 /* SyncValue.swift */,
@@ -728,6 +752,7 @@
 				OBJ_132 /* SIO+Monad.swift in Sources */,
 				OBJ_133 /* SIO+Optional.swift in Sources */,
 				OBJ_134 /* SIO+Profunctor.swift in Sources */,
+				ACCB013322C26F99008FDA73 /* SIO+Tap.swift in Sources */,
 				OBJ_135 /* SIO+Race.swift in Sources */,
 				OBJ_136 /* SIO+Requirements.swift in Sources */,
 				OBJ_137 /* SIO+Result.swift in Sources */,
@@ -764,17 +789,17 @@
 		OBJ_181 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Sio::SioValueStoreTests" /* SioValueStoreTests */;
-			targetProxy = "Sio::SioValueStoreTests" /* SioValueStoreTests */;
+			targetProxy = ACCB012F22C264BF008FDA73 /* PBXContainerItemProxy */;
 		};
 		OBJ_183 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Sio::SioEffectsTests" /* SioEffectsTests */;
-			targetProxy = "Sio::SioEffectsTests" /* SioEffectsTests */;
+			targetProxy = ACCB013022C264BF008FDA73 /* PBXContainerItemProxy */;
 		};
 		OBJ_184 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Sio::SioTests" /* SioTests */;
-			targetProxy = "Sio::SioTests" /* SioTests */;
+			targetProxy = ACCB013122C264BF008FDA73 /* PBXContainerItemProxy */;
 		};
 		OBJ_204 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

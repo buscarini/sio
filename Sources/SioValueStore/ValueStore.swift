@@ -9,6 +9,7 @@
 import Foundation
 import Sio
 
+// Represents a value store. It can be implemented to use a file, network calls, preferences, etc.
 public struct ValueStore<R, E, A, B> {
 	public var load: SIO<R, E, B>
 	public var save: (A) -> SIO<R, E, B>
