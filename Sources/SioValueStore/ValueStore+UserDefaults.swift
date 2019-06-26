@@ -65,7 +65,7 @@ public extension ValueStore where A: Codable {
 		return ValueStoreA<Void, Void, Data>
 			.rawPreference(key)
 			.diMapError { _ in NSError.init(domain: "SioValueStore", code: -1, userInfo: nil) }
-			.transform(
+			.process(
 				{ value in
 					SIO { _ in try JSONEncoder().encode(value) }
 				},

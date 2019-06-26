@@ -25,6 +25,8 @@
 /* Begin PBXBuildFile section */
 		ACBB777922C37BF800719A7F /* ValueStore+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBB777722C37BF500719A7F /* ValueStore+UserDefaults.swift */; };
 		ACBB777C22C3A3CF00719A7F /* ValueStore+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBB777A22C3A3CC00719A7F /* ValueStore+Error.swift */; };
+		ACBB777E22C3A91100719A7F /* ValueStore+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBB777D22C3A91100719A7F /* ValueStore+Zip.swift */; };
+		ACBB778022C3AA1300719A7F /* ValueStore+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBB777F22C3AA1300719A7F /* ValueStore+Array.swift */; };
 		ACCB012E22C264BE008FDA73 /* ValueStore+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCB012D22C264BE008FDA73 /* ValueStore+Typealias.swift */; };
 		ACCB013322C26F99008FDA73 /* SIO+Tap.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCB013222C26F99008FDA73 /* SIO+Tap.swift */; };
 		OBJ_100 /* Array+SIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Array+SIO.swift */; };
@@ -190,6 +192,8 @@
 /* Begin PBXFileReference section */
 		ACBB777722C37BF500719A7F /* ValueStore+UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+UserDefaults.swift"; sourceTree = "<group>"; };
 		ACBB777A22C3A3CC00719A7F /* ValueStore+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Error.swift"; sourceTree = "<group>"; };
+		ACBB777D22C3A91100719A7F /* ValueStore+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Zip.swift"; sourceTree = "<group>"; };
+		ACBB777F22C3AA1300719A7F /* ValueStore+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Array.swift"; sourceTree = "<group>"; };
 		ACCB012D22C264BE008FDA73 /* ValueStore+Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Typealias.swift"; sourceTree = "<group>"; };
 		ACCB013222C26F99008FDA73 /* SIO+Tap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Tap.swift"; sourceTree = "<group>"; };
 		OBJ_10 /* Collection+Chunks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Chunks.swift"; sourceTree = "<group>"; };
@@ -361,10 +365,12 @@
 				OBJ_63 /* ValueStore+Optional.swift */,
 				OBJ_64 /* ValueStore+Profunctor.swift */,
 				OBJ_65 /* ValueStore+Utils.swift */,
+				ACBB777F22C3AA1300719A7F /* ValueStore+Array.swift */,
 				OBJ_66 /* ValueStore.swift */,
 				ACBB777A22C3A3CC00719A7F /* ValueStore+Error.swift */,
 				ACCB012D22C264BE008FDA73 /* ValueStore+Typealias.swift */,
 				ACBB777722C37BF500719A7F /* ValueStore+UserDefaults.swift */,
+				ACBB777D22C3A91100719A7F /* ValueStore+Zip.swift */,
 			);
 			name = SioValueStore;
 			path = Sources/SioValueStore;
@@ -706,9 +712,11 @@
 				ACCB012E22C264BE008FDA73 /* ValueStore+Typealias.swift in Sources */,
 				OBJ_211 /* ValueStore+Creation.swift in Sources */,
 				OBJ_212 /* ValueStore+Optional.swift in Sources */,
+				ACBB777E22C3A91100719A7F /* ValueStore+Zip.swift in Sources */,
 				OBJ_213 /* ValueStore+Profunctor.swift in Sources */,
 				OBJ_214 /* ValueStore+Utils.swift in Sources */,
 				OBJ_215 /* ValueStore.swift in Sources */,
+				ACBB778022C3AA1300719A7F /* ValueStore+Array.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

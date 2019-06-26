@@ -14,15 +14,10 @@ public extension ValueStore {
 		return ValueStore<R, E, A, B>(load: self.load.default(value), save: self.save, remove: self.remove)
 	}
 	
-	func update(_ f: @escaping (B?) -> A?) -> SIO<R, E, B> {
+	func update(_ f: @escaping (B) -> A) -> SIO<R, E, B> {
 		return self.load
-			.flatMap { value in
-				guard let a = f(value) else {
-					return .of(value)
-				}
-				
-				return self.save(a)
-			}
+			.map(f)
+			.flatMap(self.save)				
 	}
 	
 	func pullbackR<R0>(_ f: @escaping (R0) -> R) -> ValueStore<R0, E, A ,B> {
