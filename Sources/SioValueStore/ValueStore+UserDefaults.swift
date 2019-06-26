@@ -36,7 +36,7 @@ extension UInt64: PropertyListValue {}
 extension Float: PropertyListValue {}
 extension Double: PropertyListValue {}
 
-public extension ValueStore where A: PropertyListValue {
+public extension ValueStore where A: PropertyListValue, E == Void {
 	static func rawPreference(_ key: String) -> ValueStoreA<R, Void, A> {
 		return ValueStoreA<R, Void, A>(
 			load: SIO.init({ _ in
@@ -60,29 +60,18 @@ public extension ValueStore where A: PropertyListValue {
 	}
 }
 
-//public extension ValueStore where A: Codable {
-//	static func codablePreference(_ key: String) -> ValueStoreA<R, Error, A> {
-//		return ValueStoreA<R, Error, A>(
-//			load: SIO<R, Error, A>.init({ _ in
-//				
-//
-//
-//			})
-//
-//
-//
-//			{ (env) -> Task<AppError, T> in
-//			return UserDefaults.standard.load(key: key, T.self, log: env.log)
-//		}, save: { value, env in
-//			return UserDefaults.standard.save(value, forKey: key, log: env.log).flatMap { value in
-//				guard let value = value else {
-//					return Task.rejected(AppError.noData)
-//				}
-//
-//				return Task.of(value)
-//			}
-//		}, remove: { _ in
-//			return UserDefaults.standard.clear(key)
-//		})
-//	}
-//}
+public extension ValueStore where A: Codable {
+	static func codablePreference(_ key: String) -> ValueStoreA<Void, Error, A> {
+		return ValueStoreA<Void, Void, Data>
+			.rawPreference(key)
+			.diMapError { _ in NSError.init(domain: "SioValueStore", code: -1, userInfo: nil) }
+			.transform(
+				{ value in
+					SIO { _ in try JSONEncoder().encode(value) }
+				},
+				{ data in
+					SIO { _ in try JSONDecoder().decode(A.self, from: data) }
+				}
+			)
+	}
+}
