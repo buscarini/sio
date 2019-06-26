@@ -7,5 +7,6 @@
         <page name='Race'/>
         <page name='Animations'/>
         <page name='fold'/>
+        <page name='UserDefaults'/>
     </pages>
 </playground>
