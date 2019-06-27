@@ -12,14 +12,14 @@ public extension SIO {
 	func timeout(_ timeout: TimeInterval) -> SIO<R, E, A?> {
 		return race(
             self.map(A?.some),
-			SIO<R, E, A?>.of(nil).delay(timeout, DispatchQueue.main)
+			SIO<R, E, A?>.of(nil).delay(timeout, .global())
 		)
 	}
 	
 	func timeoutTo(_ value: A, _ timeout: TimeInterval) -> SIO<R, E, A> {
 		return race(
             self,
-            SIO<R, E, A>.of(value).delay(timeout, DispatchQueue.main)
+            SIO<R, E, A>.of(value).delay(timeout, .global())
         )
 	}
 }

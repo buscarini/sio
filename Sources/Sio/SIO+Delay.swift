@@ -8,22 +8,23 @@
 
 import Foundation
 
-public func delayed<R, E, A>(_ delay: TimeInterval, _ queue: DispatchQueue = .main) -> (SIO<R, E, A>) -> SIO<R, E, A> {
+public func delayed<R, E, A>(_ delay: TimeInterval, _ queue: DispatchQueue = .global()) -> (SIO<R, E, A>) -> SIO<R, E, A> {
 	return { io in
 		// FIXME: Change this to setting the queue
-//        io.queue = queue
-//        io.delay = delay
-//        return io
-		return SIO({ env, reject, resolve in
+		let res = SIO({ env, reject, resolve in
 			queue.asyncAfter(deadline: .now() + delay) {
 				io.fork(env, reject, resolve)
 			}
-		})
+		}, cancel: io.cancel)
+//		res.queue = queue
+//		res.delay = delay
+		
+		return res
 	}
 }
 
 extension SIO {
-	public func delay(_ time: TimeInterval, _ queue: DispatchQueue = .main) -> SIO<R, E, A> {
+	public func delay(_ time: TimeInterval, _ queue: DispatchQueue = .global()) -> SIO<R, E, A> {
 		return delayed(time, queue)(self)
 	}
 }
