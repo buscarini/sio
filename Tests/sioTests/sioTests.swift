@@ -91,4 +91,83 @@ class sioTests: XCTestCase {
 		
 		waitForExpectations(timeout: 1, handler: nil)
 	}
+	
+	func testOnCancellationBeforeFork() {
+		let finish = expectation(description: "error")
+		
+		let sio = SIO<Void, String, String>.of("ok").delay(1)
+			.onCancellation(SIO.effect(finish.fulfill))
+		
+		sio.cancel()
+		
+		sio.fork({ _ in
+			XCTFail()
+		}) { _ in
+			XCTFail()
+		}
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testOnCancellationAfterFork() {
+		let finish = expectation(description: "error")
+		
+		let sio = SIO<Void, String, String>.of("ok").delay(1)
+			.onCancellation(SIO.effect(finish.fulfill))
+		
+		sio.fork({ _ in
+			XCTFail()
+		}) { _ in
+			XCTFail()
+		}
+		
+		sio.cancel()
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testOnTerminationError() {
+		let finish = expectation(description: "error")
+		
+		let sio = SIO<Void, String, String>.rejected("err")
+			.onTermination(SIO.effect(finish.fulfill))
+		
+		sio.fork({ _ in
+		}) { _ in
+			XCTFail()
+		}
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testOnTerminationSuccess() {
+		let finish = expectation(description: "error")
+		
+		let sio = SIO<Void, String, String>.of("ok")
+			.onTermination(SIO.effect(finish.fulfill))
+		
+		sio.fork({ _ in
+			XCTFail()
+		}) { _ in
+		}
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testOnTerminationCancel() {
+		let finish = expectation(description: "error")
+		
+		let sio = SIO<Void, String, String>.of("ok").delay(1)
+			.onTermination(SIO.effect(finish.fulfill))
+		
+		sio.fork({ _ in
+			XCTFail()
+		}) { _ in
+			XCTFail()
+		}
+		
+		sio.cancel()
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
 }

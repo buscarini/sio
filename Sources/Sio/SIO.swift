@@ -19,50 +19,7 @@ public class SIO<R, E, A> {
     
     public var queue: DispatchQueue?
     public var delay: TimeInterval = 0
-	
-	indirect enum Trampoline {
-		case result(Either<E, A>?)
-		case sync((R) -> Trampoline)
-		case async((R, @escaping (Trampoline) -> Void) -> Void)
-		
-		var isSync: Bool {
-			switch self {
-			case .result, .sync:
-				return true
-			case .async:
-				return false
-			}
-		}
-		
-		var isFinal: Bool {
-			switch self {
-			case .result:
-				return true
-			case .sync, .async:
-				return false
-			}
-		}
-		
-		func run(_ r: R, _ completion: @escaping (Either<E, A>?) -> Void) {
-			var t: Trampoline? = self
-			
-			while t != nil {
-				switch t {
-				case let .result(res)?:
-					return completion(res)
-				case let .sync(sync)?:
-					t = sync(r)
-				case let .async(async)?:
-					async(r, { t in
-						t.run(r, completion)
-					})
-					return
-				case nil:
-					return
-				}
-			}
-		}
-	}
+	public var onCancel: EmptyCallback?
 	
 	enum Implementation {
 		case success(A)
@@ -90,7 +47,7 @@ public class SIO<R, E, A> {
 	
 	private var _cancelled = false
 	private let cancelSyncQueue = DispatchQueue(label: "task_cancel", attributes: .concurrent)
-	public var cancelled: Bool {
+	public private(set) var cancelled: Bool {
 		get {
 			var result = false
 			cancelSyncQueue.sync {
@@ -191,14 +148,7 @@ public class SIO<R, E, A> {
 	public func cancel() {
 		self.cancelled = true
 		self._cancel?()
-		
-//		switch self.implementation {
-//		case let .biFlatMap(bfm):
-//			bfm.cancel()
-//		default:
-//			break
-//		}
-		
+		self.onCancel?()
 	}
 }
 
