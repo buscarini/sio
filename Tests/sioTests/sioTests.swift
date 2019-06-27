@@ -11,12 +11,6 @@ import XCTest
 import Sio
 
 class sioTests: XCTestCase {
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        //// XCTAssertEqual(sio().text, "Hello, World!")
-    }
-	
 	func testFlip() {
 		let finish = expectation(description: "finish tasks")
 

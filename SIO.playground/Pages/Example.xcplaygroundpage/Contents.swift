@@ -1,5 +1,6 @@
 import UIKit
-import sio
+import Sio
+import SioEffects
 
 var str = "Hello, playground"
 
@@ -50,14 +51,11 @@ func utfStringFromData(_ data: Data) -> SIO<Void, SIOError, String> {
 	return SIO.from { _  in String.init(data: data, encoding: .utf8) }
 }
 
-let loadStringFile = environment(Environment.self)
-	.mapError(absurd)
-	.flatMap { e in
-		e.resourceUrl("resource", "txt")
-			.flatMap(e.loadFileUrl([]))
-			.flatMap(e.stringFromData)
-			.require(Environment.self)
-	}
+let loadStringFile = accessM(Environment.self) { e in
+	e.resourceUrl("resource", "txt")
+		.flatMap(e.loadFileUrl([]))
+		.flatMap(e.stringFromData)
+}
 
 let program = loadStringFile
 	.fold({ e in "Error: \(e)" }, id)

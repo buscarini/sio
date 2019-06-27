@@ -1,5 +1,6 @@
 import Foundation
-import sio
+import Sio
+import SioEffects
 import PlaygroundSupport
 
 
@@ -10,9 +11,9 @@ let task = SIO<Int, Never, Void>.environment()
 		})
 	}
 	.map { "\($0)" }
-	.flatMap(
-		Console.default.printLine
-	)
+	.flatMap {
+		Console.default.printLine($0).require(Int.self)
+	}
 
 task
 	.provide(10)

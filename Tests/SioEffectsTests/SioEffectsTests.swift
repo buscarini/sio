@@ -17,14 +17,11 @@ class SIOEffectsTests: XCTestCase {
 		let finish = expectation(description: "finish tasks")
 		
 		let long = Array(1...800).forEach { item in
-			environment(Console.self)
-				.flatMap { console in
-					console.printLine("long \(item)").require(Console.self)
-				}
-				.scheduleOn(.global())
-			}
-			//.map(const(1000))
+			return accessM(Console.self) { console in
+				console.printLine("long \(item)")
+			}.scheduleOn(.global())
 			.provide(Console.default)
+		}
 		
 		//let long = UIO<Int>.init { (_, _, resolve) in
 		//	(1...10).forEach { Swift.print("\($0)") }

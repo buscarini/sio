@@ -1,12 +1,11 @@
 import Foundation
-import sio
+import Sio
+import SioEffects
 import PlaygroundSupport
 
 let long = Array(1...100).forEach { item in
-		return environment(Console.self)
-			.flatMap { console -> SIO<Console, Never, Void> in
-//				Swift.print("print \(item)")
-				return console.printLine("long \(item)").require(Console.self)
+	accessM(Console.self) { console in
+				console.printLine("long \(item)")
 			}
 	}
 	.map(const("long"))
@@ -22,7 +21,7 @@ let long = Array(1...100).forEach { item in
 //}
 
 let short = UIO<String>.init { (_, _, resolve) in
-	(0...800).forEach { Swift.print("short \($0)") }
+	(0...100).forEach { Swift.print("short \($0)") }
 	
 	print("-------------")
 	

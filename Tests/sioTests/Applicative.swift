@@ -21,7 +21,7 @@ class Alternative: XCTestCase {
 		(or(IO<Error, Int>.rejected(self.exampleError()), IO.of(22)))
 			.fork({ error in
 				XCTFail()
-			},
+				},
 				  { value in
 					XCTAssert(value == 22)
 					expectation.fulfill()

@@ -16,6 +16,10 @@ public func access<R, V>(_ keyPath: KeyPath<R, V>) -> SIO<R, Never, V> {
 	return SIO<R, Never, V>.access { $0[keyPath: keyPath] }
 }
 
+public func accessM<R, E, A>(_ type: R.Type, _ f: @escaping (R) -> SIO<Void, E, A>) -> SIO<R, E, A> {
+	return SIO<R, E, A>.accessM(f)
+}
+
 public extension SIO {
 	func provideSome<R0>(_ f: @escaping (R0) -> R) -> SIO<R0, E, A> {
 		return SIO<R0, E, A>({ r, reject, resolve in
@@ -37,6 +41,12 @@ public extension SIO {
 		return SIO<R, E, S>({ r in
 			return .right(f(r))
 		})
+	}
+	
+	static func accessM<R, E>(_ f: @escaping (R) -> SIO<Void, E, A>) -> SIO<R, E, A> {
+		return environment().flatMap { r in
+			f(r).require(R.self)
+		}
 	}
 }
 

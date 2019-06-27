@@ -15,12 +15,7 @@ public func liftA2<R, E, A, B, C>(_ iof: SIO<R, E, (A) -> (B) -> C>, _ first: SI
 
 @inlinable
 public func ap<R, E, A, B, C>(_ iof: SIO<R, E, (A, B) -> C>, _ first: SIO<R, E, A>, _ second: SIO<R, E, B>) -> SIO<R, E, C> {
-	
 	return liftA2(iof.map(curry), first, second)
-	
-//	return iof.flatMap { f in
-//		return liftA2(SIO<R, E, (A) -> (B) -> C>.of(curry(f)), first, second)
-//	}
 }
 
 let apQueue = DispatchQueue.init(label: "ap")
@@ -45,7 +40,6 @@ public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -
 				switch (leftVal.result, rightVal.result) {
 				case let (.loaded(.right(ab)), .loaded(.right(a))):
 					resolved.result = .loaded(.right(true))
-					print("resolve ab \(Unmanaged.passUnretained(l).toOpaque()) \(Unmanaged.passUnretained(r).toOpaque())")
 					resolve(ab(a))
 				case let (.loaded(.left(e)), .loaded):
 					resolved.result = .loaded(.right(false))

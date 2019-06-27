@@ -10,15 +10,11 @@ import Foundation
 
 public func delayed<R, E, A>(_ delay: TimeInterval, _ queue: DispatchQueue = .main) -> (SIO<R, E, A>) -> SIO<R, E, A> {
 	return { io in
-        
-        
+		// FIXME: Change this to setting the queue
 //        io.queue = queue
 //        io.delay = delay
 //        return io
-
-		
 		return SIO({ env, reject, resolve in
-			print("delay \(delay)")
 			queue.asyncAfter(deadline: .now() + delay) {
 				io.fork(env, reject, resolve)
 			}

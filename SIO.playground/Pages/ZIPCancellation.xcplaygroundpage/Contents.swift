@@ -1,11 +1,11 @@
 import Foundation
-import sio
+import Sio
+import SioEffects
 import PlaygroundSupport
 
 let long = Array(1...800).forEach { item in
-	environment(Console.self)
-		.flatMap { console in
-			console.printLine("long \(item)").require(Console.self)
+	accessM(Console.self) { console in
+			console.printLine("long \(item)")
 		}
 		.scheduleOn(.global())
 }

@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 import PlaygroundSupport
-import sio
+import Sio
 
 
 let view = UIView.init(

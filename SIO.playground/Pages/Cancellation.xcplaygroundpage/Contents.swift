@@ -1,8 +1,8 @@
 import Foundation
-import sio
+import Sio
 
 let long = UIO<Int>.init { (_, _, resolve) in
-	(1...10).forEach { Swift.print("\($0)") }
+	(1...100).forEach { Swift.print("\($0)") }
 	
 	print("-------------")
 	
