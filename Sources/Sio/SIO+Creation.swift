@@ -33,3 +33,12 @@ public extension SIO {
 		return environment().map(f)
 	}
 }
+
+public extension SIO where R == Void, E == Never, A == Void {
+	static func effect(_ f: @escaping () -> Void) -> SIO<Void, Never, Void> {
+		return SIO<Void, Never, Void>.init({ _ in
+			f()
+			return .right(())
+		})
+	}
+}

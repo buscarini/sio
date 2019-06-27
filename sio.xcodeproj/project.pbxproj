@@ -23,6 +23,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		AC27C03D22C5007000DE935C /* SIO+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC27C03C22C5007000DE935C /* SIO+Events.swift */; };
 		ACBB777922C37BF800719A7F /* ValueStore+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBB777722C37BF500719A7F /* ValueStore+UserDefaults.swift */; };
 		ACBB777C22C3A3CF00719A7F /* ValueStore+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBB777A22C3A3CC00719A7F /* ValueStore+Error.swift */; };
 		ACBB777E22C3A91100719A7F /* ValueStore+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBB777D22C3A91100719A7F /* ValueStore+Zip.swift */; };
@@ -190,6 +191,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AC27C03C22C5007000DE935C /* SIO+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Events.swift"; sourceTree = "<group>"; };
 		ACBB777722C37BF500719A7F /* ValueStore+UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+UserDefaults.swift"; sourceTree = "<group>"; };
 		ACBB777A22C3A3CC00719A7F /* ValueStore+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Error.swift"; sourceTree = "<group>"; };
 		ACBB777D22C3A91100719A7F /* ValueStore+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Zip.swift"; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 				OBJ_51 /* SIO+Typealias.swift */,
 				OBJ_52 /* SIO+Zip.swift */,
 				ACCB013222C26F99008FDA73 /* SIO+Tap.swift */,
+				AC27C03C22C5007000DE935C /* SIO+Events.swift */,
 				OBJ_53 /* SIO.swift */,
 				OBJ_54 /* SIOError.swift */,
 				OBJ_55 /* SyncValue.swift */,
@@ -733,6 +736,7 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_100 /* Array+SIO.swift in Sources */,
+				AC27C03D22C5007000DE935C /* SIO+Events.swift in Sources */,
 				OBJ_101 /* Collection+Chunks.swift in Sources */,
 				OBJ_102 /* Compose.swift in Sources */,
 				OBJ_103 /* Curry.swift in Sources */,
