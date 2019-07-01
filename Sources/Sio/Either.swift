@@ -8,11 +8,11 @@
 
 import Foundation
 
-public enum Either<T, U> {
-	case left(T)
-	case right(U)
+public enum Either<A, B> {
+	case left(A)
+	case right(B)
 	
-	public var left: T? {
+	public var left: A? {
 		switch self {
 		case let .left(left):
 			return left
@@ -21,7 +21,7 @@ public enum Either<T, U> {
 		}
 	}
 	
-	public var right: U? {
+	public var right: B? {
 		switch self {
 		case .left:
 			return nil
@@ -48,15 +48,15 @@ public enum Either<T, U> {
 		}
 	}
 	
-	public func left(default value: T) -> T {
+	public func left(default value: A) -> A {
 		return left ?? value
 	}
 	
-	public func right(default value: U) -> U {
+	public func right(default value: B) -> B {
 		return right ?? value
 	}
 	
-	public func fold<A>(_ left: (T) -> A, _ right: (U) -> A) -> A {
+	public func fold<C>(_ left: (A) -> C, _ right: (B) -> C) -> C {
 		switch self {
 		case .left(let l):
 			return left(l)
@@ -66,8 +66,8 @@ public enum Either<T, U> {
 	}
 }
 
-extension Either: Equatable where T: Equatable, U: Equatable {
-	public static func == (lhs: Either<T, U>, rhs: Either<T, U>) -> Bool {
+extension Either: Equatable where A: Equatable, B: Equatable {
+	public static func == (lhs: Either<A, B>, rhs: Either<A, B>) -> Bool {
 		switch (lhs, rhs) {
 		case let (.left(l1), .left(l2)):
 			return l1 == l2
@@ -79,7 +79,7 @@ extension Either: Equatable where T: Equatable, U: Equatable {
 	}
 }
 
-extension Either: Hashable where T: Hashable, U: Hashable {
+extension Either: Hashable where A: Hashable, B: Hashable {
 	public func hash(into hasher: inout Hasher) {
 		switch self {
 		case let .left(left):
@@ -90,42 +90,22 @@ extension Either: Hashable where T: Hashable, U: Hashable {
 			hasher.combine(right)
 		}
 	}
-	
-	
-	
-	//	public var hashValue: Int {
-	//		switch self {
-	//			case let .left(left):
-	//				return HashUtils.combineHashes([ "left".hashValue, left.hashValue ])
-	//			case let .right(right):
-	//				return HashUtils.combineHashes([ "right".hashValue, right.hashValue ])
-	//		}
-	//	}
 }
 
 extension Either {
-	public init(_ optional: U?, _ left: T) {
-		if let value = optional {
-			self = .right(value)
-		}
-		else {
-			self = .left(left)
-		}
-	}
-	
-	public func map<V>(_ f: (U) -> V) -> Either<T, V> {
+	public func map<V>(_ f: (B) -> V) -> Either<A, V> {
 		return mapRight(f)
 	}
 	
-	public func mapLeft<V>(_ f: (T) -> V) -> Either<V, U> {
+	public func mapLeft<V>(_ f: (A) -> V) -> Either<V, B> {
 		return bimap(f, id)
 	}
 	
-	public func mapRight<V>(_ f: (U) -> V) -> Either<T, V> {
+	public func mapRight<V>(_ f: (B) -> V) -> Either<A, V> {
 		return bimap(id, f)
 	}
 	
-	public func bimap<V, W>(_ f: (T) -> V, _ g: (U) -> W) -> Either<V, W> {
+	public func bimap<V, W>(_ f: (A) -> V, _ g: (B) -> W) -> Either<V, W> {
 		switch self {
 		case let .left(left):
 			return .left(f(left))
@@ -134,7 +114,7 @@ extension Either {
 		}
 	}
 	
-	public var swapped: Either<U, T> {
+	public var swapped: Either<B, A> {
 		switch self {
 		case let .left(left):
 			return .right(left)
@@ -144,8 +124,8 @@ extension Either {
 	}
 }
 
-extension Either where T == U {
-	public func mapAll<V>(_ f: (T) -> V) -> Either<V, V> {
+extension Either where A == B {
+	public func mapAll<V>(_ f: (A) -> V) -> Either<V, V> {
 		return bimap(f, f)
 	}
 }

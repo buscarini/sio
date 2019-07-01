@@ -8,18 +8,18 @@
 
 import Foundation
 
-extension Either: Decodable where T: Decodable, U: Decodable {
+extension Either: Decodable where A: Decodable, B: Decodable {
 	public init(from decoder: Decoder) throws {
 		do {
-			self = .left(try decoder.singleValueContainer().decode(T.self))
+			self = .left(try decoder.singleValueContainer().decode(A.self))
 		}
 		catch {
-			self = .right(try decoder.singleValueContainer().decode(U.self))
+			self = .right(try decoder.singleValueContainer().decode(B.self))
 		}
 	}
 }
 
-extension Either: Encodable where T: Encodable, U: Encodable {
+extension Either: Encodable where A: Encodable, B: Encodable {
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.singleValueContainer()
 		switch self {

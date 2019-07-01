@@ -9,23 +9,23 @@
 import Foundation
 
 extension Either {
-	public func flatMap<V>(_ f: (U) -> Either<T, V>) -> Either<T, V> {
+	public func flatMap<V>(_ f: (B) -> Either<A, V>) -> Either<A, V> {
 		return flatMapRight(f)
 	}
 	
-	public func flatMapLeft<V>(_ f: (T) -> Either<V, U>) -> Either<V, U> {
-		return biFlatMap(f, { (right) -> Either<V, U> in
+	public func flatMapLeft<V>(_ f: (A) -> Either<V, B>) -> Either<V, B> {
+		return biFlatMap(f, { (right) -> Either<V, B> in
 			return .right(right)
 		})
 	}
 	
-	public func flatMapRight<V>(_ f: (U) -> Either<T, V>) -> Either<T, V> {
-		return biFlatMap({ (left) -> Either<T, V> in
+	public func flatMapRight<V>(_ f: (B) -> Either<A, V>) -> Either<A, V> {
+		return biFlatMap({ (left) -> Either<A, V> in
 			return .left(left)
 		}, f)
 	}
 	
-	public func biFlatMap<V, W>(_ f: (T) -> Either<V, W>, _ g: (U) -> Either<V, W>) -> Either<V, W> {
+	public func biFlatMap<V, W>(_ f: (A) -> Either<V, W>, _ g: (B) -> Either<V, W>) -> Either<V, W> {
 		switch self {
 		case let .left(left):
 			return f(left)
@@ -35,6 +35,6 @@ extension Either {
 	}
 }
 
-public func >>= <T, U, V>(_ a: Either<T, U>, _ f: (U) -> Either<T, V>) -> Either<T, V> {
+public func >>= <A, B, V>(_ a: Either<A, B>, _ f: (B) -> Either<A, V>) -> Either<A, V> {
 	return a.flatMap(f)
 }

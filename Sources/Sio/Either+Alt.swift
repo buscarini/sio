@@ -9,11 +9,11 @@
 import Foundation
 
 extension Either {
-	public static func <|> (_ left: Either<T, U>, _ right: @autoclosure () -> Either<T, U>) -> Either<T, U> {
+	public static func <|> (_ left: Either<A, B>, _ right: @autoclosure () -> Either<A, B>) -> Either<A, B> {
 		return left.isRight ? left : right()
 	}
 	
-	public static func <|> (_ left: Either<T, U>, _ defaultValue: U) -> U {
+	public static func <|> (_ left: Either<A, B>, _ defaultValue: B) -> B {
 		return left.right ?? defaultValue
 	}
 }

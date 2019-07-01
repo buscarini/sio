@@ -8,13 +8,13 @@
 
 import Foundation
 
-extension Either where T == Error {
-	public static func `try`(_ f: () throws -> U) -> Either<T, U> {
+extension Either where A == Error {
+	public init(catching: @escaping () throws -> B) {
 		do {
-			return try .right(f())
+			self = .right(try catching())
 		}
 		catch let error {
-			return .left(error)
+			self = .left(error)
 		}
 	}
 }
