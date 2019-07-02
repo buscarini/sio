@@ -1,2326 +1,1627 @@
 // !$*UTF8*$!
 {
-   archiveVersion = "1";
-   objectVersion = "46";
-   objects = {
-      "OBJ_1" = {
-         isa = "PBXProject";
-         attributes = {
-            LastSwiftMigration = "9999";
-            LastUpgradeCheck = "9999";
-         };
-         buildConfigurationList = "OBJ_2";
-         compatibilityVersion = "Xcode 3.2";
-         developmentRegion = "English";
-         hasScannedForEncodings = "0";
-         knownRegions = (
-            "en"
-         );
-         mainGroup = "OBJ_5";
-         productRefGroup = "OBJ_100";
-         projectDirPath = ".";
-         targets = (
-            "Sio::Sio",
-            "Sio::SioCodec",
-            "Sio::SioCodecTests",
-            "Sio::SioEffects",
-            "Sio::SioEffectsTests",
-            "Sio::SwiftPMPackageDescription",
-            "Sio::SioPackageTests::ProductTarget",
-            "Sio::SioTests",
-            "Sio::SioValueStore",
-            "Sio::SioValueStoreTests"
-         );
-      };
-      "OBJ_10" = {
-         isa = "PBXFileReference";
-         path = "Collection+Chunks.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_100" = {
-         isa = "PBXGroup";
-         children = (
-            "Sio::SioCodec::Product",
-            "Sio::SioValueStore::Product",
-            "Sio::SioTests::Product",
-            "Sio::SioEffectsTests::Product",
-            "Sio::SioValueStoreTests::Product",
-            "Sio::Sio::Product",
-            "Sio::SioCodecTests::Product",
-            "Sio::SioEffects::Product"
-         );
-         name = "Products";
-         path = "";
-         sourceTree = "BUILT_PRODUCTS_DIR";
-      };
-      "OBJ_109" = {
-         isa = "PBXFileReference";
-         path = "Sio.xcworkspace";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_11" = {
-         isa = "PBXFileReference";
-         path = "Compose.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_110" = {
-         isa = "PBXFileReference";
-         path = "Configs";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_111" = {
-         isa = "PBXFileReference";
-         path = "LICENSE";
-         sourceTree = "<group>";
-      };
-      "OBJ_112" = {
-         isa = "PBXFileReference";
-         path = "sio.podspec";
-         sourceTree = "<group>";
-      };
-      "OBJ_113" = {
-         isa = "PBXFileReference";
-         path = "README.md";
-         sourceTree = "<group>";
-      };
-      "OBJ_115" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_116",
-            "OBJ_117"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
-      };
-      "OBJ_116" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            ENABLE_TESTABILITY = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Sio.xcodeproj/Sio_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            PRODUCT_BUNDLE_IDENTIFIER = "Sio";
-            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-            SKIP_INSTALL = "YES";
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.0";
-            TARGET_NAME = "Sio";
-         };
-         name = "Debug";
-      };
-      "OBJ_117" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            ENABLE_TESTABILITY = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Sio.xcodeproj/Sio_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            PRODUCT_BUNDLE_IDENTIFIER = "Sio";
-            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-            SKIP_INSTALL = "YES";
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.0";
-            TARGET_NAME = "Sio";
-         };
-         name = "Release";
-      };
-      "OBJ_118" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_119",
-            "OBJ_120",
-            "OBJ_121",
-            "OBJ_122",
-            "OBJ_123",
-            "OBJ_124",
-            "OBJ_125",
-            "OBJ_126",
-            "OBJ_127",
-            "OBJ_128",
-            "OBJ_129",
-            "OBJ_130",
-            "OBJ_131",
-            "OBJ_132",
-            "OBJ_133",
-            "OBJ_134",
-            "OBJ_135",
-            "OBJ_136",
-            "OBJ_137",
-            "OBJ_138",
-            "OBJ_139",
-            "OBJ_140",
-            "OBJ_141",
-            "OBJ_142",
-            "OBJ_143",
-            "OBJ_144",
-            "OBJ_145",
-            "OBJ_146",
-            "OBJ_147",
-            "OBJ_148",
-            "OBJ_149",
-            "OBJ_150",
-            "OBJ_151",
-            "OBJ_152",
-            "OBJ_153",
-            "OBJ_154",
-            "OBJ_155",
-            "OBJ_156",
-            "OBJ_157",
-            "OBJ_158",
-            "OBJ_159",
-            "OBJ_160",
-            "OBJ_161",
-            "OBJ_162",
-            "OBJ_163",
-            "OBJ_164",
-            "OBJ_165",
-            "OBJ_166",
-            "OBJ_167",
-            "OBJ_168"
-         );
-      };
-      "OBJ_119" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_9";
-      };
-      "OBJ_12" = {
-         isa = "PBXFileReference";
-         path = "Curry.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_120" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_10";
-      };
-      "OBJ_121" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_11";
-      };
-      "OBJ_122" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_12";
-      };
-      "OBJ_123" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_13";
-      };
-      "OBJ_124" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_14";
-      };
-      "OBJ_125" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_15";
-      };
-      "OBJ_126" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_16";
-      };
-      "OBJ_127" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_17";
-      };
-      "OBJ_128" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_18";
-      };
-      "OBJ_129" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_19";
-      };
-      "OBJ_13" = {
-         isa = "PBXFileReference";
-         path = "Either+Alt.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_130" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_20";
-      };
-      "OBJ_131" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_21";
-      };
-      "OBJ_132" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_22";
-      };
-      "OBJ_133" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_23";
-      };
-      "OBJ_134" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_24";
-      };
-      "OBJ_135" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_25";
-      };
-      "OBJ_136" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_26";
-      };
-      "OBJ_137" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_27";
-      };
-      "OBJ_138" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_28";
-      };
-      "OBJ_139" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_29";
-      };
-      "OBJ_14" = {
-         isa = "PBXFileReference";
-         path = "Either+Applicative.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_140" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_30";
-      };
-      "OBJ_141" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_31";
-      };
-      "OBJ_142" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_32";
-      };
-      "OBJ_143" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_33";
-      };
-      "OBJ_144" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_34";
-      };
-      "OBJ_145" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_35";
-      };
-      "OBJ_146" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_36";
-      };
-      "OBJ_147" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_37";
-      };
-      "OBJ_148" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_38";
-      };
-      "OBJ_149" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_39";
-      };
-      "OBJ_15" = {
-         isa = "PBXFileReference";
-         path = "Either+Codable.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_150" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_40";
-      };
-      "OBJ_151" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_41";
-      };
-      "OBJ_152" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_42";
-      };
-      "OBJ_153" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_43";
-      };
-      "OBJ_154" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_44";
-      };
-      "OBJ_155" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_45";
-      };
-      "OBJ_156" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_46";
-      };
-      "OBJ_157" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_47";
-      };
-      "OBJ_158" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_48";
-      };
-      "OBJ_159" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_49";
-      };
-      "OBJ_16" = {
-         isa = "PBXFileReference";
-         path = "Either+Error.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_160" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_50";
-      };
-      "OBJ_161" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_51";
-      };
-      "OBJ_162" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_52";
-      };
-      "OBJ_163" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_53";
-      };
-      "OBJ_164" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_54";
-      };
-      "OBJ_165" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_55";
-      };
-      "OBJ_166" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_56";
-      };
-      "OBJ_167" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_57";
-      };
-      "OBJ_168" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_58";
-      };
-      "OBJ_169" = {
-         isa = "PBXFrameworksBuildPhase";
-         files = (
-         );
-      };
-      "OBJ_17" = {
-         isa = "PBXFileReference";
-         path = "Either+Monad.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_171" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_172",
-            "OBJ_173"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
-      };
-      "OBJ_172" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            ENABLE_TESTABILITY = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Sio.xcodeproj/SioCodec_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            PRODUCT_BUNDLE_IDENTIFIER = "SioCodec";
-            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-            SKIP_INSTALL = "YES";
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.0";
-            TARGET_NAME = "SioCodec";
-         };
-         name = "Debug";
-      };
-      "OBJ_173" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            ENABLE_TESTABILITY = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Sio.xcodeproj/SioCodec_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            PRODUCT_BUNDLE_IDENTIFIER = "SioCodec";
-            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-            SKIP_INSTALL = "YES";
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.0";
-            TARGET_NAME = "SioCodec";
-         };
-         name = "Release";
-      };
-      "OBJ_174" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_175",
-            "OBJ_176",
-            "OBJ_177",
-            "OBJ_178"
-         );
-      };
-      "OBJ_175" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_60";
-      };
-      "OBJ_176" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_61";
-      };
-      "OBJ_177" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_62";
-      };
-      "OBJ_178" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_63";
-      };
-      "OBJ_179" = {
-         isa = "PBXFrameworksBuildPhase";
-         files = (
-            "OBJ_180"
-         );
-      };
-      "OBJ_18" = {
-         isa = "PBXFileReference";
-         path = "Either+Optional.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_180" = {
-         isa = "PBXBuildFile";
-         fileRef = "Sio::Sio::Product";
-      };
-      "OBJ_181" = {
-         isa = "PBXTargetDependency";
-         target = "Sio::Sio";
-      };
-      "OBJ_183" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_184",
-            "OBJ_185"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
-      };
-      "OBJ_184" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            CLANG_ENABLE_MODULES = "YES";
-            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Sio.xcodeproj/SioCodecTests_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "@loader_path/../Frameworks",
-               "@loader_path/Frameworks"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.0";
-            TARGET_NAME = "SioCodecTests";
-         };
-         name = "Debug";
-      };
-      "OBJ_185" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            CLANG_ENABLE_MODULES = "YES";
-            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Sio.xcodeproj/SioCodecTests_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "@loader_path/../Frameworks",
-               "@loader_path/Frameworks"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.0";
-            TARGET_NAME = "SioCodecTests";
-         };
-         name = "Release";
-      };
-      "OBJ_186" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_187"
-         );
-      };
-      "OBJ_187" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_83";
-      };
-      "OBJ_188" = {
-         isa = "PBXFrameworksBuildPhase";
-         files = (
-            "OBJ_189",
-            "OBJ_190"
-         );
-      };
-      "OBJ_189" = {
-         isa = "PBXBuildFile";
-         fileRef = "Sio::SioCodec::Product";
-      };
-      "OBJ_19" = {
-         isa = "PBXFileReference";
-         path = "Either+Traversable.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_190" = {
-         isa = "PBXBuildFile";
-         fileRef = "Sio::Sio::Product";
-      };
-      "OBJ_191" = {
-         isa = "PBXTargetDependency";
-         target = "Sio::SioCodec";
-      };
-      "OBJ_192" = {
-         isa = "PBXTargetDependency";
-         target = "Sio::Sio";
-      };
-      "OBJ_194" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_195",
-            "OBJ_196"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
-      };
-      "OBJ_195" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            ENABLE_TESTABILITY = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Sio.xcodeproj/SioEffects_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            PRODUCT_BUNDLE_IDENTIFIER = "SioEffects";
-            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-            SKIP_INSTALL = "YES";
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.0";
-            TARGET_NAME = "SioEffects";
-         };
-         name = "Debug";
-      };
-      "OBJ_196" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            ENABLE_TESTABILITY = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Sio.xcodeproj/SioEffects_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            PRODUCT_BUNDLE_IDENTIFIER = "SioEffects";
-            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-            SKIP_INSTALL = "YES";
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.0";
-            TARGET_NAME = "SioEffects";
-         };
-         name = "Release";
-      };
-      "OBJ_197" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_198",
-            "OBJ_199",
-            "OBJ_200",
-            "OBJ_201"
-         );
-      };
-      "OBJ_198" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_65";
-      };
-      "OBJ_199" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_66";
-      };
-      "OBJ_2" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_3",
-            "OBJ_4"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
-      };
-      "OBJ_20" = {
-         isa = "PBXFileReference";
-         path = "Either+Zip.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_200" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_67";
-      };
-      "OBJ_201" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_68";
-      };
-      "OBJ_202" = {
-         isa = "PBXFrameworksBuildPhase";
-         files = (
-            "OBJ_203"
-         );
-      };
-      "OBJ_203" = {
-         isa = "PBXBuildFile";
-         fileRef = "Sio::Sio::Product";
-      };
-      "OBJ_204" = {
-         isa = "PBXTargetDependency";
-         target = "Sio::Sio";
-      };
-      "OBJ_206" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_207",
-            "OBJ_208"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
-      };
-      "OBJ_207" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            CLANG_ENABLE_MODULES = "YES";
-            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Sio.xcodeproj/SioEffectsTests_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "@loader_path/../Frameworks",
-               "@loader_path/Frameworks"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.0";
-            TARGET_NAME = "SioEffectsTests";
-         };
-         name = "Debug";
-      };
-      "OBJ_208" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            CLANG_ENABLE_MODULES = "YES";
-            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Sio.xcodeproj/SioEffectsTests_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "@loader_path/../Frameworks",
-               "@loader_path/Frameworks"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.0";
-            TARGET_NAME = "SioEffectsTests";
-         };
-         name = "Release";
-      };
-      "OBJ_209" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_210"
-         );
-      };
-      "OBJ_21" = {
-         isa = "PBXFileReference";
-         path = "Either.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_210" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_85";
-      };
-      "OBJ_211" = {
-         isa = "PBXFrameworksBuildPhase";
-         files = (
-            "OBJ_212",
-            "OBJ_213"
-         );
-      };
-      "OBJ_212" = {
-         isa = "PBXBuildFile";
-         fileRef = "Sio::SioEffects::Product";
-      };
-      "OBJ_213" = {
-         isa = "PBXBuildFile";
-         fileRef = "Sio::Sio::Product";
-      };
-      "OBJ_214" = {
-         isa = "PBXTargetDependency";
-         target = "Sio::SioEffects";
-      };
-      "OBJ_215" = {
-         isa = "PBXTargetDependency";
-         target = "Sio::Sio";
-      };
-      "OBJ_217" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_218",
-            "OBJ_219"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
-      };
-      "OBJ_218" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            LD = "/usr/bin/true";
-            OTHER_SWIFT_FLAGS = (
-               "-swift-version",
-               "4",
-               "-I",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4",
-               "-target",
-               "x86_64-apple-macosx10.10",
-               "-sdk",
-               "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
-            );
-            SWIFT_VERSION = "4.0";
-         };
-         name = "Debug";
-      };
-      "OBJ_219" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            LD = "/usr/bin/true";
-            OTHER_SWIFT_FLAGS = (
-               "-swift-version",
-               "4",
-               "-I",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4",
-               "-target",
-               "x86_64-apple-macosx10.10",
-               "-sdk",
-               "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
-            );
-            SWIFT_VERSION = "4.0";
-         };
-         name = "Release";
-      };
-      "OBJ_22" = {
-         isa = "PBXFileReference";
-         path = "NoSyncValue.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_220" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_221"
-         );
-      };
-      "OBJ_221" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_6";
-      };
-      "OBJ_223" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_224",
-            "OBJ_225"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
-      };
-      "OBJ_224" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-         };
-         name = "Debug";
-      };
-      "OBJ_225" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-         };
-         name = "Release";
-      };
-      "OBJ_226" = {
-         isa = "PBXTargetDependency";
-         target = "Sio::SioValueStoreTests";
-      };
-      "OBJ_228" = {
-         isa = "PBXTargetDependency";
-         target = "Sio::SioTests";
-      };
-      "OBJ_23" = {
-         isa = "PBXFileReference";
-         path = "Operators.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_230" = {
-         isa = "PBXTargetDependency";
-         target = "Sio::SioEffectsTests";
-      };
-      "OBJ_231" = {
-         isa = "PBXTargetDependency";
-         target = "Sio::SioCodecTests";
-      };
-      "OBJ_232" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_233",
-            "OBJ_234"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
-      };
-      "OBJ_233" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            CLANG_ENABLE_MODULES = "YES";
-            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Sio.xcodeproj/SioTests_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "@loader_path/../Frameworks",
-               "@loader_path/Frameworks"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.0";
-            TARGET_NAME = "SioTests";
-         };
-         name = "Debug";
-      };
-      "OBJ_234" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            CLANG_ENABLE_MODULES = "YES";
-            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Sio.xcodeproj/SioTests_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "@loader_path/../Frameworks",
-               "@loader_path/Frameworks"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.0";
-            TARGET_NAME = "SioTests";
-         };
-         name = "Release";
-      };
-      "OBJ_235" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_236",
-            "OBJ_237",
-            "OBJ_238",
-            "OBJ_239",
-            "OBJ_240",
-            "OBJ_241",
-            "OBJ_242",
-            "OBJ_243",
-            "OBJ_244",
-            "OBJ_245",
-            "OBJ_246"
-         );
-      };
-      "OBJ_236" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_87";
-      };
-      "OBJ_237" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_88";
-      };
-      "OBJ_238" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_89";
-      };
-      "OBJ_239" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_90";
-      };
-      "OBJ_24" = {
-         isa = "PBXFileReference";
-         path = "PrecedenceGroups.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_240" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_91";
-      };
-      "OBJ_241" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_92";
-      };
-      "OBJ_242" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_93";
-      };
-      "OBJ_243" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_94";
-      };
-      "OBJ_244" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_95";
-      };
-      "OBJ_245" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_96";
-      };
-      "OBJ_246" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_97";
-      };
-      "OBJ_247" = {
-         isa = "PBXFrameworksBuildPhase";
-         files = (
-            "OBJ_248",
-            "OBJ_249",
-            "OBJ_250"
-         );
-      };
-      "OBJ_248" = {
-         isa = "PBXBuildFile";
-         fileRef = "Sio::SioValueStore::Product";
-      };
-      "OBJ_249" = {
-         isa = "PBXBuildFile";
-         fileRef = "Sio::SioCodec::Product";
-      };
-      "OBJ_25" = {
-         isa = "PBXFileReference";
-         path = "Prelude.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_250" = {
-         isa = "PBXBuildFile";
-         fileRef = "Sio::Sio::Product";
-      };
-      "OBJ_251" = {
-         isa = "PBXTargetDependency";
-         target = "Sio::SioValueStore";
-      };
-      "OBJ_253" = {
-         isa = "PBXTargetDependency";
-         target = "Sio::SioCodec";
-      };
-      "OBJ_254" = {
-         isa = "PBXTargetDependency";
-         target = "Sio::Sio";
-      };
-      "OBJ_255" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_256",
-            "OBJ_257"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
-      };
-      "OBJ_256" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            ENABLE_TESTABILITY = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Sio.xcodeproj/SioValueStore_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            PRODUCT_BUNDLE_IDENTIFIER = "SioValueStore";
-            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-            SKIP_INSTALL = "YES";
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.0";
-            TARGET_NAME = "SioValueStore";
-         };
-         name = "Debug";
-      };
-      "OBJ_257" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            ENABLE_TESTABILITY = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Sio.xcodeproj/SioValueStore_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            PRODUCT_BUNDLE_IDENTIFIER = "SioValueStore";
-            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-            SKIP_INSTALL = "YES";
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.0";
-            TARGET_NAME = "SioValueStore";
-         };
-         name = "Release";
-      };
-      "OBJ_258" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_259",
-            "OBJ_260",
-            "OBJ_261",
-            "OBJ_262",
-            "OBJ_263",
-            "OBJ_264",
-            "OBJ_265",
-            "OBJ_266",
-            "OBJ_267",
-            "OBJ_268",
-            "OBJ_269"
-         );
-      };
-      "OBJ_259" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_70";
-      };
-      "OBJ_26" = {
-         isa = "PBXFileReference";
-         path = "Remove.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_260" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_71";
-      };
-      "OBJ_261" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_72";
-      };
-      "OBJ_262" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_73";
-      };
-      "OBJ_263" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_74";
-      };
-      "OBJ_264" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_75";
-      };
-      "OBJ_265" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_76";
-      };
-      "OBJ_266" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_77";
-      };
-      "OBJ_267" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_78";
-      };
-      "OBJ_268" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_79";
-      };
-      "OBJ_269" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_80";
-      };
-      "OBJ_27" = {
-         isa = "PBXFileReference";
-         path = "SIO+Adapt.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_270" = {
-         isa = "PBXFrameworksBuildPhase";
-         files = (
-            "OBJ_271",
-            "OBJ_272"
-         );
-      };
-      "OBJ_271" = {
-         isa = "PBXBuildFile";
-         fileRef = "Sio::SioCodec::Product";
-      };
-      "OBJ_272" = {
-         isa = "PBXBuildFile";
-         fileRef = "Sio::Sio::Product";
-      };
-      "OBJ_273" = {
-         isa = "PBXTargetDependency";
-         target = "Sio::SioCodec";
-      };
-      "OBJ_274" = {
-         isa = "PBXTargetDependency";
-         target = "Sio::Sio";
-      };
-      "OBJ_275" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_276",
-            "OBJ_277"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
-      };
-      "OBJ_276" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            CLANG_ENABLE_MODULES = "YES";
-            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Sio.xcodeproj/SioValueStoreTests_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "@loader_path/../Frameworks",
-               "@loader_path/Frameworks"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.0";
-            TARGET_NAME = "SioValueStoreTests";
-         };
-         name = "Debug";
-      };
-      "OBJ_277" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            CLANG_ENABLE_MODULES = "YES";
-            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Sio.xcodeproj/SioValueStoreTests_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "@loader_path/../Frameworks",
-               "@loader_path/Frameworks"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.0";
-            TARGET_NAME = "SioValueStoreTests";
-         };
-         name = "Release";
-      };
-      "OBJ_278" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_279"
-         );
-      };
-      "OBJ_279" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_99";
-      };
-      "OBJ_28" = {
-         isa = "PBXFileReference";
-         path = "SIO+Alt.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_280" = {
-         isa = "PBXFrameworksBuildPhase";
-         files = (
-            "OBJ_281",
-            "OBJ_282",
-            "OBJ_283"
-         );
-      };
-      "OBJ_281" = {
-         isa = "PBXBuildFile";
-         fileRef = "Sio::SioValueStore::Product";
-      };
-      "OBJ_282" = {
-         isa = "PBXBuildFile";
-         fileRef = "Sio::SioCodec::Product";
-      };
-      "OBJ_283" = {
-         isa = "PBXBuildFile";
-         fileRef = "Sio::Sio::Product";
-      };
-      "OBJ_284" = {
-         isa = "PBXTargetDependency";
-         target = "Sio::SioValueStore";
-      };
-      "OBJ_285" = {
-         isa = "PBXTargetDependency";
-         target = "Sio::SioCodec";
-      };
-      "OBJ_286" = {
-         isa = "PBXTargetDependency";
-         target = "Sio::Sio";
-      };
-      "OBJ_29" = {
-         isa = "PBXFileReference";
-         path = "SIO+Applicative.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_3" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            CLANG_ENABLE_OBJC_ARC = "YES";
-            COMBINE_HIDPI_IMAGES = "YES";
-            COPY_PHASE_STRIP = "NO";
-            DEBUG_INFORMATION_FORMAT = "dwarf";
-            DYLIB_INSTALL_NAME_BASE = "@rpath";
-            ENABLE_NS_ASSERTIONS = "YES";
-            GCC_OPTIMIZATION_LEVEL = "0";
-            GCC_PREPROCESSOR_DEFINITIONS = (
-               "$(inherited)",
-               "SWIFT_PACKAGE=1",
-               "DEBUG=1"
-            );
-            MACOSX_DEPLOYMENT_TARGET = "10.10";
-            ONLY_ACTIVE_ARCH = "YES";
-            OTHER_SWIFT_FLAGS = (
-               "-DXcode"
-            );
-            PRODUCT_NAME = "$(TARGET_NAME)";
-            SDKROOT = "macosx";
-            SUPPORTED_PLATFORMS = (
-               "macosx",
-               "iphoneos",
-               "iphonesimulator",
-               "appletvos",
-               "appletvsimulator",
-               "watchos",
-               "watchsimulator"
-            );
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)",
-               "SWIFT_PACKAGE",
-               "DEBUG"
-            );
-            SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-            USE_HEADERMAP = "NO";
-         };
-         name = "Debug";
-      };
-      "OBJ_30" = {
-         isa = "PBXFileReference";
-         path = "SIO+BiFunctor.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_31" = {
-         isa = "PBXFileReference";
-         path = "SIO+BiMonad.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_32" = {
-         isa = "PBXFileReference";
-         path = "SIO+Bracket.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_33" = {
-         isa = "PBXFileReference";
-         path = "SIO+Contravariant.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_34" = {
-         isa = "PBXFileReference";
-         path = "SIO+Creation.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_35" = {
-         isa = "PBXFileReference";
-         path = "SIO+Delay.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_36" = {
-         isa = "PBXFileReference";
-         path = "SIO+Effects.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_37" = {
-         isa = "PBXFileReference";
-         path = "SIO+Either.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_38" = {
-         isa = "PBXFileReference";
-         path = "SIO+Error.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_39" = {
-         isa = "PBXFileReference";
-         path = "SIO+Events.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_4" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            CLANG_ENABLE_OBJC_ARC = "YES";
-            COMBINE_HIDPI_IMAGES = "YES";
-            COPY_PHASE_STRIP = "YES";
-            DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-            DYLIB_INSTALL_NAME_BASE = "@rpath";
-            GCC_OPTIMIZATION_LEVEL = "s";
-            GCC_PREPROCESSOR_DEFINITIONS = (
-               "$(inherited)",
-               "SWIFT_PACKAGE=1"
-            );
-            MACOSX_DEPLOYMENT_TARGET = "10.10";
-            OTHER_SWIFT_FLAGS = (
-               "-DXcode"
-            );
-            PRODUCT_NAME = "$(TARGET_NAME)";
-            SDKROOT = "macosx";
-            SUPPORTED_PLATFORMS = (
-               "macosx",
-               "iphoneos",
-               "iphonesimulator",
-               "appletvos",
-               "appletvsimulator",
-               "watchos",
-               "watchsimulator"
-            );
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)",
-               "SWIFT_PACKAGE"
-            );
-            SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-            USE_HEADERMAP = "NO";
-         };
-         name = "Release";
-      };
-      "OBJ_40" = {
-         isa = "PBXFileReference";
-         path = "SIO+Flip.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_41" = {
-         isa = "PBXFileReference";
-         path = "SIO+Fold.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_42" = {
-         isa = "PBXFileReference";
-         path = "SIO+Functor.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_43" = {
-         isa = "PBXFileReference";
-         path = "SIO+Monad.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_44" = {
-         isa = "PBXFileReference";
-         path = "SIO+Optional.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_45" = {
-         isa = "PBXFileReference";
-         path = "SIO+Profunctor.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_46" = {
-         isa = "PBXFileReference";
-         path = "SIO+Race.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_47" = {
-         isa = "PBXFileReference";
-         path = "SIO+Requirements.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_48" = {
-         isa = "PBXFileReference";
-         path = "SIO+Result.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_49" = {
-         isa = "PBXFileReference";
-         path = "SIO+Retry.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_5" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_6",
-            "OBJ_7",
-            "OBJ_81",
-            "OBJ_100",
-            "OBJ_109",
-            "OBJ_110",
-            "OBJ_111",
-            "OBJ_112",
-            "OBJ_113"
-         );
-         path = "";
-         sourceTree = "<group>";
-      };
-      "OBJ_50" = {
-         isa = "PBXFileReference";
-         path = "SIO+Run.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_51" = {
-         isa = "PBXFileReference";
-         path = "SIO+Schedule.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_52" = {
-         isa = "PBXFileReference";
-         path = "SIO+Tap.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_53" = {
-         isa = "PBXFileReference";
-         path = "SIO+Timeout.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_54" = {
-         isa = "PBXFileReference";
-         path = "SIO+Typealias.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_55" = {
-         isa = "PBXFileReference";
-         path = "SIO+Zip.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_56" = {
-         isa = "PBXFileReference";
-         path = "SIO.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_57" = {
-         isa = "PBXFileReference";
-         path = "SIOError.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_58" = {
-         isa = "PBXFileReference";
-         path = "SyncValue.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_59" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_60",
-            "OBJ_61",
-            "OBJ_62",
-            "OBJ_63"
-         );
-         name = "SioCodec";
-         path = "Sources/SioCodec";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_6" = {
-         isa = "PBXFileReference";
-         explicitFileType = "sourcecode.swift";
-         path = "Package.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_60" = {
-         isa = "PBXFileReference";
-         path = "Codec+Base64.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_61" = {
-         isa = "PBXFileReference";
-         path = "Codec+Data.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_62" = {
-         isa = "PBXFileReference";
-         path = "Codec+JSON.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_63" = {
-         isa = "PBXFileReference";
-         path = "Codec.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_64" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_65",
-            "OBJ_66",
-            "OBJ_67",
-            "OBJ_68"
-         );
-         name = "SioEffects";
-         path = "Sources/SioEffects";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_65" = {
-         isa = "PBXFileReference";
-         path = "SIO+Console.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_66" = {
-         isa = "PBXFileReference";
-         path = "SIO+Date.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_67" = {
-         isa = "PBXFileReference";
-         path = "SIO+FS.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_68" = {
-         isa = "PBXFileReference";
-         path = "SIO+Random.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_69" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_70",
-            "OBJ_71",
-            "OBJ_72",
-            "OBJ_73",
-            "OBJ_74",
-            "OBJ_75",
-            "OBJ_76",
-            "OBJ_77",
-            "OBJ_78",
-            "OBJ_79",
-            "OBJ_80"
-         );
-         name = "SioValueStore";
-         path = "Sources/SioValueStore";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_7" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_8",
-            "OBJ_59",
-            "OBJ_64",
-            "OBJ_69"
-         );
-         name = "Sources";
-         path = "";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_70" = {
-         isa = "PBXFileReference";
-         path = "ValueStore+Array.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_71" = {
-         isa = "PBXFileReference";
-         path = "ValueStore+Codec.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_72" = {
-         isa = "PBXFileReference";
-         path = "ValueStore+Creation.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_73" = {
-         isa = "PBXFileReference";
-         path = "ValueStore+Error.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_74" = {
-         isa = "PBXFileReference";
-         path = "ValueStore+Optional.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_75" = {
-         isa = "PBXFileReference";
-         path = "ValueStore+Profunctor.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_76" = {
-         isa = "PBXFileReference";
-         path = "ValueStore+Typealias.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_77" = {
-         isa = "PBXFileReference";
-         path = "ValueStore+UserDefaults.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_78" = {
-         isa = "PBXFileReference";
-         path = "ValueStore+Utils.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_79" = {
-         isa = "PBXFileReference";
-         path = "ValueStore+Zip.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_8" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_9",
-            "OBJ_10",
-            "OBJ_11",
-            "OBJ_12",
-            "OBJ_13",
-            "OBJ_14",
-            "OBJ_15",
-            "OBJ_16",
-            "OBJ_17",
-            "OBJ_18",
-            "OBJ_19",
-            "OBJ_20",
-            "OBJ_21",
-            "OBJ_22",
-            "OBJ_23",
-            "OBJ_24",
-            "OBJ_25",
-            "OBJ_26",
-            "OBJ_27",
-            "OBJ_28",
-            "OBJ_29",
-            "OBJ_30",
-            "OBJ_31",
-            "OBJ_32",
-            "OBJ_33",
-            "OBJ_34",
-            "OBJ_35",
-            "OBJ_36",
-            "OBJ_37",
-            "OBJ_38",
-            "OBJ_39",
-            "OBJ_40",
-            "OBJ_41",
-            "OBJ_42",
-            "OBJ_43",
-            "OBJ_44",
-            "OBJ_45",
-            "OBJ_46",
-            "OBJ_47",
-            "OBJ_48",
-            "OBJ_49",
-            "OBJ_50",
-            "OBJ_51",
-            "OBJ_52",
-            "OBJ_53",
-            "OBJ_54",
-            "OBJ_55",
-            "OBJ_56",
-            "OBJ_57",
-            "OBJ_58"
-         );
-         name = "Sio";
-         path = "Sources/Sio";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_80" = {
-         isa = "PBXFileReference";
-         path = "ValueStore.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_81" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_82",
-            "OBJ_84",
-            "OBJ_86",
-            "OBJ_98"
-         );
-         name = "Tests";
-         path = "";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_82" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_83"
-         );
-         name = "SioCodecTests";
-         path = "Tests/SioCodecTests";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_83" = {
-         isa = "PBXFileReference";
-         path = "SioCodecTests.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_84" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_85"
-         );
-         name = "SioEffectsTests";
-         path = "Tests/SioEffectsTests";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_85" = {
-         isa = "PBXFileReference";
-         path = "SioEffectsTests.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_86" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_87",
-            "OBJ_88",
-            "OBJ_89",
-            "OBJ_90",
-            "OBJ_91",
-            "OBJ_92",
-            "OBJ_93",
-            "OBJ_94",
-            "OBJ_95",
-            "OBJ_96",
-            "OBJ_97"
-         );
-         name = "SioTests";
-         path = "Tests/SioTests";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_87" = {
-         isa = "PBXFileReference";
-         path = "Applicative.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_88" = {
-         isa = "PBXFileReference";
-         path = "Arrays.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_89" = {
-         isa = "PBXFileReference";
-         path = "CancellationTests.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_9" = {
-         isa = "PBXFileReference";
-         path = "Array+SIO.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_90" = {
-         isa = "PBXFileReference";
-         path = "Chunked.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_91" = {
-         isa = "PBXFileReference";
-         path = "ConcurrencyTests.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_92" = {
-         isa = "PBXFileReference";
-         path = "Delay.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_93" = {
-         isa = "PBXFileReference";
-         path = "Functor.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_94" = {
-         isa = "PBXFileReference";
-         path = "Monad.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_95" = {
-         isa = "PBXFileReference";
-         path = "Retry.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_96" = {
-         isa = "PBXFileReference";
-         path = "SIOTests.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_97" = {
-         isa = "PBXFileReference";
-         path = "TimeoutTests.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_98" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_99"
-         );
-         name = "SioValueStoreTests";
-         path = "Tests/SioValueStoreTests";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_99" = {
-         isa = "PBXFileReference";
-         path = "SioValueStoreTests.swift";
-         sourceTree = "<group>";
-      };
-      "Sio::Sio" = {
-         isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_115";
-         buildPhases = (
-            "OBJ_118",
-            "OBJ_169"
-         );
-         dependencies = (
-         );
-         name = "Sio";
-         productName = "Sio";
-         productReference = "Sio::Sio::Product";
-         productType = "com.apple.product-type.framework";
-      };
-      "Sio::Sio::Product" = {
-         isa = "PBXFileReference";
-         path = "Sio.framework";
-         sourceTree = "BUILT_PRODUCTS_DIR";
-      };
-      "Sio::SioCodec" = {
-         isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_171";
-         buildPhases = (
-            "OBJ_174",
-            "OBJ_179"
-         );
-         dependencies = (
-            "OBJ_181"
-         );
-         name = "SioCodec";
-         productName = "SioCodec";
-         productReference = "Sio::SioCodec::Product";
-         productType = "com.apple.product-type.framework";
-      };
-      "Sio::SioCodec::Product" = {
-         isa = "PBXFileReference";
-         path = "SioCodec.framework";
-         sourceTree = "BUILT_PRODUCTS_DIR";
-      };
-      "Sio::SioCodecTests" = {
-         isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_183";
-         buildPhases = (
-            "OBJ_186",
-            "OBJ_188"
-         );
-         dependencies = (
-            "OBJ_191",
-            "OBJ_192"
-         );
-         name = "SioCodecTests";
-         productName = "SioCodecTests";
-         productReference = "Sio::SioCodecTests::Product";
-         productType = "com.apple.product-type.bundle.unit-test";
-      };
-      "Sio::SioCodecTests::Product" = {
-         isa = "PBXFileReference";
-         path = "SioCodecTests.xctest";
-         sourceTree = "BUILT_PRODUCTS_DIR";
-      };
-      "Sio::SioEffects" = {
-         isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_194";
-         buildPhases = (
-            "OBJ_197",
-            "OBJ_202"
-         );
-         dependencies = (
-            "OBJ_204"
-         );
-         name = "SioEffects";
-         productName = "SioEffects";
-         productReference = "Sio::SioEffects::Product";
-         productType = "com.apple.product-type.framework";
-      };
-      "Sio::SioEffects::Product" = {
-         isa = "PBXFileReference";
-         path = "SioEffects.framework";
-         sourceTree = "BUILT_PRODUCTS_DIR";
-      };
-      "Sio::SioEffectsTests" = {
-         isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_206";
-         buildPhases = (
-            "OBJ_209",
-            "OBJ_211"
-         );
-         dependencies = (
-            "OBJ_214",
-            "OBJ_215"
-         );
-         name = "SioEffectsTests";
-         productName = "SioEffectsTests";
-         productReference = "Sio::SioEffectsTests::Product";
-         productType = "com.apple.product-type.bundle.unit-test";
-      };
-      "Sio::SioEffectsTests::Product" = {
-         isa = "PBXFileReference";
-         path = "SioEffectsTests.xctest";
-         sourceTree = "BUILT_PRODUCTS_DIR";
-      };
-      "Sio::SioPackageTests::ProductTarget" = {
-         isa = "PBXAggregateTarget";
-         buildConfigurationList = "OBJ_223";
-         buildPhases = (
-         );
-         dependencies = (
-            "OBJ_226",
-            "OBJ_228",
-            "OBJ_230",
-            "OBJ_231"
-         );
-         name = "SioPackageTests";
-         productName = "SioPackageTests";
-      };
-      "Sio::SioTests" = {
-         isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_232";
-         buildPhases = (
-            "OBJ_235",
-            "OBJ_247"
-         );
-         dependencies = (
-            "OBJ_251",
-            "OBJ_253",
-            "OBJ_254"
-         );
-         name = "SioTests";
-         productName = "SioTests";
-         productReference = "Sio::SioTests::Product";
-         productType = "com.apple.product-type.bundle.unit-test";
-      };
-      "Sio::SioTests::Product" = {
-         isa = "PBXFileReference";
-         path = "SioTests.xctest";
-         sourceTree = "BUILT_PRODUCTS_DIR";
-      };
-      "Sio::SioValueStore" = {
-         isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_255";
-         buildPhases = (
-            "OBJ_258",
-            "OBJ_270"
-         );
-         dependencies = (
-            "OBJ_273",
-            "OBJ_274"
-         );
-         name = "SioValueStore";
-         productName = "SioValueStore";
-         productReference = "Sio::SioValueStore::Product";
-         productType = "com.apple.product-type.framework";
-      };
-      "Sio::SioValueStore::Product" = {
-         isa = "PBXFileReference";
-         path = "SioValueStore.framework";
-         sourceTree = "BUILT_PRODUCTS_DIR";
-      };
-      "Sio::SioValueStoreTests" = {
-         isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_275";
-         buildPhases = (
-            "OBJ_278",
-            "OBJ_280"
-         );
-         dependencies = (
-            "OBJ_284",
-            "OBJ_285",
-            "OBJ_286"
-         );
-         name = "SioValueStoreTests";
-         productName = "SioValueStoreTests";
-         productReference = "Sio::SioValueStoreTests::Product";
-         productType = "com.apple.product-type.bundle.unit-test";
-      };
-      "Sio::SioValueStoreTests::Product" = {
-         isa = "PBXFileReference";
-         path = "SioValueStoreTests.xctest";
-         sourceTree = "BUILT_PRODUCTS_DIR";
-      };
-      "Sio::SwiftPMPackageDescription" = {
-         isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_217";
-         buildPhases = (
-            "OBJ_220"
-         );
-         dependencies = (
-         );
-         name = "SioPackageDescription";
-         productName = "SioPackageDescription";
-         productType = "com.apple.product-type.framework";
-      };
-   };
-   rootObject = "OBJ_1";
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		"Sio::SioPackageTests::ProductTarget" /* SioPackageTests */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = OBJ_223 /* Build configuration list for PBXAggregateTarget "SioPackageTests" */;
+			buildPhases = (
+			);
+			dependencies = (
+				OBJ_226 /* PBXTargetDependency */,
+				OBJ_228 /* PBXTargetDependency */,
+				OBJ_230 /* PBXTargetDependency */,
+				OBJ_231 /* PBXTargetDependency */,
+			);
+			name = SioPackageTests;
+			productName = SioPackageTests;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		AC12F75C22CB724900E06524 /* Iso.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12F75B22CB724900E06524 /* Iso.swift */; };
+		AC12F76222CB73B600E06524 /* Codec+Iso.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12F75F22CB736400E06524 /* Codec+Iso.swift */; };
+		AC12F76422CB742600E06524 /* ValueStore+Iso.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12F76322CB742600E06524 /* ValueStore+Iso.swift */; };
+		OBJ_119 /* Array+SIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Array+SIO.swift */; };
+		OBJ_120 /* Collection+Chunks.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Collection+Chunks.swift */; };
+		OBJ_121 /* Compose.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Compose.swift */; };
+		OBJ_122 /* Curry.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* Curry.swift */; };
+		OBJ_123 /* Either+Alt.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* Either+Alt.swift */; };
+		OBJ_124 /* Either+Applicative.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* Either+Applicative.swift */; };
+		OBJ_125 /* Either+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* Either+Codable.swift */; };
+		OBJ_126 /* Either+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* Either+Error.swift */; };
+		OBJ_127 /* Either+Monad.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* Either+Monad.swift */; };
+		OBJ_128 /* Either+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* Either+Optional.swift */; };
+		OBJ_129 /* Either+Traversable.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* Either+Traversable.swift */; };
+		OBJ_130 /* Either+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* Either+Zip.swift */; };
+		OBJ_131 /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Either.swift */; };
+		OBJ_132 /* NoSyncValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* NoSyncValue.swift */; };
+		OBJ_133 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* Operators.swift */; };
+		OBJ_134 /* PrecedenceGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* PrecedenceGroups.swift */; };
+		OBJ_135 /* Prelude.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Prelude.swift */; };
+		OBJ_136 /* Remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* Remove.swift */; };
+		OBJ_137 /* SIO+Adapt.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* SIO+Adapt.swift */; };
+		OBJ_138 /* SIO+Alt.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* SIO+Alt.swift */; };
+		OBJ_139 /* SIO+Applicative.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* SIO+Applicative.swift */; };
+		OBJ_140 /* SIO+BiFunctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* SIO+BiFunctor.swift */; };
+		OBJ_141 /* SIO+BiMonad.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* SIO+BiMonad.swift */; };
+		OBJ_142 /* SIO+Bracket.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_32 /* SIO+Bracket.swift */; };
+		OBJ_143 /* SIO+Contravariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* SIO+Contravariant.swift */; };
+		OBJ_144 /* SIO+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* SIO+Creation.swift */; };
+		OBJ_145 /* SIO+Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* SIO+Delay.swift */; };
+		OBJ_146 /* SIO+Effects.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* SIO+Effects.swift */; };
+		OBJ_147 /* SIO+Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_37 /* SIO+Either.swift */; };
+		OBJ_148 /* SIO+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* SIO+Error.swift */; };
+		OBJ_149 /* SIO+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_39 /* SIO+Events.swift */; };
+		OBJ_150 /* SIO+Flip.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* SIO+Flip.swift */; };
+		OBJ_151 /* SIO+Fold.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* SIO+Fold.swift */; };
+		OBJ_152 /* SIO+Functor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_42 /* SIO+Functor.swift */; };
+		OBJ_153 /* SIO+Monad.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_43 /* SIO+Monad.swift */; };
+		OBJ_154 /* SIO+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_44 /* SIO+Optional.swift */; };
+		OBJ_155 /* SIO+Profunctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_45 /* SIO+Profunctor.swift */; };
+		OBJ_156 /* SIO+Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_46 /* SIO+Race.swift */; };
+		OBJ_157 /* SIO+Requirements.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_47 /* SIO+Requirements.swift */; };
+		OBJ_158 /* SIO+Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_48 /* SIO+Result.swift */; };
+		OBJ_159 /* SIO+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_49 /* SIO+Retry.swift */; };
+		OBJ_160 /* SIO+Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_50 /* SIO+Run.swift */; };
+		OBJ_161 /* SIO+Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_51 /* SIO+Schedule.swift */; };
+		OBJ_162 /* SIO+Tap.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_52 /* SIO+Tap.swift */; };
+		OBJ_163 /* SIO+Timeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_53 /* SIO+Timeout.swift */; };
+		OBJ_164 /* SIO+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_54 /* SIO+Typealias.swift */; };
+		OBJ_165 /* SIO+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_55 /* SIO+Zip.swift */; };
+		OBJ_166 /* SIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_56 /* SIO.swift */; };
+		OBJ_167 /* SIOError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_57 /* SIOError.swift */; };
+		OBJ_168 /* SyncValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_58 /* SyncValue.swift */; };
+		OBJ_175 /* Codec+Base64.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_60 /* Codec+Base64.swift */; };
+		OBJ_176 /* Codec+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_61 /* Codec+Data.swift */; };
+		OBJ_177 /* Codec+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_62 /* Codec+JSON.swift */; };
+		OBJ_178 /* Codec.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_63 /* Codec.swift */; };
+		OBJ_180 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
+		OBJ_187 /* SioCodecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_83 /* SioCodecTests.swift */; };
+		OBJ_189 /* SioCodec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioCodec::Product" /* SioCodec.framework */; };
+		OBJ_190 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
+		OBJ_198 /* SIO+Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_65 /* SIO+Console.swift */; };
+		OBJ_199 /* SIO+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_66 /* SIO+Date.swift */; };
+		OBJ_200 /* SIO+FS.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_67 /* SIO+FS.swift */; };
+		OBJ_201 /* SIO+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_68 /* SIO+Random.swift */; };
+		OBJ_203 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
+		OBJ_210 /* SioEffectsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_85 /* SioEffectsTests.swift */; };
+		OBJ_212 /* SioEffects.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioEffects::Product" /* SioEffects.framework */; };
+		OBJ_213 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
+		OBJ_221 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
+		OBJ_236 /* Applicative.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_87 /* Applicative.swift */; };
+		OBJ_237 /* Arrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_88 /* Arrays.swift */; };
+		OBJ_238 /* CancellationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_89 /* CancellationTests.swift */; };
+		OBJ_239 /* Chunked.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_90 /* Chunked.swift */; };
+		OBJ_240 /* ConcurrencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_91 /* ConcurrencyTests.swift */; };
+		OBJ_241 /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_92 /* Delay.swift */; };
+		OBJ_242 /* Functor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_93 /* Functor.swift */; };
+		OBJ_243 /* Monad.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_94 /* Monad.swift */; };
+		OBJ_244 /* Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_95 /* Retry.swift */; };
+		OBJ_245 /* SIOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_96 /* SIOTests.swift */; };
+		OBJ_246 /* TimeoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_97 /* TimeoutTests.swift */; };
+		OBJ_248 /* SioValueStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioValueStore::Product" /* SioValueStore.framework */; };
+		OBJ_249 /* SioCodec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioCodec::Product" /* SioCodec.framework */; };
+		OBJ_250 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
+		OBJ_259 /* ValueStore+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_70 /* ValueStore+Array.swift */; };
+		OBJ_260 /* ValueStore+Codec.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_71 /* ValueStore+Codec.swift */; };
+		OBJ_261 /* ValueStore+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_72 /* ValueStore+Creation.swift */; };
+		OBJ_262 /* ValueStore+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_73 /* ValueStore+Error.swift */; };
+		OBJ_263 /* ValueStore+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_74 /* ValueStore+Optional.swift */; };
+		OBJ_264 /* ValueStore+Profunctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_75 /* ValueStore+Profunctor.swift */; };
+		OBJ_265 /* ValueStore+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_76 /* ValueStore+Typealias.swift */; };
+		OBJ_266 /* ValueStore+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_77 /* ValueStore+UserDefaults.swift */; };
+		OBJ_267 /* ValueStore+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_78 /* ValueStore+Utils.swift */; };
+		OBJ_268 /* ValueStore+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_79 /* ValueStore+Zip.swift */; };
+		OBJ_269 /* ValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_80 /* ValueStore.swift */; };
+		OBJ_271 /* SioCodec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioCodec::Product" /* SioCodec.framework */; };
+		OBJ_272 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
+		OBJ_279 /* SioValueStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_99 /* SioValueStoreTests.swift */; };
+		OBJ_281 /* SioValueStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioValueStore::Product" /* SioValueStore.framework */; };
+		OBJ_282 /* SioCodec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioCodec::Product" /* SioCodec.framework */; };
+		OBJ_283 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AC12F73F22CB391700E06524 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::Sio";
+			remoteInfo = Sio;
+		};
+		AC12F74022CB391700E06524 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::Sio";
+			remoteInfo = Sio;
+		};
+		AC12F74122CB391700E06524 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioCodec";
+			remoteInfo = SioCodec;
+		};
+		AC12F74222CB391700E06524 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::Sio";
+			remoteInfo = Sio;
+		};
+		AC12F74322CB391700E06524 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioValueStore";
+			remoteInfo = SioValueStore;
+		};
+		AC12F74422CB391700E06524 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioCodec";
+			remoteInfo = SioCodec;
+		};
+		AC12F74522CB391700E06524 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::Sio";
+			remoteInfo = Sio;
+		};
+		AC12F74622CB391700E06524 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioEffects";
+			remoteInfo = SioEffects;
+		};
+		AC12F74722CB391700E06524 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::Sio";
+			remoteInfo = Sio;
+		};
+		AC12F74822CB391700E06524 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioValueStore";
+			remoteInfo = SioValueStore;
+		};
+		AC12F74922CB391700E06524 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioCodec";
+			remoteInfo = SioCodec;
+		};
+		AC12F74A22CB391700E06524 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::Sio";
+			remoteInfo = Sio;
+		};
+		AC12F74B22CB391700E06524 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioCodec";
+			remoteInfo = SioCodec;
+		};
+		AC12F74C22CB391700E06524 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::Sio";
+			remoteInfo = Sio;
+		};
+		AC12F74D22CB391800E06524 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioValueStoreTests";
+			remoteInfo = SioValueStoreTests;
+		};
+		AC12F74E22CB391800E06524 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioTests";
+			remoteInfo = SioTests;
+		};
+		AC12F74F22CB391800E06524 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioEffectsTests";
+			remoteInfo = SioEffectsTests;
+		};
+		AC12F75022CB391800E06524 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioCodecTests";
+			remoteInfo = SioCodecTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AC12F75B22CB724900E06524 /* Iso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Iso.swift; sourceTree = "<group>"; };
+		AC12F75F22CB736400E06524 /* Codec+Iso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codec+Iso.swift"; sourceTree = "<group>"; };
+		AC12F76322CB742600E06524 /* ValueStore+Iso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Iso.swift"; sourceTree = "<group>"; };
+		OBJ_10 /* Collection+Chunks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Chunks.swift"; sourceTree = "<group>"; };
+		OBJ_109 /* Sio.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = Sio.xcworkspace; sourceTree = SOURCE_ROOT; };
+		OBJ_11 /* Compose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compose.swift; sourceTree = "<group>"; };
+		OBJ_110 /* Configs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Configs; sourceTree = SOURCE_ROOT; };
+		OBJ_111 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		OBJ_112 /* sio.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = sio.podspec; sourceTree = "<group>"; };
+		OBJ_113 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		OBJ_12 /* Curry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Curry.swift; sourceTree = "<group>"; };
+		OBJ_13 /* Either+Alt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Alt.swift"; sourceTree = "<group>"; };
+		OBJ_14 /* Either+Applicative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Applicative.swift"; sourceTree = "<group>"; };
+		OBJ_15 /* Either+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Codable.swift"; sourceTree = "<group>"; };
+		OBJ_16 /* Either+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Error.swift"; sourceTree = "<group>"; };
+		OBJ_17 /* Either+Monad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Monad.swift"; sourceTree = "<group>"; };
+		OBJ_18 /* Either+Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Optional.swift"; sourceTree = "<group>"; };
+		OBJ_19 /* Either+Traversable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Traversable.swift"; sourceTree = "<group>"; };
+		OBJ_20 /* Either+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Zip.swift"; sourceTree = "<group>"; };
+		OBJ_21 /* Either.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Either.swift; sourceTree = "<group>"; };
+		OBJ_22 /* NoSyncValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSyncValue.swift; sourceTree = "<group>"; };
+		OBJ_23 /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
+		OBJ_24 /* PrecedenceGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecedenceGroups.swift; sourceTree = "<group>"; };
+		OBJ_25 /* Prelude.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prelude.swift; sourceTree = "<group>"; };
+		OBJ_26 /* Remove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remove.swift; sourceTree = "<group>"; };
+		OBJ_27 /* SIO+Adapt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Adapt.swift"; sourceTree = "<group>"; };
+		OBJ_28 /* SIO+Alt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Alt.swift"; sourceTree = "<group>"; };
+		OBJ_29 /* SIO+Applicative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Applicative.swift"; sourceTree = "<group>"; };
+		OBJ_30 /* SIO+BiFunctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+BiFunctor.swift"; sourceTree = "<group>"; };
+		OBJ_31 /* SIO+BiMonad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+BiMonad.swift"; sourceTree = "<group>"; };
+		OBJ_32 /* SIO+Bracket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Bracket.swift"; sourceTree = "<group>"; };
+		OBJ_33 /* SIO+Contravariant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Contravariant.swift"; sourceTree = "<group>"; };
+		OBJ_34 /* SIO+Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Creation.swift"; sourceTree = "<group>"; };
+		OBJ_35 /* SIO+Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Delay.swift"; sourceTree = "<group>"; };
+		OBJ_36 /* SIO+Effects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Effects.swift"; sourceTree = "<group>"; };
+		OBJ_37 /* SIO+Either.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Either.swift"; sourceTree = "<group>"; };
+		OBJ_38 /* SIO+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Error.swift"; sourceTree = "<group>"; };
+		OBJ_39 /* SIO+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Events.swift"; sourceTree = "<group>"; };
+		OBJ_40 /* SIO+Flip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Flip.swift"; sourceTree = "<group>"; };
+		OBJ_41 /* SIO+Fold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Fold.swift"; sourceTree = "<group>"; };
+		OBJ_42 /* SIO+Functor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Functor.swift"; sourceTree = "<group>"; };
+		OBJ_43 /* SIO+Monad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Monad.swift"; sourceTree = "<group>"; };
+		OBJ_44 /* SIO+Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Optional.swift"; sourceTree = "<group>"; };
+		OBJ_45 /* SIO+Profunctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Profunctor.swift"; sourceTree = "<group>"; };
+		OBJ_46 /* SIO+Race.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Race.swift"; sourceTree = "<group>"; };
+		OBJ_47 /* SIO+Requirements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Requirements.swift"; sourceTree = "<group>"; };
+		OBJ_48 /* SIO+Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Result.swift"; sourceTree = "<group>"; };
+		OBJ_49 /* SIO+Retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Retry.swift"; sourceTree = "<group>"; };
+		OBJ_50 /* SIO+Run.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Run.swift"; sourceTree = "<group>"; };
+		OBJ_51 /* SIO+Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Schedule.swift"; sourceTree = "<group>"; };
+		OBJ_52 /* SIO+Tap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Tap.swift"; sourceTree = "<group>"; };
+		OBJ_53 /* SIO+Timeout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Timeout.swift"; sourceTree = "<group>"; };
+		OBJ_54 /* SIO+Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Typealias.swift"; sourceTree = "<group>"; };
+		OBJ_55 /* SIO+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Zip.swift"; sourceTree = "<group>"; };
+		OBJ_56 /* SIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIO.swift; sourceTree = "<group>"; };
+		OBJ_57 /* SIOError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIOError.swift; sourceTree = "<group>"; };
+		OBJ_58 /* SyncValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncValue.swift; sourceTree = "<group>"; };
+		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		OBJ_60 /* Codec+Base64.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codec+Base64.swift"; sourceTree = "<group>"; };
+		OBJ_61 /* Codec+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codec+Data.swift"; sourceTree = "<group>"; };
+		OBJ_62 /* Codec+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codec+JSON.swift"; sourceTree = "<group>"; };
+		OBJ_63 /* Codec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codec.swift; sourceTree = "<group>"; };
+		OBJ_65 /* SIO+Console.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Console.swift"; sourceTree = "<group>"; };
+		OBJ_66 /* SIO+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Date.swift"; sourceTree = "<group>"; };
+		OBJ_67 /* SIO+FS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+FS.swift"; sourceTree = "<group>"; };
+		OBJ_68 /* SIO+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Random.swift"; sourceTree = "<group>"; };
+		OBJ_70 /* ValueStore+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Array.swift"; sourceTree = "<group>"; };
+		OBJ_71 /* ValueStore+Codec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Codec.swift"; sourceTree = "<group>"; };
+		OBJ_72 /* ValueStore+Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Creation.swift"; sourceTree = "<group>"; };
+		OBJ_73 /* ValueStore+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Error.swift"; sourceTree = "<group>"; };
+		OBJ_74 /* ValueStore+Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Optional.swift"; sourceTree = "<group>"; };
+		OBJ_75 /* ValueStore+Profunctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Profunctor.swift"; sourceTree = "<group>"; };
+		OBJ_76 /* ValueStore+Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Typealias.swift"; sourceTree = "<group>"; };
+		OBJ_77 /* ValueStore+UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+UserDefaults.swift"; sourceTree = "<group>"; };
+		OBJ_78 /* ValueStore+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Utils.swift"; sourceTree = "<group>"; };
+		OBJ_79 /* ValueStore+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Zip.swift"; sourceTree = "<group>"; };
+		OBJ_80 /* ValueStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueStore.swift; sourceTree = "<group>"; };
+		OBJ_83 /* SioCodecTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioCodecTests.swift; sourceTree = "<group>"; };
+		OBJ_85 /* SioEffectsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioEffectsTests.swift; sourceTree = "<group>"; };
+		OBJ_87 /* Applicative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Applicative.swift; sourceTree = "<group>"; };
+		OBJ_88 /* Arrays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrays.swift; sourceTree = "<group>"; };
+		OBJ_89 /* CancellationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellationTests.swift; sourceTree = "<group>"; };
+		OBJ_9 /* Array+SIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+SIO.swift"; sourceTree = "<group>"; };
+		OBJ_90 /* Chunked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chunked.swift; sourceTree = "<group>"; };
+		OBJ_91 /* ConcurrencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrencyTests.swift; sourceTree = "<group>"; };
+		OBJ_92 /* Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
+		OBJ_93 /* Functor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functor.swift; sourceTree = "<group>"; };
+		OBJ_94 /* Monad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monad.swift; sourceTree = "<group>"; };
+		OBJ_95 /* Retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Retry.swift; sourceTree = "<group>"; };
+		OBJ_96 /* SIOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIOTests.swift; sourceTree = "<group>"; };
+		OBJ_97 /* TimeoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeoutTests.swift; sourceTree = "<group>"; };
+		OBJ_99 /* SioValueStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioValueStoreTests.swift; sourceTree = "<group>"; };
+		"Sio::Sio::Product" /* Sio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Sio::SioCodec::Product" /* SioCodec.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SioCodec.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Sio::SioCodecTests::Product" /* SioCodecTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = SioCodecTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Sio::SioEffects::Product" /* SioEffects.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SioEffects.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Sio::SioEffectsTests::Product" /* SioEffectsTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = SioEffectsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Sio::SioTests::Product" /* SioTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = SioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Sio::SioValueStore::Product" /* SioValueStore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SioValueStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Sio::SioValueStoreTests::Product" /* SioValueStoreTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = SioValueStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		OBJ_169 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_179 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_180 /* Sio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_188 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_189 /* SioCodec.framework in Frameworks */,
+				OBJ_190 /* Sio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_202 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_203 /* Sio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_211 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_212 /* SioEffects.framework in Frameworks */,
+				OBJ_213 /* Sio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_247 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_248 /* SioValueStore.framework in Frameworks */,
+				OBJ_249 /* SioCodec.framework in Frameworks */,
+				OBJ_250 /* Sio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_270 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_271 /* SioCodec.framework in Frameworks */,
+				OBJ_272 /* Sio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_280 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_281 /* SioValueStore.framework in Frameworks */,
+				OBJ_282 /* SioCodec.framework in Frameworks */,
+				OBJ_283 /* Sio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		OBJ_100 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				"Sio::SioCodec::Product" /* SioCodec.framework */,
+				"Sio::SioValueStore::Product" /* SioValueStore.framework */,
+				"Sio::SioTests::Product" /* SioTests.xctest */,
+				"Sio::SioEffectsTests::Product" /* SioEffectsTests.xctest */,
+				"Sio::SioValueStoreTests::Product" /* SioValueStoreTests.xctest */,
+				"Sio::Sio::Product" /* Sio.framework */,
+				"Sio::SioCodecTests::Product" /* SioCodecTests.xctest */,
+				"Sio::SioEffects::Product" /* SioEffects.framework */,
+			);
+			name = Products;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		OBJ_5 /*  */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_6 /* Package.swift */,
+				OBJ_7 /* Sources */,
+				OBJ_81 /* Tests */,
+				OBJ_100 /* Products */,
+				OBJ_109 /* Sio.xcworkspace */,
+				OBJ_110 /* Configs */,
+				OBJ_111 /* LICENSE */,
+				OBJ_112 /* sio.podspec */,
+				OBJ_113 /* README.md */,
+			);
+			name = "";
+			sourceTree = "<group>";
+		};
+		OBJ_59 /* SioCodec */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_60 /* Codec+Base64.swift */,
+				OBJ_61 /* Codec+Data.swift */,
+				OBJ_62 /* Codec+JSON.swift */,
+				AC12F75F22CB736400E06524 /* Codec+Iso.swift */,
+				OBJ_63 /* Codec.swift */,
+			);
+			name = SioCodec;
+			path = Sources/SioCodec;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_64 /* SioEffects */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_65 /* SIO+Console.swift */,
+				OBJ_66 /* SIO+Date.swift */,
+				OBJ_67 /* SIO+FS.swift */,
+				OBJ_68 /* SIO+Random.swift */,
+			);
+			name = SioEffects;
+			path = Sources/SioEffects;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_69 /* SioValueStore */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_70 /* ValueStore+Array.swift */,
+				AC12F76322CB742600E06524 /* ValueStore+Iso.swift */,
+				OBJ_71 /* ValueStore+Codec.swift */,
+				OBJ_72 /* ValueStore+Creation.swift */,
+				OBJ_73 /* ValueStore+Error.swift */,
+				OBJ_74 /* ValueStore+Optional.swift */,
+				OBJ_75 /* ValueStore+Profunctor.swift */,
+				OBJ_76 /* ValueStore+Typealias.swift */,
+				OBJ_77 /* ValueStore+UserDefaults.swift */,
+				OBJ_78 /* ValueStore+Utils.swift */,
+				OBJ_79 /* ValueStore+Zip.swift */,
+				OBJ_80 /* ValueStore.swift */,
+			);
+			name = SioValueStore;
+			path = Sources/SioValueStore;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_7 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_8 /* Sio */,
+				OBJ_59 /* SioCodec */,
+				OBJ_64 /* SioEffects */,
+				OBJ_69 /* SioValueStore */,
+			);
+			name = Sources;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_8 /* Sio */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_9 /* Array+SIO.swift */,
+				OBJ_10 /* Collection+Chunks.swift */,
+				OBJ_11 /* Compose.swift */,
+				OBJ_12 /* Curry.swift */,
+				OBJ_13 /* Either+Alt.swift */,
+				OBJ_14 /* Either+Applicative.swift */,
+				OBJ_15 /* Either+Codable.swift */,
+				OBJ_16 /* Either+Error.swift */,
+				OBJ_17 /* Either+Monad.swift */,
+				OBJ_18 /* Either+Optional.swift */,
+				OBJ_19 /* Either+Traversable.swift */,
+				OBJ_20 /* Either+Zip.swift */,
+				OBJ_21 /* Either.swift */,
+				OBJ_22 /* NoSyncValue.swift */,
+				OBJ_23 /* Operators.swift */,
+				OBJ_24 /* PrecedenceGroups.swift */,
+				OBJ_25 /* Prelude.swift */,
+				OBJ_26 /* Remove.swift */,
+				OBJ_27 /* SIO+Adapt.swift */,
+				OBJ_28 /* SIO+Alt.swift */,
+				OBJ_29 /* SIO+Applicative.swift */,
+				OBJ_30 /* SIO+BiFunctor.swift */,
+				OBJ_31 /* SIO+BiMonad.swift */,
+				OBJ_32 /* SIO+Bracket.swift */,
+				OBJ_33 /* SIO+Contravariant.swift */,
+				OBJ_34 /* SIO+Creation.swift */,
+				OBJ_35 /* SIO+Delay.swift */,
+				OBJ_36 /* SIO+Effects.swift */,
+				OBJ_37 /* SIO+Either.swift */,
+				OBJ_38 /* SIO+Error.swift */,
+				OBJ_39 /* SIO+Events.swift */,
+				OBJ_40 /* SIO+Flip.swift */,
+				OBJ_41 /* SIO+Fold.swift */,
+				OBJ_42 /* SIO+Functor.swift */,
+				OBJ_43 /* SIO+Monad.swift */,
+				OBJ_44 /* SIO+Optional.swift */,
+				OBJ_45 /* SIO+Profunctor.swift */,
+				OBJ_46 /* SIO+Race.swift */,
+				OBJ_47 /* SIO+Requirements.swift */,
+				OBJ_48 /* SIO+Result.swift */,
+				OBJ_49 /* SIO+Retry.swift */,
+				OBJ_50 /* SIO+Run.swift */,
+				OBJ_51 /* SIO+Schedule.swift */,
+				OBJ_52 /* SIO+Tap.swift */,
+				OBJ_53 /* SIO+Timeout.swift */,
+				OBJ_54 /* SIO+Typealias.swift */,
+				OBJ_55 /* SIO+Zip.swift */,
+				OBJ_56 /* SIO.swift */,
+				OBJ_57 /* SIOError.swift */,
+				OBJ_58 /* SyncValue.swift */,
+				AC12F75B22CB724900E06524 /* Iso.swift */,
+			);
+			name = Sio;
+			path = Sources/Sio;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_81 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_82 /* SioCodecTests */,
+				OBJ_84 /* SioEffectsTests */,
+				OBJ_86 /* SioTests */,
+				OBJ_98 /* SioValueStoreTests */,
+			);
+			name = Tests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_82 /* SioCodecTests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_83 /* SioCodecTests.swift */,
+			);
+			name = SioCodecTests;
+			path = Tests/SioCodecTests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_84 /* SioEffectsTests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_85 /* SioEffectsTests.swift */,
+			);
+			name = SioEffectsTests;
+			path = Tests/SioEffectsTests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_86 /* SioTests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_87 /* Applicative.swift */,
+				OBJ_88 /* Arrays.swift */,
+				OBJ_89 /* CancellationTests.swift */,
+				OBJ_90 /* Chunked.swift */,
+				OBJ_91 /* ConcurrencyTests.swift */,
+				OBJ_92 /* Delay.swift */,
+				OBJ_93 /* Functor.swift */,
+				OBJ_94 /* Monad.swift */,
+				OBJ_95 /* Retry.swift */,
+				OBJ_96 /* SIOTests.swift */,
+				OBJ_97 /* TimeoutTests.swift */,
+			);
+			name = SioTests;
+			path = Tests/SioTests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_98 /* SioValueStoreTests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_99 /* SioValueStoreTests.swift */,
+			);
+			name = SioValueStoreTests;
+			path = Tests/SioValueStoreTests;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		"Sio::Sio" /* Sio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_115 /* Build configuration list for PBXNativeTarget "Sio" */;
+			buildPhases = (
+				OBJ_118 /* Sources */,
+				OBJ_169 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Sio;
+			productName = Sio;
+			productReference = "Sio::Sio::Product" /* Sio.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"Sio::SioCodec" /* SioCodec */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_171 /* Build configuration list for PBXNativeTarget "SioCodec" */;
+			buildPhases = (
+				OBJ_174 /* Sources */,
+				OBJ_179 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_181 /* PBXTargetDependency */,
+			);
+			name = SioCodec;
+			productName = SioCodec;
+			productReference = "Sio::SioCodec::Product" /* SioCodec.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"Sio::SioCodecTests" /* SioCodecTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_183 /* Build configuration list for PBXNativeTarget "SioCodecTests" */;
+			buildPhases = (
+				OBJ_186 /* Sources */,
+				OBJ_188 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_191 /* PBXTargetDependency */,
+				OBJ_192 /* PBXTargetDependency */,
+			);
+			name = SioCodecTests;
+			productName = SioCodecTests;
+			productReference = "Sio::SioCodecTests::Product" /* SioCodecTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"Sio::SioEffects" /* SioEffects */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_194 /* Build configuration list for PBXNativeTarget "SioEffects" */;
+			buildPhases = (
+				OBJ_197 /* Sources */,
+				OBJ_202 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_204 /* PBXTargetDependency */,
+			);
+			name = SioEffects;
+			productName = SioEffects;
+			productReference = "Sio::SioEffects::Product" /* SioEffects.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"Sio::SioEffectsTests" /* SioEffectsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_206 /* Build configuration list for PBXNativeTarget "SioEffectsTests" */;
+			buildPhases = (
+				OBJ_209 /* Sources */,
+				OBJ_211 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_214 /* PBXTargetDependency */,
+				OBJ_215 /* PBXTargetDependency */,
+			);
+			name = SioEffectsTests;
+			productName = SioEffectsTests;
+			productReference = "Sio::SioEffectsTests::Product" /* SioEffectsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"Sio::SioTests" /* SioTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_232 /* Build configuration list for PBXNativeTarget "SioTests" */;
+			buildPhases = (
+				OBJ_235 /* Sources */,
+				OBJ_247 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_251 /* PBXTargetDependency */,
+				OBJ_253 /* PBXTargetDependency */,
+				OBJ_254 /* PBXTargetDependency */,
+			);
+			name = SioTests;
+			productName = SioTests;
+			productReference = "Sio::SioTests::Product" /* SioTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"Sio::SioValueStore" /* SioValueStore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_255 /* Build configuration list for PBXNativeTarget "SioValueStore" */;
+			buildPhases = (
+				OBJ_258 /* Sources */,
+				OBJ_270 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_273 /* PBXTargetDependency */,
+				OBJ_274 /* PBXTargetDependency */,
+			);
+			name = SioValueStore;
+			productName = SioValueStore;
+			productReference = "Sio::SioValueStore::Product" /* SioValueStore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"Sio::SioValueStoreTests" /* SioValueStoreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_275 /* Build configuration list for PBXNativeTarget "SioValueStoreTests" */;
+			buildPhases = (
+				OBJ_278 /* Sources */,
+				OBJ_280 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_284 /* PBXTargetDependency */,
+				OBJ_285 /* PBXTargetDependency */,
+				OBJ_286 /* PBXTargetDependency */,
+			);
+			name = SioValueStoreTests;
+			productName = SioValueStoreTests;
+			productReference = "Sio::SioValueStoreTests::Product" /* SioValueStoreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"Sio::SwiftPMPackageDescription" /* SioPackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_217 /* Build configuration list for PBXNativeTarget "SioPackageDescription" */;
+			buildPhases = (
+				OBJ_220 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SioPackageDescription;
+			productName = SioPackageDescription;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		OBJ_1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftMigration = 9999;
+				LastUpgradeCheck = 9999;
+			};
+			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "Sio" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				en,
+			);
+			mainGroup = OBJ_5 /*  */;
+			productRefGroup = OBJ_100 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				"Sio::Sio" /* Sio */,
+				"Sio::SioCodec" /* SioCodec */,
+				"Sio::SioCodecTests" /* SioCodecTests */,
+				"Sio::SioEffects" /* SioEffects */,
+				"Sio::SioEffectsTests" /* SioEffectsTests */,
+				"Sio::SwiftPMPackageDescription" /* SioPackageDescription */,
+				"Sio::SioPackageTests::ProductTarget" /* SioPackageTests */,
+				"Sio::SioTests" /* SioTests */,
+				"Sio::SioValueStore" /* SioValueStore */,
+				"Sio::SioValueStoreTests" /* SioValueStoreTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		OBJ_118 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_119 /* Array+SIO.swift in Sources */,
+				OBJ_120 /* Collection+Chunks.swift in Sources */,
+				OBJ_121 /* Compose.swift in Sources */,
+				OBJ_122 /* Curry.swift in Sources */,
+				OBJ_123 /* Either+Alt.swift in Sources */,
+				OBJ_124 /* Either+Applicative.swift in Sources */,
+				OBJ_125 /* Either+Codable.swift in Sources */,
+				OBJ_126 /* Either+Error.swift in Sources */,
+				OBJ_127 /* Either+Monad.swift in Sources */,
+				OBJ_128 /* Either+Optional.swift in Sources */,
+				OBJ_129 /* Either+Traversable.swift in Sources */,
+				OBJ_130 /* Either+Zip.swift in Sources */,
+				OBJ_131 /* Either.swift in Sources */,
+				OBJ_132 /* NoSyncValue.swift in Sources */,
+				OBJ_133 /* Operators.swift in Sources */,
+				OBJ_134 /* PrecedenceGroups.swift in Sources */,
+				OBJ_135 /* Prelude.swift in Sources */,
+				OBJ_136 /* Remove.swift in Sources */,
+				OBJ_137 /* SIO+Adapt.swift in Sources */,
+				OBJ_138 /* SIO+Alt.swift in Sources */,
+				OBJ_139 /* SIO+Applicative.swift in Sources */,
+				OBJ_140 /* SIO+BiFunctor.swift in Sources */,
+				OBJ_141 /* SIO+BiMonad.swift in Sources */,
+				OBJ_142 /* SIO+Bracket.swift in Sources */,
+				OBJ_143 /* SIO+Contravariant.swift in Sources */,
+				OBJ_144 /* SIO+Creation.swift in Sources */,
+				OBJ_145 /* SIO+Delay.swift in Sources */,
+				OBJ_146 /* SIO+Effects.swift in Sources */,
+				OBJ_147 /* SIO+Either.swift in Sources */,
+				OBJ_148 /* SIO+Error.swift in Sources */,
+				OBJ_149 /* SIO+Events.swift in Sources */,
+				OBJ_150 /* SIO+Flip.swift in Sources */,
+				OBJ_151 /* SIO+Fold.swift in Sources */,
+				OBJ_152 /* SIO+Functor.swift in Sources */,
+				OBJ_153 /* SIO+Monad.swift in Sources */,
+				OBJ_154 /* SIO+Optional.swift in Sources */,
+				OBJ_155 /* SIO+Profunctor.swift in Sources */,
+				OBJ_156 /* SIO+Race.swift in Sources */,
+				OBJ_157 /* SIO+Requirements.swift in Sources */,
+				AC12F75C22CB724900E06524 /* Iso.swift in Sources */,
+				OBJ_158 /* SIO+Result.swift in Sources */,
+				OBJ_159 /* SIO+Retry.swift in Sources */,
+				OBJ_160 /* SIO+Run.swift in Sources */,
+				OBJ_161 /* SIO+Schedule.swift in Sources */,
+				OBJ_162 /* SIO+Tap.swift in Sources */,
+				OBJ_163 /* SIO+Timeout.swift in Sources */,
+				OBJ_164 /* SIO+Typealias.swift in Sources */,
+				OBJ_165 /* SIO+Zip.swift in Sources */,
+				OBJ_166 /* SIO.swift in Sources */,
+				OBJ_167 /* SIOError.swift in Sources */,
+				OBJ_168 /* SyncValue.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_174 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_175 /* Codec+Base64.swift in Sources */,
+				OBJ_176 /* Codec+Data.swift in Sources */,
+				OBJ_177 /* Codec+JSON.swift in Sources */,
+				AC12F76222CB73B600E06524 /* Codec+Iso.swift in Sources */,
+				OBJ_178 /* Codec.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_186 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_187 /* SioCodecTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_197 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_198 /* SIO+Console.swift in Sources */,
+				OBJ_199 /* SIO+Date.swift in Sources */,
+				OBJ_200 /* SIO+FS.swift in Sources */,
+				OBJ_201 /* SIO+Random.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_209 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_210 /* SioEffectsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_220 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_221 /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_235 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_236 /* Applicative.swift in Sources */,
+				OBJ_237 /* Arrays.swift in Sources */,
+				OBJ_238 /* CancellationTests.swift in Sources */,
+				OBJ_239 /* Chunked.swift in Sources */,
+				OBJ_240 /* ConcurrencyTests.swift in Sources */,
+				OBJ_241 /* Delay.swift in Sources */,
+				OBJ_242 /* Functor.swift in Sources */,
+				OBJ_243 /* Monad.swift in Sources */,
+				OBJ_244 /* Retry.swift in Sources */,
+				OBJ_245 /* SIOTests.swift in Sources */,
+				OBJ_246 /* TimeoutTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_258 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_259 /* ValueStore+Array.swift in Sources */,
+				OBJ_260 /* ValueStore+Codec.swift in Sources */,
+				OBJ_261 /* ValueStore+Creation.swift in Sources */,
+				OBJ_262 /* ValueStore+Error.swift in Sources */,
+				OBJ_263 /* ValueStore+Optional.swift in Sources */,
+				OBJ_264 /* ValueStore+Profunctor.swift in Sources */,
+				OBJ_265 /* ValueStore+Typealias.swift in Sources */,
+				AC12F76422CB742600E06524 /* ValueStore+Iso.swift in Sources */,
+				OBJ_266 /* ValueStore+UserDefaults.swift in Sources */,
+				OBJ_267 /* ValueStore+Utils.swift in Sources */,
+				OBJ_268 /* ValueStore+Zip.swift in Sources */,
+				OBJ_269 /* ValueStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_278 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_279 /* SioValueStoreTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		OBJ_181 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::Sio" /* Sio */;
+			targetProxy = AC12F73F22CB391700E06524 /* PBXContainerItemProxy */;
+		};
+		OBJ_191 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::SioCodec" /* SioCodec */;
+			targetProxy = AC12F74B22CB391700E06524 /* PBXContainerItemProxy */;
+		};
+		OBJ_192 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::Sio" /* Sio */;
+			targetProxy = AC12F74C22CB391700E06524 /* PBXContainerItemProxy */;
+		};
+		OBJ_204 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::Sio" /* Sio */;
+			targetProxy = AC12F74022CB391700E06524 /* PBXContainerItemProxy */;
+		};
+		OBJ_214 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::SioEffects" /* SioEffects */;
+			targetProxy = AC12F74622CB391700E06524 /* PBXContainerItemProxy */;
+		};
+		OBJ_215 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::Sio" /* Sio */;
+			targetProxy = AC12F74722CB391700E06524 /* PBXContainerItemProxy */;
+		};
+		OBJ_226 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::SioValueStoreTests" /* SioValueStoreTests */;
+			targetProxy = AC12F74D22CB391800E06524 /* PBXContainerItemProxy */;
+		};
+		OBJ_228 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::SioTests" /* SioTests */;
+			targetProxy = AC12F74E22CB391800E06524 /* PBXContainerItemProxy */;
+		};
+		OBJ_230 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::SioEffectsTests" /* SioEffectsTests */;
+			targetProxy = AC12F74F22CB391800E06524 /* PBXContainerItemProxy */;
+		};
+		OBJ_231 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::SioCodecTests" /* SioCodecTests */;
+			targetProxy = AC12F75022CB391800E06524 /* PBXContainerItemProxy */;
+		};
+		OBJ_251 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::SioValueStore" /* SioValueStore */;
+			targetProxy = AC12F74322CB391700E06524 /* PBXContainerItemProxy */;
+		};
+		OBJ_253 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::SioCodec" /* SioCodec */;
+			targetProxy = AC12F74422CB391700E06524 /* PBXContainerItemProxy */;
+		};
+		OBJ_254 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::Sio" /* Sio */;
+			targetProxy = AC12F74522CB391700E06524 /* PBXContainerItemProxy */;
+		};
+		OBJ_273 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::SioCodec" /* SioCodec */;
+			targetProxy = AC12F74122CB391700E06524 /* PBXContainerItemProxy */;
+		};
+		OBJ_274 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::Sio" /* Sio */;
+			targetProxy = AC12F74222CB391700E06524 /* PBXContainerItemProxy */;
+		};
+		OBJ_284 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::SioValueStore" /* SioValueStore */;
+			targetProxy = AC12F74822CB391700E06524 /* PBXContainerItemProxy */;
+		};
+		OBJ_285 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::SioCodec" /* SioCodec */;
+			targetProxy = AC12F74922CB391700E06524 /* PBXContainerItemProxy */;
+		};
+		OBJ_286 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::Sio" /* Sio */;
+			targetProxy = AC12F74A22CB391700E06524 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		OBJ_116 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Sio.xcodeproj/Sio_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Sio;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = Sio;
+			};
+			name = Debug;
+		};
+		OBJ_117 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Sio.xcodeproj/Sio_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Sio;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = Sio;
+			};
+			name = Release;
+		};
+		OBJ_172 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Sio.xcodeproj/SioCodec_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = SioCodec;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SioCodec;
+			};
+			name = Debug;
+		};
+		OBJ_173 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Sio.xcodeproj/SioCodec_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = SioCodec;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SioCodec;
+			};
+			name = Release;
+		};
+		OBJ_184 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Sio.xcodeproj/SioCodecTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SioCodecTests;
+			};
+			name = Debug;
+		};
+		OBJ_185 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Sio.xcodeproj/SioCodecTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SioCodecTests;
+			};
+			name = Release;
+		};
+		OBJ_195 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Sio.xcodeproj/SioEffects_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = SioEffects;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SioEffects;
+			};
+			name = Debug;
+		};
+		OBJ_196 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Sio.xcodeproj/SioEffects_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = SioEffects;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SioEffects;
+			};
+			name = Release;
+		};
+		OBJ_207 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Sio.xcodeproj/SioEffectsTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SioEffectsTests;
+			};
+			name = Debug;
+		};
+		OBJ_208 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Sio.xcodeproj/SioEffectsTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SioEffectsTests;
+			};
+			name = Release;
+		};
+		OBJ_218 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		OBJ_219 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		OBJ_224 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		OBJ_225 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		OBJ_233 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Sio.xcodeproj/SioTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SioTests;
+			};
+			name = Debug;
+		};
+		OBJ_234 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Sio.xcodeproj/SioTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SioTests;
+			};
+			name = Release;
+		};
+		OBJ_256 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Sio.xcodeproj/SioValueStore_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = SioValueStore;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SioValueStore;
+			};
+			name = Debug;
+		};
+		OBJ_257 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Sio.xcodeproj/SioValueStore_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = SioValueStore;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SioValueStore;
+			};
+			name = Release;
+		};
+		OBJ_276 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Sio.xcodeproj/SioValueStoreTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SioValueStoreTests;
+			};
+			name = Debug;
+		};
+		OBJ_277 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Sio.xcodeproj/SioValueStoreTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SioValueStoreTests;
+			};
+			name = Release;
+		};
+		OBJ_3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"SWIFT_PACKAGE=1",
+					"DEBUG=1",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE DEBUG";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				USE_HEADERMAP = NO;
+			};
+			name = Debug;
+		};
+		OBJ_4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"SWIFT_PACKAGE=1",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				USE_HEADERMAP = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		OBJ_115 /* Build configuration list for PBXNativeTarget "Sio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_116 /* Debug */,
+				OBJ_117 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_171 /* Build configuration list for PBXNativeTarget "SioCodec" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_172 /* Debug */,
+				OBJ_173 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_183 /* Build configuration list for PBXNativeTarget "SioCodecTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_184 /* Debug */,
+				OBJ_185 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_194 /* Build configuration list for PBXNativeTarget "SioEffects" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_195 /* Debug */,
+				OBJ_196 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_2 /* Build configuration list for PBXProject "Sio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_3 /* Debug */,
+				OBJ_4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_206 /* Build configuration list for PBXNativeTarget "SioEffectsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_207 /* Debug */,
+				OBJ_208 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_217 /* Build configuration list for PBXNativeTarget "SioPackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_218 /* Debug */,
+				OBJ_219 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_223 /* Build configuration list for PBXAggregateTarget "SioPackageTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_224 /* Debug */,
+				OBJ_225 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_232 /* Build configuration list for PBXNativeTarget "SioTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_233 /* Debug */,
+				OBJ_234 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_255 /* Build configuration list for PBXNativeTarget "SioValueStore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_256 /* Debug */,
+				OBJ_257 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_275 /* Build configuration list for PBXNativeTarget "SioValueStoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_276 /* Debug */,
+				OBJ_277 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = OBJ_1 /* Project object */;
 }

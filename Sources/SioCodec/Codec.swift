@@ -34,6 +34,10 @@ public extension Codec {
 		return compose(left, right)
 	}
 	
+	static func <<< <C>(_ left: Codec<E, B, C>, _ right: Codec<E, A, B>) -> Codec<E, A, C> {
+		return compose(right, left)
+	}
+	
 	func mapError<F>(_ f: @escaping (E) -> F) -> Codec<F, A, B> {
 		return Codec<F, A, B>.init(
 			to: { self.to($0).mapLeft(f) },
