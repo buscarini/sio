@@ -28,6 +28,8 @@
 		AC12F76222CB73B600E06524 /* Codec+Iso.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12F75F22CB736400E06524 /* Codec+Iso.swift */; };
 		AC12F76422CB742600E06524 /* ValueStore+Iso.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12F76322CB742600E06524 /* ValueStore+Iso.swift */; };
 		AC12F76622CB765100E06524 /* ValueStoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12F76522CB765100E06524 /* ValueStoreError.swift */; };
+		AC12F76922CB7B4600E06524 /* SioValueStoreJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12F76722CB797400E06524 /* SioValueStoreJSONTests.swift */; };
+		AC12F76B22CB7C6A00E06524 /* SioCodecJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12F76A22CB7C6A00E06524 /* SioCodecJSONTests.swift */; };
 		OBJ_119 /* Array+SIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Array+SIO.swift */; };
 		OBJ_120 /* Collection+Chunks.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Collection+Chunks.swift */; };
 		OBJ_121 /* Compose.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Compose.swift */; };
@@ -262,6 +264,8 @@
 		AC12F75F22CB736400E06524 /* Codec+Iso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codec+Iso.swift"; sourceTree = "<group>"; };
 		AC12F76322CB742600E06524 /* ValueStore+Iso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Iso.swift"; sourceTree = "<group>"; };
 		AC12F76522CB765100E06524 /* ValueStoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueStoreError.swift; sourceTree = "<group>"; };
+		AC12F76722CB797400E06524 /* SioValueStoreJSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioValueStoreJSONTests.swift; sourceTree = "<group>"; };
+		AC12F76A22CB7C6A00E06524 /* SioCodecJSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioCodecJSONTests.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Collection+Chunks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Chunks.swift"; sourceTree = "<group>"; };
 		OBJ_109 /* Sio.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = Sio.xcworkspace; sourceTree = SOURCE_ROOT; };
 		OBJ_11 /* Compose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compose.swift; sourceTree = "<group>"; };
@@ -597,6 +601,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_83 /* SioCodecTests.swift */,
+				AC12F76A22CB7C6A00E06524 /* SioCodecJSONTests.swift */,
 			);
 			name = SioCodecTests;
 			path = Tests/SioCodecTests;
@@ -634,6 +639,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_99 /* SioValueStoreTests.swift */,
+				AC12F76722CB797400E06524 /* SioValueStoreJSONTests.swift */,
 			);
 			name = SioValueStoreTests;
 			path = Tests/SioValueStoreTests;
@@ -909,6 +915,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				AC12F76B22CB7C6A00E06524 /* SioCodecJSONTests.swift in Sources */,
 				OBJ_187 /* SioCodecTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -983,6 +990,7 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_279 /* SioValueStoreTests.swift in Sources */,
+				AC12F76922CB7B4600E06524 /* SioValueStoreJSONTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,43 @@
+//
+//  SioValueStoreJSONTests.swift
+//  SioValueStore
+//
+//  Created by José Manuel Sánchez Peñarroja on 02/07/2019.
+//
+
+import Foundation
+import XCTest
+import Sio
+import SioValueStore
+
+class SIOValueStoreJSONTests: XCTestCase {
+	struct User: Equatable, Codable {
+		var id: String
+		var name: String
+		var age: Int
+		
+		static var mock: User {
+			return .init(id: "1", name: "John", age: 30)
+		}
+	}
+	
+	func testJSON() {
+		let finish = expectation(description: "finish")
+		
+		let store = ValueStoreA<Void, ValueStoreError, User>.jsonPreference("user")
+		let user = User.mock
+		
+		store.save(user).flatMap { user in
+			store.load
+		}
+		.fork({ _ in
+			XCTFail()
+		}, { loaded in
+			XCTAssert(loaded == user)
+			
+			finish.fulfill()
+		})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+}
