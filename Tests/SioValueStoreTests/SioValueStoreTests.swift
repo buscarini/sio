@@ -41,7 +41,6 @@ class SIOValueStoreTests: XCTestCase {
 	func testCopy() {
 		let finish = expectation(description: "finish")
 
-		
 		var targetVar: Int = 0
 		
 		let origin = ValueStoreA<Void, String, Int>.of(6)

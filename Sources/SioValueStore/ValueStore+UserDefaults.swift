@@ -7,6 +7,7 @@
 
 import Foundation
 import Sio
+import SioCodec
 
 public protocol PropertyListValue {}
 
@@ -61,17 +62,10 @@ public extension ValueStore where A: PropertyListValue, E == Void {
 }
 
 public extension ValueStore where A: Codable {
-	static func codablePreference(_ key: String) -> ValueStoreA<Void, Error, A> {
+	static func jsonPreference(_ key: String) -> ValueStoreA<Void, ValueStoreError, A> {
 		return ValueStoreA<Void, Void, Data>
 			.rawPreference(key)
-			.diMapError { _ in NSError.init(domain: "SioValueStore", code: -1, userInfo: nil) }
-			.process(
-				{ value in
-					SIO { _ in try JSONEncoder().encode(value) }
-				},
-				{ data in
-					SIO { _ in try JSONDecoder().decode(A.self, from: data) }
-				}
-			)
+			.diMapError { _ in .noData }
+			>>>	Codec.json.mapError(ValueStoreError.encoding)
 	}
 }
