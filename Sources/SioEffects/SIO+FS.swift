@@ -17,6 +17,10 @@ public struct FS {
 	public var linkItem = defaultLinkItem
 	public var removeItem = defaultRemoveItem
 	
+	// Content
+	public var writeFile = defaultWriteFile
+	public var readFile = defaultReadFile
+	
 	// Attributes
 	public var markSkipBackup = defaultMarkSkipBackup
 
@@ -28,6 +32,9 @@ public struct FS {
 		linkItem: @escaping (URL, URL) -> Task<Void>,
 		removeItem: @escaping (URL) -> Task<Void>,
 		
+		readFile: @escaping (FileURL) -> Task<Data>,
+		writeFile: @escaping (Data, FileURL) -> Task<FileURL>,
+		
 		markSkipBackup: @escaping (URL) -> Task<Void>
 	) {
 		self.createDir = createDir
@@ -36,6 +43,9 @@ public struct FS {
 		self.moveItem = moveItem
 		self.linkItem = linkItem
 		self.removeItem = removeItem
+		
+		self.readFile = readFile
+		self.writeFile = writeFile
 		
 		self.markSkipBackup = markSkipBackup
 	}
@@ -82,6 +92,22 @@ public struct FS {
 		})
 	}
 	
+	// MARK: IO
+	public static func defaultReadFile(from path: FileURL) -> Task<Data> {
+		return Task<Data>.init(catching: { _ in
+			try Data(contentsOf: path.rawValue)
+		})
+	}
+	
+	public static func defaultWriteFile(data: Data, toPath url: FileURL) -> Task<FileURL> {
+		return Task<Void>.init(catching: { _ in
+			try data.write(to: url.rawValue)
+		})
+		.map(const(url))
+	}
+
+	
+	// MARK: Attributes
 	static func defaultMarkSkipBackup(at url: URL) -> Task<Void> {
 		return Task<Void>.init(catching: { _ in
 			var changeUrl = url
