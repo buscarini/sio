@@ -32,6 +32,11 @@
 		AC12F76B22CB7C6A00E06524 /* SioCodecJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12F76A22CB7C6A00E06524 /* SioCodecJSONTests.swift */; };
 		AC640F2C22CCAD3C004493F0 /* FileURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12F77022CBA4D800E06524 /* FileURL.swift */; };
 		AC640FB922CCEA15004493F0 /* RaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC640FB822CCEA15004493F0 /* RaceTests.swift */; };
+		AC640FDA22CCF142004493F0 /* SIO+Codec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC640FD922CCF142004493F0 /* SIO+Codec.swift */; };
+		AC640FDC22CCF1F9004493F0 /* SioCodecSIOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC640FDB22CCF1F9004493F0 /* SioCodecSIOTests.swift */; };
+		AC640FDE22CCF260004493F0 /* Codec+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC640FDD22CCF260004493F0 /* Codec+Int.swift */; };
+		AC640FE022CCF2D9004493F0 /* SIOCodecUTF8Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC640FDF22CCF2D9004493F0 /* SIOCodecUTF8Tests.swift */; };
+		AC640FE222CCF2E6004493F0 /* SIOCodecBase64Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC640FE122CCF2E6004493F0 /* SIOCodecBase64Tests.swift */; };
 		OBJ_119 /* Array+SIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Array+SIO.swift */; };
 		OBJ_120 /* Collection+Chunks.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Collection+Chunks.swift */; };
 		OBJ_121 /* Compose.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Compose.swift */; };
@@ -270,6 +275,11 @@
 		AC12F76A22CB7C6A00E06524 /* SioCodecJSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioCodecJSONTests.swift; sourceTree = "<group>"; };
 		AC12F77022CBA4D800E06524 /* FileURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileURL.swift; sourceTree = "<group>"; };
 		AC640FB822CCEA15004493F0 /* RaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceTests.swift; sourceTree = "<group>"; };
+		AC640FD922CCF142004493F0 /* SIO+Codec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Codec.swift"; sourceTree = "<group>"; };
+		AC640FDB22CCF1F9004493F0 /* SioCodecSIOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioCodecSIOTests.swift; sourceTree = "<group>"; };
+		AC640FDD22CCF260004493F0 /* Codec+Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codec+Int.swift"; sourceTree = "<group>"; };
+		AC640FDF22CCF2D9004493F0 /* SIOCodecUTF8Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIOCodecUTF8Tests.swift; sourceTree = "<group>"; };
+		AC640FE122CCF2E6004493F0 /* SIOCodecBase64Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIOCodecBase64Tests.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Collection+Chunks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Chunks.swift"; sourceTree = "<group>"; };
 		OBJ_109 /* Sio.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = Sio.xcworkspace; sourceTree = SOURCE_ROOT; };
 		OBJ_11 /* Compose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compose.swift; sourceTree = "<group>"; };
@@ -479,6 +489,8 @@
 				OBJ_60 /* Codec+Base64.swift */,
 				OBJ_61 /* Codec+Data.swift */,
 				OBJ_62 /* Codec+JSON.swift */,
+				AC640FDD22CCF260004493F0 /* Codec+Int.swift */,
+				AC640FD922CCF142004493F0 /* SIO+Codec.swift */,
 				AC12F75F22CB736400E06524 /* Codec+Iso.swift */,
 				OBJ_63 /* Codec.swift */,
 			);
@@ -605,7 +617,10 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_83 /* SioCodecTests.swift */,
+				AC640FDB22CCF1F9004493F0 /* SioCodecSIOTests.swift */,
 				AC12F76A22CB7C6A00E06524 /* SioCodecJSONTests.swift */,
+				AC640FDF22CCF2D9004493F0 /* SIOCodecUTF8Tests.swift */,
+				AC640FE122CCF2E6004493F0 /* SIOCodecBase64Tests.swift */,
 			);
 			name = SioCodecTests;
 			path = Tests/SioCodecTests;
@@ -910,9 +925,11 @@
 			files = (
 				OBJ_175 /* Codec+Base64.swift in Sources */,
 				OBJ_176 /* Codec+Data.swift in Sources */,
+				AC640FDA22CCF142004493F0 /* SIO+Codec.swift in Sources */,
 				OBJ_177 /* Codec+JSON.swift in Sources */,
 				AC12F76222CB73B600E06524 /* Codec+Iso.swift in Sources */,
 				OBJ_178 /* Codec.swift in Sources */,
+				AC640FDE22CCF260004493F0 /* Codec+Int.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -921,7 +938,10 @@
 			buildActionMask = 0;
 			files = (
 				AC12F76B22CB7C6A00E06524 /* SioCodecJSONTests.swift in Sources */,
+				AC640FE022CCF2D9004493F0 /* SIOCodecUTF8Tests.swift in Sources */,
 				OBJ_187 /* SioCodecTests.swift in Sources */,
+				AC640FDC22CCF1F9004493F0 /* SioCodecSIOTests.swift in Sources */,
+				AC640FE222CCF2E6004493F0 /* SIOCodecBase64Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

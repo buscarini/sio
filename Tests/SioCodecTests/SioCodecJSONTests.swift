@@ -6,12 +6,11 @@
 //
 
 import Foundation
-import Foundation
 import XCTest
 import Sio
 import SioCodec
 
-class SIOValueStoreJSONTests: XCTestCase {
+class SIOCodecJSONTests: XCTestCase {
 	struct User: Equatable, Codable {
 		var id: String
 		var name: String
