@@ -20,6 +20,13 @@ public struct Console {
 		)
 	}
 	
+	public static func mock(_ getLine: String) -> Console {
+		return Console(
+			printLine: { _ in .empty },
+			getLine: { return .of(getLine) }
+		)
+	}
+	
 	public init(
 		printLine: @escaping (String) -> UIO<Void>,
 		getLine: @escaping () -> IO<SIOError, String>

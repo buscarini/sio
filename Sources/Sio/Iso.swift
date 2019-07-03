@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Isomorphism between 2 structures. Law: compose(from, to) == id
 public struct Iso<A, B> {
 	public var from: (B) -> A
 	public var to: (A) -> B

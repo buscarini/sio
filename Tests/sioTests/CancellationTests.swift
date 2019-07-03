@@ -9,6 +9,7 @@
 import Foundation
 import XCTest
 import Sio
+import SioEffects
 
 class CancellationTests: XCTestCase {
 	
@@ -53,7 +54,6 @@ class CancellationTests: XCTestCase {
 		func long() -> UIO<Void> {
 			return Array(1...800).forEach { item in
 				IO<Never, Int>.init { _ in
-					print(item)
 					return .right(item)
 				}
 				.flatMap { int in
@@ -83,6 +83,50 @@ class CancellationTests: XCTestCase {
 			XCTAssert(lastValue < 800)
 			finish.fulfill()
 		}
+		
+		waitForExpectations(timeout: 10, handler: nil)
+	}
+	
+	func testCancellationMultiple() {
+		var cancelled = false
+
+		let finish = expectation(description: "Finish after cancelling")
+		finish.isInverted = true
+		
+		let first = Array(1...800).forEach { item in
+			accessM(Console.self) { console -> UIO<Void> in
+					XCTAssert(cancelled == false)
+					print(cancelled)
+					return console.printLine("long \(item)")
+				}
+				.scheduleOn(.global())
+			}
+			.provide(Console.default)
+//			.provide(Console.mock(""))
+		
+		let second = UIO<[Int]>.init { (_, _, resolve) in
+			(0...800).forEach { Swift.print("\($0)") }
+			
+			print("-------------")
+			
+			resolve(Array(0...80))
+		}
+		
+		let task = zip(
+			first,
+			second
+		)
+		.scheduleOn(DispatchQueue.global())
+		
+		
+		task.fork(absurd, { a in
+			finish.fulfill()
+		})
+		
+		print("before cancel")
+		task.cancel()
+		cancelled = true
+		print("after cancel")
 		
 		waitForExpectations(timeout: 10, handler: nil)
 	}

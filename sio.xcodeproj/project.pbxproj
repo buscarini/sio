@@ -30,6 +30,7 @@
 		AC12F76622CB765100E06524 /* ValueStoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12F76522CB765100E06524 /* ValueStoreError.swift */; };
 		AC12F76922CB7B4600E06524 /* SioValueStoreJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12F76722CB797400E06524 /* SioValueStoreJSONTests.swift */; };
 		AC12F76B22CB7C6A00E06524 /* SioCodecJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12F76A22CB7C6A00E06524 /* SioCodecJSONTests.swift */; };
+		AC640F2C22CCAD3C004493F0 /* FileURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12F77022CBA4D800E06524 /* FileURL.swift */; };
 		OBJ_119 /* Array+SIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Array+SIO.swift */; };
 		OBJ_120 /* Collection+Chunks.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Collection+Chunks.swift */; };
 		OBJ_121 /* Compose.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Compose.swift */; };
@@ -266,6 +267,7 @@
 		AC12F76522CB765100E06524 /* ValueStoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueStoreError.swift; sourceTree = "<group>"; };
 		AC12F76722CB797400E06524 /* SioValueStoreJSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioValueStoreJSONTests.swift; sourceTree = "<group>"; };
 		AC12F76A22CB7C6A00E06524 /* SioCodecJSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioCodecJSONTests.swift; sourceTree = "<group>"; };
+		AC12F77022CBA4D800E06524 /* FileURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileURL.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Collection+Chunks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Chunks.swift"; sourceTree = "<group>"; };
 		OBJ_109 /* Sio.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = Sio.xcworkspace; sourceTree = SOURCE_ROOT; };
 		OBJ_11 /* Compose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compose.swift; sourceTree = "<group>"; };
@@ -454,7 +456,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -467,7 +469,6 @@
 				OBJ_112 /* sio.podspec */,
 				OBJ_113 /* README.md */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_59 /* SioCodec */ = {
@@ -490,6 +491,7 @@
 				OBJ_66 /* SIO+Date.swift */,
 				OBJ_67 /* SIO+FS.swift */,
 				OBJ_68 /* SIO+Random.swift */,
+				AC12F77022CBA4D800E06524 /* FileURL.swift */,
 			);
 			name = SioEffects;
 			path = Sources/SioEffects;
@@ -821,7 +823,7 @@
 				English,
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_100 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -925,6 +927,7 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_198 /* SIO+Console.swift in Sources */,
+				AC640F2C22CCAD3C004493F0 /* FileURL.swift in Sources */,
 				OBJ_199 /* SIO+Date.swift in Sources */,
 				OBJ_200 /* SIO+FS.swift in Sources */,
 				OBJ_201 /* SIO+Random.swift in Sources */,

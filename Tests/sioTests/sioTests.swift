@@ -14,7 +14,8 @@ class sioTests: XCTestCase {
 	func testFlip() {
 		let finish = expectation(description: "finish tasks")
 
-		SIO<Void, String, Int>.rejected("ok").flip().fork({ _ in
+		SIO<Void, String, Int>.rejected("ok").flip()
+			.fork({ _ in
 			XCTFail()
 		}, { value in
 			XCTAssert(value == "ok")

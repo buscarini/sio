@@ -22,7 +22,7 @@ public struct FS {
 
 	public init(
 		createDir: @escaping (URL, Bool) -> Task<Void>,
-		
+
 		copyItem: @escaping (URL, URL) -> Task<Void>,
 		moveItem: @escaping (URL, URL) -> Task<Void>,
 		linkItem: @escaping (URL, URL) -> Task<Void>,
@@ -40,6 +40,18 @@ public struct FS {
 		self.markSkipBackup = markSkipBackup
 	}
 	
+	public func createFileDir(at url: FileURL, createIntermediate: Bool) -> Task<FileURL> {
+		return Task.of(url)
+			.map {
+				$0.rawValue.deletingLastPathComponent()
+			}
+			.flatMap { self.createDir($0, createIntermediate) }
+			.map { _ in
+				return url
+			}
+	}
+	
+	// MARK: Defaults
 	static func defaultCreateDir(at url: URL, createIntermediate: Bool) -> Task<Void> {
 		return Task<Void>.init(catching: { _ in
 			try FileManager.default.createDirectory(at: url, withIntermediateDirectories: createIntermediate, attributes: nil)
