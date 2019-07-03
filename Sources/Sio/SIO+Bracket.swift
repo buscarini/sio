@@ -21,13 +21,11 @@ public extension SIO {
 		_ use: @escaping (A) -> SIO<R, E, B>) -> SIO<R, E, B> {
 		
 		return acquire
-			.flatMap { a in
-				use(a)
-				.flatMap { b in
-					release(a)
-						.const(b)
-						.mapError(absurd)
-				}
+			.flatMapR { r, a in
+				let releaseTask = release(a).provide(r)
+				
+				return use(a)
+					.onTermination(releaseTask)
 			}
 	}
 }
