@@ -165,21 +165,6 @@ class ConcurrencyTests: XCTestCase {
 		}
 	}*/
 	
-	func testRace() {
-		let finish = expectation(description: "finish")
-		
-		let left = UIO.of(1).scheduleOn(DispatchQueue.init(label: "left")).delay(0.5, DispatchQueue.main)
-		let right = UIO.of(2).scheduleOn(DispatchQueue.init(label: "right")).delay(5, DispatchQueue.main)
-		
-		race(left, right).run { value in
-			XCTAssert(value == 1)
-			
-			finish.fulfill()
-		}
-		
-		wait(for: [finish], timeout: 5)
-	}
-	
 	func testCancel() {
 		let finish = expectation(description: "finish")
 		

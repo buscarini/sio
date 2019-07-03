@@ -99,11 +99,12 @@ public struct FS {
 		})
 	}
 	
+	
 	public static func defaultWriteFile(data: Data, toPath url: FileURL) -> Task<FileURL> {
 		return Task<Void>.init(catching: { _ in
 			try data.write(to: url.rawValue)
 		})
-		.map(const(url))
+		.map(const(url))		
 	}
 
 	

@@ -8,6 +8,10 @@
 
 import Foundation
 
+public func <&><E, A, B>(lhs: Either<E, A>, rhs: Either<E, B>) -> Either<E, (A, B)> {
+	return zip(lhs, rhs)
+}
+
 public func zip<T, U, V>(_ left: Either<T, U>, _ right: Either<T, V>) -> Either<T, (U, V)> {
 	switch (left, right) {
 	case let (.left(l), _):

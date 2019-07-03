@@ -22,4 +22,3 @@ public func <*><E, A, B>(lhs: Either<E, (A) -> B>, rhs: Either<E, A>) -> Either<
 public func pure<E, A>(_ x: A) -> Either<E, A> {
 	return .right(x)
 }
-

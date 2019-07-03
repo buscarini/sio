@@ -33,14 +33,6 @@ public func race<R, E, A>(_ left: SIO<R, E, A>, _ right: SIO<R, E, A>) -> SIO<R,
 				resolved.result = .loaded(.right(true))
 				r.cancel()
 				resolve(a)
-			case let (.loaded(.left(e)), _):
-				resolved.result = .loaded(.right(true))
-				r.cancel()
-				reject(e)
-			case let (_, .loaded(.left(e))):
-				resolved.result = .loaded(.right(true))
-				l.cancel()
-				reject(e)
 			case let (_, .loaded(.right(a))):
 				resolved.result = .loaded(.right(true))
 				l.cancel()

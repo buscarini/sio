@@ -26,4 +26,6 @@ postfix operator <>
 // Alt
 infix operator <|>: infixl3
 
+infix operator <&>: infixl3
+
 infix operator <*>: ApplyPrecedence
