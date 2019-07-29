@@ -52,7 +52,10 @@ class BracketTests: XCTestCase {
 		let task = UIO.of(1)
 		.tap { _ in UIO.effect { print("Resource acquired") } }
 		.bracket({ _ in
-			.effectMain { release.fulfill() }
+			.effectMain {
+				print("resource released")
+				release.fulfill()
+			}
 		}, { value in
 			UIO.of(value).delay(1)
 		})
@@ -62,14 +65,10 @@ class BracketTests: XCTestCase {
 		}, { value in
 			XCTFail()
 		})
-		
-		DispatchQueue.main.async {
+				
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 			task.cancel()
 		}
-		
-//		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-//			task.cancel()
-//		}
 		
 		waitForExpectations(timeout: 2, handler: nil)
 	}

@@ -9,5 +9,6 @@
         <page name='fold'/>
         <page name='RawUserDefaults'/>
         <page name='CodableUserDefaults'/>
+        <page name='Random'/>
     </pages>
 </playground>

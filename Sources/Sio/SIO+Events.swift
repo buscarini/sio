@@ -14,6 +14,8 @@ public extension SIO {
 		})
 		
 		res.onCancel = {
+			self.cancel()
+			
 			task.fork(absurd, { _ in })
 		}
 

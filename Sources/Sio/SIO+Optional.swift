@@ -36,11 +36,11 @@ public extension SIO {
 	}
 }
 
-public extension SIO where E == SIOError {
-	static func from(_ f: @escaping (R) -> A?) -> SIO<R, E, A> {
+public extension SIO where E == Void {
+	static func from(_ f: @escaping (R) -> A?) -> SIO<R, Void, A> {
 		return SIO { env, reject, resolve in
 			guard let value = f(env) else {
-				reject(.empty)
+				reject(())
 				return
 			}
 			

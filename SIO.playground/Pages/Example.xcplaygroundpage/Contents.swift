@@ -2,6 +2,18 @@ import UIKit
 import Sio
 import SioEffects
 
+
+"abc".randomElement(using: &rng)
+
+//range.randomElement()
+
+//range.randomElement(using: &rng)
+
+//let letter: String = range.randomElement()!
+
+
+
+
 var str = "Hello, playground"
 
 struct Environment {

@@ -10,27 +10,29 @@ import Foundation
 import Sio
 
 public struct FS {
-	public var createDir = defaultCreateDir
+	public var createDir = Default.createDir
+	public var lsDir = Default.lsDir
 	
-	public var copyItem = defaultCopyItem
-	public var moveItem = defaultMoveItem
-	public var linkItem = defaultLinkItem
-	public var removeItem = defaultRemoveItem
+	public var copy = Default.copyItem
+	public var move = Default.moveItem
+	public var link = Default.linkItem
+	public var remove = Default.removeItem
 	
 	// Content
-	public var writeFile = defaultWriteFile
-	public var readFile = defaultReadFile
+	public var writeFile = Default.writeFile
+	public var readFile = Default.readFile
 	
 	// Attributes
-	public var markSkipBackup = defaultMarkSkipBackup
+	public var markSkipBackup = Default.markSkipBackup
 
 	public init(
 		createDir: @escaping (URL, Bool) -> Task<Void>,
+		lsDir: @escaping (URL) -> Task<[URL]>,
 
-		copyItem: @escaping (URL, URL) -> Task<Void>,
-		moveItem: @escaping (URL, URL) -> Task<Void>,
-		linkItem: @escaping (URL, URL) -> Task<Void>,
-		removeItem: @escaping (URL) -> Task<Void>,
+		copy: @escaping (URL, URL) -> Task<Void>,
+		move: @escaping (URL, URL) -> Task<Void>,
+		link: @escaping (URL, URL) -> Task<Void>,
+		remove: @escaping (URL) -> Task<Void>,
 		
 		readFile: @escaping (FileURL) -> Task<Data>,
 		writeFile: @escaping (Data, FileURL) -> Task<FileURL>,
@@ -38,11 +40,12 @@ public struct FS {
 		markSkipBackup: @escaping (URL) -> Task<Void>
 	) {
 		self.createDir = createDir
+		self.lsDir = lsDir
 		
-		self.removeItem = removeItem
-		self.moveItem = moveItem
-		self.linkItem = linkItem
-		self.removeItem = removeItem
+		self.remove = remove
+		self.move = move
+		self.link = link
+		self.remove = remove
 		
 		self.readFile = readFile
 		self.writeFile = writeFile
@@ -62,61 +65,67 @@ public struct FS {
 	}
 	
 	// MARK: Defaults
-	static func defaultCreateDir(at url: URL, createIntermediate: Bool) -> Task<Void> {
-		return Task<Void>.init(catching: { _ in
-			try FileManager.default.createDirectory(at: url, withIntermediateDirectories: createIntermediate, attributes: nil)
-		})
+	public enum Default {
+		static func createDir(at url: URL, createIntermediate: Bool) -> Task<Void> {
+			return Task<Void>.init(catching: { _ in
+				try FileManager.default.createDirectory(at: url, withIntermediateDirectories: createIntermediate, attributes: nil)
+			})
+		}
+		
+		static func lsDir(_ url: URL) -> Task<[URL]> {
+			return Task<[URL]>.init(catching: { _ in
+				try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil)
+			})
+		}
+		
+		static func copyItem(at url: URL, to target: URL) -> Task<Void> {
+			return Task<Void>.init(catching: { _ in
+				try FileManager.default.copyItem(at: url, to: target)
+			})
+		}
+		
+		static func moveItem(at url: URL, to target: URL) -> Task<Void> {
+			return Task<Void>.init(catching: { _ in
+				try FileManager.default.moveItem(at: url, to: target)
+			})
+		}
+		
+		static func linkItem(at url: URL, to target: URL) -> Task<Void> {
+			return Task<Void>.init(catching: { _ in
+				try FileManager.default.linkItem(at: url, to: target)
+			})
+		}
+		
+		static func removeItem(at url: URL) -> Task<Void> {
+			return Task<Void>.init(catching: { _ in
+				try FileManager.default.removeItem(at: url)
+			})
+		}
+		
+		// MARK: IO
+		public static func readFile(from path: FileURL) -> Task<Data> {
+			return Task<Data>.init(catching: { _ in
+				try Data(contentsOf: path.rawValue)
+			})
+		}
+		
+		
+		public static func writeFile(data: Data, toPath url: FileURL) -> Task<FileURL> {
+			return Task<Void>.init(catching: { _ in
+				try data.write(to: url.rawValue)
+			})
+				.map(const(url))
+		}
+		
+		
+		// MARK: Attributes
+		static func markSkipBackup(at url: URL) -> Task<Void> {
+			return Task<Void>.init(catching: { _ in
+				var changeUrl = url
+				var resourceValues = URLResourceValues()
+				resourceValues.isExcludedFromBackup = true
+				try changeUrl.setResourceValues(resourceValues)
+			})
+		}
 	}
-	
-	static func defaultCopyItem(at url: URL, to target: URL) -> Task<Void> {
-		return Task<Void>.init(catching: { _ in
-			try FileManager.default.copyItem(at: url, to: target)
-		})
-	}
-	
-	static func defaultMoveItem(at url: URL, to target: URL) -> Task<Void> {
-		return Task<Void>.init(catching: { _ in
-			try FileManager.default.moveItem(at: url, to: target)
-		})
-	}
-	
-	static func defaultLinkItem(at url: URL, to target: URL) -> Task<Void> {
-		return Task<Void>.init(catching: { _ in
-			try FileManager.default.linkItem(at: url, to: target)
-		})
-	}
-	
-	static func defaultRemoveItem(at url: URL) -> Task<Void> {
-		return Task<Void>.init(catching: { _ in
-			try FileManager.default.removeItem(at: url)
-		})
-	}
-	
-	// MARK: IO
-	public static func defaultReadFile(from path: FileURL) -> Task<Data> {
-		return Task<Data>.init(catching: { _ in
-			try Data(contentsOf: path.rawValue)
-		})
-	}
-	
-	
-	public static func defaultWriteFile(data: Data, toPath url: FileURL) -> Task<FileURL> {
-		return Task<Void>.init(catching: { _ in
-			try data.write(to: url.rawValue)
-		})
-		.map(const(url))		
-	}
-
-	
-	// MARK: Attributes
-	static func defaultMarkSkipBackup(at url: URL) -> Task<Void> {
-		return Task<Void>.init(catching: { _ in
-			var changeUrl = url
-			var resourceValues = URLResourceValues()
-			resourceValues.isExcludedFromBackup = true
-			try changeUrl.setResourceValues(resourceValues)
-		})
-	}
-	
-	
 }
