@@ -16,10 +16,10 @@ public struct Random {
 	public var double = Default.randomDouble
 
 	public init(
-		int: @escaping (Range<Int>) -> SIO<Void, Never, Int> = Default.randomInt,
-		uint: @escaping (Range<UInt>) -> SIO<Void, Never, UInt> = Default.randomUInt,
-		float: @escaping (Range<Float>) -> SIO<Void, Never, Float> = Default.randomFloat,
-		double: @escaping (Range<Double>) -> SIO<Void, Never, Double> = Default.randomDouble
+		int: @escaping (ClosedRange<Int>) -> SIO<Void, Never, Int> = Default.randomInt,
+		uint: @escaping (ClosedRange<UInt>) -> SIO<Void, Never, UInt> = Default.randomUInt,
+		float: @escaping (ClosedRange<Float>) -> SIO<Void, Never, Float> = Default.randomFloat,
+		double: @escaping (ClosedRange<Double>) -> SIO<Void, Never, Double> = Default.randomDouble
 	) {
 		self.int = int
 		self.uint = uint
@@ -32,32 +32,32 @@ public struct Random {
 			return .of(nil)
 		}
 		
-		return self.int(0..<from.count)
+		return self.int(0...(from.count - 1))
 			.map { index in
 				from[index]
 			}
 	}
 	
 	public enum Default {
-		public static func randomInt(_ range: Range<Int>) -> SIO<Void, Never, Int> {
+		public static func randomInt(_ range: ClosedRange<Int>) -> SIO<Void, Never, Int> {
 			return SIO<Void, Never, Int>.init({ _, reject, resolve in
 				resolve(Int.random(in: range))
 			})
 		}
 		
-		public static func randomUInt(_ range: Range<UInt>) -> SIO<Void, Never, UInt> {
+		public static func randomUInt(_ range: ClosedRange<UInt>) -> SIO<Void, Never, UInt> {
 			return SIO<Void, Never, UInt>.init({ _ , reject, resolve in
 				resolve(UInt.random(in: range))
 			})
 		}
 		
-		public static func randomFloat(_ range: Range<Float>) -> SIO<Void, Never, Float> {
+		public static func randomFloat(_ range: ClosedRange<Float>) -> SIO<Void, Never, Float> {
 			return SIO<Void, Never, Float>.init({ _ , reject, resolve in
 				resolve(Float.random(in: range))
 			})
 		}
 		
-		public static func randomDouble(_ range: Range<Double>) -> SIO<Void, Never, Double> {
+		public static func randomDouble(_ range: ClosedRange<Double>) -> SIO<Void, Never, Double> {
 			return SIO<Void, Never, Double>.init({ _ , reject, resolve in
 				resolve(Double.random(in: range))
 			})
