@@ -10,5 +10,6 @@
         <page name='RawUserDefaults'/>
         <page name='CodableUserDefaults'/>
         <page name='Random'/>
+        <page name='State'/>
     </pages>
 </playground>

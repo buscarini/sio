@@ -8,15 +8,15 @@
 
 import Foundation
 
-public func environment<R>(_ type: R.Type) -> SIO<R, Never, R> {
-	return SIO<R, Never, R>.environment()
+public func environment<R, E>(_ type: R.Type) -> SIO<R, E, R> {
+	return SIO<R, E, R>.environment()
 }
 
-public func access<R, V>(_ keyPath: KeyPath<R, V>) -> SIO<R, Never, V> {
-	return SIO<R, Never, V>.access { $0[keyPath: keyPath] }
+public func access<R, E, V>(_ keyPath: KeyPath<R, V>) -> SIO<R, E, V> {
+	return SIO<R, E, V>.access { $0[keyPath: keyPath] }
 }
 
-public func accessM<R, E, A>(_ type: R.Type, _ f: @escaping (R) -> SIO<Void, E, A>) -> SIO<R, E, A> {
+public func accessM<R, E, A>(_ type: R.Type, _ f: @escaping (R) -> SIO<R, E, A>) -> SIO<R, E, A> {
 	return SIO<R, E, A>.accessM(f)
 }
 
@@ -33,6 +33,13 @@ public extension SIO {
 		}
 	}
 	
+	func read() -> SIO<R, E, (R, A)> {
+		return zip(
+			SIO<R, E, A>.environment(),
+			self
+		)
+	}
+	
 	static func environment<R, E>() -> SIO<R, E, R> {
 		return access(id)
 	}
@@ -43,10 +50,8 @@ public extension SIO {
 		})
 	}
 	
-	static func accessM<R, E>(_ f: @escaping (R) -> SIO<Void, E, A>) -> SIO<R, E, A> {
-		return environment().flatMap { r in
-			f(r).require(R.self)
-		}
+	static func accessM<R, E>(_ f: @escaping (R) -> SIO<R, E, A>) -> SIO<R, E, A> {
+		return environment().flatMap(f)
 	}
 }
 

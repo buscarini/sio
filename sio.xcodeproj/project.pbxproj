@@ -39,6 +39,9 @@
 		AC640FE222CCF2E6004493F0 /* SIOCodecBase64Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC640FE122CCF2E6004493F0 /* SIOCodecBase64Tests.swift */; };
 		AC640FE422CCF59F004493F0 /* SioCodecIntTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC640FE322CCF59F004493F0 /* SioCodecIntTests.swift */; };
 		AC640FE622CCF7A2004493F0 /* BracketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC640FE522CCF7A2004493F0 /* BracketTests.swift */; };
+		AC6E7E44230083CD00FA9EAF /* Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6E7E43230083CD00FA9EAF /* Ref.swift */; };
+		AC6E7E462300840300FA9EAF /* SIO+Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6E7E452300840300FA9EAF /* SIO+Ref.swift */; };
+		AC6E7E48230218C900FA9EAF /* AnyRandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6E7E47230218C900FA9EAF /* AnyRandomNumberGenerator.swift */; };
 		OBJ_119 /* Array+SIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Array+SIO.swift */; };
 		OBJ_120 /* Collection+Chunks.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Collection+Chunks.swift */; };
 		OBJ_121 /* Compose.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Compose.swift */; };
@@ -284,6 +287,9 @@
 		AC640FE122CCF2E6004493F0 /* SIOCodecBase64Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIOCodecBase64Tests.swift; sourceTree = "<group>"; };
 		AC640FE322CCF59F004493F0 /* SioCodecIntTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioCodecIntTests.swift; sourceTree = "<group>"; };
 		AC640FE522CCF7A2004493F0 /* BracketTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BracketTests.swift; sourceTree = "<group>"; };
+		AC6E7E43230083CD00FA9EAF /* Ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ref.swift; sourceTree = "<group>"; };
+		AC6E7E452300840300FA9EAF /* SIO+Ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Ref.swift"; sourceTree = "<group>"; };
+		AC6E7E47230218C900FA9EAF /* AnyRandomNumberGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyRandomNumberGenerator.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Collection+Chunks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Chunks.swift"; sourceTree = "<group>"; };
 		OBJ_109 /* Sio.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = Sio.xcworkspace; sourceTree = SOURCE_ROOT; };
 		OBJ_11 /* Compose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compose.swift; sourceTree = "<group>"; };
@@ -510,6 +516,7 @@
 				OBJ_67 /* SIO+FS.swift */,
 				OBJ_68 /* SIO+Random.swift */,
 				AC12F77022CBA4D800E06524 /* FileURL.swift */,
+				AC6E7E47230218C900FA9EAF /* AnyRandomNumberGenerator.swift */,
 			);
 			name = SioEffects;
 			path = Sources/SioEffects;
@@ -601,6 +608,8 @@
 				OBJ_57 /* SIOError.swift */,
 				OBJ_58 /* SyncValue.swift */,
 				AC12F75B22CB724900E06524 /* Iso.swift */,
+				AC6E7E43230083CD00FA9EAF /* Ref.swift */,
+				AC6E7E452300840300FA9EAF /* SIO+Ref.swift */,
 			);
 			name = Sio;
 			path = Sources/Sio;
@@ -878,6 +887,7 @@
 				OBJ_123 /* Either+Alt.swift in Sources */,
 				OBJ_124 /* Either+Applicative.swift in Sources */,
 				OBJ_125 /* Either+Codable.swift in Sources */,
+				AC6E7E462300840300FA9EAF /* SIO+Ref.swift in Sources */,
 				OBJ_126 /* Either+Error.swift in Sources */,
 				OBJ_127 /* Either+Monad.swift in Sources */,
 				OBJ_128 /* Either+Optional.swift in Sources */,
@@ -886,6 +896,7 @@
 				OBJ_131 /* Either.swift in Sources */,
 				OBJ_132 /* NoSyncValue.swift in Sources */,
 				OBJ_133 /* Operators.swift in Sources */,
+				AC6E7E48230218C900FA9EAF /* AnyRandomNumberGenerator.swift in Sources */,
 				OBJ_134 /* PrecedenceGroups.swift in Sources */,
 				OBJ_135 /* Prelude.swift in Sources */,
 				OBJ_136 /* Remove.swift in Sources */,
@@ -916,6 +927,7 @@
 				OBJ_160 /* SIO+Run.swift in Sources */,
 				OBJ_161 /* SIO+Schedule.swift in Sources */,
 				OBJ_162 /* SIO+Tap.swift in Sources */,
+				AC6E7E44230083CD00FA9EAF /* Ref.swift in Sources */,
 				OBJ_163 /* SIO+Timeout.swift in Sources */,
 				OBJ_164 /* SIO+Typealias.swift in Sources */,
 				OBJ_165 /* SIO+Zip.swift in Sources */,
