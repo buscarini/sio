@@ -41,8 +41,12 @@ extension SIO {
 	
 	@inlinable
 	public func replicateM(_ count: Int) -> SIO<R, E, [A]> {
-		return Array(1...count).traverse { _ in
-			self
-		}
+		return Array(1...count)
+			.forEach { _ in self }
+			
+		
+//		return Array(1...count).traverse { _ in
+//			self
+//		}
 	}
 }

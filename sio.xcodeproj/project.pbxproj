@@ -30,6 +30,7 @@
 		AC12F76622CB765100E06524 /* ValueStoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12F76522CB765100E06524 /* ValueStoreError.swift */; };
 		AC12F76922CB7B4600E06524 /* SioValueStoreJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12F76722CB797400E06524 /* SioValueStoreJSONTests.swift */; };
 		AC12F76B22CB7C6A00E06524 /* SioCodecJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12F76A22CB7C6A00E06524 /* SioCodecJSONTests.swift */; };
+		AC2254D12303089F006A6FE1 /* SioRandomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2254D02303089F006A6FE1 /* SioRandomTests.swift */; };
 		AC640F2C22CCAD3C004493F0 /* FileURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12F77022CBA4D800E06524 /* FileURL.swift */; };
 		AC640FB922CCEA15004493F0 /* RaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC640FB822CCEA15004493F0 /* RaceTests.swift */; };
 		AC640FDA22CCF142004493F0 /* SIO+Codec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC640FD922CCF142004493F0 /* SIO+Codec.swift */; };
@@ -42,6 +43,7 @@
 		AC6E7E44230083CD00FA9EAF /* Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6E7E43230083CD00FA9EAF /* Ref.swift */; };
 		AC6E7E462300840300FA9EAF /* SIO+Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6E7E452300840300FA9EAF /* SIO+Ref.swift */; };
 		AC6E7E48230218C900FA9EAF /* AnyRandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6E7E47230218C900FA9EAF /* AnyRandomNumberGenerator.swift */; };
+		AC6E7E4A2302A29400FA9EAF /* LCRNG.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6E7E492302A29400FA9EAF /* LCRNG.swift */; };
 		OBJ_119 /* Array+SIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Array+SIO.swift */; };
 		OBJ_120 /* Collection+Chunks.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Collection+Chunks.swift */; };
 		OBJ_121 /* Compose.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Compose.swift */; };
@@ -279,6 +281,7 @@
 		AC12F76722CB797400E06524 /* SioValueStoreJSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioValueStoreJSONTests.swift; sourceTree = "<group>"; };
 		AC12F76A22CB7C6A00E06524 /* SioCodecJSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioCodecJSONTests.swift; sourceTree = "<group>"; };
 		AC12F77022CBA4D800E06524 /* FileURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileURL.swift; sourceTree = "<group>"; };
+		AC2254D02303089F006A6FE1 /* SioRandomTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioRandomTests.swift; sourceTree = "<group>"; };
 		AC640FB822CCEA15004493F0 /* RaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceTests.swift; sourceTree = "<group>"; };
 		AC640FD922CCF142004493F0 /* SIO+Codec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Codec.swift"; sourceTree = "<group>"; };
 		AC640FDB22CCF1F9004493F0 /* SioCodecSIOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioCodecSIOTests.swift; sourceTree = "<group>"; };
@@ -290,6 +293,7 @@
 		AC6E7E43230083CD00FA9EAF /* Ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ref.swift; sourceTree = "<group>"; };
 		AC6E7E452300840300FA9EAF /* SIO+Ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Ref.swift"; sourceTree = "<group>"; };
 		AC6E7E47230218C900FA9EAF /* AnyRandomNumberGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyRandomNumberGenerator.swift; sourceTree = "<group>"; };
+		AC6E7E492302A29400FA9EAF /* LCRNG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCRNG.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Collection+Chunks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Chunks.swift"; sourceTree = "<group>"; };
 		OBJ_109 /* Sio.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = Sio.xcworkspace; sourceTree = SOURCE_ROOT; };
 		OBJ_11 /* Compose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compose.swift; sourceTree = "<group>"; };
@@ -517,6 +521,7 @@
 				OBJ_68 /* SIO+Random.swift */,
 				AC12F77022CBA4D800E06524 /* FileURL.swift */,
 				AC6E7E47230218C900FA9EAF /* AnyRandomNumberGenerator.swift */,
+				AC6E7E492302A29400FA9EAF /* LCRNG.swift */,
 			);
 			name = SioEffects;
 			path = Sources/SioEffects;
@@ -644,6 +649,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_85 /* SioEffectsTests.swift */,
+				AC2254D02303089F006A6FE1 /* SioRandomTests.swift */,
 			);
 			name = SioEffectsTests;
 			path = Tests/SioEffectsTests;
@@ -912,6 +918,7 @@
 				OBJ_146 /* SIO+Effects.swift in Sources */,
 				OBJ_147 /* SIO+Either.swift in Sources */,
 				OBJ_148 /* SIO+Error.swift in Sources */,
+				AC6E7E4A2302A29400FA9EAF /* LCRNG.swift in Sources */,
 				OBJ_149 /* SIO+Events.swift in Sources */,
 				OBJ_150 /* SIO+Flip.swift in Sources */,
 				OBJ_151 /* SIO+Fold.swift in Sources */,
@@ -980,6 +987,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				AC2254D12303089F006A6FE1 /* SioRandomTests.swift in Sources */,
 				OBJ_210 /* SioEffectsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

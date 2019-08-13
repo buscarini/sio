@@ -28,14 +28,20 @@ public struct Random {
 	}
 	
 	public func element<A>(_ from: [A]) -> SIO<Ref<AnyRandomNumberGenerator>, Never, A?> {
-		guard from.count > 0 else {
-			return .of(nil)
-		}
+		return SIO<Ref<AnyRandomNumberGenerator>, Never, A?>.init({ r in
+			return .right(from.randomElement(using: &r.state))
+		})
 		
-		return self.int(0...(from.count - 1))
-			.map { index in
-				from[index]
-			}
+		
+		
+//		guard from.count > 0 else {
+//			return .of(nil)
+//		}
+//		
+//		return self.int(0...(from.count - 1))
+//			.map { index in
+//				from[index]
+//			}
 	}
 	
 	public enum Default {

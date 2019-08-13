@@ -4,10 +4,20 @@ import SioEffects
 import CoreGraphics
 import UIKit
 
+var gen = LCRNG(seed: 1)
+
+gen.next()
+gen.next()
+gen.next()
+gen.next()
 
 let console = Console.default
 let rnd = Random()
-let gen = Ref<AnyRandomNumberGenerator>.init(.init(SystemRandomNumberGenerator()))
+let gen = Ref<AnyRandomNumberGenerator>.init(.init(
+	LCRNG(seed: 1)
+//	SystemRandomNumberGenerator()
+))
+
 
 let segment = rnd.oneOf([
 	rnd.digit(),
@@ -16,6 +26,9 @@ let segment = rnd.oneOf([
 	.replicateM(6)
 	.map { $0.joined() }
 
+segment
+	.flatMap { console.printLine($0).adapt() }
+	.fork(gen, { _ in }, { _ in })
 
 segment
 	.replicateM(3)

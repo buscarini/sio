@@ -94,10 +94,10 @@ class CancellationTests: XCTestCase {
 		finish.isInverted = true
 		
 		let first = Array(1...800).forEach { item in
-			accessM(Console.self) { console -> UIO<Void> in
+			accessM(Console.self) { console -> SIO<Console, Never, Void> in
 					XCTAssert(cancelled == false)
 					print(cancelled)
-					return console.printLine("long \(item)")
+					return console.printLine("long \(item)").require(Console.self)
 				}
 				.scheduleOn(.global())
 			}

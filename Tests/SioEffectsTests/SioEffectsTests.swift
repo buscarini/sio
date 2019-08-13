@@ -18,7 +18,7 @@ class SIOEffectsTests: XCTestCase {
 		
 		let long = Array(1...800).forEach { item in
 			return accessM(Console.self) { console in
-				console.printLine("long \(item)")
+				console.printLine("long \(item)").require(Console.self)
 			}.scheduleOn(.global())
 			.provide(Console.default)
 		}
