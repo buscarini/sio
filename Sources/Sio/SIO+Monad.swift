@@ -40,7 +40,7 @@ extension SIO {
 	}
 	
 	@inlinable
-	public func replicateM(_ count: Int) -> SIO<R, E, [A]> {
+	public func replicate(_ count: Int) -> SIO<R, E, [A]> {
 		return Array(1...count)
 			.forEach { _ in self }
 			

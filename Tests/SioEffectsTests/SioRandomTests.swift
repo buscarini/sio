@@ -45,11 +45,11 @@ class SIORandomTests: XCTestCase {
 			rnd.digit(),
 			rnd.uppercaseLetter()
 		])
-			.replicateM(6)
+			.replicate(6)
 			.map { $0.joined() }
 		
 		let id = segment
-			.replicateM(3)
+			.replicate(3)
 			.map { $0.joined(separator: "-") }
 			
 		id

@@ -31,6 +31,7 @@
 		AC12F76922CB7B4600E06524 /* SioValueStoreJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12F76722CB797400E06524 /* SioValueStoreJSONTests.swift */; };
 		AC12F76B22CB7C6A00E06524 /* SioCodecJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12F76A22CB7C6A00E06524 /* SioCodecJSONTests.swift */; };
 		AC2254D12303089F006A6FE1 /* SioRandomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2254D02303089F006A6FE1 /* SioRandomTests.swift */; };
+		AC36A39C230DE38400895D9C /* LocalURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC36A39B230DE38400895D9C /* LocalURL.swift */; };
 		AC640F2C22CCAD3C004493F0 /* FileURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12F77022CBA4D800E06524 /* FileURL.swift */; };
 		AC640FB922CCEA15004493F0 /* RaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC640FB822CCEA15004493F0 /* RaceTests.swift */; };
 		AC640FDA22CCF142004493F0 /* SIO+Codec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC640FD922CCF142004493F0 /* SIO+Codec.swift */; };
@@ -282,6 +283,7 @@
 		AC12F76A22CB7C6A00E06524 /* SioCodecJSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioCodecJSONTests.swift; sourceTree = "<group>"; };
 		AC12F77022CBA4D800E06524 /* FileURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileURL.swift; sourceTree = "<group>"; };
 		AC2254D02303089F006A6FE1 /* SioRandomTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioRandomTests.swift; sourceTree = "<group>"; };
+		AC36A39B230DE38400895D9C /* LocalURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalURL.swift; sourceTree = "<group>"; };
 		AC640FB822CCEA15004493F0 /* RaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceTests.swift; sourceTree = "<group>"; };
 		AC640FD922CCF142004493F0 /* SIO+Codec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Codec.swift"; sourceTree = "<group>"; };
 		AC640FDB22CCF1F9004493F0 /* SioCodecSIOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioCodecSIOTests.swift; sourceTree = "<group>"; };
@@ -615,6 +617,7 @@
 				AC12F75B22CB724900E06524 /* Iso.swift */,
 				AC6E7E43230083CD00FA9EAF /* Ref.swift */,
 				AC6E7E452300840300FA9EAF /* SIO+Ref.swift */,
+				AC36A39B230DE38400895D9C /* LocalURL.swift */,
 			);
 			name = Sio;
 			path = Sources/Sio;
@@ -897,6 +900,7 @@
 				OBJ_126 /* Either+Error.swift in Sources */,
 				OBJ_127 /* Either+Monad.swift in Sources */,
 				OBJ_128 /* Either+Optional.swift in Sources */,
+				AC36A39C230DE38400895D9C /* LocalURL.swift in Sources */,
 				OBJ_129 /* Either+Traversable.swift in Sources */,
 				OBJ_130 /* Either+Zip.swift in Sources */,
 				OBJ_131 /* Either.swift in Sources */,

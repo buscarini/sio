@@ -3,13 +3,16 @@ import Sio
 import SioEffects
 
 
-"abc".randomElement(using: &rng)
+let main = Console.default.printLine("HI!").replicate(92)
 
 //range.randomElement()
 
 //range.randomElement(using: &rng)
 
 //let letter: String = range.randomElement()!
+
+main.run { _ in
+}
 
 
 
@@ -85,4 +88,7 @@ program
 	}, { string in
 		Swift.print("Finished with success: \(string)")
 	})
+
+
+
 
