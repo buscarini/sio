@@ -15,13 +15,34 @@ public protocol PathSource {}
 public enum IsRelative: PathSource {}
 public enum IsAbsolute: PathSource {}
 
-public struct LocalURL<SourceType: PathSource, TargetType: PathTarget>: RawRepresentable, Equatable, Hashable {
+public struct LocalURL<SourceType: PathSource, TargetType: PathTarget>: Equatable, Hashable {
 	public var rawValue: URL
 	
-	public init(rawValue: URL) {
+	init(rawValue: URL) {
 		self.rawValue = rawValue
 	}
 }
+
+public extension LocalURL where TargetType == IsFile {
+	init?(url: URL) {
+		guard url.isFileURL, url.hasDirectoryPath == false else {
+			return nil
+		}
+		
+		rawValue = url
+	}
+}
+
+public extension LocalURL where TargetType == IsFolder {
+	init?(url: URL) {
+		guard url.isFileURL, url.hasDirectoryPath else {
+			return nil
+		}
+		
+		rawValue = url
+	}
+}
+
 
 // MARK: Functor
 public extension LocalURL {
@@ -55,3 +76,5 @@ public func <> <LSource: PathSource, RTarget: PathTarget>(_ left: LocalURL<LSour
 //public func dirname<LSource: PathSource, RTarget: PathTarget>(_ left: LocalURL<LSource, IsFolder>, _ right: LocalURL<IsRelative, RTarget>) -> LocalURL<LSource, RTarget> {
 //}
 //
+
+public typealias FileURL = LocalURL<IsAbsolute, IsFile>
