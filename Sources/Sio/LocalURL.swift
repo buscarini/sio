@@ -23,9 +23,13 @@ public struct LocalURL<SourceType: PathSource, TargetType: PathTarget>: Equatabl
 	}
 }
 
-public extension LocalURL where TargetType == IsFile {
+public extension LocalURL where TargetType == IsFile, SourceType == IsAbsolute {
 	init?(url: URL) {
-		guard url.isFileURL, url.hasDirectoryPath == false else {
+		guard
+			url.isFileURL,
+			url.hasDirectoryPath == false,
+			url.absoluteURL == url
+		else {
 			return nil
 		}
 		
@@ -33,10 +37,42 @@ public extension LocalURL where TargetType == IsFile {
 	}
 }
 
-public extension LocalURL where TargetType == IsFolder {
+public extension LocalURL where TargetType == IsFile, SourceType == IsRelative {
 	init?(url: URL) {
-		guard url.isFileURL, url.hasDirectoryPath else {
+		guard
+			url.isFileURL,
+			url.hasDirectoryPath == false,
+			url.absoluteURL != url
+			else {
+				return nil
+		}
+		
+		rawValue = url
+	}
+}
+
+public extension LocalURL where TargetType == IsFolder, SourceType == IsAbsolute {
+	init?(url: URL) {
+		guard
+			url.isFileURL,
+			url.hasDirectoryPath,
+			url.absoluteURL == url
+		else {
 			return nil
+		}
+		
+		rawValue = url
+	}
+}
+
+public extension LocalURL where TargetType == IsFolder, SourceType == IsRelative {
+	init?(url: URL) {
+		guard
+			url.isFileURL,
+			url.hasDirectoryPath,
+			url.absoluteURL != url
+			else {
+				return nil
 		}
 		
 		rawValue = url
