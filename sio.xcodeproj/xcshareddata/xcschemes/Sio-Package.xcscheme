@@ -14,20 +14,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Sio::Sio"
-               BuildableName = "Sio.framework"
-               BlueprintName = "Sio"
-               ReferencedContainer = "container:Sio.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "Sio::SioCodec"
                BuildableName = "SioCodec.framework"
                BlueprintName = "SioCodec"
@@ -42,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Sio::SioEffects"
-               BuildableName = "SioEffects.framework"
-               BlueprintName = "SioEffects"
+               BlueprintIdentifier = "Sio::Sio"
+               BuildableName = "Sio.framework"
+               BlueprintName = "Sio"
                ReferencedContainer = "container:Sio.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -62,6 +48,20 @@
                ReferencedContainer = "container:Sio.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Sio::SioEffects"
+               BuildableName = "SioEffects.framework"
+               BlueprintName = "SioEffects"
+               ReferencedContainer = "container:Sio.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -70,26 +70,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Sio::SioTests"
-               BuildableName = "SioTests.xctest"
-               BlueprintName = "SioTests"
-               ReferencedContainer = "container:Sio.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Sio::SioEffectsTests"
-               BuildableName = "SioEffectsTests.xctest"
-               BlueprintName = "SioEffectsTests"
-               ReferencedContainer = "container:Sio.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
@@ -110,6 +90,26 @@
                ReferencedContainer = "container:Sio.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Sio::SioTests"
+               BuildableName = "SioTests.xctest"
+               BlueprintName = "SioTests"
+               ReferencedContainer = "container:Sio.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Sio::SioEffectsTests"
+               BuildableName = "SioEffectsTests.xctest"
+               BlueprintName = "SioEffectsTests"
+               ReferencedContainer = "container:Sio.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <AdditionalOptions>
       </AdditionalOptions>
@@ -127,9 +127,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Sio::Sio"
-            BuildableName = "Sio.framework"
-            BlueprintName = "Sio"
+            BlueprintIdentifier = "Sio::SioCodec"
+            BuildableName = "SioCodec.framework"
+            BlueprintName = "SioCodec"
             ReferencedContainer = "container:Sio.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

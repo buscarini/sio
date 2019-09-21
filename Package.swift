@@ -1,43 +1,46 @@
-// swift-tools-version:4.0
+// swift-tools-version:5.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
-    name: "Sio",
-    products: [
-        // Products define the executables and libraries produced by a package, and make them visible to other packages.
-        .library(
-            name: "Sio",
-            targets: ["Sio"]
+	name: "Sio",
+	platforms: [
+		.macOS(.v10_11), .iOS(.v10),
+	],
+	products: [
+		// Products define the executables and libraries produced by a package, and make them visible to other packages.
+		.library(
+			name: "Sio",
+			targets: ["Sio"]
 		),
 		.library(
 			name: "SioCodec",
 			targets: ["SioCodec"]
 		),
-        .library(
-            name: "SioValueStore",
-            targets: ["SioValueStore"]
+		.library(
+			name: "SioValueStore",
+			targets: ["SioValueStore"]
 		),
-        .library(
-            name: "SioEffects",
-            targets: ["SioEffects"]
+		.library(
+			name: "SioEffects",
+			targets: ["SioEffects"]
 		)
-    ],
-    dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
-    ],
-    targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages which this package depends on.
-        .target(
-            name: "Sio",
-            dependencies: [ ]),
-        .testTarget(
-            name: "SioTests",
-            dependencies: ["Sio", "SioValueStore"]),
-
+	],
+	dependencies: [
+		// Dependencies declare other packages that this package depends on.
+		// .package(url: /* package url */, from: "1.0.0"),
+	],
+	targets: [
+		// Targets are the basic building blocks of a package. A target can define a module or a test suite.
+		// Targets can depend on other targets in this package, and on products in packages which this package depends on.
+		.target(
+			name: "Sio",
+			dependencies: [ ]),
+		.testTarget(
+			name: "SioTests",
+			dependencies: ["Sio", "SioValueStore"]),
+		
 		.target(
 			name: "SioCodec",
 			dependencies: [ "Sio" ]),
@@ -46,18 +49,18 @@ let package = Package(
 			dependencies: ["Sio", "SioCodec"]),
 		
 		.target(
-	        name: "SioValueStore",
-	        dependencies: [ "Sio", "SioCodec" ]),
+			name: "SioValueStore",
+			dependencies: [ "Sio", "SioCodec" ]),
 		.testTarget(
-	    	name: "SioValueStoreTests",
-	        dependencies: ["Sio", "SioCodec", "SioValueStore"]),
-
-	    .target(
-	        name: "SioEffects",
-	        dependencies: [ "Sio" ]),
+			name: "SioValueStoreTests",
+			dependencies: ["Sio", "SioCodec", "SioValueStore"]),
+		
+		.target(
+			name: "SioEffects",
+			dependencies: [ "Sio" ]),
 		.testTarget(
-	    	name: "SioEffectsTests",
-	        dependencies: ["Sio", "SioEffects"])
-
-    ]
+			name: "SioEffectsTests",
+			dependencies: ["Sio", "SioEffects"])
+		
+	]
 )
