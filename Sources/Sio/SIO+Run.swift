@@ -8,9 +8,13 @@
 
 import Foundation
 
-extension SIO where E == Never {
+extension SIO {
 	public func run(_ env: R, _ resolve: @escaping ResultCallback) {
-		self.fork(env, absurd, resolve)
+		self.fork(env, { _ in }, resolve)
+	}
+	
+	public func runForget(_ env: R) {
+		self.run(env, { _ in })
 	}
 }
 

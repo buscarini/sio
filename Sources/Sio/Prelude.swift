@@ -15,7 +15,6 @@ public func id<a>(_ a: a) -> a {
 
 @inlinable
 public func absurd<A>(_ n: Never) -> A {
-	switch n {}
 }
 
 @inlinable

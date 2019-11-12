@@ -50,3 +50,11 @@ public extension SIO where R == Void, E == Never, A == Void {
 		return effect(f).scheduleOn(.main)
 	}
 }
+
+extension SIO {
+	static var never: SIO {
+		return .init { (_, _, _) in
+			
+		}
+	}
+}
