@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name         = "swiftio"
+  s.name         = "Sio"
   s.version      = "0.1"
   s.summary      = "Swift IO"
   s.description  = <<-DESC
@@ -16,24 +16,18 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/buscarini/sio.git", :tag => s.version.to_s }
 
   s.frameworks  = "Foundation"
-  
-  s.subspec 'Sio' do |cs|
-    cs.source_files  = "Sources/Sio/**/*"
-  end
+  s.source_files  = "Sources/Sio/**/*"
   
   s.subspec 'SioCodec' do |cs|
-    cs.dependency 'Sio'
     cs.source_files  = "Sources/SioCodec/**/*"
   end
 	
   s.subspec 'SioEffects' do |cs|
-    cs.dependency 'Sio'
     cs.source_files  = "Sources/SioEffects/**/*"
   end
 	
   s.subspec 'SioValueStore' do |cs|
-    cs.dependency 'Sio'
-    cs.dependency 'SioCodec'
+    cs.dependency 'Sio/SioCodec'
     cs.source_files  = "Sources/SioValueStore/**/*"
   end
 	

@@ -300,7 +300,7 @@
 		OBJ_130 /* Sio.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = Sio.xcworkspace; sourceTree = SOURCE_ROOT; };
 		OBJ_131 /* Configs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Configs; sourceTree = SOURCE_ROOT; };
 		OBJ_132 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		OBJ_133 /* swiftio.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftio.podspec; sourceTree = "<group>"; };
+		OBJ_133 /* Sio.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Sio.podspec; sourceTree = "<group>"; };
 		OBJ_134 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_14 /* Either+Applicative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Applicative.swift"; sourceTree = "<group>"; };
 		OBJ_15 /* Either+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Codable.swift"; sourceTree = "<group>"; };
@@ -536,7 +536,7 @@
 				OBJ_130 /* Sio.xcworkspace */,
 				OBJ_131 /* Configs */,
 				OBJ_132 /* LICENSE */,
-				OBJ_133 /* swiftio.podspec */,
+				OBJ_133 /* Sio.podspec */,
 				OBJ_134 /* README.md */,
 			);
 			sourceTree = "<group>";
