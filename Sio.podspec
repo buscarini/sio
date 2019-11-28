@@ -17,23 +17,23 @@ Pod::Spec.new do |s|
 
   s.frameworks  = "Foundation"
   
-  s.subspec 'Core' do |cs|
+  s.subspec 'Sio' do |cs|
     cs.source_files  = "Sources/Sio/**/*"
   end
   
-  s.subspec 'Codec' do |cs|
-    cs.dependency 'Core'
+  s.subspec 'SioCodec' do |cs|
+    cs.dependency 'Sio'
     cs.source_files  = "Sources/SioCodec/**/*"
   end
 	
-  s.subspec 'Effects' do |cs|
-    cs.dependency 'Core'
+  s.subspec 'SioEffects' do |cs|
+    cs.dependency 'Sio'
     cs.source_files  = "Sources/SioEffects/**/*"
   end
 	
-  s.subspec 'ValueStore' do |cs|
-    cs.dependency 'Core'
-    cs.dependency 'Codec'
+  s.subspec 'SioValueStore' do |cs|
+    cs.dependency 'Sio'
+    cs.dependency 'SioCodec'
     cs.source_files  = "Sources/SioValueStore/**/*"
   end
 	
