@@ -30,7 +30,7 @@ class RaceTests: XCTestCase {
 		let finish = expectation(description: "finish")
 		
 		let left = SIO<Void, String, Int>.rejected("err").scheduleOn(DispatchQueue.init(label: "left")).delay(0.5, DispatchQueue.main)
-		let right = SIO<Void, String, Int>.of(2).scheduleOn(DispatchQueue.init(label: "right")).delay(5, DispatchQueue.main)
+		let right = SIO<Void, String, Int>.of(2).scheduleOn(DispatchQueue.init(label: "right")).delay(1, DispatchQueue.main)
 		
 		race(left, right).fork({ e in
 			XCTFail()
@@ -39,6 +39,6 @@ class RaceTests: XCTestCase {
 			finish.fulfill()
 		})
 		
-		wait(for: [finish], timeout: 5)
+		wait(for: [finish], timeout: 10)
 	}
 }

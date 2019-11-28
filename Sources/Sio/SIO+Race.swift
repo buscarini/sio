@@ -18,7 +18,9 @@ public func race<R, E, A>(_ left: SIO<R, E, A>, _ right: SIO<R, E, A>) -> SIO<R,
 		let rightVal = SyncValue<E, A>()
 		
 		let checkContinue = {
-			guard resolved.notLoaded else { return }
+			guard resolved.notLoaded else {
+				return
+			}
 			
 			if l.cancelled {
 				leftVal.result = .cancelled
@@ -43,68 +45,20 @@ public func race<R, E, A>(_ left: SIO<R, E, A>, _ right: SIO<R, E, A>) -> SIO<R,
 		}
 		
 		l.fork(env, { errorL in
-			
-//			var ret = false
-			
 			leftVal.result = .loaded(.left(errorL))
 			checkContinue()
-			
-//			queue.sync {
-//				leftFailed = true
-//				ret = finished == true || rightFailed == false
-//			}
-//
-//			guard ret == false else {
-//				return
-//			}
-//
-//			reject(errorL)
-			
 		}, { successL in
-
 			leftVal.result = .loaded(.right(successL))
 			checkContinue()
-			
-//			guard finished == false else { return }
-//
-//			queue.sync {
-//				finished = true
-//			}
-//
-//			resolve(successL)
-//			r.cancel()
 		})
 		
 		r.fork(env, { errorR in
-			
 			rightVal.result = .loaded(.left(errorR))
 			checkContinue()
-			
-//			var ret = false
-//
-//			queue.sync {
-//				rightFailed = true
-//				ret = finished == true || leftFailed == false
-//			}
-//
-//			guard ret == false else {
-//				return
-//			}
-//
-//			reject(errorR)
 		}, { successR in
 
 			rightVal.result = .loaded(.right(successR))
 			checkContinue()
-			
-//			guard finished == false else { return }
-//
-//			queue.sync {
-//				finished = true
-//			}
-//
-//			resolve(successR)
-//			l.cancel()
 		})
 	}) {
 		l.cancel()

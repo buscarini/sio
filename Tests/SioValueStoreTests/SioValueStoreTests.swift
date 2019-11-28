@@ -74,7 +74,6 @@ class SIOValueStoreTests: XCTestCase {
 			})
 		
 		waitForExpectations(timeout: 1, handler: nil)
-
 	}
 	
 	func testCopyFail() {
@@ -109,6 +108,61 @@ class SIOValueStoreTests: XCTestCase {
 				})
 			}, { value in
 				XCTFail()
+			})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testCache() {
+		let finish = expectation(description: "finish")
+
+		var cachedVar: Int?
+		var targetVar: Int = 0
+		
+		let cache = ValueStoreA<Void, String, Int>.init(
+			load: SIO.from(cachedVar, "error"),
+			save: { a in
+				return SIO.init { _ in
+					cachedVar = a
+					return .right(a)
+				}
+			},
+			remove: SIO.init({ _ in
+				cachedVar = nil
+				return .right(())
+			})
+		)
+		
+		let target = ValueStoreA<Void, String, Int>.init(
+			load: SIO.init({ _ in
+				return .right(targetVar)
+			}),
+			save: { a in
+				return SIO.init { _ in
+					targetVar = a
+					return .right(a)
+				}
+			},
+			remove: SIO.of(())
+		)
+		
+		let cached = target.cached(by: cache)
+		
+		cached.save(8)
+			.fork((), { _ in
+				XCTFail()
+			}, { value in
+				XCTAssert(value == 8)
+				XCTAssert(cachedVar == 8)
+				XCTAssert(targetVar == 8)
+				
+				cached.load.fork({ _ in
+					XCTFail()
+				}, { value in
+					XCTAssert(value == 8)	
+					
+					finish.fulfill()
+				})
 			})
 		
 		waitForExpectations(timeout: 1, handler: nil)

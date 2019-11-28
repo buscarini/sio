@@ -61,4 +61,27 @@ public extension ValueStore where A == B {
 					.require((R, S).self)
 			}
 	}
+	
+	func cached(by cache: ValueStore<R, E, A, B>) -> ValueStore<R, E, A, B> {
+		.init(
+			load: cache.load
+				.flatMapError { _ in
+					self.load
+				},
+			save: { a in
+				self.save(a)
+					.flatMap { a in
+						cache.save(a).flatMapError { _ in
+							.of(a)
+						}
+					}
+				},
+			remove: self.remove
+				.flatMap { _ in
+					cache.remove.flatMapError { _ in
+						.of(())
+					}
+				}
+		)
+	}
 }
