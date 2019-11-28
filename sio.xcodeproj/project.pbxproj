@@ -300,7 +300,7 @@
 		OBJ_130 /* Sio.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = Sio.xcworkspace; sourceTree = SOURCE_ROOT; };
 		OBJ_131 /* Configs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Configs; sourceTree = SOURCE_ROOT; };
 		OBJ_132 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		OBJ_133 /* sio.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = sio.podspec; sourceTree = "<group>"; };
+		OBJ_133 /* Sio.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Sio.podspec; sourceTree = "<group>"; };
 		OBJ_134 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_14 /* Either+Applicative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Applicative.swift"; sourceTree = "<group>"; };
 		OBJ_15 /* Either+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Codable.swift"; sourceTree = "<group>"; };
@@ -526,7 +526,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -536,10 +536,9 @@
 				OBJ_130 /* Sio.xcworkspace */,
 				OBJ_131 /* Configs */,
 				OBJ_132 /* LICENSE */,
-				OBJ_133 /* sio.podspec */,
+				OBJ_133 /* Sio.podspec */,
 				OBJ_134 /* README.md */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_63 /* SioCodec */ = {
@@ -866,7 +865,7 @@
 				English,
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_121 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
