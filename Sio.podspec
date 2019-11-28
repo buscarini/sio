@@ -21,19 +21,19 @@ Pod::Spec.new do |s|
     cs.source_files  = "Sources/Sio/**/*"
   end
   
-  s.subspec 'SioCodec' do |cs|
+  s.subspec 'Codec' do |cs|
     cs.dependency 'Core'
     cs.source_files  = "Sources/SioCodec/**/*"
   end
 	
-  s.subspec 'SioEffects' do |cs|
+  s.subspec 'Effects' do |cs|
     cs.dependency 'Core'
     cs.source_files  = "Sources/SioEffects/**/*"
   end
 	
-  s.subspec 'SioValueStore' do |cs|
+  s.subspec 'ValueStore' do |cs|
     cs.dependency 'Core'
-    cs.dependency 'SioCodec'
+    cs.dependency 'Codec'
     cs.source_files  = "Sources/SioValueStore/**/*"
   end
 	
