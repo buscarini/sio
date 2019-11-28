@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name         = "Sio"
+  s.name         = "swiftio"
   s.version      = "0.1"
   s.summary      = "Swift IO"
   s.description  = <<-DESC
