@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
   s.name         = "sio"
   s.version      = "0.1"
-  s.summary      = ""
+  s.summary      = "Swift IO"
   s.description  = <<-DESC
-    Your description here.
+    Swift Effects library, ala ZIO.
   DESC
   s.homepage     = "https://github.com/buscarini/sio"
   s.license      = { :type => "MIT", :file => "LICENSE" }
