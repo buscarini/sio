@@ -14,6 +14,23 @@ Pod::Spec.new do |s|
   s.watchos.deployment_target = "2.0"
   s.tvos.deployment_target = "10.0"
   s.source       = { :git => "https://github.com/buscarini/sio.git", :tag => s.version.to_s }
-  s.source_files  = "Sources/**/*"
+  s.source_files  = "Sources/Sio/**/*"
   s.frameworks  = "Foundation"
+  
+  s.subspec 'SioCodec' do |cs|
+	  cs.dependency 'Sio'
+	  cs.source_files  = "Sources/SioCodec/**/*"
+	end
+	
+	s.subspec 'SioEffects' do |cs|
+	  cs.dependency 'Sio'
+	  cs.source_files  = "Sources/SioEffects/**/*"
+	end
+	
+	s.subspec 'SioValueStore' do |cs|
+	  cs.dependency 'Sio'
+	  cs.dependency 'SioCodec'
+	  cs.source_files  = "Sources/SioValueStore/**/*"
+	end
+	
 end
