@@ -27,6 +27,8 @@
 		AC67337C23900D9400B8ABAB /* Optional+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC67337B23900D9400B8ABAB /* Optional+Zip.swift */; };
 		ACB1CADE2391A4AB00CE477E /* Sio+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB1CADD2391A4AB00CE477E /* Sio+Codable.swift */; };
 		ACB1CAE12391A98200CE477E /* CodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB1CADF2391A94E00CE477E /* CodableTests.swift */; };
+		ACB1CAE42391B0EB00CE477E /* EitherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB1CAE32391B0EB00CE477E /* EitherTests.swift */; };
+		ACB1CAE72391DD4000CE477E /* ResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB1CAE52391DD4000CE477E /* ResultTests.swift */; };
 		OBJ_140 /* Array+SIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Array+SIO.swift */; };
 		OBJ_141 /* Collection+Chunks.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Collection+Chunks.swift */; };
 		OBJ_142 /* Compose.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Compose.swift */; };
@@ -282,6 +284,8 @@
 		ACB1CADD2391A4AB00CE477E /* Sio+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sio+Codable.swift"; sourceTree = "<group>"; };
 		ACB1CADF2391A94E00CE477E /* CodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableTests.swift; sourceTree = "<group>"; };
 		ACB1CAE22391AB2A00CE477E /* Sio-Package.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Sio-Package.xctestplan"; path = "Tests/Sio-Package.xctestplan"; sourceTree = SOURCE_ROOT; };
+		ACB1CAE32391B0EB00CE477E /* EitherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EitherTests.swift; sourceTree = "<group>"; };
+		ACB1CAE52391DD4000CE477E /* ResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTests.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Collection+Chunks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Chunks.swift"; sourceTree = "<group>"; };
 		OBJ_101 /* SioEffectsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioEffectsTests.swift; sourceTree = "<group>"; };
 		OBJ_102 /* SioRandomTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioRandomTests.swift; sourceTree = "<group>"; };
@@ -505,6 +509,8 @@
 				OBJ_117 /* TimeoutTests.swift */,
 				ACB1CADF2391A94E00CE477E /* CodableTests.swift */,
 				ACB1CAE22391AB2A00CE477E /* Sio-Package.xctestplan */,
+				ACB1CAE32391B0EB00CE477E /* EitherTests.swift */,
+				ACB1CAE52391DD4000CE477E /* ResultTests.swift */,
 			);
 			name = SioTests;
 			path = Tests/SioTests;
@@ -1020,6 +1026,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				ACB1CAE42391B0EB00CE477E /* EitherTests.swift in Sources */,
+				ACB1CAE72391DD4000CE477E /* ResultTests.swift in Sources */,
 				OBJ_272 /* Applicative.swift in Sources */,
 				OBJ_273 /* Arrays.swift in Sources */,
 				OBJ_274 /* BracketTests.swift in Sources */,
