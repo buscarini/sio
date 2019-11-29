@@ -46,5 +46,39 @@ class EitherTests: XCTestCase {
 		XCTAssert(left.optional() == nil)
 		XCTAssert(right.optional() == 1)
 	}
+
 	
+	func testAlt() {
+		let left = Either<Int, Int>.left(-1)
+		let left2 = Either<Int, Int>.left(-2)
+		let right = Either<Int, Int>.right(1)
+		let right2 = Either<Int, Int>.right(2)
+		
+		let finalLeft = left <|> left2
+		
+		XCTAssert(finalLeft.isLeft)
+		XCTAssert(finalLeft.left == -2)
+		
+		let finalRight = left <|> right
+		
+		XCTAssert(finalRight.isRight)
+		XCTAssert(finalRight.right == 1)
+		
+		
+		let finalRightR = right <|> right2
+		
+		XCTAssert(finalRightR.isRight)
+		XCTAssert(finalRightR.right == 1)
+	}
+	
+	func testAltDefault() {
+		let left = Either<Int, Int>.left(-1)
+		let right = Either<Int, Int>.right(1)
+
+		let def = left <|> 2
+		XCTAssert(def == 2)
+		
+		let r = right <|> 2
+		XCTAssert(r == 1)
+	}
 }
