@@ -14,6 +14,31 @@ class EitherTests: XCTestCase {
 		case unknown
 	}
 	
+	func testLeftDefault() {
+		let left = Either<Int, String>.left(1)
+		let right = Either<Int, String>.right("a")
+		
+		let leftVal = right.left(default: -1)
+		let rightVal = left.right(default: "b")
+		
+		XCTAssert(leftVal == -1)
+		XCTAssert(rightVal == "b")
+		
+		XCTAssert(left.left(default: 7) == 1)
+		XCTAssert(right.right(default: "b") == "a")
+	}
+	
+	func testFold() {
+		let left = Either<Int, String>.left(1)
+		let right = Either<Int, String>.right("a")
+
+		let foldedLeft = left.fold({ "\($0)" }, { $0.uppercased() })
+		let foldedRight = right.fold({ "\($0)" }, { $0.uppercased() })
+		
+		XCTAssert(foldedLeft == "1")
+		XCTAssert(foldedRight == "A")
+	}
+	
 	func testOptionalDefault() {
 		let noValue: Int? = nil
 		let value: Int? = 1
@@ -80,5 +105,19 @@ class EitherTests: XCTestCase {
 		
 		let r = right <|> 2
 		XCTAssert(r == 1)
+	}
+	
+	func testSequence() {
+		let leftA: [Either<Int, String>] = [ .right("a"), .left(1), .right("b") ]
+		let rightA: [Either<Int, String>] = [ .right("a"), .right("b") ]
+		
+		let left = leftA.sequence()
+		let right = rightA.sequence()
+		
+		XCTAssert(left.isLeft)
+		XCTAssert(left.left == 1)
+		
+		XCTAssert(right.isRight)
+		XCTAssert(right.right == [ "a", "b" ])		
 	}
 }
