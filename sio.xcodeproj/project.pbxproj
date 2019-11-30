@@ -30,6 +30,7 @@
 		ACB1CAE42391B0EB00CE477E /* EitherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB1CAE32391B0EB00CE477E /* EitherTests.swift */; };
 		ACB1CAE72391DD4000CE477E /* ResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB1CAE52391DD4000CE477E /* ResultTests.swift */; };
 		ACB1CAE92391E73600CE477E /* ChunksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB1CAE82391E73600CE477E /* ChunksTests.swift */; };
+		ACB1CAEB2391E8DA00CE477E /* IsoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB1CAEA2391E8DA00CE477E /* IsoTests.swift */; };
 		OBJ_140 /* Array+SIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Array+SIO.swift */; };
 		OBJ_141 /* Collection+Chunks.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Collection+Chunks.swift */; };
 		OBJ_142 /* Compose.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Compose.swift */; };
@@ -288,6 +289,7 @@
 		ACB1CAE32391B0EB00CE477E /* EitherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EitherTests.swift; sourceTree = "<group>"; };
 		ACB1CAE52391DD4000CE477E /* ResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTests.swift; sourceTree = "<group>"; };
 		ACB1CAE82391E73600CE477E /* ChunksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunksTests.swift; sourceTree = "<group>"; };
+		ACB1CAEA2391E8DA00CE477E /* IsoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsoTests.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Collection+Chunks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Chunks.swift"; sourceTree = "<group>"; };
 		OBJ_101 /* SioEffectsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioEffectsTests.swift; sourceTree = "<group>"; };
 		OBJ_102 /* SioRandomTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioRandomTests.swift; sourceTree = "<group>"; };
@@ -514,6 +516,7 @@
 				ACB1CAE32391B0EB00CE477E /* EitherTests.swift */,
 				ACB1CAE52391DD4000CE477E /* ResultTests.swift */,
 				ACB1CAE82391E73600CE477E /* ChunksTests.swift */,
+				ACB1CAEA2391E8DA00CE477E /* IsoTests.swift */,
 			);
 			name = SioTests;
 			path = Tests/SioTests;
@@ -1047,6 +1050,7 @@
 				OBJ_283 /* Retry.swift in Sources */,
 				OBJ_284 /* SIOTests.swift in Sources */,
 				OBJ_285 /* TimeoutTests.swift in Sources */,
+				ACB1CAEB2391E8DA00CE477E /* IsoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
