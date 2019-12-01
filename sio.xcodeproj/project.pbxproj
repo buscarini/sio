@@ -31,6 +31,8 @@
 		ACB1CAE72391DD4000CE477E /* ResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB1CAE52391DD4000CE477E /* ResultTests.swift */; };
 		ACB1CAE92391E73600CE477E /* ChunksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB1CAE82391E73600CE477E /* ChunksTests.swift */; };
 		ACB1CAEB2391E8DA00CE477E /* IsoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB1CAEA2391E8DA00CE477E /* IsoTests.swift */; };
+		ACB1CAED2393BB9100CE477E /* PreludeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB1CAEC2393BB9100CE477E /* PreludeTests.swift */; };
+		ACB1CAEF2393BD6A00CE477E /* OptionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB1CAEE2393BD6A00CE477E /* OptionalTests.swift */; };
 		OBJ_140 /* Array+SIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Array+SIO.swift */; };
 		OBJ_141 /* Collection+Chunks.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Collection+Chunks.swift */; };
 		OBJ_142 /* Compose.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Compose.swift */; };
@@ -290,6 +292,8 @@
 		ACB1CAE52391DD4000CE477E /* ResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTests.swift; sourceTree = "<group>"; };
 		ACB1CAE82391E73600CE477E /* ChunksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunksTests.swift; sourceTree = "<group>"; };
 		ACB1CAEA2391E8DA00CE477E /* IsoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsoTests.swift; sourceTree = "<group>"; };
+		ACB1CAEC2393BB9100CE477E /* PreludeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreludeTests.swift; sourceTree = "<group>"; };
+		ACB1CAEE2393BD6A00CE477E /* OptionalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalTests.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Collection+Chunks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Chunks.swift"; sourceTree = "<group>"; };
 		OBJ_101 /* SioEffectsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioEffectsTests.swift; sourceTree = "<group>"; };
 		OBJ_102 /* SioRandomTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioRandomTests.swift; sourceTree = "<group>"; };
@@ -517,6 +521,8 @@
 				ACB1CAE52391DD4000CE477E /* ResultTests.swift */,
 				ACB1CAE82391E73600CE477E /* ChunksTests.swift */,
 				ACB1CAEA2391E8DA00CE477E /* IsoTests.swift */,
+				ACB1CAEC2393BB9100CE477E /* PreludeTests.swift */,
+				ACB1CAEE2393BD6A00CE477E /* OptionalTests.swift */,
 			);
 			name = SioTests;
 			path = Tests/SioTests;
@@ -1037,6 +1043,7 @@
 				OBJ_272 /* Applicative.swift in Sources */,
 				OBJ_273 /* Arrays.swift in Sources */,
 				OBJ_274 /* BracketTests.swift in Sources */,
+				ACB1CAEF2393BD6A00CE477E /* OptionalTests.swift in Sources */,
 				OBJ_275 /* CancellationTests.swift in Sources */,
 				OBJ_276 /* Chunked.swift in Sources */,
 				ACB1CAE12391A98200CE477E /* CodableTests.swift in Sources */,
@@ -1049,6 +1056,7 @@
 				OBJ_282 /* RaceTests.swift in Sources */,
 				OBJ_283 /* Retry.swift in Sources */,
 				OBJ_284 /* SIOTests.swift in Sources */,
+				ACB1CAED2393BB9100CE477E /* PreludeTests.swift in Sources */,
 				OBJ_285 /* TimeoutTests.swift in Sources */,
 				ACB1CAEB2391E8DA00CE477E /* IsoTests.swift in Sources */,
 			);

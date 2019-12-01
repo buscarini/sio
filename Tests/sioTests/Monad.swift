@@ -47,4 +47,19 @@ class Monad: XCTestCase {
 	
 		self.waitForExpectations(timeout: 1.0, handler: nil)
 	}
+	
+	func testDefault() {
+		let expectation = self.expectation(description: "task chained")
+		
+		IO<String, Int>.rejected("blah")
+			.default(1)
+			.fork({ _ in
+				XCTFail()
+			}) { value in
+				XCTAssert(value == 1)
+				expectation.fulfill()
+			}
+	
+		self.waitForExpectations(timeout: 1.0, handler: nil)
+	}
 }

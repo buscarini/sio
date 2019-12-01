@@ -11,6 +11,34 @@ import XCTest
 import Sio
 
 class sioTests: XCTestCase {
+	func testVoid() {
+		let finish = expectation(description: "finish tasks")
+
+		SIO<Void, String, String>.of("ok").void
+			.fork({ _ in
+			XCTFail()
+		}, { value in
+			XCTAssert(value == ())
+			finish.fulfill()
+		})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testConst() {
+		let finish = expectation(description: "finish tasks")
+
+		SIO<Void, Int, String>.of("ok").const("b")
+			.fork({ _ in
+			XCTFail()
+		}, { value in
+			XCTAssert(value == "b")
+			finish.fulfill()
+		})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
 	func testFlip() {
 		let finish = expectation(description: "finish tasks")
 

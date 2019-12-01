@@ -14,6 +14,32 @@ class EitherTests: XCTestCase {
 		case unknown
 	}
 	
+	func testEq() {
+		let left = Either<Int, String>.left(1)
+		let left2 = Either<Int, String>.left(2)
+		let right = Either<Int, String>.right("a")
+		let right2 = Either<Int, String>.right("b")
+
+		
+		XCTAssert(left == left)
+		XCTAssert(left != left2)
+		XCTAssert(left != right)
+		XCTAssert(right == right)
+		XCTAssert(right != right2)
+	}
+	
+	func testHash() {
+		let left = Either<Int, String>.left(1)
+		let left2 = Either<Int, String>.left(2)
+		let right = Either<Int, String>.right("a")
+		let right2 = Either<Int, String>.right("b")
+
+		
+		XCTAssert(left.hashValue != left2.hashValue)
+		XCTAssert(left.hashValue != right.hashValue)
+		XCTAssert(right.hashValue != right2.hashValue)
+	}
+	
 	func testLeftDefault() {
 		let left = Either<Int, String>.left(1)
 		let right = Either<Int, String>.right("a")
@@ -119,5 +145,15 @@ class EitherTests: XCTestCase {
 		
 		XCTAssert(right.isRight)
 		XCTAssert(right.right == [ "a", "b" ])		
+	}
+	
+	func testSwapped() {
+		let left = Either<Int, Int>.left(-1)
+		let right = Either<Int, Int>.right(1)
+
+		XCTAssert(left.swapped.isRight)
+		XCTAssert(left.swapped.right == -1)
+		XCTAssert(right.swapped.isLeft)
+		XCTAssert(right.swapped.left == 1)
 	}
 }
