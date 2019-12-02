@@ -41,7 +41,7 @@ public func zip2<T, U, V, A>(with f: @escaping (U, V) -> A)
 		return zip(with: f)
 }
 
-public func zip3<E, A, B, C>(
+public func zip3<E, A, B, C>(    
 	_ xs: Either<E, A>, _ ys: Either<E, B>, _ zs: Either<E, C>
 	) -> Either<E, (A, B, C)> {
 	
@@ -49,8 +49,22 @@ public func zip3<E, A, B, C>(
 		.map { a, bc in (a, bc.0, bc.1) }
 }
 
-func zip3<E, A, B, C, D>(
+public func zip3<E, A, B, C, D>(
 	with f: @escaping (A, B, C) -> D
 	) -> (Either<E, A>, Either<E, B>, Either<E, C>) -> Either<E, D> {
 	return { xs, ys, zs in zip3(xs, ys, zs).map(f) }
+}
+
+public func zip4<E, A, B, C, D>(
+	_ xs: Either<E, A>, _ ys: Either<E, B>, _ zs: Either<E, C>, _ ws: Either<E, D>
+	) -> Either<E, (A, B, C, D)> {
+	
+	return zip2(xs, zip3(ys, zs, ws)) // Either<E, (A, (B, C))>
+		.map { a, bcd in (a, bcd.0, bcd.1, bcd.2) }
+}
+
+public func zip4<E, A, B, C, D, F>(
+	with f: @escaping (A, B, C, D) -> F
+	) -> (Either<E, A>, Either<E, B>, Either<E, C>, Either<E, D>) -> Either<E, F> {
+	return { xs, ys, zs, ws in zip4(xs, ys, zs, ws).map(f) }
 }

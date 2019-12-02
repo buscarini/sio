@@ -108,4 +108,134 @@ class OptionalTests: XCTestCase {
 		
 		waitForExpectations(timeout: 1, handler: nil)
 	}
+	
+	func testZipAnd() {
+		let left = Optional<Int>.none
+		let left2 = Optional<Int>.none
+		let right = Optional<Int>.some(1)
+		let right2 = Optional<Int>.some(2)
+
+		XCTAssert((left <&> left2) == nil)
+		
+		XCTAssert((left <&> right) == nil)
+
+		XCTAssert((right <&> left) == nil)
+
+		XCTAssert((right <&> right2)?.0 == 1)
+		XCTAssert((right <&> right2)?.1 == 2)
+	}
+	
+	func testZip() {
+		let left = Optional<Int>.none
+		let left2 = Optional<Int>.none
+		let right = Optional<Int>.some(1)
+		let right2 = Optional<Int>.some(2)
+
+		XCTAssert(zip2(left, left2) == nil)
+		
+		XCTAssert(zip2(left, right) == nil)
+
+		XCTAssert(zip2(right, left) == nil)
+
+		XCTAssert(zip2(right, right2)?.0 == 1)
+		XCTAssert(zip2(right, right2)?.1 == 2)
+	}
+	
+	func testZipWith() {
+		let left = Optional<Int>.none
+		let left2 = Optional<Int>.none
+		let right = Optional<Int>.some(1)
+		let right2 = Optional<Int>.some(2)
+		
+		XCTAssert(zip2(with: { ($0, $1) })(left, left2) == nil)
+		
+		XCTAssert(zip2(with: { ($0, $1) })(left, right) == nil)
+
+		XCTAssert(zip2(with: { ($0, $1) })(right, left) == nil)
+
+		XCTAssert(zip2(with: { ($0, $1) })(right, right2)?.0 == 1)
+		XCTAssert(zip2(with: { ($0, $1) })(right, right2)?.1 == 2)
+	}
+	
+	func testZip3() {
+		let left = Optional<Int>.none
+		let left2 = Optional<Int>.none
+		let right = Optional<Int>.some(1)
+		let right2 = Optional<Int>.some(2)
+
+		XCTAssert(zip3(left, left, left2) == nil)
+		
+		XCTAssert(zip3(left, left2, right) == nil)
+
+		XCTAssert(zip3(left, right, left2) == nil)
+		
+		XCTAssert(zip3(right, left, left2) == nil)
+
+		XCTAssert(zip3(right, right, right2)?.0 == 1)
+		XCTAssert(zip3(right, right, right2)?.1 == 1)
+		XCTAssert(zip3(right, right, right2)?.2 == 2)
+	}
+	
+	func testZip3With() {
+		let left = Optional<Int>.none
+		let left2 = Optional<Int>.none
+		let right = Optional<Int>.some(1)
+		let right2 = Optional<Int>.some(2)
+
+		let z: (Optional<Int>, Optional<Int>, Optional<Int>) -> Optional<(Int, Int, Int)> = zip3(with: { (a: Int, b: Int, c: Int) -> (Int, Int, Int) in
+			(a, b, c)
+		})
+		
+		XCTAssert(z(left, left, left2) == nil)
+		
+		XCTAssert(z(left, left2, right) == nil)
+
+		XCTAssert(z(left, right, left2) == nil)
+		
+		XCTAssert(z(right, left, left2) == nil)
+
+		XCTAssert(z(right, right, right2)?.0 == 1)
+		XCTAssert(z(right, right, right2)?.1 == 1)
+		XCTAssert(z(right, right, right2)?.2 == 2)
+	}
+	
+	func testZip4() {
+		let left = Optional<Int>.none
+		let left2 = Optional<Int>.none
+		let right = Optional<Int>.some(1)
+		let right2 = Optional<Int>.some(2)
+
+		XCTAssert(zip4(left, left, left2, left2) == nil)
+		
+		XCTAssert(zip4(left, left2, left2, right) == nil)
+
+		XCTAssert(zip4(left, right, left2, left2) == nil)
+		
+		XCTAssert(zip4(right, left, left2, left2) == nil)
+
+		XCTAssert(zip4(right, right, right2, right2)?.0 == 1)
+		XCTAssert(zip4(right, right, right2, right2)?.1 == 1)
+		XCTAssert(zip4(right, right, right2, right2)?.2 == 2)
+		XCTAssert(zip4(right, right, right2, right2)?.3 == 2)
+	}
+	
+	func testZip4With() {
+		let left = Optional<Int>.none
+		let left2 = Optional<Int>.none
+		let right = Optional<Int>.some(1)
+		let right2 = Optional<Int>.some(2)
+
+		XCTAssert(zip4(with: { ($0, $1, $2, $3) })(left, left, left2, left2) == nil)
+		
+		XCTAssert(zip4(with: { ($0, $1, $2, $3) })(left, left2, left2, right) == nil)
+
+		XCTAssert(zip4(with: { ($0, $1, $2, $3) })(left, right, left2, left2) == nil)
+		
+		XCTAssert(zip4(with: { ($0, $1, $2, $3) })(right, left, left2, left2) == nil)
+
+		XCTAssert(zip4(with: { ($0, $1, $2, $3) })(right, right, right2, right2)?.0 == 1)
+		XCTAssert(zip4(with: { ($0, $1, $2, $3) })(right, right, right2, right2)?.1 == 1)
+		XCTAssert(zip4(with: { ($0, $1, $2, $3) })(right, right, right2, right2)?.2 == 2)
+		XCTAssert(zip4(with: { ($0, $1, $2, $3) })(right, right, right2, right2)?.3 == 2)
+	}
 }
