@@ -25,7 +25,6 @@ public extension SIO {
 	
 	func foldM<B>(_ f: @escaping (E) -> SIO<R, E, B>, _ g: @escaping (A) -> SIO<R, E, B>) -> SIO<R, E, B> {
 		return self
-			.flatMap(g)
-			.flatMapError(f)
+			.biFlatMap(f, g)
 	}
 }

@@ -24,6 +24,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		AC345F6223947BA1005B45AB /* SioCodecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_99 /* SioCodecTests.swift */; };
 		AC67337C23900D9400B8ABAB /* Optional+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC67337B23900D9400B8ABAB /* Optional+Zip.swift */; };
 		ACB1CADE2391A4AB00CE477E /* Sio+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB1CADD2391A4AB00CE477E /* Sio+Codable.swift */; };
 		ACB1CAE12391A98200CE477E /* CodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB1CADF2391A94E00CE477E /* CodableTests.swift */; };
@@ -33,6 +34,7 @@
 		ACB1CAEB2391E8DA00CE477E /* IsoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB1CAEA2391E8DA00CE477E /* IsoTests.swift */; };
 		ACB1CAED2393BB9100CE477E /* PreludeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB1CAEC2393BB9100CE477E /* PreludeTests.swift */; };
 		ACB1CAEF2393BD6A00CE477E /* OptionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB1CAEE2393BD6A00CE477E /* OptionalTests.swift */; };
+		ACB1CAF1239478B600CE477E /* SioFoldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB1CAF0239478B500CE477E /* SioFoldTests.swift */; };
 		OBJ_140 /* Array+SIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Array+SIO.swift */; };
 		OBJ_141 /* Collection+Chunks.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Collection+Chunks.swift */; };
 		OBJ_142 /* Compose.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Compose.swift */; };
@@ -100,7 +102,6 @@
 		OBJ_217 /* SioCodecIntTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_96 /* SioCodecIntTests.swift */; };
 		OBJ_218 /* SioCodecJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_97 /* SioCodecJSONTests.swift */; };
 		OBJ_219 /* SioCodecSIOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_98 /* SioCodecSIOTests.swift */; };
-		OBJ_220 /* SioCodecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_99 /* SioCodecTests.swift */; };
 		OBJ_222 /* SioCodec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioCodec::Product" /* SioCodec.framework */; };
 		OBJ_223 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
 		OBJ_231 /* AnyRandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_72 /* AnyRandomNumberGenerator.swift */; };
@@ -287,13 +288,14 @@
 		AC67337B23900D9400B8ABAB /* Optional+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Zip.swift"; sourceTree = "<group>"; };
 		ACB1CADD2391A4AB00CE477E /* Sio+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sio+Codable.swift"; sourceTree = "<group>"; };
 		ACB1CADF2391A94E00CE477E /* CodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableTests.swift; sourceTree = "<group>"; };
-		ACB1CAE22391AB2A00CE477E /* Sio-Package.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Sio-Package.xctestplan"; path = "Tests/Sio-Package.xctestplan"; sourceTree = SOURCE_ROOT; };
+		ACB1CAE22391AB2A00CE477E /* Sio-Package.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = "Sio-Package.xctestplan"; path = "Tests/Sio-Package.xctestplan"; sourceTree = SOURCE_ROOT; };
 		ACB1CAE32391B0EB00CE477E /* EitherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EitherTests.swift; sourceTree = "<group>"; };
 		ACB1CAE52391DD4000CE477E /* ResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTests.swift; sourceTree = "<group>"; };
 		ACB1CAE82391E73600CE477E /* ChunksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunksTests.swift; sourceTree = "<group>"; };
 		ACB1CAEA2391E8DA00CE477E /* IsoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsoTests.swift; sourceTree = "<group>"; };
 		ACB1CAEC2393BB9100CE477E /* PreludeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreludeTests.swift; sourceTree = "<group>"; };
 		ACB1CAEE2393BD6A00CE477E /* OptionalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalTests.swift; sourceTree = "<group>"; };
+		ACB1CAF0239478B500CE477E /* SioFoldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioFoldTests.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Collection+Chunks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Chunks.swift"; sourceTree = "<group>"; };
 		OBJ_101 /* SioEffectsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioEffectsTests.swift; sourceTree = "<group>"; };
 		OBJ_102 /* SioRandomTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioRandomTests.swift; sourceTree = "<group>"; };
@@ -523,6 +525,7 @@
 				ACB1CAEA2391E8DA00CE477E /* IsoTests.swift */,
 				ACB1CAEC2393BB9100CE477E /* PreludeTests.swift */,
 				ACB1CAEE2393BD6A00CE477E /* OptionalTests.swift */,
+				ACB1CAF0239478B500CE477E /* SioFoldTests.swift */,
 			);
 			name = SioTests;
 			path = Tests/SioTests;
@@ -531,6 +534,7 @@
 		OBJ_118 /* SioValueStoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				OBJ_99 /* SioCodecTests.swift */,
 				OBJ_119 /* SioValueStoreJSONTests.swift */,
 				OBJ_120 /* SioValueStoreTests.swift */,
 			);
@@ -712,7 +716,6 @@
 				OBJ_96 /* SioCodecIntTests.swift */,
 				OBJ_97 /* SioCodecJSONTests.swift */,
 				OBJ_98 /* SioCodecSIOTests.swift */,
-				OBJ_99 /* SioCodecTests.swift */,
 			);
 			name = SioCodecTests;
 			path = Tests/SioCodecTests;
@@ -1000,7 +1003,6 @@
 				OBJ_217 /* SioCodecIntTests.swift in Sources */,
 				OBJ_218 /* SioCodecJSONTests.swift in Sources */,
 				OBJ_219 /* SioCodecSIOTests.swift in Sources */,
-				OBJ_220 /* SioCodecTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1056,6 +1058,7 @@
 				OBJ_282 /* RaceTests.swift in Sources */,
 				OBJ_283 /* Retry.swift in Sources */,
 				OBJ_284 /* SIOTests.swift in Sources */,
+				ACB1CAF1239478B600CE477E /* SioFoldTests.swift in Sources */,
 				ACB1CAED2393BB9100CE477E /* PreludeTests.swift in Sources */,
 				OBJ_285 /* TimeoutTests.swift in Sources */,
 				ACB1CAEB2391E8DA00CE477E /* IsoTests.swift in Sources */,
@@ -1086,6 +1089,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				AC345F6223947BA1005B45AB /* SioCodecTests.swift in Sources */,
 				OBJ_320 /* SioValueStoreJSONTests.swift in Sources */,
 				OBJ_321 /* SioValueStoreTests.swift in Sources */,
 			);

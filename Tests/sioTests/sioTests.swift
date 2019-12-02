@@ -199,4 +199,54 @@ class sioTests: XCTestCase {
 		
 		waitForExpectations(timeout: 1, handler: nil)
 	}
+	
+	func testTapA() {
+		let tap = expectation(description: "tap")
+		let finish = expectation(description: "finish tasks")
+
+		SIO<Void, Int, String>.of("ok")
+			.tapBoth({ value in
+				.init({ _ in
+					.right(())
+				})
+			}, { value in
+				.init({ _ in
+					tap.fulfill()
+					return .right(())
+				})
+			})
+			.fork({ _ in
+				XCTFail()
+			}, { value in
+				XCTAssert(value == "ok")
+				finish.fulfill()
+			})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testTapE() {
+		let tap = expectation(description: "tap")
+		let finish = expectation(description: "finish tasks")
+
+		SIO<Void, Int, String>.rejected(1)
+			.tapBoth({ value in
+				.init({ _ in
+					tap.fulfill()
+					return .right(())
+				})
+			}, { value in
+				.init({ _ in
+					return .right(())
+				})
+			})
+			.fork({ value in
+				XCTAssert(value == 1)
+				finish.fulfill()
+			}, { _ in
+				XCTFail()
+			})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
 }

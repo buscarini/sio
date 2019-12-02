@@ -11,7 +11,7 @@ import XCTest
 import Sio
 import SioValueStore
 
-class SIOValueStoreTests: XCTestCase {
+class SIOCodecTests: XCTestCase {
 	func testOf() {
 		let finish = expectation(description: "finish")
 		

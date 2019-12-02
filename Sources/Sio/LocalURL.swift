@@ -33,7 +33,7 @@ public extension LocalURL where TargetType == IsFile, SourceType == IsAbsolute {
 			return nil
 		}
 		
-		rawValue = url
+		rawValue = url.resolvingSymlinksInPath()
 	}
 }
 
@@ -47,7 +47,7 @@ public extension LocalURL where TargetType == IsFile, SourceType == IsRelative {
 				return nil
 		}
 		
-		rawValue = url
+		rawValue = url.resolvingSymlinksInPath()
 	}
 }
 
@@ -61,7 +61,7 @@ public extension LocalURL where TargetType == IsFolder, SourceType == IsAbsolute
 			return nil
 		}
 		
-		rawValue = url
+		rawValue = url.resolvingSymlinksInPath()
 	}
 }
 
@@ -75,7 +75,7 @@ public extension LocalURL where TargetType == IsFolder, SourceType == IsRelative
 				return nil
 		}
 		
-		rawValue = url
+		rawValue = url.resolvingSymlinksInPath()
 	}
 }
 
