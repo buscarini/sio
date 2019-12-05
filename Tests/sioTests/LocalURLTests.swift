@@ -54,7 +54,7 @@ class LocalURLTests: XCTestCase {
 		let local = LocalURL<IsRelative, IsFolder>.init(url: file2)!
 
 		let final = join(root, local)
-		let result = root.rawValue.appendingPathComponent("var")
+		let result = file.appendingPathComponent(file2.path)
 		XCTAssert(final.rawValue.absoluteString == result.absoluteString)
 	}
 
@@ -66,7 +66,7 @@ class LocalURLTests: XCTestCase {
 		let local = LocalURL<IsRelative, IsFile>.init(url: file2)!
 
 		let final = join(root, local)
-		let result = root.rawValue.appendingPathComponent("var")
+		let result = file.appendingPathComponent(file2.path)
 		XCTAssert(final.rawValue.absoluteString == result.absoluteString)
 	}
 
@@ -78,7 +78,7 @@ class LocalURLTests: XCTestCase {
 		let local = LocalURL<IsRelative, IsFolder>.init(url: file2)!
 
 		let final = join(root, local)
-		let result = root.rawValue.appendingPathComponent("var")
+		let result = file.appendingPathComponent(file2.path)
 		XCTAssert(final.rawValue.absoluteString == result.absoluteString)
 	}
 	
@@ -90,7 +90,7 @@ class LocalURLTests: XCTestCase {
 		let local = LocalURL<IsRelative, IsFile>.init(url: file2)!
 
 		let final = join(root, local)
-		let result = root.rawValue.appendingPathComponent("var")
+		let result = file.appendingPathComponent(file2.path)
 		XCTAssert(final.rawValue.absoluteString == result.absoluteString)
 	}
 }

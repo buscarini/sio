@@ -17,8 +17,8 @@ public class SIO<R, E, A> {
 	public typealias Sync = (R) -> Either<E, A>?
 	public typealias Async = (R, @escaping ErrorCallback, @escaping ResultCallback) -> ()
     
-    public var queue: DispatchQueue?
-    public var delay: TimeInterval = 0
+	public var queue: DispatchQueue?
+	public var delay: TimeInterval = 0
 	public var onCancel: EmptyCallback?
 	
 	enum Implementation {

@@ -9,6 +9,12 @@
 import Foundation
 
 @inlinable
+public func <&><R, E, A, B>(_ left: SIO<R, E, A>, _ right: SIO<R, E, B>) -> SIO<R, E, (A, B)> {
+	zip(left, right)
+}
+
+
+@inlinable
 public func zip<R, E, A, B>(_ left: SIO<R, E, A>, _ right: SIO<R, E, B>) -> SIO<R, E, (A, B)> {
 	return liftA2(SIO.of({ a in
 		{ b in

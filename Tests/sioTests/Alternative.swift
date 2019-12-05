@@ -1,5 +1,5 @@
 //
-//  Applicative.swift
+//  Alternative.swift
 //  sio-iOS Tests
 //
 //  Created by José Manuel Sánchez Peñarroja on 21/06/2019.

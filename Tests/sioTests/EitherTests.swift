@@ -318,4 +318,32 @@ class EitherTests: XCTestCase {
 		XCTAssert(right.swapped.isLeft)
 		XCTAssert(right.swapped.left == 1)
 	}
+	
+	func testCodable() {
+		let left = Either<String, Int>.left("a")
+		let right = Either<String, Int>.right(1)
+		
+		let data = try! JSONEncoder().encode(left)
+		let decodedLeft = try! JSONDecoder().decode(Either<String, Int>.self, from: data)
+		XCTAssert(left == decodedLeft)
+		
+		let data2 = try! JSONEncoder().encode(right)
+		let decodedRight = try! JSONDecoder().decode(Either<String, Int>.self, from: data2)
+		XCTAssert(right == decodedRight)
+	}
+	
+	func testTraverseLeft() {
+		let left = Either<String, Int>.left("a")
+		
+		let nilResult: Either<String, Int>? = traverseLeft(left) { string in
+			return nil
+		}
+		
+		let valueResult: Either<String, Int>? = traverseLeft(left) { string in
+			string + "b"
+		}
+		
+		XCTAssert(nilResult == nil)
+		XCTAssert(valueResult?.left == "ab")
+	}
 }

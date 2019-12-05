@@ -11,6 +11,49 @@ import XCTest
 import Sio
 
 class sioTests: XCTestCase {
+	func testLazy() {
+		let finish = expectation(description: "finish tasks")
+		
+		SIO<Void, String, String>.lazy("ok")
+			.fork({ _ in
+			XCTFail()
+		}, { value in
+			XCTAssert(value == "ok")
+			finish.fulfill()
+		})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testRejectedLazy() {
+		let finish = expectation(description: "finish tasks")
+		
+		SIO<Void, String, String>.rejectedLazy("err")
+		.fork({ value in
+			XCTAssert(value == "err")
+			finish.fulfill()
+		}, { _ in
+			XCTFail()
+		})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testFromFunc() {
+		let finish = expectation(description: "finish tasks")
+		
+		SIO<String, Never, Int>.fromFunc { $0.count }
+			.provide("hello")
+			.fork({ _ in
+			XCTFail()
+		}, { value in
+			XCTAssert(value == 5)
+			finish.fulfill()
+		})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
 	func testVoid() {
 		let finish = expectation(description: "finish tasks")
 
@@ -246,6 +289,44 @@ class sioTests: XCTestCase {
 			}, { _ in
 				XCTFail()
 			})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	// MARK: Effects
+	func testOnFail() {
+		let finish = expectation(description: "finish tasks")
+		
+		SIO<Void, String, String>.rejected("ok")
+		.onFail(do: .effect {
+			finish.fulfill()
+		})
+		.onSuccess(do: .effect {
+			XCTFail()
+		})
+		.fork({ _ in
+			
+		}, { value in
+			XCTFail()
+		})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testOnSuccess() {
+		let finish = expectation(description: "finish tasks")
+		
+		SIO<Void, String, String>.lazy("ok")
+		.onFail(do: .effect {
+			XCTFail()
+		})
+		.onSuccess(do: .effect {
+			finish.fulfill()
+		})
+		.fork({ _ in
+			XCTFail()
+		}, { value in
+		})
 		
 		waitForExpectations(timeout: 1, handler: nil)
 	}
