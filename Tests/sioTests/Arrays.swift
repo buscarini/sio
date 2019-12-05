@@ -27,6 +27,22 @@ class Arrays: XCTestCase {
 		return NSError(domain: "tests", code: 1, userInfo: nil)
 	}
 	
+	func testTraverseEmpty() {
+		
+		let expectation = self.expectation(description: "task succeeded")
+		
+		[].traverse { IO<Never, Int>.of($0) }
+			.fork({ error in
+				XCTFail()
+			},
+			{ values in
+				XCTAssert(values.count == 0)
+				expectation.fulfill()
+			})
+		
+		self.waitForExpectations(timeout: 1.0, handler: nil)
+	}
+	
 	func testTraverse() {
 		
 		let expectation = self.expectation(description: "task succeeded")
@@ -40,6 +56,31 @@ class Arrays: XCTestCase {
 						XCTAssert(values[0] == 1)
 						XCTAssert(values[1] == 2)
 						XCTAssert(values[2] == 3)
+						expectation.fulfill()
+			})
+		
+		self.waitForExpectations(timeout: 1.0, handler: nil)
+	}
+	
+	func testConcat() {
+		
+		let expectation = self.expectation(description: "task succeeded")
+		
+		concat(
+			IO<Int, [Int]>.of([1, 2, 3]),
+			IO<Int, [Int]>.of([4, 5, 6])
+		)
+			.fork({ error in
+				XCTFail()
+			},
+					{ values in
+						XCTAssert(values.count == 6)
+						XCTAssert(values[0] == 1)
+						XCTAssert(values[1] == 2)
+						XCTAssert(values[2] == 3)
+						XCTAssert(values[3] == 4)
+						XCTAssert(values[4] == 5)
+						XCTAssert(values[5] == 6)
 						expectation.fulfill()
 			})
 		
@@ -63,6 +104,22 @@ class Arrays: XCTestCase {
 			})
 		
 		self.waitForExpectations(timeout: 1.1, handler: nil)
+	}
+	
+	func testSequenceEmpty() {
+		let expectation = self.expectation(description: "task succeeded")
+		
+		let ios: [SIO<Void, Void, [Int]>] = []
+		sequence(ios)
+			.fork({ error in
+				XCTFail()
+			},
+			{ values in
+				XCTAssert(values.count == 0)
+				expectation.fulfill()
+			})
+		
+		self.waitForExpectations(timeout: 0.1, handler: nil)
 	}
 	
 	func testSequence() {

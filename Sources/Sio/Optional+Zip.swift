@@ -47,7 +47,7 @@ public func zip3<A, B, C>(
 
 public func zip3<A, B, C, D>(
 	with f: @escaping (A, B, C) -> D
-	) -> (A?, B?, C?) -> D? {
+) -> (A?, B?, C?) -> D? {
 	return { xs, ys, zs in zip3(xs, ys, zs).map(f) }
 }
 

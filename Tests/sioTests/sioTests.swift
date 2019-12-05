@@ -136,6 +136,36 @@ class sioTests: XCTestCase {
 		waitForExpectations(timeout: 1, handler: nil)
 	}
 	
+	func testToEitherLeft() {
+		let finish = expectation(description: "finish tasks")
+
+		
+		IO<String, Int>.rejected("err")
+		.either()
+		.fork(absurd) { value in
+			XCTAssert(value.isLeft)
+			XCTAssert(value.left == "err")
+			finish.fulfill()
+		}
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testToEitherRight() {
+		let finish = expectation(description: "finish tasks")
+
+		
+		IO<String, Int>.of(1)
+		.either()
+		.fork(absurd) { value in
+			XCTAssert(value.isRight)
+			XCTAssert(value.right == 1)
+			finish.fulfill()
+		}
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
 	func testOnCompletionError() {
 		let finish = expectation(description: "error")
 		

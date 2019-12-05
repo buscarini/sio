@@ -94,145 +94,219 @@ class SioZipTests: XCTestCase {
 		waitForExpectations(timeout: 1, handler: nil)
 	}
 	
-	/*func testZip() {
-		let left = IO<Int, Int>.rejected(-1)
-		let left2 = IO<Int, Int>.rejected(-2)
-		let right = IO<Int, Int>.of(1)
-		let right2 = IO<Int, Int>.of(2)
-
-		XCTAssert(zip(left, left2).isLeft)
-		XCTAssert(zip(left, left2).left == -1)
-		
-		XCTAssert(zip(left, right).isLeft)
-		XCTAssert(zip(left, right).left == -1)
-
-		XCTAssert(zip(right, left).isLeft)
-		XCTAssert(zip(right, left).left == -1)
-
-		XCTAssert(zip(right, right2).isRight)
-		XCTAssert(zip(right, right2).right?.0 == 1)
-		XCTAssert(zip(right, right2).right?.1 == 2)
-	}
-	
 	func testZipWith() {
+		let finish = expectation(description: "finish")
+		
 		let left = IO<Int, Int>.rejected(-1)
 		let left2 = IO<Int, Int>.rejected(-2)
 		let right = IO<Int, Int>.of(1)
 		let right2 = IO<Int, Int>.of(2)
 		
-		XCTAssert(zip(with: { ($0, $1) })(left, left2).isLeft)
-		XCTAssert(zip(with: { ($0, $1) })(left, left2).left == -1)
+		zip2(with: { ($0, $1) })(left, left2)
+		.fork({ e in
+			XCTAssert(e == -1)
+		}) { (_) in
+			XCTFail()
+		}
 		
-		XCTAssert(zip(with: { ($0, $1) })(left, right).isLeft)
-		XCTAssert(zip(with: { ($0, $1) })(left, right).left == -1)
-
-		XCTAssert(zip(with: { ($0, $1) })(right, left).isLeft)
-		XCTAssert(zip(with: { ($0, $1) })(right, left).left == -1)
-
-		XCTAssert(zip(with: { ($0, $1) })(right, right2).isRight)
-		XCTAssert(zip(with: { ($0, $1) })(right, right2).right?.0 == 1)
-		XCTAssert(zip(with: { ($0, $1) })(right, right2).right?.1 == 2)
+		zip2(with: { ($0, $1) })(left, right)
+		.fork({ e in
+			XCTAssert(e == -1)
+		}) { (_) in
+			XCTFail()
+		}
+		
+		zip2(with: { ($0, $1) })(right, left)
+		.fork({ e in
+			XCTAssert(e == -1)
+		}) { (_) in
+			XCTFail()
+		}
+		
+		zip2(with: { ($0, $1) })(right, right2)
+		.fork({ _ in
+			XCTFail()
+		}) { both in
+			XCTAssert(both.0 == 1)
+			XCTAssert(both.1 == 2)
+			
+			finish.fulfill()
+		}
+		
+		waitForExpectations(timeout: 1, handler: nil)
 	}
 	
 	func testZip3() {
+		let finish = expectation(description: "finish")
+		
 		let left = IO<Int, Int>.rejected(-1)
 		let left2 = IO<Int, Int>.rejected(-2)
 		let right = IO<Int, Int>.of(1)
 		let right2 = IO<Int, Int>.of(2)
-
-		XCTAssert(zip3(left, left, left2).isLeft)
-		XCTAssert(zip3(left, left, left2).left == -1)
 		
-		XCTAssert(zip3(left, left2, right).isLeft)
-		XCTAssert(zip3(left, left2, right).left == -1)
-
-		XCTAssert(zip3(left, right, left2).isLeft)
-		XCTAssert(zip3(left, right, left2).left == -1)
+		zip3(left, left2, left2)
+		.fork({ e in
+			XCTAssert(e == -1)
+		}) { (_) in
+			XCTFail()
+		}
 		
-		XCTAssert(zip3(right, left, left2).isLeft)
-		XCTAssert(zip3(right, left, left2).left == -1)
-
-		XCTAssert(zip3(right, right, right2).isRight)
-		XCTAssert(zip3(right, right, right2).right?.0 == 1)
-		XCTAssert(zip3(right, right, right2).right?.1 == 1)
-		XCTAssert(zip3(right, right, right2).right?.2 == 2)
+		zip3(left, left2, right)
+		.fork({ e in
+			XCTAssert(e == -1)
+		}) { (_) in
+			XCTFail()
+		}
+		
+		zip3(right, left, left2)
+		.fork({ e in
+			XCTAssert(e == -1)
+		}) { (_) in
+			XCTFail()
+		}
+		
+		zip3(right, right, right2)
+		.fork({ _ in
+			XCTFail()
+		}) { both in
+			XCTAssert(both.0 == 1)
+			XCTAssert(both.1 == 1)
+			XCTAssert(both.2 == 2)
+			
+			finish.fulfill()
+		}
+		
+		waitForExpectations(timeout: 1, handler: nil)
 	}
 	
 	func testZip3With() {
+		let finish = expectation(description: "finish")
+		
 		let left = IO<Int, Int>.rejected(-1)
 		let left2 = IO<Int, Int>.rejected(-2)
 		let right = IO<Int, Int>.of(1)
 		let right2 = IO<Int, Int>.of(2)
-
-		let z: (IO<Int, Int>, IO<Int, Int>, IO<Int, Int>) -> IO<Int, (Int, Int, Int)> = zip3(with: { (a: Int, b: Int, c: Int) -> (Int, Int, Int) in
-			(a, b, c)
-		})
 		
-		XCTAssert(z(left, left, left2).isLeft)
-		XCTAssert(z(left, left, left2).left == -1)
+		zip3(with: { ($0, $1, $2) })(left, left, left2)
+		.fork({ e in
+			XCTAssert(e == -1)
+		}) { (_) in
+			XCTFail()
+		}
 		
-		XCTAssert(z(left, left2, right).isLeft)
-		XCTAssert(z(left, left2, right).left == -1)
-
-		XCTAssert(z(left, right, left2).isLeft)
-		XCTAssert(z(left, right, left2).left == -1)
+		zip3(with: { ($0, $1, $2) })(left, right, right2)
+		.fork({ e in
+			XCTAssert(e == -1)
+		}) { (_) in
+			XCTFail()
+		}
 		
-		XCTAssert(z(right, left, left2).isLeft)
-		XCTAssert(z(right, left, left2).left == -1)
-
-		XCTAssert(z(right, right, right2).isRight)
-		XCTAssert(z(right, right, right2).right?.0 == 1)
-		XCTAssert(z(right, right, right2).right?.1 == 1)
-		XCTAssert(z(right, right, right2).right?.2 == 2)
+		zip3(with: { ($0, $1, $2) })(right, left, left2)
+		.fork({ e in
+			XCTAssert(e == -1)
+		}) { (_) in
+			XCTFail()
+		}
+		
+		zip3(with: { ($0, $1, $2) })(right, right, right2)
+		.fork({ _ in
+			XCTFail()
+		}) { both in
+			XCTAssert(both.0 == 1)
+			XCTAssert(both.1 == 1)
+			XCTAssert(both.2 == 2)
+			
+			finish.fulfill()
+		}
+		
+		waitForExpectations(timeout: 1, handler: nil)
 	}
 	
 	func testZip4() {
+		let finish = expectation(description: "finish")
+		
 		let left = IO<Int, Int>.rejected(-1)
 		let left2 = IO<Int, Int>.rejected(-2)
 		let right = IO<Int, Int>.of(1)
 		let right2 = IO<Int, Int>.of(2)
-
-		XCTAssert(zip4(left, left, left2, left2).isLeft)
-		XCTAssert(zip4(left, left, left2, left2).left == -1)
 		
-		XCTAssert(zip4(left, left2, left2, right).isLeft)
-		XCTAssert(zip4(left, left2, left2, right).left == -1)
-
-		XCTAssert(zip4(left, right, left2, left2).isLeft)
-		XCTAssert(zip4(left, right, left2, left2).left == -1)
+		zip4(left, left2, left2, left)
+		.fork({ e in
+			XCTAssert(e == -1)
+		}) { (_) in
+			XCTFail()
+		}
 		
-		XCTAssert(zip4(right, left, left2, left2).isLeft)
-		XCTAssert(zip4(right, left, left2, left2).left == -1)
-
-		XCTAssert(zip4(right, right, right2, right2).isRight)
-		XCTAssert(zip4(right, right, right2, right2).right?.0 == 1)
-		XCTAssert(zip4(right, right, right2, right2).right?.1 == 1)
-		XCTAssert(zip4(right, right, right2, right2).right?.2 == 2)
-		XCTAssert(zip4(right, right, right2, right2).right?.3 == 2)
+		zip4(left, left2, right, right2)
+		.fork({ e in
+			XCTAssert(e == -1)
+		}) { (_) in
+			XCTFail()
+		}
+		
+		zip4(right, left, left2, right)
+		.fork({ e in
+			XCTAssert(e == -1)
+		}) { (_) in
+			XCTFail()
+		}
+		
+		zip4(right, right, right2, right2)
+		.fork({ _ in
+			XCTFail()
+		}) { both in
+			XCTAssert(both.0 == 1)
+			XCTAssert(both.1 == 1)
+			XCTAssert(both.2 == 2)
+			XCTAssert(both.3 == 2)
+			
+			finish.fulfill()
+		}
+		
+		waitForExpectations(timeout: 1, handler: nil)
 	}
 	
 	func testZip4With() {
+		let finish = expectation(description: "finish")
+		
 		let left = IO<Int, Int>.rejected(-1)
 		let left2 = IO<Int, Int>.rejected(-2)
 		let right = IO<Int, Int>.of(1)
 		let right2 = IO<Int, Int>.of(2)
-
-		XCTAssert(zip4(with: { ($0, $1, $2, $3) })(left, left, left2, left2).isLeft)
-		XCTAssert(zip4(with: { ($0, $1, $2, $3) })(left, left, left2, left2).left == -1)
 		
-		XCTAssert(zip4(with: { ($0, $1, $2, $3) })(left, left2, left2, right).isLeft)
-		XCTAssert(zip4(with: { ($0, $1, $2, $3) })(left, left2, left2, right).left == -1)
-
-		XCTAssert(zip4(with: { ($0, $1, $2, $3) })(left, right, left2, left2).isLeft)
-		XCTAssert(zip4(with: { ($0, $1, $2, $3) })(left, right, left2, left2).left == -1)
+		zip4(with: { ($0, $1, $2, $3) })(left, left, left, left2)
+		.fork({ e in
+			XCTAssert(e == -1)
+		}) { (_) in
+			XCTFail()
+		}
 		
-		XCTAssert(zip4(with: { ($0, $1, $2, $3) })(right, left, left2, left2).isLeft)
-		XCTAssert(zip4(with: { ($0, $1, $2, $3) })(right, left, left2, left2).left == -1)
-
-		XCTAssert(zip4(with: { ($0, $1, $2, $3) })(right, right, right2,  right2).isRight)
-		XCTAssert(zip4(with: { ($0, $1, $2, $3) })(right, right, right2, right2).right?.0 == 1)
-		XCTAssert(zip4(with: { ($0, $1, $2, $3) })(right, right, right2, right2).right?.1 == 1)
-		XCTAssert(zip4(with: { ($0, $1, $2, $3) })(right, right, right2, right2).right?.2 == 2)
-		XCTAssert(zip4(with: { ($0, $1, $2, $3) })(right, right, right2, right2).right?.3 == 2)
-	}*/
+		zip4(with: { ($0, $1, $2, $3) })(left, right, right2, right)
+		.fork({ e in
+			XCTAssert(e == -1)
+		}) { (_) in
+			XCTFail()
+		}
+		
+		zip4(with: { ($0, $1, $2, $3) })(right, left, left2, right)
+		.fork({ e in
+			XCTAssert(e == -1)
+		}) { (_) in
+			XCTFail()
+		}
+		
+		zip4(with: { ($0, $1, $2, $3) })(right, right, right2, right2)
+		.fork({ _ in
+			XCTFail()
+		}) { both in
+			XCTAssert(both.0 == 1)
+			XCTAssert(both.1 == 1)
+			XCTAssert(both.2 == 2)
+			XCTAssert(both.3 == 2)
+			
+			finish.fulfill()
+		}
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
 }

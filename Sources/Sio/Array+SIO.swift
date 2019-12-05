@@ -56,13 +56,6 @@ public func concat<R, E, A>(_ first: SIO<R, E, [A]>, _ second: SIO<R, E, [A]>) -
 }
 
 @inlinable
-public func parallel<R, E, A>(_ ios: [SIO<R, E, [A]>]) -> SIO<R, E, [A]> {
-	return ios.reduce(SIO.of([])) { acc, item in
-		return concat(acc, item)
-	}
-}
-
-@inlinable
 public func sequence<R, E, A>(_ ios: [SIO<R, E, A>]) -> SIO<R, E, [A]> {
 	return sequence(ios.map { io in
 		io.map { [$0] }
