@@ -46,6 +46,21 @@ class SchedulerTests: XCTestCase {
 		waitForExpectations(timeout: 1, handler: nil)
 	}
 	
+	func testForkGlobal() {
+		let finish = expectation(description: "finish tasks")
+
+		SIO<Void, String, String>.of("ok")
+		.fork(in: .global(), { _ in
+			XCTFail()
+		}, { value in
+			XCTAssert(Thread.isMainThread == false)
+			XCTAssert(value == "ok")
+			finish.fulfill()
+		})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
 	func testForkOnMain() {
 		let finish = expectation(description: "finish tasks")
 
@@ -53,6 +68,22 @@ class SchedulerTests: XCTestCase {
 		.scheduleOn(.global())
 		.forkOn(.main)
 		.fork({ _ in
+			XCTFail()
+		}, { value in
+			XCTAssert(Thread.isMainThread)
+			XCTAssert(value == "ok")
+			finish.fulfill()
+		})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testForkMain() {
+		let finish = expectation(description: "finish tasks")
+
+		SIO<Void, String, String>.of("ok")
+		.scheduleOn(.global())
+		.forkMain({ _ in
 			XCTFail()
 		}, { value in
 			XCTAssert(Thread.isMainThread)

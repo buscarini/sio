@@ -23,12 +23,8 @@ public func <|><R, E, A>(first: SIO<R, E, A>, second: SIO<R, E, A>) -> SIO<R, E,
 	return or(first, second)
 }
 
-public func firstSuccess<R, E, A>(_ ios: [SIO<R, E, A>], _ empty: A) -> SIO<R, E, A> {
-	guard let first = ios.first else {
-		return SIO.of(empty)
-	}
-	
-	return ios.dropFirst().reduce(first, { acc, item in
+public func firstSuccess<R, E, A>(_ first: SIO<R, E, A>, _ rest: [SIO<R, E, A>]) -> SIO<R, E, A> {
+	return rest.reduce(first, { acc, item in
 		acc <|> item
 	})
 }

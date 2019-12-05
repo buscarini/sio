@@ -25,9 +25,11 @@
 
 /* Begin PBXBuildFile section */
 		AC03D34023980F2200BF2F90 /* SIORefTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC03D33E23980F1F00BF2F90 /* SIORefTests.swift */; };
+		AC0B35E1239998D300A685E7 /* ComposeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0B35E0239998D300A685E7 /* ComposeTests.swift */; };
 		AC345F6223947BA1005B45AB /* SioCodecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_99 /* SioCodecTests.swift */; };
 		AC67337C23900D9400B8ABAB /* Optional+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC67337B23900D9400B8ABAB /* Optional+Zip.swift */; };
 		AC7DA86B239957E700C2B44B /* SchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7DA8692399579A00C2B44B /* SchedulerTests.swift */; };
+		AC7DA88C23998CD600C2B44B /* CurryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7DA88B23998CD600C2B44B /* CurryTests.swift */; };
 		ACB1CADE2391A4AB00CE477E /* Sio+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB1CADD2391A4AB00CE477E /* Sio+Codable.swift */; };
 		ACB1CAE12391A98200CE477E /* CodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB1CADF2391A94E00CE477E /* CodableTests.swift */; };
 		ACB1CAE42391B0EB00CE477E /* EitherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB1CAE32391B0EB00CE477E /* EitherTests.swift */; };
@@ -289,8 +291,10 @@
 
 /* Begin PBXFileReference section */
 		AC03D33E23980F1F00BF2F90 /* SIORefTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIORefTests.swift; sourceTree = "<group>"; };
+		AC0B35E0239998D300A685E7 /* ComposeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeTests.swift; sourceTree = "<group>"; };
 		AC67337B23900D9400B8ABAB /* Optional+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Zip.swift"; sourceTree = "<group>"; };
 		AC7DA8692399579A00C2B44B /* SchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerTests.swift; sourceTree = "<group>"; };
+		AC7DA88B23998CD600C2B44B /* CurryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurryTests.swift; sourceTree = "<group>"; };
 		ACB1CADD2391A4AB00CE477E /* Sio+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sio+Codable.swift"; sourceTree = "<group>"; };
 		ACB1CADF2391A94E00CE477E /* CodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableTests.swift; sourceTree = "<group>"; };
 		ACB1CAE22391AB2A00CE477E /* Sio-Package.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = "Sio-Package.xctestplan"; path = "Tests/Sio-Package.xctestplan"; sourceTree = SOURCE_ROOT; };
@@ -535,6 +539,8 @@
 				ACB1CAEC2393BB9100CE477E /* PreludeTests.swift */,
 				ACB1CAEE2393BD6A00CE477E /* OptionalTests.swift */,
 				ACB1CAF0239478B500CE477E /* SioFoldTests.swift */,
+				AC7DA88B23998CD600C2B44B /* CurryTests.swift */,
+				AC0B35E0239998D300A685E7 /* ComposeTests.swift */,
 			);
 			name = SioTests;
 			path = Tests/SioTests;
@@ -1060,6 +1066,7 @@
 				OBJ_276 /* Chunked.swift in Sources */,
 				ACB1CAE12391A98200CE477E /* CodableTests.swift in Sources */,
 				ACDF84E223967FBC001882B2 /* SIOZipTests.swift in Sources */,
+				AC7DA88C23998CD600C2B44B /* CurryTests.swift in Sources */,
 				OBJ_277 /* ConcurrencyTests.swift in Sources */,
 				ACB1CAE92391E73600CE477E /* ChunksTests.swift in Sources */,
 				OBJ_278 /* Delay.swift in Sources */,
@@ -1071,6 +1078,7 @@
 				OBJ_284 /* SIOTests.swift in Sources */,
 				ACB1CAF1239478B600CE477E /* SioFoldTests.swift in Sources */,
 				ACB1CAED2393BB9100CE477E /* PreludeTests.swift in Sources */,
+				AC0B35E1239998D300A685E7 /* ComposeTests.swift in Sources */,
 				AC7DA86B239957E700C2B44B /* SchedulerTests.swift in Sources */,
 				OBJ_285 /* TimeoutTests.swift in Sources */,
 				ACB1CAEB2391E8DA00CE477E /* IsoTests.swift in Sources */,

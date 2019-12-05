@@ -98,6 +98,28 @@ class EitherTests: XCTestCase {
 		XCTAssert(right.optional() == 1)
 	}
 
+	func testCatchingError() {
+		let left = Either<Error, Int>.init(catching: {
+			throw TestError.unknown
+		})
+		
+		XCTAssert(left.isLeft)
+		
+		switch left.left {
+		case .some(TestError.unknown):
+			break
+		default:
+			XCTFail()
+		}
+	}
+	
+	func testCatchingRight() {
+		let right = Either<Error, Int>.init(catching: {
+			1
+		})
+		
+		XCTAssert(right.right == 1)
+	}
 	
 	func testAlt() {
 		let left = Either<Int, Int>.left(-1)
@@ -145,6 +167,66 @@ class EitherTests: XCTestCase {
 		
 		XCTAssert(right.isRight)
 		XCTAssert(right.right == [ "a", "b" ])		
+	}
+	
+	func testFlatMapLeft() {
+		let left = Either<Int, Int>.left(-1)
+		let left2 = Either<Int, Int>.left(2)
+		let right = Either<Int, Int>.right(1)
+
+		let result = left
+			.flatMapLeft { _ in left2 }
+		XCTAssert(result.left == 2)
+		
+		let result2 = left
+			.flatMapLeft { _ in right }
+		XCTAssert(result2.right == 1)
+		
+		let result3 = right
+			.flatMapLeft { _ in left }
+		XCTAssert(result3.right == 1)
+	}
+	
+	func testFlatMap() {
+		let left = Either<Int, Int>.left(-1)
+		let left2 = Either<Int, Int>.left(2)
+		let right = Either<Int, Int>.right(1)
+		let right2 = Either<Int, Int>.right(10)
+
+		let result = left
+			.flatMap { _ in left2 }
+		XCTAssert(result.left == -1)
+		
+		let result2 = left
+			.flatMap { _ in right }
+		XCTAssert(result2.left == -1)
+		
+		let result3 = right
+			.flatMap { _ in left }
+		XCTAssert(result3.left == -1)
+		
+		let result4 = right
+			.flatMap { _ in right2 }
+		XCTAssert(result4.right == 10)
+	}
+	
+	func testFlatMapOperator() {
+		let left = Either<Int, Int>.left(-1)
+		let left2 = Either<Int, Int>.left(2)
+		let right = Either<Int, Int>.right(1)
+		let right2 = Either<Int, Int>.right(10)
+
+		let result = left >>= const(left2)
+		XCTAssert(result.left == -1)
+		
+		let result2 = left >>= const(right)
+		XCTAssert(result2.left == -1)
+		
+		let result3 = right >>= { _ in left }
+		XCTAssert(result3.left == -1)
+		
+		let result4 = right >>= { _ in right2 }
+		XCTAssert(result4.right == 10)
 	}
 	
 	func testZipAnd() {

@@ -323,6 +323,21 @@ class sioTests: XCTestCase {
 		waitForExpectations(timeout: 1, handler: nil)
 	}
 	
+	func testIgnore() {
+		let finish = expectation(description: "finish tasks")
+		
+		SIO<Void, String, String>.rejected("err")
+		.ignore()
+		.fork({ value in
+			XCTAssert(value == ())
+			finish.fulfill()
+		}, { _ in
+			XCTFail()
+		})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
 	// MARK: Effects
 	func testOnFail() {
 		let finish = expectation(description: "finish tasks")
@@ -357,6 +372,19 @@ class sioTests: XCTestCase {
 			XCTFail()
 		}, { value in
 		})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testAccess() {
+		let finish = expectation(description: "finish tasks")
+		
+		SIO<(Int, Int), Never, Int>.access { $0.0 }
+			.provide((1, 2))
+			.fork(absurd, { value in
+				XCTAssert(value == 1)
+				finish.fulfill()
+			})
 		
 		waitForExpectations(timeout: 1, handler: nil)
 	}
