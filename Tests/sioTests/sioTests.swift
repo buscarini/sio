@@ -11,6 +11,10 @@ import XCTest
 import Sio
 
 class sioTests: XCTestCase {
+	enum TestError: Error {
+		case unknown
+	}
+	
 	func testLazy() {
 		let finish = expectation(description: "finish tasks")
 		
@@ -338,6 +342,28 @@ class sioTests: XCTestCase {
 		waitForExpectations(timeout: 1, handler: nil)
 	}
 	
+	func testCatching() {
+		let finish = expectation(description: "finish tasks")
+		
+		SIO<Void, Error, String>.init(catching: {
+			throw TestError.unknown
+		})
+		.fork({ e in
+			switch e {
+			case TestError.unknown:
+				break
+			default:
+				XCTFail()
+			}
+			
+			finish.fulfill()
+		}, { _ in
+			XCTFail()
+		})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
 	// MARK: Effects
 	func testOnFail() {
 		let finish = expectation(description: "finish tasks")
@@ -385,6 +411,40 @@ class sioTests: XCTestCase {
 				XCTAssert(value == 1)
 				finish.fulfill()
 			})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testEmpty() {
+		let finish = expectation(description: "finish tasks")
+		
+		SIO<Void, Never, Void>.empty
+		.fork(absurd, { value in
+			finish.fulfill()
+		})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testNever() {
+		let finish = expectation(description: "finish tasks")
+		
+		SIO<Void, Never, Never>.never
+		.fork(absurd, absurd)
+		
+		finish.fulfill()
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testRunForget() {
+		let finish = expectation(description: "finish tasks")
+		
+		SIO<Void, String, Int>.of(1)
+			.onCompletion(.effect {
+				finish.fulfill()
+			})
+			.runForget(())
 		
 		waitForExpectations(timeout: 1, handler: nil)
 	}

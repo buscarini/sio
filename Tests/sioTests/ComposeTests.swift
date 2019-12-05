@@ -37,4 +37,32 @@ class ComposeTests: XCTestCase {
 	func testCompose5() {
 		XCTAssert(compose(uppercase, bang, bang, bang, bang, bang)("hello") == "HELLO!!!!!")
 	}
+	
+	func uppercaseT(_ left: String) throws -> String {
+		left.uppercased()
+	}
+	
+	func bangT(_ left: String) throws -> String {
+		left + "!"
+	}
+	
+	func testComposeThrow() {
+		XCTAssert(try! compose(uppercaseT, bangT)("hello") == "HELLO!")
+	}
+	
+	func testCompose2Throw() {
+		XCTAssert(try! compose(uppercaseT, bangT, bangT)("hello") == "HELLO!!")
+	}
+	
+	func testCompose3Throw() {
+		XCTAssert(try! compose(uppercaseT, bangT, bangT, bangT)("hello") == "HELLO!!!")
+	}
+	
+	func testCompose4Throw() {
+		XCTAssert(try! compose(uppercaseT, bangT, bangT, bangT, bangT)("hello") == "HELLO!!!!")
+	}
+	
+	func testCompose5Throw() {
+		XCTAssert(try! compose(uppercaseT, bangT, bangT, bangT, bangT, bangT)("hello") == "HELLO!!!!!")
+	}
 }

@@ -51,8 +51,8 @@ public extension SIO where R == Void, E == Never, A == Void {
 	}
 }
 
-extension SIO {
-	static var never: SIO {
+public extension SIO {
+	static var never: SIO<R, Never, Never> {
 		return .init { (_, _, _) in
 			
 		}
