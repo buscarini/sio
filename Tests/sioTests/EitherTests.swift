@@ -275,18 +275,18 @@ class EitherTests: XCTestCase {
 		let right = Either<Int, Int>.right(1)
 		let right2 = Either<Int, Int>.right(2)
 		
-		XCTAssert(zip(with: { ($0, $1) })(left, left2).isLeft)
-		XCTAssert(zip(with: { ($0, $1) })(left, left2).left == -1)
+		XCTAssert(zip2(with: { ($0, $1) })(left, left2).isLeft)
+		XCTAssert(zip2(with: { ($0, $1) })(left, left2).left == -1)
 		
-		XCTAssert(zip(with: { ($0, $1) })(left, right).isLeft)
-		XCTAssert(zip(with: { ($0, $1) })(left, right).left == -1)
+		XCTAssert(zip2(with: { ($0, $1) })(left, right).isLeft)
+		XCTAssert(zip2(with: { ($0, $1) })(left, right).left == -1)
 
-		XCTAssert(zip(with: { ($0, $1) })(right, left).isLeft)
-		XCTAssert(zip(with: { ($0, $1) })(right, left).left == -1)
+		XCTAssert(zip2(with: { ($0, $1) })(right, left).isLeft)
+		XCTAssert(zip2(with: { ($0, $1) })(right, left).left == -1)
 
-		XCTAssert(zip(with: { ($0, $1) })(right, right2).isRight)
-		XCTAssert(zip(with: { ($0, $1) })(right, right2).right?.0 == 1)
-		XCTAssert(zip(with: { ($0, $1) })(right, right2).right?.1 == 2)
+		XCTAssert(zip2(with: { ($0, $1) })(right, right2).isRight)
+		XCTAssert(zip2(with: { ($0, $1) })(right, right2).right?.0 == 1)
+		XCTAssert(zip2(with: { ($0, $1) })(right, right2).right?.1 == 2)
 	}
 	
 	func testZip3() {
@@ -427,5 +427,18 @@ class EitherTests: XCTestCase {
 		
 		XCTAssert(nilResult == nil)
 		XCTAssert(valueResult?.left == "ab")
+	}
+	
+	func testMapAll() {
+		let left = Either<Int, Int>.left(-1)
+		let right = Either<Int, Int>.right(1)
+
+		let result = left
+			.mapAll { $0*2 }
+		XCTAssert(result.left == -2)
+		
+		let result2 = right
+			.mapAll { $0*2 }
+		XCTAssert(result2.right == 2)
 	}
 }

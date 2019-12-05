@@ -18,7 +18,7 @@ public enum IsAbsolute: PathSource {}
 public struct LocalURL<SourceType: PathSource, TargetType: PathTarget>: Equatable, Hashable, Codable {
 	public var rawValue: URL
 	
-	init(rawValue: URL) {
+	fileprivate init(rawValue: URL) {
 		self.rawValue = rawValue
 	}
 }

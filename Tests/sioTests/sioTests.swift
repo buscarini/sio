@@ -448,4 +448,55 @@ class sioTests: XCTestCase {
 		
 		waitForExpectations(timeout: 1, handler: nil)
 	}
+	
+	func testBiFlatMapError() {
+		let finish = expectation(description: "finish tasks")
+		
+		SIO<Void, Int, Int>.rejected(1)
+			.biFlatMap(IO<Never, String>.of("ok"))
+			.fork(absurd) { value in
+				XCTAssert(value == "ok")
+				finish.fulfill()
+			}
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testBiFlatMapErrorToError() {
+		let finish = expectation(description: "finish tasks")
+		
+		SIO<Void, Int, Int>.rejected(1)
+			.biFlatMap(IO<String, Never>.rejected("ok"))
+			.fork({ value in
+				XCTAssert(value == "ok")
+				finish.fulfill()
+			}, absurd)
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testBiFlatMapSuccess() {
+		let finish = expectation(description: "finish tasks")
+		
+		SIO<Void, Int, Int>.of(1)
+			.biFlatMap(IO<Never, String>.of("ok"))
+			.fork(absurd) { value in
+				XCTAssert(value == "ok")
+				finish.fulfill()
+			}
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testBiFlatMapSuccessToError() {
+		let finish = expectation(description: "finish tasks")
+		
+		SIO<Void, Int, Int>.of(1)
+			.biFlatMap(IO<Never, String>.of("ok"))
+			.fork(absurd) { value in
+				XCTAssert(value == "ok")
+				finish.fulfill()
+			}
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
 }
