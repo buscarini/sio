@@ -416,6 +416,7 @@ class EitherTests: XCTestCase {
 	
 	func testTraverseLeft() {
 		let left = Either<String, Int>.left("a")
+		let right = Either<String, Int>.right(1)
 		
 		let nilResult: Either<String, Int>? = traverseLeft(left) { string in
 			return nil
@@ -427,6 +428,17 @@ class EitherTests: XCTestCase {
 		
 		XCTAssert(nilResult == nil)
 		XCTAssert(valueResult?.left == "ab")
+		
+		let untouched: Either<String, Int>? = traverseLeft(right) { string in
+			nil
+		}
+		
+		let untouched2: Either<String, Int>? = traverseLeft(right) { string in
+			string + "b"
+		}
+		
+		XCTAssert(untouched?.right == 1)
+		XCTAssert(untouched2?.right == 1)
 	}
 	
 	func testMapAll() {

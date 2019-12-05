@@ -15,6 +15,10 @@ class sioTests: XCTestCase {
 		case unknown
 	}
 	
+	struct User {
+		var name: String
+	}
+	
 	func testLazy() {
 		let finish = expectation(description: "finish tasks")
 		
@@ -415,6 +419,19 @@ class sioTests: XCTestCase {
 		waitForExpectations(timeout: 1, handler: nil)
 	}
 	
+	func testAccessPath() {
+		let finish = expectation(description: "finish tasks")
+		
+		access(\User.name)
+			.provide(User.init(name: "john"))
+			.fork(absurd, { value in
+				XCTAssert(value == "john")
+				finish.fulfill()
+			})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
 	func testEmpty() {
 		let finish = expectation(description: "finish tasks")
 		
@@ -433,6 +450,20 @@ class sioTests: XCTestCase {
 		.fork(absurd, absurd)
 		
 		finish.fulfill()
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testRunError() {
+		let finish = expectation(description: "finish tasks")
+		
+		SIO<Void, String, Int>.rejected("err")
+			.onCompletion(.effect {
+				finish.fulfill()
+			})
+			.run(()) { _ in
+				XCTFail()
+			}
 		
 		waitForExpectations(timeout: 1, handler: nil)
 	}
