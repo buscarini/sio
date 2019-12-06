@@ -9,12 +9,7 @@ import Foundation
 
 public extension Either {
 	static func from(_ optional: B?, default value: B) -> Either<A, B> {
-		if let value = optional {
-			return .right(value)
-		}
-		else {
-			return .right(value)
-		}
+		.right(optional ?? value)
 	}
 	
 	static func from(_ optional: B?, _ error: A) -> Either {
@@ -27,6 +22,6 @@ public extension Either {
 	}
 	
 	func optional() -> B? {
-		return self.right
+		self.right
 	}
 }

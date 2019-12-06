@@ -10,12 +10,7 @@ import Foundation
 
 public extension SIO {
 	static func from(_ optional: A?, default value: A) -> SIO {
-		if let value = optional {
-			return SIO.of(value)
-		}
-		else {
-			return SIO.of(value)
-		}
+		SIO.of(optional ?? value)
 	}
 	
 	static func from(_ optional: A?, _ error: E) -> SIO {
