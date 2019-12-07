@@ -43,7 +43,7 @@ class BracketTests: XCTestCase {
 			XCTFail()
 		})
 		
-		waitForExpectations(timeout: 5, handler: nil)
+		waitForExpectations(timeout: 2, handler: nil)
 	}
 	
 	func testReleaseOnCancellation() {

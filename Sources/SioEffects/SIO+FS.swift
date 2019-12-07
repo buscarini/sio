@@ -129,3 +129,9 @@ public struct FS {
 		}
 	}
 }
+
+public extension FS {
+	func removeFile(_ path: FileURL) -> Task<Void> {
+		return self.remove(path.rawValue)
+	}
+}

@@ -69,19 +69,13 @@ public extension ValueStore where A == B {
 					self.load
 				},
 			save: { a in
-				self.save(a)
-					.flatMap { a in
-						cache.save(a).flatMapError { _ in
-							.of(a)
-						}
-					}
-				},
-			remove: self.remove
-				.flatMap { _ in
-					cache.remove.flatMapError { _ in
-						.of(())
-					}
-				}
+				zip(
+					self.save(a),
+					cache.save(a)
+				)
+				.map(const(a))
+			},
+			remove: zip(self.remove, cache.remove).void
 		)
 	}
 }
