@@ -18,3 +18,15 @@ public struct RemoteURL: Equatable, Hashable, Codable {
 		self.rawValue = url
 	}
 }
+
+public extension RemoteURL {
+	init?(_ string: String) {
+		guard let remote = URL.init(string: string)
+			.flatMap(RemoteURL.init(url:))
+		else {
+				return nil
+		}
+		
+		self = remote
+	}
+}

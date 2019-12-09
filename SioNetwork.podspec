@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
-  s.name         = "SioValueStore"
+  s.name         = "SioNetwork"
   s.version      = "0.1"
   s.summary      = "Swift IO"
   s.description  = <<-DESC
-    Swift SIO ValueStore library. Provides abstractions for a store, that can implemented via preferences, a file, network requests, etc.
+    Swift SIO Network library.
   DESC
   s.homepage     = "https://github.com/buscarini/sio"
   s.license      = { :type => "MIT", :file => "LICENSE" }
@@ -18,6 +18,7 @@ Pod::Spec.new do |s|
   s.frameworks  = "Foundation"
   s.dependency 'Sio'
   s.dependency 'SioCodec'
-  s.source_files  = "Sources/SioValueStore/**/*"
+  s.dependency 'SioEffects'
+  s.source_files  = "Sources/SioNetwork/**/*"
   	
 end

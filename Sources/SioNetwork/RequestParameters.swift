@@ -19,3 +19,9 @@ public struct RequestParameters: Equatable, Hashable {
 		self.encoding = encoding
 	}
 }
+
+public extension RequestParameters {
+	static var empty: RequestParameters {
+		.init(items: [], encoding: .url)
+	}
+}

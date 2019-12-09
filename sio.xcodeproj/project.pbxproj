@@ -9,14 +9,15 @@
 /* Begin PBXAggregateTarget section */
 		"Sio::SioPackageTests::ProductTarget" /* SioPackageTests */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = OBJ_307 /* Build configuration list for PBXAggregateTarget "SioPackageTests" */;
+			buildConfigurationList = OBJ_345 /* Build configuration list for PBXAggregateTarget "SioPackageTests" */;
 			buildPhases = (
 			);
 			dependencies = (
-				OBJ_310 /* PBXTargetDependency */,
-				OBJ_312 /* PBXTargetDependency */,
-				OBJ_313 /* PBXTargetDependency */,
-				OBJ_315 /* PBXTargetDependency */,
+				OBJ_348 /* PBXTargetDependency */,
+				OBJ_350 /* PBXTargetDependency */,
+				OBJ_351 /* PBXTargetDependency */,
+				OBJ_353 /* PBXTargetDependency */,
+				OBJ_354 /* PBXTargetDependency */,
 			);
 			name = SioPackageTests;
 			productName = SioPackageTests;
@@ -24,374 +25,461 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		ACA014B3239BB33900D7DB91 /* ValueStore+FS.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA014B2239BB33900D7DB91 /* ValueStore+FS.swift */; };
-		OBJ_169 /* Array+SIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Array+SIO.swift */; };
-		OBJ_170 /* Collection+Chunks.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Collection+Chunks.swift */; };
-		OBJ_171 /* Compose.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Compose.swift */; };
-		OBJ_172 /* Curry.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* Curry.swift */; };
-		OBJ_173 /* Either+Alt.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* Either+Alt.swift */; };
-		OBJ_174 /* Either+Applicative.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* Either+Applicative.swift */; };
-		OBJ_175 /* Either+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* Either+Codable.swift */; };
-		OBJ_176 /* Either+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* Either+Error.swift */; };
-		OBJ_177 /* Either+Monad.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* Either+Monad.swift */; };
-		OBJ_178 /* Either+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* Either+Optional.swift */; };
-		OBJ_179 /* Either+Traversable.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* Either+Traversable.swift */; };
-		OBJ_180 /* Either+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* Either+Zip.swift */; };
-		OBJ_181 /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Either.swift */; };
-		OBJ_182 /* Iso.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* Iso.swift */; };
-		OBJ_183 /* LocalURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* LocalURL.swift */; };
-		OBJ_184 /* NoSyncValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* NoSyncValue.swift */; };
-		OBJ_185 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Operators.swift */; };
-		OBJ_186 /* Optional+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* Optional+Zip.swift */; };
-		OBJ_187 /* PrecedenceGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* PrecedenceGroups.swift */; };
-		OBJ_188 /* Prelude.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* Prelude.swift */; };
-		OBJ_189 /* Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* Ref.swift */; };
-		OBJ_190 /* Remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* Remove.swift */; };
-		OBJ_191 /* SIO+Adapt.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* SIO+Adapt.swift */; };
-		OBJ_192 /* SIO+Alt.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_32 /* SIO+Alt.swift */; };
-		OBJ_193 /* SIO+Applicative.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* SIO+Applicative.swift */; };
-		OBJ_194 /* SIO+BiFunctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* SIO+BiFunctor.swift */; };
-		OBJ_195 /* SIO+BiMonad.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* SIO+BiMonad.swift */; };
-		OBJ_196 /* SIO+Bracket.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* SIO+Bracket.swift */; };
-		OBJ_197 /* SIO+Contravariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_37 /* SIO+Contravariant.swift */; };
-		OBJ_198 /* SIO+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* SIO+Creation.swift */; };
-		OBJ_199 /* SIO+Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_39 /* SIO+Delay.swift */; };
-		OBJ_200 /* SIO+Effects.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* SIO+Effects.swift */; };
-		OBJ_201 /* SIO+Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* SIO+Either.swift */; };
-		OBJ_202 /* SIO+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_42 /* SIO+Error.swift */; };
-		OBJ_203 /* SIO+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_43 /* SIO+Events.swift */; };
-		OBJ_204 /* SIO+Flip.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_44 /* SIO+Flip.swift */; };
-		OBJ_205 /* SIO+Fold.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_45 /* SIO+Fold.swift */; };
-		OBJ_206 /* SIO+Functor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_46 /* SIO+Functor.swift */; };
-		OBJ_207 /* SIO+Monad.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_47 /* SIO+Monad.swift */; };
-		OBJ_208 /* SIO+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_48 /* SIO+Optional.swift */; };
-		OBJ_209 /* SIO+Profunctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_49 /* SIO+Profunctor.swift */; };
-		OBJ_210 /* SIO+Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_50 /* SIO+Race.swift */; };
-		OBJ_211 /* SIO+Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_51 /* SIO+Ref.swift */; };
-		OBJ_212 /* SIO+Requirements.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_52 /* SIO+Requirements.swift */; };
-		OBJ_213 /* SIO+Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_53 /* SIO+Result.swift */; };
-		OBJ_214 /* SIO+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_54 /* SIO+Retry.swift */; };
-		OBJ_215 /* SIO+Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_55 /* SIO+Run.swift */; };
-		OBJ_216 /* SIO+Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_56 /* SIO+Schedule.swift */; };
-		OBJ_217 /* SIO+Tap.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_57 /* SIO+Tap.swift */; };
-		OBJ_218 /* SIO+Timeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_58 /* SIO+Timeout.swift */; };
-		OBJ_219 /* SIO+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_59 /* SIO+Typealias.swift */; };
-		OBJ_220 /* SIO+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_60 /* SIO+Zip.swift */; };
-		OBJ_221 /* SIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_61 /* SIO.swift */; };
-		OBJ_222 /* SIOError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_62 /* SIOError.swift */; };
-		OBJ_223 /* Sio+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_63 /* Sio+Codable.swift */; };
-		OBJ_224 /* SyncValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_64 /* SyncValue.swift */; };
-		OBJ_231 /* Codec+Base64.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_66 /* Codec+Base64.swift */; };
-		OBJ_232 /* Codec+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_67 /* Codec+Data.swift */; };
-		OBJ_233 /* Codec+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_68 /* Codec+Int.swift */; };
-		OBJ_234 /* Codec+Iso.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_69 /* Codec+Iso.swift */; };
-		OBJ_235 /* Codec+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_70 /* Codec+JSON.swift */; };
-		OBJ_236 /* Codec.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_71 /* Codec.swift */; };
-		OBJ_237 /* SIO+Codec.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_72 /* SIO+Codec.swift */; };
-		OBJ_239 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
-		OBJ_246 /* SIOCodecBase64Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_105 /* SIOCodecBase64Tests.swift */; };
-		OBJ_247 /* SIOCodecUTF8Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_106 /* SIOCodecUTF8Tests.swift */; };
-		OBJ_248 /* SioCodecIntTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_107 /* SioCodecIntTests.swift */; };
-		OBJ_249 /* SioCodecJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_108 /* SioCodecJSONTests.swift */; };
-		OBJ_250 /* SioCodecSIOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_109 /* SioCodecSIOTests.swift */; };
-		OBJ_252 /* SioCodec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioCodec::Product" /* SioCodec.framework */; };
-		OBJ_253 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
-		OBJ_261 /* AnyRandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_74 /* AnyRandomNumberGenerator.swift */; };
-		OBJ_262 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_75 /* HTTPMethod.swift */; };
-		OBJ_263 /* HTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_76 /* HTTPResponse.swift */; };
-		OBJ_264 /* LCRNG.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_77 /* LCRNG.swift */; };
-		OBJ_265 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_78 /* NetworkError.swift */; };
-		OBJ_266 /* ParametersEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_79 /* ParametersEncoding.swift */; };
-		OBJ_267 /* RemoteURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_80 /* RemoteURL.swift */; };
-		OBJ_268 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_81 /* Request.swift */; };
-		OBJ_269 /* RequestParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_82 /* RequestParameters.swift */; };
-		OBJ_270 /* SIO+Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_83 /* SIO+Console.swift */; };
-		OBJ_271 /* SIO+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_84 /* SIO+Date.swift */; };
-		OBJ_272 /* SIO+FS.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_85 /* SIO+FS.swift */; };
-		OBJ_273 /* SIO+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_86 /* SIO+Network.swift */; };
-		OBJ_274 /* SIO+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_87 /* SIO+Random.swift */; };
-		OBJ_275 /* StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_88 /* StatusCode.swift */; };
-		OBJ_277 /* SioValueStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioValueStore::Product" /* SioValueStore.framework */; };
-		OBJ_278 /* SioCodec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioCodec::Product" /* SioCodec.framework */; };
-		OBJ_279 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
-		OBJ_289 /* SioEffectsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_111 /* SioEffectsTests.swift */; };
-		OBJ_290 /* SioRandomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_112 /* SioRandomTests.swift */; };
-		OBJ_292 /* SioEffects.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioEffects::Product" /* SioEffects.framework */; };
-		OBJ_293 /* SioValueStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioValueStore::Product" /* SioValueStore.framework */; };
-		OBJ_294 /* SioCodec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioCodec::Product" /* SioCodec.framework */; };
-		OBJ_295 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
-		OBJ_305 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
-		OBJ_320 /* Alternative.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_114 /* Alternative.swift */; };
-		OBJ_321 /* Arrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_115 /* Arrays.swift */; };
-		OBJ_322 /* BracketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_116 /* BracketTests.swift */; };
-		OBJ_323 /* CancellationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_117 /* CancellationTests.swift */; };
-		OBJ_324 /* Chunked.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_118 /* Chunked.swift */; };
-		OBJ_325 /* ChunksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_119 /* ChunksTests.swift */; };
-		OBJ_326 /* CodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_120 /* CodableTests.swift */; };
-		OBJ_327 /* ComposeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_121 /* ComposeTests.swift */; };
-		OBJ_328 /* ConcurrencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_122 /* ConcurrencyTests.swift */; };
-		OBJ_329 /* CurryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_123 /* CurryTests.swift */; };
-		OBJ_330 /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_124 /* Delay.swift */; };
-		OBJ_331 /* EitherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_125 /* EitherTests.swift */; };
-		OBJ_332 /* Functor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_126 /* Functor.swift */; };
-		OBJ_333 /* IsoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_127 /* IsoTests.swift */; };
-		OBJ_334 /* LocalURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_128 /* LocalURLTests.swift */; };
-		OBJ_335 /* Monad.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_129 /* Monad.swift */; };
-		OBJ_336 /* NoSyncValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_130 /* NoSyncValueTests.swift */; };
-		OBJ_337 /* OptionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_131 /* OptionalTests.swift */; };
-		OBJ_338 /* PreludeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_132 /* PreludeTests.swift */; };
-		OBJ_339 /* RaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_133 /* RaceTests.swift */; };
-		OBJ_340 /* ResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_134 /* ResultTests.swift */; };
-		OBJ_341 /* Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_135 /* Retry.swift */; };
-		OBJ_342 /* SIORefTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_136 /* SIORefTests.swift */; };
-		OBJ_343 /* SIOZipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_137 /* SIOZipTests.swift */; };
-		OBJ_344 /* SchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_138 /* SchedulerTests.swift */; };
-		OBJ_345 /* SioFoldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_139 /* SioFoldTests.swift */; };
-		OBJ_346 /* SyncValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_140 /* SyncValueTests.swift */; };
-		OBJ_347 /* TimeoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_141 /* TimeoutTests.swift */; };
-		OBJ_348 /* sioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_142 /* sioTests.swift */; };
-		OBJ_350 /* SioValueStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioValueStore::Product" /* SioValueStore.framework */; };
-		OBJ_351 /* SioCodec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioCodec::Product" /* SioCodec.framework */; };
-		OBJ_352 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
-		OBJ_360 /* ValueStore+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_90 /* ValueStore+Array.swift */; };
-		OBJ_361 /* ValueStore+Codec.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_91 /* ValueStore+Codec.swift */; };
-		OBJ_362 /* ValueStore+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_92 /* ValueStore+Creation.swift */; };
-		OBJ_363 /* ValueStore+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_93 /* ValueStore+Error.swift */; };
-		OBJ_364 /* ValueStore+Iso.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_94 /* ValueStore+Iso.swift */; };
-		OBJ_365 /* ValueStore+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_95 /* ValueStore+Optional.swift */; };
-		OBJ_366 /* ValueStore+Profunctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_96 /* ValueStore+Profunctor.swift */; };
-		OBJ_367 /* ValueStore+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_97 /* ValueStore+Typealias.swift */; };
-		OBJ_368 /* ValueStore+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_98 /* ValueStore+UserDefaults.swift */; };
-		OBJ_369 /* ValueStore+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_99 /* ValueStore+Utils.swift */; };
-		OBJ_370 /* ValueStore+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_100 /* ValueStore+Zip.swift */; };
-		OBJ_371 /* ValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_101 /* ValueStore.swift */; };
-		OBJ_372 /* ValueStoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_102 /* ValueStoreError.swift */; };
-		OBJ_374 /* SioCodec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioCodec::Product" /* SioCodec.framework */; };
-		OBJ_375 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
-		OBJ_382 /* SioCodecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_144 /* SioCodecTests.swift */; };
-		OBJ_383 /* SioValueStoreJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_145 /* SioValueStoreJSONTests.swift */; };
-		OBJ_384 /* SioValueStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_146 /* SioValueStoreTests.swift */; };
-		OBJ_386 /* SioValueStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioValueStore::Product" /* SioValueStore.framework */; };
-		OBJ_387 /* SioCodec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioCodec::Product" /* SioCodec.framework */; };
-		OBJ_388 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
+		AC7810D5239C513D0096A105 /* Request+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7810D4239C513D0096A105 /* Request+Creation.swift */; };
+		AC7810D7239D073D0096A105 /* Network+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7810D6239D073D0096A105 /* Network+Utils.swift */; };
+		OBJ_175 /* Array+SIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Array+SIO.swift */; };
+		OBJ_176 /* Collection+Chunks.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Collection+Chunks.swift */; };
+		OBJ_177 /* Compose.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Compose.swift */; };
+		OBJ_178 /* Curry.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* Curry.swift */; };
+		OBJ_179 /* Either+Alt.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* Either+Alt.swift */; };
+		OBJ_180 /* Either+Applicative.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* Either+Applicative.swift */; };
+		OBJ_181 /* Either+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* Either+Codable.swift */; };
+		OBJ_182 /* Either+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* Either+Error.swift */; };
+		OBJ_183 /* Either+Monad.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* Either+Monad.swift */; };
+		OBJ_184 /* Either+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* Either+Optional.swift */; };
+		OBJ_185 /* Either+Traversable.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* Either+Traversable.swift */; };
+		OBJ_186 /* Either+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* Either+Zip.swift */; };
+		OBJ_187 /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Either.swift */; };
+		OBJ_188 /* Iso.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* Iso.swift */; };
+		OBJ_189 /* LocalURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* LocalURL.swift */; };
+		OBJ_190 /* NoSyncValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* NoSyncValue.swift */; };
+		OBJ_191 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Operators.swift */; };
+		OBJ_192 /* Optional+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* Optional+Zip.swift */; };
+		OBJ_193 /* PrecedenceGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* PrecedenceGroups.swift */; };
+		OBJ_194 /* Prelude.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* Prelude.swift */; };
+		OBJ_195 /* Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* Ref.swift */; };
+		OBJ_196 /* Remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* Remove.swift */; };
+		OBJ_197 /* SIO+Adapt.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* SIO+Adapt.swift */; };
+		OBJ_198 /* SIO+Alt.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_32 /* SIO+Alt.swift */; };
+		OBJ_199 /* SIO+Applicative.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* SIO+Applicative.swift */; };
+		OBJ_200 /* SIO+BiFunctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* SIO+BiFunctor.swift */; };
+		OBJ_201 /* SIO+BiMonad.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* SIO+BiMonad.swift */; };
+		OBJ_202 /* SIO+Bracket.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* SIO+Bracket.swift */; };
+		OBJ_203 /* SIO+Contravariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_37 /* SIO+Contravariant.swift */; };
+		OBJ_204 /* SIO+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* SIO+Creation.swift */; };
+		OBJ_205 /* SIO+Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_39 /* SIO+Delay.swift */; };
+		OBJ_206 /* SIO+Effects.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* SIO+Effects.swift */; };
+		OBJ_207 /* SIO+Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* SIO+Either.swift */; };
+		OBJ_208 /* SIO+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_42 /* SIO+Error.swift */; };
+		OBJ_209 /* SIO+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_43 /* SIO+Events.swift */; };
+		OBJ_210 /* SIO+Flip.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_44 /* SIO+Flip.swift */; };
+		OBJ_211 /* SIO+Fold.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_45 /* SIO+Fold.swift */; };
+		OBJ_212 /* SIO+Functor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_46 /* SIO+Functor.swift */; };
+		OBJ_213 /* SIO+Monad.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_47 /* SIO+Monad.swift */; };
+		OBJ_214 /* SIO+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_48 /* SIO+Optional.swift */; };
+		OBJ_215 /* SIO+Profunctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_49 /* SIO+Profunctor.swift */; };
+		OBJ_216 /* SIO+Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_50 /* SIO+Race.swift */; };
+		OBJ_217 /* SIO+Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_51 /* SIO+Ref.swift */; };
+		OBJ_218 /* SIO+Requirements.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_52 /* SIO+Requirements.swift */; };
+		OBJ_219 /* SIO+Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_53 /* SIO+Result.swift */; };
+		OBJ_220 /* SIO+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_54 /* SIO+Retry.swift */; };
+		OBJ_221 /* SIO+Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_55 /* SIO+Run.swift */; };
+		OBJ_222 /* SIO+Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_56 /* SIO+Schedule.swift */; };
+		OBJ_223 /* SIO+Tap.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_57 /* SIO+Tap.swift */; };
+		OBJ_224 /* SIO+Timeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_58 /* SIO+Timeout.swift */; };
+		OBJ_225 /* SIO+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_59 /* SIO+Typealias.swift */; };
+		OBJ_226 /* SIO+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_60 /* SIO+Zip.swift */; };
+		OBJ_227 /* SIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_61 /* SIO.swift */; };
+		OBJ_228 /* SIOError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_62 /* SIOError.swift */; };
+		OBJ_229 /* Sio+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_63 /* Sio+Codable.swift */; };
+		OBJ_230 /* SyncValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_64 /* SyncValue.swift */; };
+		OBJ_237 /* Codec+Base64.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_66 /* Codec+Base64.swift */; };
+		OBJ_238 /* Codec+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_67 /* Codec+Data.swift */; };
+		OBJ_239 /* Codec+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_68 /* Codec+Int.swift */; };
+		OBJ_240 /* Codec+Iso.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_69 /* Codec+Iso.swift */; };
+		OBJ_241 /* Codec+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_70 /* Codec+JSON.swift */; };
+		OBJ_242 /* Codec.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_71 /* Codec.swift */; };
+		OBJ_243 /* SIO+Codec.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_72 /* SIO+Codec.swift */; };
+		OBJ_245 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
+		OBJ_252 /* SIOCodecBase64Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_107 /* SIOCodecBase64Tests.swift */; };
+		OBJ_253 /* SIOCodecUTF8Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_108 /* SIOCodecUTF8Tests.swift */; };
+		OBJ_254 /* SioCodecIntTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_109 /* SioCodecIntTests.swift */; };
+		OBJ_255 /* SioCodecJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_110 /* SioCodecJSONTests.swift */; };
+		OBJ_256 /* SioCodecSIOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_111 /* SioCodecSIOTests.swift */; };
+		OBJ_258 /* SioCodec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioCodec::Product" /* SioCodec.framework */; };
+		OBJ_259 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
+		OBJ_267 /* AnyRandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_74 /* AnyRandomNumberGenerator.swift */; };
+		OBJ_268 /* LCRNG.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_75 /* LCRNG.swift */; };
+		OBJ_269 /* SIO+Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_76 /* SIO+Console.swift */; };
+		OBJ_270 /* SIO+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_77 /* SIO+Date.swift */; };
+		OBJ_271 /* SIO+FS.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_78 /* SIO+FS.swift */; };
+		OBJ_272 /* SIO+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_79 /* SIO+Random.swift */; };
+		OBJ_273 /* ValueStore+FS.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_80 /* ValueStore+FS.swift */; };
+		OBJ_275 /* SioValueStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioValueStore::Product" /* SioValueStore.framework */; };
+		OBJ_276 /* SioCodec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioCodec::Product" /* SioCodec.framework */; };
+		OBJ_277 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
+		OBJ_287 /* SioEffectsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_113 /* SioEffectsTests.swift */; };
+		OBJ_288 /* SioRandomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_114 /* SioRandomTests.swift */; };
+		OBJ_290 /* SioEffects.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioEffects::Product" /* SioEffects.framework */; };
+		OBJ_291 /* SioValueStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioValueStore::Product" /* SioValueStore.framework */; };
+		OBJ_292 /* SioCodec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioCodec::Product" /* SioCodec.framework */; };
+		OBJ_293 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
+		OBJ_303 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_82 /* HTTPMethod.swift */; };
+		OBJ_304 /* HTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_83 /* HTTPResponse.swift */; };
+		OBJ_305 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_84 /* NetworkError.swift */; };
+		OBJ_306 /* ParametersEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_85 /* ParametersEncoding.swift */; };
+		OBJ_307 /* RemoteURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_86 /* RemoteURL.swift */; };
+		OBJ_308 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_87 /* Request.swift */; };
+		OBJ_309 /* RequestParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_88 /* RequestParameters.swift */; };
+		OBJ_310 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_89 /* Network.swift */; };
+		OBJ_311 /* StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_90 /* StatusCode.swift */; };
+		OBJ_313 /* SioEffects.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioEffects::Product" /* SioEffects.framework */; };
+		OBJ_314 /* SioValueStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioValueStore::Product" /* SioValueStore.framework */; };
+		OBJ_315 /* SioCodec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioCodec::Product" /* SioCodec.framework */; };
+		OBJ_316 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
+		OBJ_326 /* SioNetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_116 /* SioNetworkTests.swift */; };
+		OBJ_328 /* SioNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioNetwork::Product" /* SioNetwork.framework */; };
+		OBJ_329 /* SioEffects.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioEffects::Product" /* SioEffects.framework */; };
+		OBJ_330 /* SioValueStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioValueStore::Product" /* SioValueStore.framework */; };
+		OBJ_331 /* SioCodec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioCodec::Product" /* SioCodec.framework */; };
+		OBJ_332 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
+		OBJ_343 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
+		OBJ_359 /* Alternative.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_118 /* Alternative.swift */; };
+		OBJ_360 /* Arrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_119 /* Arrays.swift */; };
+		OBJ_361 /* BracketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_120 /* BracketTests.swift */; };
+		OBJ_362 /* CancellationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_121 /* CancellationTests.swift */; };
+		OBJ_363 /* Chunked.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_122 /* Chunked.swift */; };
+		OBJ_364 /* ChunksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_123 /* ChunksTests.swift */; };
+		OBJ_365 /* CodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_124 /* CodableTests.swift */; };
+		OBJ_366 /* ComposeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_125 /* ComposeTests.swift */; };
+		OBJ_367 /* ConcurrencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_126 /* ConcurrencyTests.swift */; };
+		OBJ_368 /* CurryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_127 /* CurryTests.swift */; };
+		OBJ_369 /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_128 /* Delay.swift */; };
+		OBJ_370 /* EitherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_129 /* EitherTests.swift */; };
+		OBJ_371 /* Functor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_130 /* Functor.swift */; };
+		OBJ_372 /* IsoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_131 /* IsoTests.swift */; };
+		OBJ_373 /* LocalURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_132 /* LocalURLTests.swift */; };
+		OBJ_374 /* Monad.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_133 /* Monad.swift */; };
+		OBJ_375 /* NoSyncValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_134 /* NoSyncValueTests.swift */; };
+		OBJ_376 /* OptionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_135 /* OptionalTests.swift */; };
+		OBJ_377 /* PreludeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_136 /* PreludeTests.swift */; };
+		OBJ_378 /* RaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_137 /* RaceTests.swift */; };
+		OBJ_379 /* ResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_138 /* ResultTests.swift */; };
+		OBJ_380 /* Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_139 /* Retry.swift */; };
+		OBJ_381 /* SIORefTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_140 /* SIORefTests.swift */; };
+		OBJ_382 /* SIOZipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_141 /* SIOZipTests.swift */; };
+		OBJ_383 /* SchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_142 /* SchedulerTests.swift */; };
+		OBJ_384 /* SioFoldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_143 /* SioFoldTests.swift */; };
+		OBJ_385 /* SyncValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_144 /* SyncValueTests.swift */; };
+		OBJ_386 /* TimeoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_145 /* TimeoutTests.swift */; };
+		OBJ_387 /* sioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_146 /* sioTests.swift */; };
+		OBJ_389 /* SioValueStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioValueStore::Product" /* SioValueStore.framework */; };
+		OBJ_390 /* SioCodec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioCodec::Product" /* SioCodec.framework */; };
+		OBJ_391 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
+		OBJ_399 /* ValueStore+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_92 /* ValueStore+Array.swift */; };
+		OBJ_400 /* ValueStore+Codec.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_93 /* ValueStore+Codec.swift */; };
+		OBJ_401 /* ValueStore+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_94 /* ValueStore+Creation.swift */; };
+		OBJ_402 /* ValueStore+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_95 /* ValueStore+Error.swift */; };
+		OBJ_403 /* ValueStore+Iso.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_96 /* ValueStore+Iso.swift */; };
+		OBJ_404 /* ValueStore+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_97 /* ValueStore+Optional.swift */; };
+		OBJ_405 /* ValueStore+Profunctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_98 /* ValueStore+Profunctor.swift */; };
+		OBJ_406 /* ValueStore+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_99 /* ValueStore+Typealias.swift */; };
+		OBJ_407 /* ValueStore+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_100 /* ValueStore+UserDefaults.swift */; };
+		OBJ_408 /* ValueStore+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_101 /* ValueStore+Utils.swift */; };
+		OBJ_409 /* ValueStore+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_102 /* ValueStore+Zip.swift */; };
+		OBJ_410 /* ValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_103 /* ValueStore.swift */; };
+		OBJ_411 /* ValueStoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_104 /* ValueStoreError.swift */; };
+		OBJ_413 /* SioCodec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioCodec::Product" /* SioCodec.framework */; };
+		OBJ_414 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
+		OBJ_421 /* SioCodecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_148 /* SioCodecTests.swift */; };
+		OBJ_422 /* SioValueStoreJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_149 /* SioValueStoreJSONTests.swift */; };
+		OBJ_423 /* SioValueStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_150 /* SioValueStoreTests.swift */; };
+		OBJ_425 /* SioValueStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioValueStore::Product" /* SioValueStore.framework */; };
+		OBJ_426 /* SioCodec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioCodec::Product" /* SioCodec.framework */; };
+		OBJ_427 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		ACA0149C239BB31100D7DB91 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Sio::SioCodec";
-			remoteInfo = SioCodec;
-		};
-		ACA0149D239BB31100D7DB91 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Sio::Sio";
-			remoteInfo = Sio;
-		};
-		ACA0149E239BB31100D7DB91 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Sio::Sio";
-			remoteInfo = Sio;
-		};
-		ACA0149F239BB31100D7DB91 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Sio::SioValueStore";
-			remoteInfo = SioValueStore;
-		};
-		ACA014A0239BB31100D7DB91 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Sio::SioCodec";
-			remoteInfo = SioCodec;
-		};
-		ACA014A1239BB31100D7DB91 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Sio::Sio";
-			remoteInfo = Sio;
-		};
-		ACA014A2239BB31100D7DB91 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Sio::SioValueStore";
-			remoteInfo = SioValueStore;
-		};
-		ACA014A3239BB31100D7DB91 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Sio::SioCodec";
-			remoteInfo = SioCodec;
-		};
-		ACA014A4239BB31100D7DB91 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Sio::Sio";
-			remoteInfo = Sio;
-		};
-		ACA014A5239BB31100D7DB91 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Sio::SioCodec";
-			remoteInfo = SioCodec;
-		};
-		ACA014A6239BB31100D7DB91 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Sio::Sio";
-			remoteInfo = Sio;
-		};
-		ACA014A7239BB31100D7DB91 /* PBXContainerItemProxy */ = {
+		AC7810B4239C50D60096A105 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Sio::SioEffects";
 			remoteInfo = SioEffects;
 		};
-		ACA014A8239BB31100D7DB91 /* PBXContainerItemProxy */ = {
+		AC7810B5239C50D60096A105 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Sio::SioValueStore";
 			remoteInfo = SioValueStore;
 		};
-		ACA014A9239BB31100D7DB91 /* PBXContainerItemProxy */ = {
+		AC7810B6239C50D60096A105 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Sio::SioCodec";
 			remoteInfo = SioCodec;
 		};
-		ACA014AA239BB31100D7DB91 /* PBXContainerItemProxy */ = {
+		AC7810B7239C50D60096A105 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Sio::Sio";
 			remoteInfo = Sio;
 		};
-		ACA014AB239BB31100D7DB91 /* PBXContainerItemProxy */ = {
+		AC7810B8239C50D60096A105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::Sio";
+			remoteInfo = Sio;
+		};
+		AC7810B9239C50D60096A105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioCodec";
+			remoteInfo = SioCodec;
+		};
+		AC7810BA239C50D60096A105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::Sio";
+			remoteInfo = Sio;
+		};
+		AC7810BB239C50D60096A105 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Sio::SioValueStore";
 			remoteInfo = SioValueStore;
 		};
-		ACA014AC239BB31100D7DB91 /* PBXContainerItemProxy */ = {
+		AC7810BC239C50D60096A105 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Sio::SioCodec";
 			remoteInfo = SioCodec;
 		};
-		ACA014AD239BB31100D7DB91 /* PBXContainerItemProxy */ = {
+		AC7810BD239C50D60096A105 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Sio::Sio";
 			remoteInfo = Sio;
 		};
-		ACA014AE239BB31200D7DB91 /* PBXContainerItemProxy */ = {
+		AC7810BE239C50D60096A105 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = "Sio::SioTests";
-			remoteInfo = SioTests;
+			remoteGlobalIDString = "Sio::SioValueStore";
+			remoteInfo = SioValueStore;
 		};
-		ACA014AF239BB31200D7DB91 /* PBXContainerItemProxy */ = {
+		AC7810BF239C50D60096A105 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = "Sio::SioCodecTests";
-			remoteInfo = SioCodecTests;
+			remoteGlobalIDString = "Sio::SioCodec";
+			remoteInfo = SioCodec;
 		};
-		ACA014B0239BB31200D7DB91 /* PBXContainerItemProxy */ = {
+		AC7810C0239C50D60096A105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::Sio";
+			remoteInfo = Sio;
+		};
+		AC7810C1239C50D60096A105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioCodec";
+			remoteInfo = SioCodec;
+		};
+		AC7810C2239C50D60096A105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::Sio";
+			remoteInfo = Sio;
+		};
+		AC7810C3239C50D60096A105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioValueStore";
+			remoteInfo = SioValueStore;
+		};
+		AC7810C4239C50D60096A105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioCodec";
+			remoteInfo = SioCodec;
+		};
+		AC7810C5239C50D60096A105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::Sio";
+			remoteInfo = Sio;
+		};
+		AC7810C6239C50D60096A105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioEffects";
+			remoteInfo = SioEffects;
+		};
+		AC7810C7239C50D60096A105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioValueStore";
+			remoteInfo = SioValueStore;
+		};
+		AC7810C8239C50D60096A105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioCodec";
+			remoteInfo = SioCodec;
+		};
+		AC7810C9239C50D60096A105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::Sio";
+			remoteInfo = Sio;
+		};
+		AC7810CA239C50D60096A105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioNetwork";
+			remoteInfo = SioNetwork;
+		};
+		AC7810CB239C50D60096A105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioEffects";
+			remoteInfo = SioEffects;
+		};
+		AC7810CC239C50D60096A105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioValueStore";
+			remoteInfo = SioValueStore;
+		};
+		AC7810CD239C50D60096A105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioCodec";
+			remoteInfo = SioCodec;
+		};
+		AC7810CE239C50D60096A105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::Sio";
+			remoteInfo = Sio;
+		};
+		AC7810CF239C50D70096A105 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Sio::SioValueStoreTests";
 			remoteInfo = SioValueStoreTests;
 		};
-		ACA014B1239BB31200D7DB91 /* PBXContainerItemProxy */ = {
+		AC7810D0239C50D70096A105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioNetworkTests";
+			remoteInfo = SioNetworkTests;
+		};
+		AC7810D1239C50D70096A105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioTests";
+			remoteInfo = SioTests;
+		};
+		AC7810D2239C50D70096A105 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Sio::SioEffectsTests";
 			remoteInfo = SioEffectsTests;
 		};
+		AC7810D3239C50D70096A105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Sio::SioCodecTests";
+			remoteInfo = SioCodecTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		ACA014B2239BB33900D7DB91 /* ValueStore+FS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+FS.swift"; sourceTree = "<group>"; };
+		AC51BCD4239E836600E72BC1 /* SioNetwork.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SioNetwork.podspec; sourceTree = "<group>"; };
+		AC7810D4239C513D0096A105 /* Request+Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Request+Creation.swift"; sourceTree = "<group>"; };
+		AC7810D6239D073D0096A105 /* Network+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network+Utils.swift"; sourceTree = "<group>"; };
 		OBJ_10 /* Collection+Chunks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Chunks.swift"; sourceTree = "<group>"; };
-		OBJ_100 /* ValueStore+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Zip.swift"; sourceTree = "<group>"; };
-		OBJ_101 /* ValueStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueStore.swift; sourceTree = "<group>"; };
-		OBJ_102 /* ValueStoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueStoreError.swift; sourceTree = "<group>"; };
-		OBJ_105 /* SIOCodecBase64Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIOCodecBase64Tests.swift; sourceTree = "<group>"; };
-		OBJ_106 /* SIOCodecUTF8Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIOCodecUTF8Tests.swift; sourceTree = "<group>"; };
-		OBJ_107 /* SioCodecIntTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioCodecIntTests.swift; sourceTree = "<group>"; };
-		OBJ_108 /* SioCodecJSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioCodecJSONTests.swift; sourceTree = "<group>"; };
-		OBJ_109 /* SioCodecSIOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioCodecSIOTests.swift; sourceTree = "<group>"; };
+		OBJ_100 /* ValueStore+UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+UserDefaults.swift"; sourceTree = "<group>"; };
+		OBJ_101 /* ValueStore+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Utils.swift"; sourceTree = "<group>"; };
+		OBJ_102 /* ValueStore+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Zip.swift"; sourceTree = "<group>"; };
+		OBJ_103 /* ValueStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueStore.swift; sourceTree = "<group>"; };
+		OBJ_104 /* ValueStoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueStoreError.swift; sourceTree = "<group>"; };
+		OBJ_107 /* SIOCodecBase64Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIOCodecBase64Tests.swift; sourceTree = "<group>"; };
+		OBJ_108 /* SIOCodecUTF8Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIOCodecUTF8Tests.swift; sourceTree = "<group>"; };
+		OBJ_109 /* SioCodecIntTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioCodecIntTests.swift; sourceTree = "<group>"; };
 		OBJ_11 /* Compose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compose.swift; sourceTree = "<group>"; };
-		OBJ_111 /* SioEffectsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioEffectsTests.swift; sourceTree = "<group>"; };
-		OBJ_112 /* SioRandomTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioRandomTests.swift; sourceTree = "<group>"; };
-		OBJ_114 /* Alternative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alternative.swift; sourceTree = "<group>"; };
-		OBJ_115 /* Arrays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrays.swift; sourceTree = "<group>"; };
-		OBJ_116 /* BracketTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BracketTests.swift; sourceTree = "<group>"; };
-		OBJ_117 /* CancellationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellationTests.swift; sourceTree = "<group>"; };
-		OBJ_118 /* Chunked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chunked.swift; sourceTree = "<group>"; };
-		OBJ_119 /* ChunksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunksTests.swift; sourceTree = "<group>"; };
+		OBJ_110 /* SioCodecJSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioCodecJSONTests.swift; sourceTree = "<group>"; };
+		OBJ_111 /* SioCodecSIOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioCodecSIOTests.swift; sourceTree = "<group>"; };
+		OBJ_113 /* SioEffectsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioEffectsTests.swift; sourceTree = "<group>"; };
+		OBJ_114 /* SioRandomTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioRandomTests.swift; sourceTree = "<group>"; };
+		OBJ_116 /* SioNetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioNetworkTests.swift; sourceTree = "<group>"; };
+		OBJ_118 /* Alternative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alternative.swift; sourceTree = "<group>"; };
+		OBJ_119 /* Arrays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrays.swift; sourceTree = "<group>"; };
 		OBJ_12 /* Curry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Curry.swift; sourceTree = "<group>"; };
-		OBJ_120 /* CodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableTests.swift; sourceTree = "<group>"; };
-		OBJ_121 /* ComposeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeTests.swift; sourceTree = "<group>"; };
-		OBJ_122 /* ConcurrencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrencyTests.swift; sourceTree = "<group>"; };
-		OBJ_123 /* CurryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurryTests.swift; sourceTree = "<group>"; };
-		OBJ_124 /* Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
-		OBJ_125 /* EitherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EitherTests.swift; sourceTree = "<group>"; };
-		OBJ_126 /* Functor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functor.swift; sourceTree = "<group>"; };
-		OBJ_127 /* IsoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsoTests.swift; sourceTree = "<group>"; };
-		OBJ_128 /* LocalURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalURLTests.swift; sourceTree = "<group>"; };
-		OBJ_129 /* Monad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monad.swift; sourceTree = "<group>"; };
+		OBJ_120 /* BracketTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BracketTests.swift; sourceTree = "<group>"; };
+		OBJ_121 /* CancellationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellationTests.swift; sourceTree = "<group>"; };
+		OBJ_122 /* Chunked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chunked.swift; sourceTree = "<group>"; };
+		OBJ_123 /* ChunksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunksTests.swift; sourceTree = "<group>"; };
+		OBJ_124 /* CodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableTests.swift; sourceTree = "<group>"; };
+		OBJ_125 /* ComposeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeTests.swift; sourceTree = "<group>"; };
+		OBJ_126 /* ConcurrencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrencyTests.swift; sourceTree = "<group>"; };
+		OBJ_127 /* CurryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurryTests.swift; sourceTree = "<group>"; };
+		OBJ_128 /* Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
+		OBJ_129 /* EitherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EitherTests.swift; sourceTree = "<group>"; };
 		OBJ_13 /* Either+Alt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Alt.swift"; sourceTree = "<group>"; };
-		OBJ_130 /* NoSyncValueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSyncValueTests.swift; sourceTree = "<group>"; };
-		OBJ_131 /* OptionalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalTests.swift; sourceTree = "<group>"; };
-		OBJ_132 /* PreludeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreludeTests.swift; sourceTree = "<group>"; };
-		OBJ_133 /* RaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceTests.swift; sourceTree = "<group>"; };
-		OBJ_134 /* ResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTests.swift; sourceTree = "<group>"; };
-		OBJ_135 /* Retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Retry.swift; sourceTree = "<group>"; };
-		OBJ_136 /* SIORefTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIORefTests.swift; sourceTree = "<group>"; };
-		OBJ_137 /* SIOZipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIOZipTests.swift; sourceTree = "<group>"; };
-		OBJ_138 /* SchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerTests.swift; sourceTree = "<group>"; };
-		OBJ_139 /* SioFoldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioFoldTests.swift; sourceTree = "<group>"; };
+		OBJ_130 /* Functor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functor.swift; sourceTree = "<group>"; };
+		OBJ_131 /* IsoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsoTests.swift; sourceTree = "<group>"; };
+		OBJ_132 /* LocalURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalURLTests.swift; sourceTree = "<group>"; };
+		OBJ_133 /* Monad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monad.swift; sourceTree = "<group>"; };
+		OBJ_134 /* NoSyncValueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSyncValueTests.swift; sourceTree = "<group>"; };
+		OBJ_135 /* OptionalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalTests.swift; sourceTree = "<group>"; };
+		OBJ_136 /* PreludeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreludeTests.swift; sourceTree = "<group>"; };
+		OBJ_137 /* RaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceTests.swift; sourceTree = "<group>"; };
+		OBJ_138 /* ResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTests.swift; sourceTree = "<group>"; };
+		OBJ_139 /* Retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Retry.swift; sourceTree = "<group>"; };
 		OBJ_14 /* Either+Applicative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Applicative.swift"; sourceTree = "<group>"; };
-		OBJ_140 /* SyncValueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncValueTests.swift; sourceTree = "<group>"; };
-		OBJ_141 /* TimeoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeoutTests.swift; sourceTree = "<group>"; };
-		OBJ_142 /* sioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sioTests.swift; sourceTree = "<group>"; };
-		OBJ_144 /* SioCodecTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioCodecTests.swift; sourceTree = "<group>"; };
-		OBJ_145 /* SioValueStoreJSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioValueStoreJSONTests.swift; sourceTree = "<group>"; };
-		OBJ_146 /* SioValueStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioValueStoreTests.swift; sourceTree = "<group>"; };
+		OBJ_140 /* SIORefTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIORefTests.swift; sourceTree = "<group>"; };
+		OBJ_141 /* SIOZipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIOZipTests.swift; sourceTree = "<group>"; };
+		OBJ_142 /* SchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerTests.swift; sourceTree = "<group>"; };
+		OBJ_143 /* SioFoldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioFoldTests.swift; sourceTree = "<group>"; };
+		OBJ_144 /* SyncValueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncValueTests.swift; sourceTree = "<group>"; };
+		OBJ_145 /* TimeoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeoutTests.swift; sourceTree = "<group>"; };
+		OBJ_146 /* sioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sioTests.swift; sourceTree = "<group>"; };
+		OBJ_148 /* SioCodecTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioCodecTests.swift; sourceTree = "<group>"; };
+		OBJ_149 /* SioValueStoreJSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioValueStoreJSONTests.swift; sourceTree = "<group>"; };
 		OBJ_15 /* Either+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Codable.swift"; sourceTree = "<group>"; };
-		OBJ_156 /* Sio.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = Sio.xcworkspace; sourceTree = SOURCE_ROOT; };
-		OBJ_157 /* Configs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Configs; sourceTree = SOURCE_ROOT; };
-		OBJ_158 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		OBJ_159 /* SioValueStore.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SioValueStore.podspec; sourceTree = "<group>"; };
+		OBJ_150 /* SioValueStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioValueStoreTests.swift; sourceTree = "<group>"; };
 		OBJ_16 /* Either+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Error.swift"; sourceTree = "<group>"; };
-		OBJ_160 /* SioCodec.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SioCodec.podspec; sourceTree = "<group>"; };
-		OBJ_161 /* Sio.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Sio.podspec; sourceTree = "<group>"; };
-		OBJ_162 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		OBJ_163 /* SioEffects.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SioEffects.podspec; sourceTree = "<group>"; };
+		OBJ_162 /* Sio.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = Sio.xcworkspace; sourceTree = SOURCE_ROOT; };
+		OBJ_163 /* Configs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Configs; sourceTree = SOURCE_ROOT; };
+		OBJ_164 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		OBJ_165 /* SioValueStore.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SioValueStore.podspec; sourceTree = "<group>"; };
+		OBJ_166 /* SioCodec.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SioCodec.podspec; sourceTree = "<group>"; };
+		OBJ_167 /* Sio.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Sio.podspec; sourceTree = "<group>"; };
+		OBJ_168 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		OBJ_169 /* SioEffects.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SioEffects.podspec; sourceTree = "<group>"; };
 		OBJ_17 /* Either+Monad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Monad.swift"; sourceTree = "<group>"; };
 		OBJ_18 /* Either+Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Optional.swift"; sourceTree = "<group>"; };
 		OBJ_19 /* Either+Traversable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Traversable.swift"; sourceTree = "<group>"; };
@@ -449,233 +537,269 @@
 		OBJ_71 /* Codec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codec.swift; sourceTree = "<group>"; };
 		OBJ_72 /* SIO+Codec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Codec.swift"; sourceTree = "<group>"; };
 		OBJ_74 /* AnyRandomNumberGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyRandomNumberGenerator.swift; sourceTree = "<group>"; };
-		OBJ_75 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
-		OBJ_76 /* HTTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPResponse.swift; sourceTree = "<group>"; };
-		OBJ_77 /* LCRNG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCRNG.swift; sourceTree = "<group>"; };
-		OBJ_78 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
-		OBJ_79 /* ParametersEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersEncoding.swift; sourceTree = "<group>"; };
-		OBJ_80 /* RemoteURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteURL.swift; sourceTree = "<group>"; };
-		OBJ_81 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		OBJ_82 /* RequestParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestParameters.swift; sourceTree = "<group>"; };
-		OBJ_83 /* SIO+Console.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Console.swift"; sourceTree = "<group>"; };
-		OBJ_84 /* SIO+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Date.swift"; sourceTree = "<group>"; };
-		OBJ_85 /* SIO+FS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+FS.swift"; sourceTree = "<group>"; };
-		OBJ_86 /* SIO+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Network.swift"; sourceTree = "<group>"; };
-		OBJ_87 /* SIO+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Random.swift"; sourceTree = "<group>"; };
-		OBJ_88 /* StatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCode.swift; sourceTree = "<group>"; };
+		OBJ_75 /* LCRNG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCRNG.swift; sourceTree = "<group>"; };
+		OBJ_76 /* SIO+Console.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Console.swift"; sourceTree = "<group>"; };
+		OBJ_77 /* SIO+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Date.swift"; sourceTree = "<group>"; };
+		OBJ_78 /* SIO+FS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+FS.swift"; sourceTree = "<group>"; };
+		OBJ_79 /* SIO+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Random.swift"; sourceTree = "<group>"; };
+		OBJ_80 /* ValueStore+FS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+FS.swift"; sourceTree = "<group>"; };
+		OBJ_82 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		OBJ_83 /* HTTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPResponse.swift; sourceTree = "<group>"; };
+		OBJ_84 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		OBJ_85 /* ParametersEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersEncoding.swift; sourceTree = "<group>"; };
+		OBJ_86 /* RemoteURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteURL.swift; sourceTree = "<group>"; };
+		OBJ_87 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		OBJ_88 /* RequestParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestParameters.swift; sourceTree = "<group>"; };
+		OBJ_89 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		OBJ_9 /* Array+SIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+SIO.swift"; sourceTree = "<group>"; };
-		OBJ_90 /* ValueStore+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Array.swift"; sourceTree = "<group>"; };
-		OBJ_91 /* ValueStore+Codec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Codec.swift"; sourceTree = "<group>"; };
-		OBJ_92 /* ValueStore+Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Creation.swift"; sourceTree = "<group>"; };
-		OBJ_93 /* ValueStore+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Error.swift"; sourceTree = "<group>"; };
-		OBJ_94 /* ValueStore+Iso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Iso.swift"; sourceTree = "<group>"; };
-		OBJ_95 /* ValueStore+Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Optional.swift"; sourceTree = "<group>"; };
-		OBJ_96 /* ValueStore+Profunctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Profunctor.swift"; sourceTree = "<group>"; };
-		OBJ_97 /* ValueStore+Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Typealias.swift"; sourceTree = "<group>"; };
-		OBJ_98 /* ValueStore+UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+UserDefaults.swift"; sourceTree = "<group>"; };
-		OBJ_99 /* ValueStore+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Utils.swift"; sourceTree = "<group>"; };
+		OBJ_90 /* StatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCode.swift; sourceTree = "<group>"; };
+		OBJ_92 /* ValueStore+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Array.swift"; sourceTree = "<group>"; };
+		OBJ_93 /* ValueStore+Codec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Codec.swift"; sourceTree = "<group>"; };
+		OBJ_94 /* ValueStore+Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Creation.swift"; sourceTree = "<group>"; };
+		OBJ_95 /* ValueStore+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Error.swift"; sourceTree = "<group>"; };
+		OBJ_96 /* ValueStore+Iso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Iso.swift"; sourceTree = "<group>"; };
+		OBJ_97 /* ValueStore+Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Optional.swift"; sourceTree = "<group>"; };
+		OBJ_98 /* ValueStore+Profunctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Profunctor.swift"; sourceTree = "<group>"; };
+		OBJ_99 /* ValueStore+Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Typealias.swift"; sourceTree = "<group>"; };
 		"Sio::Sio::Product" /* Sio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Sio::SioCodec::Product" /* SioCodec.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SioCodec.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Sio::SioCodecTests::Product" /* SioCodecTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = SioCodecTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Sio::SioEffects::Product" /* SioEffects.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SioEffects.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Sio::SioEffectsTests::Product" /* SioEffectsTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = SioEffectsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Sio::SioNetwork::Product" /* SioNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SioNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Sio::SioNetworkTests::Product" /* SioNetworkTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = SioNetworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Sio::SioTests::Product" /* SioTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = SioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Sio::SioValueStore::Product" /* SioValueStore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SioValueStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Sio::SioValueStoreTests::Product" /* SioValueStoreTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = SioValueStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		OBJ_225 /* Frameworks */ = {
+		OBJ_231 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_238 /* Frameworks */ = {
+		OBJ_244 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_239 /* Sio.framework in Frameworks */,
+				OBJ_245 /* Sio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_251 /* Frameworks */ = {
+		OBJ_257 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_252 /* SioCodec.framework in Frameworks */,
-				OBJ_253 /* Sio.framework in Frameworks */,
+				OBJ_258 /* SioCodec.framework in Frameworks */,
+				OBJ_259 /* Sio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_276 /* Frameworks */ = {
+		OBJ_274 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_277 /* SioValueStore.framework in Frameworks */,
-				OBJ_278 /* SioCodec.framework in Frameworks */,
-				OBJ_279 /* Sio.framework in Frameworks */,
+				OBJ_275 /* SioValueStore.framework in Frameworks */,
+				OBJ_276 /* SioCodec.framework in Frameworks */,
+				OBJ_277 /* Sio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_291 /* Frameworks */ = {
+		OBJ_289 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_292 /* SioEffects.framework in Frameworks */,
-				OBJ_293 /* SioValueStore.framework in Frameworks */,
-				OBJ_294 /* SioCodec.framework in Frameworks */,
-				OBJ_295 /* Sio.framework in Frameworks */,
+				OBJ_290 /* SioEffects.framework in Frameworks */,
+				OBJ_291 /* SioValueStore.framework in Frameworks */,
+				OBJ_292 /* SioCodec.framework in Frameworks */,
+				OBJ_293 /* Sio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_349 /* Frameworks */ = {
+		OBJ_312 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_350 /* SioValueStore.framework in Frameworks */,
-				OBJ_351 /* SioCodec.framework in Frameworks */,
-				OBJ_352 /* Sio.framework in Frameworks */,
+				OBJ_313 /* SioEffects.framework in Frameworks */,
+				OBJ_314 /* SioValueStore.framework in Frameworks */,
+				OBJ_315 /* SioCodec.framework in Frameworks */,
+				OBJ_316 /* Sio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_373 /* Frameworks */ = {
+		OBJ_327 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_374 /* SioCodec.framework in Frameworks */,
-				OBJ_375 /* Sio.framework in Frameworks */,
+				OBJ_328 /* SioNetwork.framework in Frameworks */,
+				OBJ_329 /* SioEffects.framework in Frameworks */,
+				OBJ_330 /* SioValueStore.framework in Frameworks */,
+				OBJ_331 /* SioCodec.framework in Frameworks */,
+				OBJ_332 /* Sio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_385 /* Frameworks */ = {
+		OBJ_388 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_386 /* SioValueStore.framework in Frameworks */,
-				OBJ_387 /* SioCodec.framework in Frameworks */,
-				OBJ_388 /* Sio.framework in Frameworks */,
+				OBJ_389 /* SioValueStore.framework in Frameworks */,
+				OBJ_390 /* SioCodec.framework in Frameworks */,
+				OBJ_391 /* Sio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_412 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_413 /* SioCodec.framework in Frameworks */,
+				OBJ_414 /* Sio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_424 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_425 /* SioValueStore.framework in Frameworks */,
+				OBJ_426 /* SioCodec.framework in Frameworks */,
+				OBJ_427 /* Sio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		OBJ_103 /* Tests */ = {
+		OBJ_105 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_104 /* SioCodecTests */,
-				OBJ_110 /* SioEffectsTests */,
-				OBJ_113 /* SioTests */,
-				OBJ_143 /* SioValueStoreTests */,
+				OBJ_106 /* SioCodecTests */,
+				OBJ_112 /* SioEffectsTests */,
+				OBJ_115 /* SioNetworkTests */,
+				OBJ_117 /* SioTests */,
+				OBJ_147 /* SioValueStoreTests */,
 			);
 			name = Tests;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_104 /* SioCodecTests */ = {
+		OBJ_106 /* SioCodecTests */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_105 /* SIOCodecBase64Tests.swift */,
-				OBJ_106 /* SIOCodecUTF8Tests.swift */,
-				OBJ_107 /* SioCodecIntTests.swift */,
-				OBJ_108 /* SioCodecJSONTests.swift */,
-				OBJ_109 /* SioCodecSIOTests.swift */,
+				OBJ_107 /* SIOCodecBase64Tests.swift */,
+				OBJ_108 /* SIOCodecUTF8Tests.swift */,
+				OBJ_109 /* SioCodecIntTests.swift */,
+				OBJ_110 /* SioCodecJSONTests.swift */,
+				OBJ_111 /* SioCodecSIOTests.swift */,
 			);
 			name = SioCodecTests;
 			path = Tests/SioCodecTests;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_110 /* SioEffectsTests */ = {
+		OBJ_112 /* SioEffectsTests */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_111 /* SioEffectsTests.swift */,
-				OBJ_112 /* SioRandomTests.swift */,
+				OBJ_113 /* SioEffectsTests.swift */,
+				OBJ_114 /* SioRandomTests.swift */,
 			);
 			name = SioEffectsTests;
 			path = Tests/SioEffectsTests;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_113 /* SioTests */ = {
+		OBJ_115 /* SioNetworkTests */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_114 /* Alternative.swift */,
-				OBJ_115 /* Arrays.swift */,
-				OBJ_116 /* BracketTests.swift */,
-				OBJ_117 /* CancellationTests.swift */,
-				OBJ_118 /* Chunked.swift */,
-				OBJ_119 /* ChunksTests.swift */,
-				OBJ_120 /* CodableTests.swift */,
-				OBJ_121 /* ComposeTests.swift */,
-				OBJ_122 /* ConcurrencyTests.swift */,
-				OBJ_123 /* CurryTests.swift */,
-				OBJ_124 /* Delay.swift */,
-				OBJ_125 /* EitherTests.swift */,
-				OBJ_126 /* Functor.swift */,
-				OBJ_127 /* IsoTests.swift */,
-				OBJ_128 /* LocalURLTests.swift */,
-				OBJ_129 /* Monad.swift */,
-				OBJ_130 /* NoSyncValueTests.swift */,
-				OBJ_131 /* OptionalTests.swift */,
-				OBJ_132 /* PreludeTests.swift */,
-				OBJ_133 /* RaceTests.swift */,
-				OBJ_134 /* ResultTests.swift */,
-				OBJ_135 /* Retry.swift */,
-				OBJ_136 /* SIORefTests.swift */,
-				OBJ_137 /* SIOZipTests.swift */,
-				OBJ_138 /* SchedulerTests.swift */,
-				OBJ_139 /* SioFoldTests.swift */,
-				OBJ_140 /* SyncValueTests.swift */,
-				OBJ_141 /* TimeoutTests.swift */,
-				OBJ_142 /* sioTests.swift */,
+				OBJ_116 /* SioNetworkTests.swift */,
+			);
+			name = SioNetworkTests;
+			path = Tests/SioNetworkTests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_117 /* SioTests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_118 /* Alternative.swift */,
+				OBJ_119 /* Arrays.swift */,
+				OBJ_120 /* BracketTests.swift */,
+				OBJ_121 /* CancellationTests.swift */,
+				OBJ_122 /* Chunked.swift */,
+				OBJ_123 /* ChunksTests.swift */,
+				OBJ_124 /* CodableTests.swift */,
+				OBJ_125 /* ComposeTests.swift */,
+				OBJ_126 /* ConcurrencyTests.swift */,
+				OBJ_127 /* CurryTests.swift */,
+				OBJ_128 /* Delay.swift */,
+				OBJ_129 /* EitherTests.swift */,
+				OBJ_130 /* Functor.swift */,
+				OBJ_131 /* IsoTests.swift */,
+				OBJ_132 /* LocalURLTests.swift */,
+				OBJ_133 /* Monad.swift */,
+				OBJ_134 /* NoSyncValueTests.swift */,
+				OBJ_135 /* OptionalTests.swift */,
+				OBJ_136 /* PreludeTests.swift */,
+				OBJ_137 /* RaceTests.swift */,
+				OBJ_138 /* ResultTests.swift */,
+				OBJ_139 /* Retry.swift */,
+				OBJ_140 /* SIORefTests.swift */,
+				OBJ_141 /* SIOZipTests.swift */,
+				OBJ_142 /* SchedulerTests.swift */,
+				OBJ_143 /* SioFoldTests.swift */,
+				OBJ_144 /* SyncValueTests.swift */,
+				OBJ_145 /* TimeoutTests.swift */,
+				OBJ_146 /* sioTests.swift */,
 			);
 			name = SioTests;
 			path = Tests/SioTests;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_143 /* SioValueStoreTests */ = {
+		OBJ_147 /* SioValueStoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_144 /* SioCodecTests.swift */,
-				OBJ_145 /* SioValueStoreJSONTests.swift */,
-				OBJ_146 /* SioValueStoreTests.swift */,
+				OBJ_148 /* SioCodecTests.swift */,
+				OBJ_149 /* SioValueStoreJSONTests.swift */,
+				OBJ_150 /* SioValueStoreTests.swift */,
 			);
 			name = SioValueStoreTests;
 			path = Tests/SioValueStoreTests;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_147 /* Products */ = {
+		OBJ_151 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				"Sio::SioCodecTests::Product" /* SioCodecTests.xctest */,
+				"Sio::SioNetwork::Product" /* SioNetwork.framework */,
 				"Sio::SioValueStoreTests::Product" /* SioValueStoreTests.xctest */,
-				"Sio::SioEffectsTests::Product" /* SioEffectsTests.xctest */,
-				"Sio::SioEffects::Product" /* SioEffects.framework */,
 				"Sio::Sio::Product" /* Sio.framework */,
-				"Sio::SioTests::Product" /* SioTests.xctest */,
 				"Sio::SioCodec::Product" /* SioCodec.framework */,
+				"Sio::SioTests::Product" /* SioTests.xctest */,
+				"Sio::SioEffects::Product" /* SioEffects.framework */,
 				"Sio::SioValueStore::Product" /* SioValueStore.framework */,
+				"Sio::SioNetworkTests::Product" /* SioNetworkTests.xctest */,
+				"Sio::SioEffectsTests::Product" /* SioEffectsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
 				OBJ_7 /* Sources */,
-				OBJ_103 /* Tests */,
-				OBJ_147 /* Products */,
-				OBJ_156 /* Sio.xcworkspace */,
-				OBJ_157 /* Configs */,
-				OBJ_158 /* LICENSE */,
-				OBJ_159 /* SioValueStore.podspec */,
-				OBJ_160 /* SioCodec.podspec */,
-				OBJ_161 /* Sio.podspec */,
-				OBJ_162 /* README.md */,
-				OBJ_163 /* SioEffects.podspec */,
+				OBJ_105 /* Tests */,
+				OBJ_151 /* Products */,
+				OBJ_162 /* Sio.xcworkspace */,
+				OBJ_163 /* Configs */,
+				OBJ_164 /* LICENSE */,
+				OBJ_165 /* SioValueStore.podspec */,
+				OBJ_166 /* SioCodec.podspec */,
+				AC51BCD4239E836600E72BC1 /* SioNetwork.podspec */,
+				OBJ_167 /* Sio.podspec */,
+				OBJ_168 /* README.md */,
+				OBJ_169 /* SioEffects.podspec */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_65 /* SioCodec */ = {
@@ -699,7 +823,8 @@
 				OBJ_8 /* Sio */,
 				OBJ_65 /* SioCodec */,
 				OBJ_73 /* SioEffects */,
-				OBJ_89 /* SioValueStore */,
+				OBJ_81 /* SioNetwork */,
+				OBJ_91 /* SioValueStore */,
 			);
 			name = Sources;
 			sourceTree = SOURCE_ROOT;
@@ -708,21 +833,12 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_74 /* AnyRandomNumberGenerator.swift */,
-				OBJ_75 /* HTTPMethod.swift */,
-				OBJ_76 /* HTTPResponse.swift */,
-				OBJ_77 /* LCRNG.swift */,
-				OBJ_78 /* NetworkError.swift */,
-				OBJ_79 /* ParametersEncoding.swift */,
-				OBJ_80 /* RemoteURL.swift */,
-				OBJ_81 /* Request.swift */,
-				OBJ_82 /* RequestParameters.swift */,
-				OBJ_83 /* SIO+Console.swift */,
-				OBJ_84 /* SIO+Date.swift */,
-				OBJ_85 /* SIO+FS.swift */,
-				OBJ_86 /* SIO+Network.swift */,
-				OBJ_87 /* SIO+Random.swift */,
-				OBJ_88 /* StatusCode.swift */,
-				ACA014B2239BB33900D7DB91 /* ValueStore+FS.swift */,
+				OBJ_75 /* LCRNG.swift */,
+				OBJ_76 /* SIO+Console.swift */,
+				OBJ_77 /* SIO+Date.swift */,
+				OBJ_78 /* SIO+FS.swift */,
+				OBJ_79 /* SIO+Random.swift */,
+				OBJ_80 /* ValueStore+FS.swift */,
 			);
 			name = SioEffects;
 			path = Sources/SioEffects;
@@ -792,22 +908,41 @@
 			path = Sources/Sio;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_89 /* SioValueStore */ = {
+		OBJ_81 /* SioNetwork */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_90 /* ValueStore+Array.swift */,
-				OBJ_91 /* ValueStore+Codec.swift */,
-				OBJ_92 /* ValueStore+Creation.swift */,
-				OBJ_93 /* ValueStore+Error.swift */,
-				OBJ_94 /* ValueStore+Iso.swift */,
-				OBJ_95 /* ValueStore+Optional.swift */,
-				OBJ_96 /* ValueStore+Profunctor.swift */,
-				OBJ_97 /* ValueStore+Typealias.swift */,
-				OBJ_98 /* ValueStore+UserDefaults.swift */,
-				OBJ_99 /* ValueStore+Utils.swift */,
-				OBJ_100 /* ValueStore+Zip.swift */,
-				OBJ_101 /* ValueStore.swift */,
-				OBJ_102 /* ValueStoreError.swift */,
+				OBJ_82 /* HTTPMethod.swift */,
+				OBJ_83 /* HTTPResponse.swift */,
+				OBJ_84 /* NetworkError.swift */,
+				OBJ_85 /* ParametersEncoding.swift */,
+				OBJ_86 /* RemoteURL.swift */,
+				OBJ_87 /* Request.swift */,
+				AC7810D4239C513D0096A105 /* Request+Creation.swift */,
+				OBJ_88 /* RequestParameters.swift */,
+				OBJ_89 /* Network.swift */,
+				AC7810D6239D073D0096A105 /* Network+Utils.swift */,
+				OBJ_90 /* StatusCode.swift */,
+			);
+			name = SioNetwork;
+			path = Sources/SioNetwork;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_91 /* SioValueStore */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_92 /* ValueStore+Array.swift */,
+				OBJ_93 /* ValueStore+Codec.swift */,
+				OBJ_94 /* ValueStore+Creation.swift */,
+				OBJ_95 /* ValueStore+Error.swift */,
+				OBJ_96 /* ValueStore+Iso.swift */,
+				OBJ_97 /* ValueStore+Optional.swift */,
+				OBJ_98 /* ValueStore+Profunctor.swift */,
+				OBJ_99 /* ValueStore+Typealias.swift */,
+				OBJ_100 /* ValueStore+UserDefaults.swift */,
+				OBJ_101 /* ValueStore+Utils.swift */,
+				OBJ_102 /* ValueStore+Zip.swift */,
+				OBJ_103 /* ValueStore.swift */,
+				OBJ_104 /* ValueStoreError.swift */,
 			);
 			name = SioValueStore;
 			path = Sources/SioValueStore;
@@ -818,10 +953,10 @@
 /* Begin PBXNativeTarget section */
 		"Sio::Sio" /* Sio */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_165 /* Build configuration list for PBXNativeTarget "Sio" */;
+			buildConfigurationList = OBJ_171 /* Build configuration list for PBXNativeTarget "Sio" */;
 			buildPhases = (
-				OBJ_168 /* Sources */,
-				OBJ_225 /* Frameworks */,
+				OBJ_174 /* Sources */,
+				OBJ_231 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -834,15 +969,15 @@
 		};
 		"Sio::SioCodec" /* SioCodec */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_227 /* Build configuration list for PBXNativeTarget "SioCodec" */;
+			buildConfigurationList = OBJ_233 /* Build configuration list for PBXNativeTarget "SioCodec" */;
 			buildPhases = (
-				OBJ_230 /* Sources */,
-				OBJ_238 /* Frameworks */,
+				OBJ_236 /* Sources */,
+				OBJ_244 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_240 /* PBXTargetDependency */,
+				OBJ_246 /* PBXTargetDependency */,
 			);
 			name = SioCodec;
 			productName = SioCodec;
@@ -851,16 +986,16 @@
 		};
 		"Sio::SioCodecTests" /* SioCodecTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_242 /* Build configuration list for PBXNativeTarget "SioCodecTests" */;
+			buildConfigurationList = OBJ_248 /* Build configuration list for PBXNativeTarget "SioCodecTests" */;
 			buildPhases = (
-				OBJ_245 /* Sources */,
-				OBJ_251 /* Frameworks */,
+				OBJ_251 /* Sources */,
+				OBJ_257 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_254 /* PBXTargetDependency */,
-				OBJ_255 /* PBXTargetDependency */,
+				OBJ_260 /* PBXTargetDependency */,
+				OBJ_261 /* PBXTargetDependency */,
 			);
 			name = SioCodecTests;
 			productName = SioCodecTests;
@@ -869,17 +1004,17 @@
 		};
 		"Sio::SioEffects" /* SioEffects */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_257 /* Build configuration list for PBXNativeTarget "SioEffects" */;
+			buildConfigurationList = OBJ_263 /* Build configuration list for PBXNativeTarget "SioEffects" */;
 			buildPhases = (
-				OBJ_260 /* Sources */,
-				OBJ_276 /* Frameworks */,
+				OBJ_266 /* Sources */,
+				OBJ_274 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				OBJ_278 /* PBXTargetDependency */,
 				OBJ_280 /* PBXTargetDependency */,
-				OBJ_282 /* PBXTargetDependency */,
-				OBJ_283 /* PBXTargetDependency */,
+				OBJ_281 /* PBXTargetDependency */,
 			);
 			name = SioEffects;
 			productName = SioEffects;
@@ -888,37 +1023,78 @@
 		};
 		"Sio::SioEffectsTests" /* SioEffectsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_285 /* Build configuration list for PBXNativeTarget "SioEffectsTests" */;
+			buildConfigurationList = OBJ_283 /* Build configuration list for PBXNativeTarget "SioEffectsTests" */;
 			buildPhases = (
-				OBJ_288 /* Sources */,
-				OBJ_291 /* Frameworks */,
+				OBJ_286 /* Sources */,
+				OBJ_289 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				OBJ_294 /* PBXTargetDependency */,
+				OBJ_295 /* PBXTargetDependency */,
 				OBJ_296 /* PBXTargetDependency */,
 				OBJ_297 /* PBXTargetDependency */,
-				OBJ_298 /* PBXTargetDependency */,
-				OBJ_299 /* PBXTargetDependency */,
 			);
 			name = SioEffectsTests;
 			productName = SioEffectsTests;
 			productReference = "Sio::SioEffectsTests::Product" /* SioEffectsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		"Sio::SioTests" /* SioTests */ = {
+		"Sio::SioNetwork" /* SioNetwork */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_316 /* Build configuration list for PBXNativeTarget "SioTests" */;
+			buildConfigurationList = OBJ_299 /* Build configuration list for PBXNativeTarget "SioNetwork" */;
 			buildPhases = (
-				OBJ_319 /* Sources */,
-				OBJ_349 /* Frameworks */,
+				OBJ_302 /* Sources */,
+				OBJ_312 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_353 /* PBXTargetDependency */,
-				OBJ_354 /* PBXTargetDependency */,
-				OBJ_355 /* PBXTargetDependency */,
+				OBJ_317 /* PBXTargetDependency */,
+				OBJ_318 /* PBXTargetDependency */,
+				OBJ_319 /* PBXTargetDependency */,
+				OBJ_320 /* PBXTargetDependency */,
+			);
+			name = SioNetwork;
+			productName = SioNetwork;
+			productReference = "Sio::SioNetwork::Product" /* SioNetwork.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"Sio::SioNetworkTests" /* SioNetworkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_322 /* Build configuration list for PBXNativeTarget "SioNetworkTests" */;
+			buildPhases = (
+				OBJ_325 /* Sources */,
+				OBJ_327 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_333 /* PBXTargetDependency */,
+				OBJ_334 /* PBXTargetDependency */,
+				OBJ_335 /* PBXTargetDependency */,
+				OBJ_336 /* PBXTargetDependency */,
+				OBJ_337 /* PBXTargetDependency */,
+			);
+			name = SioNetworkTests;
+			productName = SioNetworkTests;
+			productReference = "Sio::SioNetworkTests::Product" /* SioNetworkTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"Sio::SioTests" /* SioTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_355 /* Build configuration list for PBXNativeTarget "SioTests" */;
+			buildPhases = (
+				OBJ_358 /* Sources */,
+				OBJ_388 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_392 /* PBXTargetDependency */,
+				OBJ_393 /* PBXTargetDependency */,
+				OBJ_394 /* PBXTargetDependency */,
 			);
 			name = SioTests;
 			productName = SioTests;
@@ -927,16 +1103,16 @@
 		};
 		"Sio::SioValueStore" /* SioValueStore */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_356 /* Build configuration list for PBXNativeTarget "SioValueStore" */;
+			buildConfigurationList = OBJ_395 /* Build configuration list for PBXNativeTarget "SioValueStore" */;
 			buildPhases = (
-				OBJ_359 /* Sources */,
-				OBJ_373 /* Frameworks */,
+				OBJ_398 /* Sources */,
+				OBJ_412 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_376 /* PBXTargetDependency */,
-				OBJ_377 /* PBXTargetDependency */,
+				OBJ_415 /* PBXTargetDependency */,
+				OBJ_416 /* PBXTargetDependency */,
 			);
 			name = SioValueStore;
 			productName = SioValueStore;
@@ -945,17 +1121,17 @@
 		};
 		"Sio::SioValueStoreTests" /* SioValueStoreTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_378 /* Build configuration list for PBXNativeTarget "SioValueStoreTests" */;
+			buildConfigurationList = OBJ_417 /* Build configuration list for PBXNativeTarget "SioValueStoreTests" */;
 			buildPhases = (
-				OBJ_381 /* Sources */,
-				OBJ_385 /* Frameworks */,
+				OBJ_420 /* Sources */,
+				OBJ_424 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_389 /* PBXTargetDependency */,
-				OBJ_390 /* PBXTargetDependency */,
-				OBJ_391 /* PBXTargetDependency */,
+				OBJ_428 /* PBXTargetDependency */,
+				OBJ_429 /* PBXTargetDependency */,
+				OBJ_430 /* PBXTargetDependency */,
 			);
 			name = SioValueStoreTests;
 			productName = SioValueStoreTests;
@@ -964,9 +1140,9 @@
 		};
 		"Sio::SwiftPMPackageDescription" /* SioPackageDescription */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_301 /* Build configuration list for PBXNativeTarget "SioPackageDescription" */;
+			buildConfigurationList = OBJ_339 /* Build configuration list for PBXNativeTarget "SioPackageDescription" */;
 			buildPhases = (
-				OBJ_304 /* Sources */,
+				OBJ_342 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -992,8 +1168,8 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
-			productRefGroup = OBJ_147 /* Products */;
+			mainGroup = OBJ_5;
+			productRefGroup = OBJ_151 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -1002,6 +1178,8 @@
 				"Sio::SioCodecTests" /* SioCodecTests */,
 				"Sio::SioEffects" /* SioEffects */,
 				"Sio::SioEffectsTests" /* SioEffectsTests */,
+				"Sio::SioNetwork" /* SioNetwork */,
+				"Sio::SioNetworkTests" /* SioNetworkTests */,
 				"Sio::SwiftPMPackageDescription" /* SioPackageDescription */,
 				"Sio::SioPackageTests::ProductTarget" /* SioPackageTests */,
 				"Sio::SioTests" /* SioTests */,
@@ -1012,318 +1190,385 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		OBJ_168 /* Sources */ = {
+		OBJ_174 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_169 /* Array+SIO.swift in Sources */,
-				OBJ_170 /* Collection+Chunks.swift in Sources */,
-				OBJ_171 /* Compose.swift in Sources */,
-				OBJ_172 /* Curry.swift in Sources */,
-				OBJ_173 /* Either+Alt.swift in Sources */,
-				OBJ_174 /* Either+Applicative.swift in Sources */,
-				OBJ_175 /* Either+Codable.swift in Sources */,
-				OBJ_176 /* Either+Error.swift in Sources */,
-				OBJ_177 /* Either+Monad.swift in Sources */,
-				OBJ_178 /* Either+Optional.swift in Sources */,
-				OBJ_179 /* Either+Traversable.swift in Sources */,
-				OBJ_180 /* Either+Zip.swift in Sources */,
-				OBJ_181 /* Either.swift in Sources */,
-				OBJ_182 /* Iso.swift in Sources */,
-				OBJ_183 /* LocalURL.swift in Sources */,
-				OBJ_184 /* NoSyncValue.swift in Sources */,
-				OBJ_185 /* Operators.swift in Sources */,
-				OBJ_186 /* Optional+Zip.swift in Sources */,
-				OBJ_187 /* PrecedenceGroups.swift in Sources */,
-				OBJ_188 /* Prelude.swift in Sources */,
-				OBJ_189 /* Ref.swift in Sources */,
-				OBJ_190 /* Remove.swift in Sources */,
-				OBJ_191 /* SIO+Adapt.swift in Sources */,
-				OBJ_192 /* SIO+Alt.swift in Sources */,
-				OBJ_193 /* SIO+Applicative.swift in Sources */,
-				OBJ_194 /* SIO+BiFunctor.swift in Sources */,
-				OBJ_195 /* SIO+BiMonad.swift in Sources */,
-				OBJ_196 /* SIO+Bracket.swift in Sources */,
-				OBJ_197 /* SIO+Contravariant.swift in Sources */,
-				OBJ_198 /* SIO+Creation.swift in Sources */,
-				OBJ_199 /* SIO+Delay.swift in Sources */,
-				OBJ_200 /* SIO+Effects.swift in Sources */,
-				OBJ_201 /* SIO+Either.swift in Sources */,
-				OBJ_202 /* SIO+Error.swift in Sources */,
-				OBJ_203 /* SIO+Events.swift in Sources */,
-				OBJ_204 /* SIO+Flip.swift in Sources */,
-				OBJ_205 /* SIO+Fold.swift in Sources */,
-				OBJ_206 /* SIO+Functor.swift in Sources */,
-				OBJ_207 /* SIO+Monad.swift in Sources */,
-				OBJ_208 /* SIO+Optional.swift in Sources */,
-				OBJ_209 /* SIO+Profunctor.swift in Sources */,
-				OBJ_210 /* SIO+Race.swift in Sources */,
-				OBJ_211 /* SIO+Ref.swift in Sources */,
-				OBJ_212 /* SIO+Requirements.swift in Sources */,
-				OBJ_213 /* SIO+Result.swift in Sources */,
-				OBJ_214 /* SIO+Retry.swift in Sources */,
-				OBJ_215 /* SIO+Run.swift in Sources */,
-				OBJ_216 /* SIO+Schedule.swift in Sources */,
-				OBJ_217 /* SIO+Tap.swift in Sources */,
-				OBJ_218 /* SIO+Timeout.swift in Sources */,
-				OBJ_219 /* SIO+Typealias.swift in Sources */,
-				OBJ_220 /* SIO+Zip.swift in Sources */,
-				OBJ_221 /* SIO.swift in Sources */,
-				OBJ_222 /* SIOError.swift in Sources */,
-				OBJ_223 /* Sio+Codable.swift in Sources */,
-				OBJ_224 /* SyncValue.swift in Sources */,
+				OBJ_175 /* Array+SIO.swift in Sources */,
+				OBJ_176 /* Collection+Chunks.swift in Sources */,
+				OBJ_177 /* Compose.swift in Sources */,
+				OBJ_178 /* Curry.swift in Sources */,
+				OBJ_179 /* Either+Alt.swift in Sources */,
+				OBJ_180 /* Either+Applicative.swift in Sources */,
+				OBJ_181 /* Either+Codable.swift in Sources */,
+				OBJ_182 /* Either+Error.swift in Sources */,
+				OBJ_183 /* Either+Monad.swift in Sources */,
+				OBJ_184 /* Either+Optional.swift in Sources */,
+				OBJ_185 /* Either+Traversable.swift in Sources */,
+				OBJ_186 /* Either+Zip.swift in Sources */,
+				OBJ_187 /* Either.swift in Sources */,
+				OBJ_188 /* Iso.swift in Sources */,
+				OBJ_189 /* LocalURL.swift in Sources */,
+				OBJ_190 /* NoSyncValue.swift in Sources */,
+				OBJ_191 /* Operators.swift in Sources */,
+				OBJ_192 /* Optional+Zip.swift in Sources */,
+				OBJ_193 /* PrecedenceGroups.swift in Sources */,
+				OBJ_194 /* Prelude.swift in Sources */,
+				OBJ_195 /* Ref.swift in Sources */,
+				OBJ_196 /* Remove.swift in Sources */,
+				OBJ_197 /* SIO+Adapt.swift in Sources */,
+				OBJ_198 /* SIO+Alt.swift in Sources */,
+				OBJ_199 /* SIO+Applicative.swift in Sources */,
+				OBJ_200 /* SIO+BiFunctor.swift in Sources */,
+				OBJ_201 /* SIO+BiMonad.swift in Sources */,
+				OBJ_202 /* SIO+Bracket.swift in Sources */,
+				OBJ_203 /* SIO+Contravariant.swift in Sources */,
+				OBJ_204 /* SIO+Creation.swift in Sources */,
+				OBJ_205 /* SIO+Delay.swift in Sources */,
+				OBJ_206 /* SIO+Effects.swift in Sources */,
+				OBJ_207 /* SIO+Either.swift in Sources */,
+				OBJ_208 /* SIO+Error.swift in Sources */,
+				OBJ_209 /* SIO+Events.swift in Sources */,
+				OBJ_210 /* SIO+Flip.swift in Sources */,
+				OBJ_211 /* SIO+Fold.swift in Sources */,
+				OBJ_212 /* SIO+Functor.swift in Sources */,
+				OBJ_213 /* SIO+Monad.swift in Sources */,
+				OBJ_214 /* SIO+Optional.swift in Sources */,
+				OBJ_215 /* SIO+Profunctor.swift in Sources */,
+				OBJ_216 /* SIO+Race.swift in Sources */,
+				OBJ_217 /* SIO+Ref.swift in Sources */,
+				OBJ_218 /* SIO+Requirements.swift in Sources */,
+				OBJ_219 /* SIO+Result.swift in Sources */,
+				OBJ_220 /* SIO+Retry.swift in Sources */,
+				OBJ_221 /* SIO+Run.swift in Sources */,
+				OBJ_222 /* SIO+Schedule.swift in Sources */,
+				OBJ_223 /* SIO+Tap.swift in Sources */,
+				OBJ_224 /* SIO+Timeout.swift in Sources */,
+				OBJ_225 /* SIO+Typealias.swift in Sources */,
+				OBJ_226 /* SIO+Zip.swift in Sources */,
+				OBJ_227 /* SIO.swift in Sources */,
+				OBJ_228 /* SIOError.swift in Sources */,
+				OBJ_229 /* Sio+Codable.swift in Sources */,
+				OBJ_230 /* SyncValue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_230 /* Sources */ = {
+		OBJ_236 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_231 /* Codec+Base64.swift in Sources */,
-				OBJ_232 /* Codec+Data.swift in Sources */,
-				OBJ_233 /* Codec+Int.swift in Sources */,
-				OBJ_234 /* Codec+Iso.swift in Sources */,
-				OBJ_235 /* Codec+JSON.swift in Sources */,
-				OBJ_236 /* Codec.swift in Sources */,
-				OBJ_237 /* SIO+Codec.swift in Sources */,
+				OBJ_237 /* Codec+Base64.swift in Sources */,
+				OBJ_238 /* Codec+Data.swift in Sources */,
+				OBJ_239 /* Codec+Int.swift in Sources */,
+				OBJ_240 /* Codec+Iso.swift in Sources */,
+				OBJ_241 /* Codec+JSON.swift in Sources */,
+				OBJ_242 /* Codec.swift in Sources */,
+				OBJ_243 /* SIO+Codec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_245 /* Sources */ = {
+		OBJ_251 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_246 /* SIOCodecBase64Tests.swift in Sources */,
-				OBJ_247 /* SIOCodecUTF8Tests.swift in Sources */,
-				OBJ_248 /* SioCodecIntTests.swift in Sources */,
-				OBJ_249 /* SioCodecJSONTests.swift in Sources */,
-				OBJ_250 /* SioCodecSIOTests.swift in Sources */,
+				OBJ_252 /* SIOCodecBase64Tests.swift in Sources */,
+				OBJ_253 /* SIOCodecUTF8Tests.swift in Sources */,
+				OBJ_254 /* SioCodecIntTests.swift in Sources */,
+				OBJ_255 /* SioCodecJSONTests.swift in Sources */,
+				OBJ_256 /* SioCodecSIOTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_260 /* Sources */ = {
+		OBJ_266 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_261 /* AnyRandomNumberGenerator.swift in Sources */,
-				OBJ_262 /* HTTPMethod.swift in Sources */,
-				OBJ_263 /* HTTPResponse.swift in Sources */,
-				OBJ_264 /* LCRNG.swift in Sources */,
-				OBJ_265 /* NetworkError.swift in Sources */,
-				OBJ_266 /* ParametersEncoding.swift in Sources */,
-				OBJ_267 /* RemoteURL.swift in Sources */,
-				OBJ_268 /* Request.swift in Sources */,
-				OBJ_269 /* RequestParameters.swift in Sources */,
-				OBJ_270 /* SIO+Console.swift in Sources */,
-				OBJ_271 /* SIO+Date.swift in Sources */,
-				OBJ_272 /* SIO+FS.swift in Sources */,
-				ACA014B3239BB33900D7DB91 /* ValueStore+FS.swift in Sources */,
-				OBJ_273 /* SIO+Network.swift in Sources */,
-				OBJ_274 /* SIO+Random.swift in Sources */,
-				OBJ_275 /* StatusCode.swift in Sources */,
+				OBJ_267 /* AnyRandomNumberGenerator.swift in Sources */,
+				OBJ_268 /* LCRNG.swift in Sources */,
+				OBJ_269 /* SIO+Console.swift in Sources */,
+				OBJ_270 /* SIO+Date.swift in Sources */,
+				OBJ_271 /* SIO+FS.swift in Sources */,
+				OBJ_272 /* SIO+Random.swift in Sources */,
+				OBJ_273 /* ValueStore+FS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_288 /* Sources */ = {
+		OBJ_286 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_289 /* SioEffectsTests.swift in Sources */,
-				OBJ_290 /* SioRandomTests.swift in Sources */,
+				OBJ_287 /* SioEffectsTests.swift in Sources */,
+				OBJ_288 /* SioRandomTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_304 /* Sources */ = {
+		OBJ_302 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_305 /* Package.swift in Sources */,
+				OBJ_303 /* HTTPMethod.swift in Sources */,
+				OBJ_304 /* HTTPResponse.swift in Sources */,
+				OBJ_305 /* NetworkError.swift in Sources */,
+				OBJ_306 /* ParametersEncoding.swift in Sources */,
+				AC7810D7239D073D0096A105 /* Network+Utils.swift in Sources */,
+				OBJ_307 /* RemoteURL.swift in Sources */,
+				OBJ_308 /* Request.swift in Sources */,
+				AC7810D5239C513D0096A105 /* Request+Creation.swift in Sources */,
+				OBJ_309 /* RequestParameters.swift in Sources */,
+				OBJ_310 /* Network.swift in Sources */,
+				OBJ_311 /* StatusCode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_319 /* Sources */ = {
+		OBJ_325 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_320 /* Alternative.swift in Sources */,
-				OBJ_321 /* Arrays.swift in Sources */,
-				OBJ_322 /* BracketTests.swift in Sources */,
-				OBJ_323 /* CancellationTests.swift in Sources */,
-				OBJ_324 /* Chunked.swift in Sources */,
-				OBJ_325 /* ChunksTests.swift in Sources */,
-				OBJ_326 /* CodableTests.swift in Sources */,
-				OBJ_327 /* ComposeTests.swift in Sources */,
-				OBJ_328 /* ConcurrencyTests.swift in Sources */,
-				OBJ_329 /* CurryTests.swift in Sources */,
-				OBJ_330 /* Delay.swift in Sources */,
-				OBJ_331 /* EitherTests.swift in Sources */,
-				OBJ_332 /* Functor.swift in Sources */,
-				OBJ_333 /* IsoTests.swift in Sources */,
-				OBJ_334 /* LocalURLTests.swift in Sources */,
-				OBJ_335 /* Monad.swift in Sources */,
-				OBJ_336 /* NoSyncValueTests.swift in Sources */,
-				OBJ_337 /* OptionalTests.swift in Sources */,
-				OBJ_338 /* PreludeTests.swift in Sources */,
-				OBJ_339 /* RaceTests.swift in Sources */,
-				OBJ_340 /* ResultTests.swift in Sources */,
-				OBJ_341 /* Retry.swift in Sources */,
-				OBJ_342 /* SIORefTests.swift in Sources */,
-				OBJ_343 /* SIOZipTests.swift in Sources */,
-				OBJ_344 /* SchedulerTests.swift in Sources */,
-				OBJ_345 /* SioFoldTests.swift in Sources */,
-				OBJ_346 /* SyncValueTests.swift in Sources */,
-				OBJ_347 /* TimeoutTests.swift in Sources */,
-				OBJ_348 /* sioTests.swift in Sources */,
+				OBJ_326 /* SioNetworkTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_359 /* Sources */ = {
+		OBJ_342 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_360 /* ValueStore+Array.swift in Sources */,
-				OBJ_361 /* ValueStore+Codec.swift in Sources */,
-				OBJ_362 /* ValueStore+Creation.swift in Sources */,
-				OBJ_363 /* ValueStore+Error.swift in Sources */,
-				OBJ_364 /* ValueStore+Iso.swift in Sources */,
-				OBJ_365 /* ValueStore+Optional.swift in Sources */,
-				OBJ_366 /* ValueStore+Profunctor.swift in Sources */,
-				OBJ_367 /* ValueStore+Typealias.swift in Sources */,
-				OBJ_368 /* ValueStore+UserDefaults.swift in Sources */,
-				OBJ_369 /* ValueStore+Utils.swift in Sources */,
-				OBJ_370 /* ValueStore+Zip.swift in Sources */,
-				OBJ_371 /* ValueStore.swift in Sources */,
-				OBJ_372 /* ValueStoreError.swift in Sources */,
+				OBJ_343 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_381 /* Sources */ = {
+		OBJ_358 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_382 /* SioCodecTests.swift in Sources */,
-				OBJ_383 /* SioValueStoreJSONTests.swift in Sources */,
-				OBJ_384 /* SioValueStoreTests.swift in Sources */,
+				OBJ_359 /* Alternative.swift in Sources */,
+				OBJ_360 /* Arrays.swift in Sources */,
+				OBJ_361 /* BracketTests.swift in Sources */,
+				OBJ_362 /* CancellationTests.swift in Sources */,
+				OBJ_363 /* Chunked.swift in Sources */,
+				OBJ_364 /* ChunksTests.swift in Sources */,
+				OBJ_365 /* CodableTests.swift in Sources */,
+				OBJ_366 /* ComposeTests.swift in Sources */,
+				OBJ_367 /* ConcurrencyTests.swift in Sources */,
+				OBJ_368 /* CurryTests.swift in Sources */,
+				OBJ_369 /* Delay.swift in Sources */,
+				OBJ_370 /* EitherTests.swift in Sources */,
+				OBJ_371 /* Functor.swift in Sources */,
+				OBJ_372 /* IsoTests.swift in Sources */,
+				OBJ_373 /* LocalURLTests.swift in Sources */,
+				OBJ_374 /* Monad.swift in Sources */,
+				OBJ_375 /* NoSyncValueTests.swift in Sources */,
+				OBJ_376 /* OptionalTests.swift in Sources */,
+				OBJ_377 /* PreludeTests.swift in Sources */,
+				OBJ_378 /* RaceTests.swift in Sources */,
+				OBJ_379 /* ResultTests.swift in Sources */,
+				OBJ_380 /* Retry.swift in Sources */,
+				OBJ_381 /* SIORefTests.swift in Sources */,
+				OBJ_382 /* SIOZipTests.swift in Sources */,
+				OBJ_383 /* SchedulerTests.swift in Sources */,
+				OBJ_384 /* SioFoldTests.swift in Sources */,
+				OBJ_385 /* SyncValueTests.swift in Sources */,
+				OBJ_386 /* TimeoutTests.swift in Sources */,
+				OBJ_387 /* sioTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_398 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_399 /* ValueStore+Array.swift in Sources */,
+				OBJ_400 /* ValueStore+Codec.swift in Sources */,
+				OBJ_401 /* ValueStore+Creation.swift in Sources */,
+				OBJ_402 /* ValueStore+Error.swift in Sources */,
+				OBJ_403 /* ValueStore+Iso.swift in Sources */,
+				OBJ_404 /* ValueStore+Optional.swift in Sources */,
+				OBJ_405 /* ValueStore+Profunctor.swift in Sources */,
+				OBJ_406 /* ValueStore+Typealias.swift in Sources */,
+				OBJ_407 /* ValueStore+UserDefaults.swift in Sources */,
+				OBJ_408 /* ValueStore+Utils.swift in Sources */,
+				OBJ_409 /* ValueStore+Zip.swift in Sources */,
+				OBJ_410 /* ValueStore.swift in Sources */,
+				OBJ_411 /* ValueStoreError.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_420 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_421 /* SioCodecTests.swift in Sources */,
+				OBJ_422 /* SioValueStoreJSONTests.swift in Sources */,
+				OBJ_423 /* SioValueStoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		OBJ_240 /* PBXTargetDependency */ = {
+		OBJ_246 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Sio::Sio" /* Sio */;
-			targetProxy = ACA0149D239BB31100D7DB91 /* PBXContainerItemProxy */;
+			targetProxy = AC7810B7239C50D60096A105 /* PBXContainerItemProxy */;
 		};
-		OBJ_254 /* PBXTargetDependency */ = {
+		OBJ_260 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Sio::SioCodec" /* SioCodec */;
-			targetProxy = ACA014A5239BB31100D7DB91 /* PBXContainerItemProxy */;
+			targetProxy = AC7810C1239C50D60096A105 /* PBXContainerItemProxy */;
 		};
-		OBJ_255 /* PBXTargetDependency */ = {
+		OBJ_261 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Sio::Sio" /* Sio */;
-			targetProxy = ACA014A6239BB31100D7DB91 /* PBXContainerItemProxy */;
+			targetProxy = AC7810C2239C50D60096A105 /* PBXContainerItemProxy */;
+		};
+		OBJ_278 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::SioValueStore" /* SioValueStore */;
+			targetProxy = AC7810B5239C50D60096A105 /* PBXContainerItemProxy */;
 		};
 		OBJ_280 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Sio::SioValueStore" /* SioValueStore */;
-			targetProxy = ACA0149F239BB31100D7DB91 /* PBXContainerItemProxy */;
-		};
-		OBJ_282 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
 			target = "Sio::SioCodec" /* SioCodec */;
-			targetProxy = ACA014A0239BB31100D7DB91 /* PBXContainerItemProxy */;
+			targetProxy = AC7810B9239C50D60096A105 /* PBXContainerItemProxy */;
 		};
-		OBJ_283 /* PBXTargetDependency */ = {
+		OBJ_281 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Sio::Sio" /* Sio */;
-			targetProxy = ACA014A1239BB31100D7DB91 /* PBXContainerItemProxy */;
+			targetProxy = AC7810BA239C50D60096A105 /* PBXContainerItemProxy */;
+		};
+		OBJ_294 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::SioEffects" /* SioEffects */;
+			targetProxy = AC7810C6239C50D60096A105 /* PBXContainerItemProxy */;
+		};
+		OBJ_295 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::SioValueStore" /* SioValueStore */;
+			targetProxy = AC7810C7239C50D60096A105 /* PBXContainerItemProxy */;
 		};
 		OBJ_296 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Sio::SioEffects" /* SioEffects */;
-			targetProxy = ACA014A7239BB31100D7DB91 /* PBXContainerItemProxy */;
+			target = "Sio::SioCodec" /* SioCodec */;
+			targetProxy = AC7810C8239C50D60096A105 /* PBXContainerItemProxy */;
 		};
 		OBJ_297 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Sio::SioValueStore" /* SioValueStore */;
-			targetProxy = ACA014A8239BB31100D7DB91 /* PBXContainerItemProxy */;
+			target = "Sio::Sio" /* Sio */;
+			targetProxy = AC7810C9239C50D60096A105 /* PBXContainerItemProxy */;
 		};
-		OBJ_298 /* PBXTargetDependency */ = {
+		OBJ_317 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::SioEffects" /* SioEffects */;
+			targetProxy = AC7810B4239C50D60096A105 /* PBXContainerItemProxy */;
+		};
+		OBJ_318 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::SioValueStore" /* SioValueStore */;
+			targetProxy = AC7810BB239C50D60096A105 /* PBXContainerItemProxy */;
+		};
+		OBJ_319 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Sio::SioCodec" /* SioCodec */;
-			targetProxy = ACA014A9239BB31100D7DB91 /* PBXContainerItemProxy */;
+			targetProxy = AC7810BC239C50D60096A105 /* PBXContainerItemProxy */;
 		};
-		OBJ_299 /* PBXTargetDependency */ = {
+		OBJ_320 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Sio::Sio" /* Sio */;
-			targetProxy = ACA014AA239BB31100D7DB91 /* PBXContainerItemProxy */;
+			targetProxy = AC7810BD239C50D60096A105 /* PBXContainerItemProxy */;
 		};
-		OBJ_310 /* PBXTargetDependency */ = {
+		OBJ_333 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Sio::SioTests" /* SioTests */;
-			targetProxy = ACA014AE239BB31200D7DB91 /* PBXContainerItemProxy */;
+			target = "Sio::SioNetwork" /* SioNetwork */;
+			targetProxy = AC7810CA239C50D60096A105 /* PBXContainerItemProxy */;
 		};
-		OBJ_312 /* PBXTargetDependency */ = {
+		OBJ_334 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Sio::SioCodecTests" /* SioCodecTests */;
-			targetProxy = ACA014AF239BB31200D7DB91 /* PBXContainerItemProxy */;
+			target = "Sio::SioEffects" /* SioEffects */;
+			targetProxy = AC7810CB239C50D60096A105 /* PBXContainerItemProxy */;
 		};
-		OBJ_313 /* PBXTargetDependency */ = {
+		OBJ_335 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::SioValueStore" /* SioValueStore */;
+			targetProxy = AC7810CC239C50D60096A105 /* PBXContainerItemProxy */;
+		};
+		OBJ_336 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::SioCodec" /* SioCodec */;
+			targetProxy = AC7810CD239C50D60096A105 /* PBXContainerItemProxy */;
+		};
+		OBJ_337 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::Sio" /* Sio */;
+			targetProxy = AC7810CE239C50D60096A105 /* PBXContainerItemProxy */;
+		};
+		OBJ_348 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Sio::SioValueStoreTests" /* SioValueStoreTests */;
-			targetProxy = ACA014B0239BB31200D7DB91 /* PBXContainerItemProxy */;
+			targetProxy = AC7810CF239C50D70096A105 /* PBXContainerItemProxy */;
 		};
-		OBJ_315 /* PBXTargetDependency */ = {
+		OBJ_350 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Sio::SioEffectsTests" /* SioEffectsTests */;
-			targetProxy = ACA014B1239BB31200D7DB91 /* PBXContainerItemProxy */;
+			target = "Sio::SioNetworkTests" /* SioNetworkTests */;
+			targetProxy = AC7810D0239C50D70096A105 /* PBXContainerItemProxy */;
+		};
+		OBJ_351 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::SioTests" /* SioTests */;
+			targetProxy = AC7810D1239C50D70096A105 /* PBXContainerItemProxy */;
 		};
 		OBJ_353 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Sio::SioValueStore" /* SioValueStore */;
-			targetProxy = ACA014A2239BB31100D7DB91 /* PBXContainerItemProxy */;
+			target = "Sio::SioEffectsTests" /* SioEffectsTests */;
+			targetProxy = AC7810D2239C50D70096A105 /* PBXContainerItemProxy */;
 		};
 		OBJ_354 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Sio::SioCodec" /* SioCodec */;
-			targetProxy = ACA014A3239BB31100D7DB91 /* PBXContainerItemProxy */;
+			target = "Sio::SioCodecTests" /* SioCodecTests */;
+			targetProxy = AC7810D3239C50D70096A105 /* PBXContainerItemProxy */;
 		};
-		OBJ_355 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "Sio::Sio" /* Sio */;
-			targetProxy = ACA014A4239BB31100D7DB91 /* PBXContainerItemProxy */;
-		};
-		OBJ_376 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "Sio::SioCodec" /* SioCodec */;
-			targetProxy = ACA0149C239BB31100D7DB91 /* PBXContainerItemProxy */;
-		};
-		OBJ_377 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "Sio::Sio" /* Sio */;
-			targetProxy = ACA0149E239BB31100D7DB91 /* PBXContainerItemProxy */;
-		};
-		OBJ_389 /* PBXTargetDependency */ = {
+		OBJ_392 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Sio::SioValueStore" /* SioValueStore */;
-			targetProxy = ACA014AB239BB31100D7DB91 /* PBXContainerItemProxy */;
+			targetProxy = AC7810C3239C50D60096A105 /* PBXContainerItemProxy */;
 		};
-		OBJ_390 /* PBXTargetDependency */ = {
+		OBJ_393 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Sio::SioCodec" /* SioCodec */;
-			targetProxy = ACA014AC239BB31100D7DB91 /* PBXContainerItemProxy */;
+			targetProxy = AC7810C4239C50D60096A105 /* PBXContainerItemProxy */;
 		};
-		OBJ_391 /* PBXTargetDependency */ = {
+		OBJ_394 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Sio::Sio" /* Sio */;
-			targetProxy = ACA014AD239BB31100D7DB91 /* PBXContainerItemProxy */;
+			targetProxy = AC7810C5239C50D60096A105 /* PBXContainerItemProxy */;
+		};
+		OBJ_415 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::SioCodec" /* SioCodec */;
+			targetProxy = AC7810B6239C50D60096A105 /* PBXContainerItemProxy */;
+		};
+		OBJ_416 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::Sio" /* Sio */;
+			targetProxy = AC7810B8239C50D60096A105 /* PBXContainerItemProxy */;
+		};
+		OBJ_428 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::SioValueStore" /* SioValueStore */;
+			targetProxy = AC7810BE239C50D60096A105 /* PBXContainerItemProxy */;
+		};
+		OBJ_429 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::SioCodec" /* SioCodec */;
+			targetProxy = AC7810BF239C50D60096A105 /* PBXContainerItemProxy */;
+		};
+		OBJ_430 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Sio::Sio" /* Sio */;
+			targetProxy = AC7810C0239C50D60096A105 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		OBJ_166 /* Debug */ = {
+		OBJ_172 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -1351,7 +1596,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_167 /* Release */ = {
+		OBJ_173 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -1379,7 +1624,7 @@
 			};
 			name = Release;
 		};
-		OBJ_228 /* Debug */ = {
+		OBJ_234 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -1407,7 +1652,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_229 /* Release */ = {
+		OBJ_235 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -1435,7 +1680,7 @@
 			};
 			name = Release;
 		};
-		OBJ_243 /* Debug */ = {
+		OBJ_249 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -1460,7 +1705,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_244 /* Release */ = {
+		OBJ_250 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -1485,7 +1730,7 @@
 			};
 			name = Release;
 		};
-		OBJ_258 /* Debug */ = {
+		OBJ_264 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -1513,7 +1758,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_259 /* Release */ = {
+		OBJ_265 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -1541,7 +1786,7 @@
 			};
 			name = Release;
 		};
-		OBJ_286 /* Debug */ = {
+		OBJ_284 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -1566,7 +1811,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_287 /* Release */ = {
+		OBJ_285 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -1618,7 +1863,113 @@
 			};
 			name = Debug;
 		};
-		OBJ_302 /* Debug */ = {
+		OBJ_300 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Sio.xcodeproj/SioNetwork_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = SioNetwork;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = SioNetwork;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		OBJ_301 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Sio.xcodeproj/SioNetwork_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = SioNetwork;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = SioNetwork;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		OBJ_323 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Sio.xcodeproj/SioNetworkTests_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = SioNetworkTests;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		OBJ_324 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Sio.xcodeproj/SioNetworkTests_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = SioNetworkTests;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		OBJ_340 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -1627,7 +1978,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_303 /* Release */ = {
+		OBJ_341 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -1636,19 +1987,19 @@
 			};
 			name = Release;
 		};
-		OBJ_308 /* Debug */ = {
+		OBJ_346 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Debug;
 		};
-		OBJ_309 /* Release */ = {
+		OBJ_347 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Release;
 		};
-		OBJ_317 /* Debug */ = {
+		OBJ_356 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -1673,7 +2024,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_318 /* Release */ = {
+		OBJ_357 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -1698,7 +2049,7 @@
 			};
 			name = Release;
 		};
-		OBJ_357 /* Debug */ = {
+		OBJ_396 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -1726,7 +2077,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_358 /* Release */ = {
+		OBJ_397 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -1749,56 +2100,6 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = SioValueStore;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Release;
-		};
-		OBJ_379 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = Sio.xcodeproj/SioValueStoreTests_Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = SioValueStoreTests;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Debug;
-		};
-		OBJ_380 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = Sio.xcodeproj/SioValueStoreTests_Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = SioValueStoreTests;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -1828,14 +2129,64 @@
 			};
 			name = Release;
 		};
+		OBJ_418 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Sio.xcodeproj/SioValueStoreTests_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = SioValueStoreTests;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		OBJ_419 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Sio.xcodeproj/SioValueStoreTests_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = SioValueStoreTests;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		OBJ_165 /* Build configuration list for PBXNativeTarget "Sio" */ = {
+		OBJ_171 /* Build configuration list for PBXNativeTarget "Sio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_166 /* Debug */,
-				OBJ_167 /* Release */,
+				OBJ_172 /* Debug */,
+				OBJ_173 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1849,83 +2200,101 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_227 /* Build configuration list for PBXNativeTarget "SioCodec" */ = {
+		OBJ_233 /* Build configuration list for PBXNativeTarget "SioCodec" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_228 /* Debug */,
-				OBJ_229 /* Release */,
+				OBJ_234 /* Debug */,
+				OBJ_235 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_242 /* Build configuration list for PBXNativeTarget "SioCodecTests" */ = {
+		OBJ_248 /* Build configuration list for PBXNativeTarget "SioCodecTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_243 /* Debug */,
-				OBJ_244 /* Release */,
+				OBJ_249 /* Debug */,
+				OBJ_250 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_257 /* Build configuration list for PBXNativeTarget "SioEffects" */ = {
+		OBJ_263 /* Build configuration list for PBXNativeTarget "SioEffects" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_258 /* Debug */,
-				OBJ_259 /* Release */,
+				OBJ_264 /* Debug */,
+				OBJ_265 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_285 /* Build configuration list for PBXNativeTarget "SioEffectsTests" */ = {
+		OBJ_283 /* Build configuration list for PBXNativeTarget "SioEffectsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_286 /* Debug */,
-				OBJ_287 /* Release */,
+				OBJ_284 /* Debug */,
+				OBJ_285 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_301 /* Build configuration list for PBXNativeTarget "SioPackageDescription" */ = {
+		OBJ_299 /* Build configuration list for PBXNativeTarget "SioNetwork" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_302 /* Debug */,
-				OBJ_303 /* Release */,
+				OBJ_300 /* Debug */,
+				OBJ_301 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_307 /* Build configuration list for PBXAggregateTarget "SioPackageTests" */ = {
+		OBJ_322 /* Build configuration list for PBXNativeTarget "SioNetworkTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_308 /* Debug */,
-				OBJ_309 /* Release */,
+				OBJ_323 /* Debug */,
+				OBJ_324 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_316 /* Build configuration list for PBXNativeTarget "SioTests" */ = {
+		OBJ_339 /* Build configuration list for PBXNativeTarget "SioPackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_317 /* Debug */,
-				OBJ_318 /* Release */,
+				OBJ_340 /* Debug */,
+				OBJ_341 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_356 /* Build configuration list for PBXNativeTarget "SioValueStore" */ = {
+		OBJ_345 /* Build configuration list for PBXAggregateTarget "SioPackageTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_357 /* Debug */,
-				OBJ_358 /* Release */,
+				OBJ_346 /* Debug */,
+				OBJ_347 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_378 /* Build configuration list for PBXNativeTarget "SioValueStoreTests" */ = {
+		OBJ_355 /* Build configuration list for PBXNativeTarget "SioTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_379 /* Debug */,
-				OBJ_380 /* Release */,
+				OBJ_356 /* Debug */,
+				OBJ_357 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_395 /* Build configuration list for PBXNativeTarget "SioValueStore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_396 /* Debug */,
+				OBJ_397 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_417 /* Build configuration list for PBXNativeTarget "SioValueStoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_418 /* Debug */,
+				OBJ_419 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

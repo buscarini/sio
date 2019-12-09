@@ -11,5 +11,6 @@
         <page name='CodableUserDefaults'/>
         <page name='Random'/>
         <page name='State'/>
+        <page name='Network'/>
     </pages>
 </playground>

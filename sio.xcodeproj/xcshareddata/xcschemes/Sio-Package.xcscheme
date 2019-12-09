@@ -14,6 +14,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Sio::SioNetwork"
+               BuildableName = "SioNetwork.framework"
+               BlueprintName = "SioNetwork"
+               ReferencedContainer = "container:Sio.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "Sio::SioValueStore"
                BuildableName = "SioValueStore.framework"
                BlueprintName = "SioValueStore"
@@ -74,9 +88,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Sio::SioTests"
-               BuildableName = "SioTests.xctest"
-               BlueprintName = "SioTests"
+               BlueprintIdentifier = "Sio::SioValueStoreTests"
+               BuildableName = "SioValueStoreTests.xctest"
+               BlueprintName = "SioValueStoreTests"
                ReferencedContainer = "container:Sio.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -94,6 +108,16 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Sio::SioTests"
+               BuildableName = "SioTests.xctest"
+               BlueprintName = "SioTests"
+               ReferencedContainer = "container:Sio.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "Sio::SioEffectsTests"
                BuildableName = "SioEffectsTests.xctest"
                BlueprintName = "SioEffectsTests"
@@ -104,9 +128,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Sio::SioValueStoreTests"
-               BuildableName = "SioValueStoreTests.xctest"
-               BlueprintName = "SioValueStoreTests"
+               BlueprintIdentifier = "Sio::SioNetworkTests"
+               BuildableName = "SioNetworkTests.xctest"
+               BlueprintName = "SioNetworkTests"
                ReferencedContainer = "container:Sio.xcodeproj">
             </BuildableReference>
          </TestableReference>

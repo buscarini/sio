@@ -25,6 +25,10 @@ let package = Package(
 		.library(
 			name: "SioEffects",
 			targets: ["SioEffects"]
+		),
+		.library(
+			name: "SioNetwork",
+			targets: ["SioNetwork"]
 		)
 	],
 	dependencies: [
@@ -60,7 +64,13 @@ let package = Package(
 			dependencies: [ "Sio", "SioCodec", "SioValueStore" ]),
 		.testTarget(
 			name: "SioEffectsTests",
-			dependencies: ["Sio", "SioEffects", "SioCodec", "SioValueStore" ])
+			dependencies: ["Sio", "SioEffects", "SioCodec", "SioValueStore" ]),
 		
+		.target(
+			name: "SioNetwork",
+			dependencies: [ "Sio", "SioCodec", "SioValueStore", "SioEffects" ]),
+		.testTarget(
+			name: "SioNetworkTests",
+			dependencies: ["Sio", "SioNetwork", "SioCodec", "SioValueStore", "SioEffects" ])
 	]
 )
