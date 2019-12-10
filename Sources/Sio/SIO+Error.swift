@@ -36,3 +36,9 @@ public extension SIO where E == Error {
 		})
 	}
 }
+
+public extension SIO where A == Void {
+	func ignoreErrors() -> SIO<R, Never, Void> {
+		self.optional().void
+	}
+}
