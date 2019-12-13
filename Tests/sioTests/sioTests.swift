@@ -20,46 +20,19 @@ class sioTests: XCTestCase {
 	}
 	
 	func testLazy() {
-		let finish = expectation(description: "finish tasks")
-		
 		SIO<Void, String, String>.lazy("ok")
-			.fork({ _ in
-			XCTFail()
-		}, { value in
-			XCTAssert(value == "ok")
-			finish.fulfill()
-		})
-		
-		waitForExpectations(timeout: 1, handler: nil)
+			.assert("ok")
 	}
 	
 	func testRejectedLazy() {
-		let finish = expectation(description: "finish tasks")
-		
 		SIO<Void, String, String>.rejectedLazy("err")
-		.fork({ value in
-			XCTAssert(value == "err")
-			finish.fulfill()
-		}, { _ in
-			XCTFail()
-		})
-		
-		waitForExpectations(timeout: 1, handler: nil)
+			.assertErr("err")
 	}
 	
 	func testFromFunc() {
-		let finish = expectation(description: "finish tasks")
-		
 		SIO<String, Never, Int>.fromFunc { $0.count }
 			.provide("hello")
-			.fork({ _ in
-			XCTFail()
-		}, { value in
-			XCTAssert(value == 5)
-			finish.fulfill()
-		})
-		
-		waitForExpectations(timeout: 1, handler: nil)
+			.assert(5)
 	}
 	
 	func testVoid() {
@@ -77,101 +50,44 @@ class sioTests: XCTestCase {
 	}
 	
 	func testConst() {
-		let finish = expectation(description: "finish tasks")
-
 		SIO<Void, Int, String>.of("ok").const("b")
-			.fork({ _ in
-			XCTFail()
-		}, { value in
-			XCTAssert(value == "b")
-			finish.fulfill()
-		})
-		
-		waitForExpectations(timeout: 1, handler: nil)
+			.assert("b")
 	}
 	
 	func testFlip() {
-		let finish = expectation(description: "finish tasks")
-
 		SIO<Void, String, Int>.rejected("ok").flip()
-			.fork({ _ in
-			XCTFail()
-		}, { value in
-			XCTAssert(value == "ok")
-			finish.fulfill()
-		})
-		
-		waitForExpectations(timeout: 1, handler: nil)
+			.assert("ok")
 	}
 	
 	func testFlipInverse() {
-		let finish = expectation(description: "finish tasks")
-		
-		SIO<Void, String, Int>.of(1).flip().fork({ value in
-			XCTAssert(value == 1)
-			finish.fulfill()
-		}, { _ in
-			XCTFail()
-		})
-		
-		waitForExpectations(timeout: 1, handler: nil)
+		SIO<Void, String, Int>.of(1).flip()
+			.assertErr(1)
 	}
 	
 	func testEitherLeft() {
-		let finish = expectation(description: "finish tasks")
-		
-		IO.from(Either<String, Int>.left("ok")).fork({ value in
-			XCTAssert(value == "ok")
-			finish.fulfill()
-		}) { _ in
-			XCTFail()
-		}
-		
-		waitForExpectations(timeout: 1, handler: nil)
+		IO.from(Either<String, Int>.left("ok"))
+			.assertErr("ok")
 	}
 	
 	func testEitherRight() {
-		let finish = expectation(description: "finish tasks")
-
-		
-		IO.from(Either<String, Int>.right(1)).fork({ _ in
-			XCTFail()
-		}) { value in
-			XCTAssert(value == 1)
-			finish.fulfill()
-		}
-		
-		waitForExpectations(timeout: 1, handler: nil)
+		IO.from(Either<String, Int>.right(1))
+			.assert(1)
 	}
 	
 	func testToEitherLeft() {
-		let finish = expectation(description: "finish tasks")
-
-		
 		IO<String, Int>.rejected("err")
-		.either()
-		.fork(absurd) { value in
-			XCTAssert(value.isLeft)
-			XCTAssert(value.left == "err")
-			finish.fulfill()
-		}
-		
-		waitForExpectations(timeout: 1, handler: nil)
+			.either()
+			.assert({ value in
+				value.isLeft && value.left == "err"
+			})
 	}
 	
 	func testToEitherRight() {
-		let finish = expectation(description: "finish tasks")
-
-		
 		IO<String, Int>.of(1)
-		.either()
-		.fork(absurd) { value in
-			XCTAssert(value.isRight)
-			XCTAssert(value.right == 1)
-			finish.fulfill()
-		}
-		
-		waitForExpectations(timeout: 1, handler: nil)
+			.either()
+			.assert({ value in
+				value.isRight && value.right == 1
+			})
 	}
 	
 	func testOnCompletionError() {

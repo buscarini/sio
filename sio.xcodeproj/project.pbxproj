@@ -25,6 +25,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		AC65296423A3F21000D6B631 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC65296223A3F1F700D6B631 /* DateTests.swift */; };
+		AC65296623A3F41400D6B631 /* Sio+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC65296523A3F41400D6B631 /* Sio+Tests.swift */; };
+		AC65296823A3F48900D6B631 /* Sio+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC65296723A3F48900D6B631 /* Sio+Tests.swift */; };
 		AC7810D5239C513D0096A105 /* Request+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7810D4239C513D0096A105 /* Request+Creation.swift */; };
 		AC7810D7239D073D0096A105 /* Network+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7810D6239D073D0096A105 /* Network+Utils.swift */; };
 		OBJ_175 /* Array+SIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Array+SIO.swift */; };
@@ -418,6 +421,9 @@
 
 /* Begin PBXFileReference section */
 		AC51BCD4239E836600E72BC1 /* SioNetwork.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SioNetwork.podspec; sourceTree = "<group>"; };
+		AC65296223A3F1F700D6B631 /* DateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
+		AC65296523A3F41400D6B631 /* Sio+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sio+Tests.swift"; sourceTree = "<group>"; };
+		AC65296723A3F48900D6B631 /* Sio+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sio+Tests.swift"; sourceTree = "<group>"; };
 		AC7810D4239C513D0096A105 /* Request+Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Request+Creation.swift"; sourceTree = "<group>"; };
 		AC7810D6239D073D0096A105 /* Network+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network+Utils.swift"; sourceTree = "<group>"; };
 		OBJ_10 /* Collection+Chunks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Chunks.swift"; sourceTree = "<group>"; };
@@ -703,7 +709,9 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_113 /* SioEffectsTests.swift */,
+				AC65296223A3F1F700D6B631 /* DateTests.swift */,
 				OBJ_114 /* SioRandomTests.swift */,
+				AC65296723A3F48900D6B631 /* Sio+Tests.swift */,
 			);
 			name = SioEffectsTests;
 			path = Tests/SioEffectsTests;
@@ -750,6 +758,7 @@
 				OBJ_144 /* SyncValueTests.swift */,
 				OBJ_145 /* TimeoutTests.swift */,
 				OBJ_146 /* sioTests.swift */,
+				AC65296523A3F41400D6B631 /* Sio+Tests.swift */,
 			);
 			name = SioTests;
 			path = Tests/SioTests;
@@ -1298,7 +1307,9 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_287 /* SioEffectsTests.swift in Sources */,
+				AC65296423A3F21000D6B631 /* DateTests.swift in Sources */,
 				OBJ_288 /* SioRandomTests.swift in Sources */,
+				AC65296823A3F48900D6B631 /* Sio+Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1359,6 +1370,7 @@
 				OBJ_375 /* NoSyncValueTests.swift in Sources */,
 				OBJ_376 /* OptionalTests.swift in Sources */,
 				OBJ_377 /* PreludeTests.swift in Sources */,
+				AC65296623A3F41400D6B631 /* Sio+Tests.swift in Sources */,
 				OBJ_378 /* RaceTests.swift in Sources */,
 				OBJ_379 /* ResultTests.swift in Sources */,
 				OBJ_380 /* Retry.swift in Sources */,

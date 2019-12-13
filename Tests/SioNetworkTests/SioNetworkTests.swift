@@ -13,14 +13,6 @@ class SIONetworkTests: XCTestCase {
 		
 		Network()
 			.get("https://postman-echo.com/get")
-		//	.map { $0.0 }
-		//	.flatMap { a in
-		//		SIO<Void, Void, String>
-		//			.from(Codec.utf8.to(a))
-		//			.mapError { _ in
-		//				NetworkError.unknown
-		//			}
-		//	}
 			.fork({ e in
 				XCTFail()
 			}) { result in
