@@ -11,115 +11,42 @@ import Sio
 
 class Arrays: XCTestCase {
 	func testMap2() {
-		let expectation = self.expectation(description: "task succeeded")
-
-		let value = UIO<[Int]>.of([1, 2, 3]).map2 { $0*2 }
-		value.fork(absurd) { values in
-			XCTAssert(values == [2, 4, 6])
-			expectation.fulfill()
-		}
-
-		waitForExpectations(timeout: 1, handler: nil)
+		UIO<[Int]>.of([1, 2, 3]).map2 { $0*2 }
+			.assert([ 2, 4, 6 ])
 	}
-	
-	
+		
 	func exampleError() -> Error {
 		return NSError(domain: "tests", code: 1, userInfo: nil)
 	}
 	
 	func testTraverseEmpty() {
-		
-		let expectation = self.expectation(description: "task succeeded")
-		
 		[].traverse { IO<Never, Int>.of($0) }
-			.fork({ error in
-				XCTFail()
-			},
-			{ values in
-				XCTAssert(values.count == 0)
-				expectation.fulfill()
-			})
-		
-		self.waitForExpectations(timeout: 1.0, handler: nil)
+			.assert([])
 	}
 	
 	func testTraverse() {
-		
-		let expectation = self.expectation(description: "task succeeded")
-		
 		[1, 2, 3].traverse { IO<Never, Int>.of($0) }
-			.fork({ error in
-				XCTFail()
-			},
-					{ values in
-						XCTAssert(values.count == 3)
-						XCTAssert(values[0] == 1)
-						XCTAssert(values[1] == 2)
-						XCTAssert(values[2] == 3)
-						expectation.fulfill()
-			})
-		
-		self.waitForExpectations(timeout: 1.0, handler: nil)
+		.assert([1, 2, 3])
 	}
 	
 	func testConcat() {
-		
-		let expectation = self.expectation(description: "task succeeded")
 		
 		concat(
 			IO<Int, [Int]>.of([1, 2, 3]),
 			IO<Int, [Int]>.of([4, 5, 6])
 		)
-			.fork({ error in
-				XCTFail()
-			},
-					{ values in
-						XCTAssert(values.count == 6)
-						XCTAssert(values[0] == 1)
-						XCTAssert(values[1] == 2)
-						XCTAssert(values[2] == 3)
-						XCTAssert(values[3] == 4)
-						XCTAssert(values[4] == 5)
-						XCTAssert(values[5] == 6)
-						expectation.fulfill()
-			})
-		
-		self.waitForExpectations(timeout: 1.0, handler: nil)
+		.assert([ 1, 2, 3, 4, 5, 6 ])
 	}
 	
 	func testParallel() {
-		
-		let expectation = self.expectation(description: "task succeeded")
-		
 		parallel([ IO<Error, Int>.of(1), IO.of(2), IO.of(3)].map(delayed(1)))
-			.fork((), { error in
-				XCTFail()
-			},
-					{ values in
-						XCTAssert(values.count == 3)
-						XCTAssert(values[0] == 1)
-						XCTAssert(values[1] == 2)
-						XCTAssert(values[2] == 3)
-						expectation.fulfill()
-			})
-		
-		self.waitForExpectations(timeout: 1.1, handler: nil)
+			.assert([ 1, 2, 3 ], timeout: 1.01)
 	}
 	
 	func testSequenceEmpty() {
-		let expectation = self.expectation(description: "task succeeded")
-		
 		let ios: [SIO<Void, Void, [Int]>] = []
 		sequence(ios)
-			.fork({ error in
-				XCTFail()
-			},
-			{ values in
-				XCTAssert(values.count == 0)
-				expectation.fulfill()
-			})
-		
-		self.waitForExpectations(timeout: 0.1, handler: nil)
+			.assert([])
 	}
 	
 	func testSequence() {

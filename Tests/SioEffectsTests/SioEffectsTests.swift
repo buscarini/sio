@@ -64,8 +64,6 @@ class SIOEffectsTests: XCTestCase {
 	}
 	
 	func testTraverse() {
-		let finish = expectation(description: "finish")
-		
 		let values = Array(1...10)
 		
 		let task = values.traverse { index in
@@ -75,11 +73,6 @@ class SIOEffectsTests: XCTestCase {
 			}
 		}
 		
-		task.run((), { result in
-			XCTAssert(result == values)
-			finish.fulfill()
-		})
-		
-		wait(for: [finish], timeout: 1)
+		task.assert(values, timeout: 1)
 	}
 }

@@ -323,29 +323,18 @@ class sioTests: XCTestCase {
 	}
 	
 	func testAccess() {
-		let finish = expectation(description: "finish tasks")
-		
-		SIO<(Int, Int), Never, Int>.access { $0.0 }
+		let sio: SIO<(Int, Int), Never, Int> = SIO<(Int, Int), Never, Int>.access { $0.0 }
+			
+		sio
 			.provide((1, 2))
-			.fork(absurd, { value in
-				XCTAssert(value == 1)
-				finish.fulfill()
-			})
-		
-		waitForExpectations(timeout: 1, handler: nil)
+			.assert(1)
 	}
 	
 	func testAccessPath() {
-		let finish = expectation(description: "finish tasks")
-		
-		access(\User.name)
+		let io: SIO<User, Void, String> = access(\User.name)
+		io
 			.provide(User.init(name: "john"))
-			.fork(absurd, { value in
-				XCTAssert(value == "john")
-				finish.fulfill()
-			})
-		
-		waitForExpectations(timeout: 1, handler: nil)
+			.assert("john")
 	}
 	
 	func testEmpty() {
@@ -397,53 +386,36 @@ class sioTests: XCTestCase {
 	}
 	
 	func testBiFlatMapError() {
-		let finish = expectation(description: "finish tasks")
-		
 		SIO<Void, Int, Int>.rejected(1)
 			.biFlatMap(IO<Never, String>.of("ok"))
-			.fork(absurd) { value in
-				XCTAssert(value == "ok")
-				finish.fulfill()
-			}
-		
-		waitForExpectations(timeout: 1, handler: nil)
+			.assert("ok")
 	}
 	
 	func testBiFlatMapErrorToError() {
-		let finish = expectation(description: "finish tasks")
-		
 		SIO<Void, Int, Int>.rejected(1)
 			.biFlatMap(IO<String, Never>.rejected("ok"))
-			.fork({ value in
-				XCTAssert(value == "ok")
-				finish.fulfill()
-			}, absurd)
-		waitForExpectations(timeout: 1, handler: nil)
+			.assertErr("ok")
 	}
 	
 	func testBiFlatMapSuccess() {
-		let finish = expectation(description: "finish tasks")
-		
 		SIO<Void, Int, Int>.of(1)
 			.biFlatMap(IO<Never, String>.of("ok"))
-			.fork(absurd) { value in
-				XCTAssert(value == "ok")
-				finish.fulfill()
-			}
-		
-		waitForExpectations(timeout: 1, handler: nil)
+			.assert("ok")
 	}
 	
 	func testBiFlatMapSuccessToError() {
-		let finish = expectation(description: "finish tasks")
-		
 		SIO<Void, Int, Int>.of(1)
 			.biFlatMap(IO<Never, String>.of("ok"))
-			.fork(absurd) { value in
-				XCTAssert(value == "ok")
-				finish.fulfill()
-			}
-		
-		waitForExpectations(timeout: 1, handler: nil)
+		.assert("ok")
+	}
+	
+	func testRunAll() {
+		runAll([
+			SIO<Void, Int, Int>.of(1),
+			SIO<Void, Int, Int>.rejected(2),
+			SIO<Void, Int, Int>.of(3),
+			SIO<Void, Int, Int>.rejected(4)
+		])
+		.assert([ 1, 3 ])
 	}
 }
