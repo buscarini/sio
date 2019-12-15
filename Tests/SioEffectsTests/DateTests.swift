@@ -10,7 +10,6 @@ import XCTest
 
 import Sio
 import SioEffects
-import SioTests
 
 class DateTests: XCTestCase {
 	func testDate() {

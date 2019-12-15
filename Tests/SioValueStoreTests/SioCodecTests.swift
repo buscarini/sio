@@ -13,35 +13,20 @@ import SioValueStore
 
 class SIOCodecTests: XCTestCase {
 	func testOf() {
-		let finish = expectation(description: "finish")
-		
-		ValueStore<Void, String, Int, Int>.of(1).load.fork({ _ in
-			XCTFail()
-		}, { value in
-			XCTAssert(value == 1)
-			finish.fulfill()
-		})
-		
-		waitForExpectations(timeout: 1, handler: nil)
+		ValueStore<Void, String, Int, Int>.of(1)
+			.load
+			.assert(1)
 	}
 	
 	func testRejected() {
-		let finish = expectation(description: "finish")
-		
-		ValueStore<Void, String, Int, Int>.rejected("err").load.fork({ err in
-			XCTAssert(err == "err")
-			finish.fulfill()
-		}, { _ in
-			XCTFail()
-		})
-		
-		waitForExpectations(timeout: 1, handler: nil)
+		ValueStore<Void, String, Int, Int>.rejected("err")
+			.load
+		.assertErr("err")
 	}
 	
 	func testCopy() {
 		let finish = expectation(description: "finish")
 
-		
 		var targetVar: Int = 0
 		
 		let origin = ValueStoreA<Void, String, Int>.of(6)

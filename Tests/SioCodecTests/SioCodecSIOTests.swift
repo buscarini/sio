@@ -11,9 +11,7 @@ import Sio
 import SioCodec
 
 class SIOCodecSIOTests: XCTestCase {
-	func testSIO() {
-		let finish = expectation(description: "finish ok")
-		
+	func testCompose() {
 		let origin = "Blah"
 		
 		let codec = Codec<Void, String, String>.base64
@@ -21,14 +19,33 @@ class SIOCodecSIOTests: XCTestCase {
 		let task = SIO<Void, Void, String>.of(origin)
 		let encoded = task >>> codec
 		
-		encoded.fork({ _ in
-			XCTFail()
-		}, { string in
-			XCTAssert(string == "QmxhaA==")
-			
-			finish.fulfill()
-		})
+		encoded
+		.assert("QmxhaA==")
+	}
+	
+	func testComposeReversed() {
+		let origin = "Blah"
 		
-		waitForExpectations(timeout: 1, handler: nil)
+		let codec = Codec<Void, String, String>.base64
+		
+		let task = SIO<Void, Void, String>.of(origin)
+		let encoded = codec <<< task
+		
+		encoded
+		.assert("QmxhaA==")
+	}
+	
+	func testDecode() {
+		IO<Void, String>
+			.of("QmxhaA==")
+			.decode(Codec.base64)
+			.assert("Blah")
+	}
+	
+	func testEncode() {
+		IO<Void, String>
+			.of("Blah")
+			.encode(Codec.base64)
+			.assert("QmxhaA==")
 	}
 }

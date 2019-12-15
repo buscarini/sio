@@ -13,7 +13,7 @@ import Sio
 import SioEffects
 
 class SIOEffectsTests: XCTestCase {
-	func testOther() {
+	/*func testOther() {
 		let finish = expectation(description: "finish tasks")
 		
 		let long = Array(1...800).forEach { item in
@@ -61,7 +61,7 @@ class SIOEffectsTests: XCTestCase {
 		print("after cancel zip")
 		
 		waitForExpectations(timeout: 15, handler: nil)
-	}
+	}*/
 	
 	func testTraverse() {
 		let values = Array(1...10)
