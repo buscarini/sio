@@ -153,4 +153,25 @@ class SIOValueStoreTests: XCTestCase {
 		
 		waitForExpectations(timeout: 1, handler: nil)
 	}
+	
+	func testOptionalSome() {
+		ValueStore<Void, String, Int, Int>.of(1)
+			.optional()
+			.load
+			.assert(1)
+	}
+	
+	func testOptionalNone() {
+		ValueStore<Void, String, Int, Int>.rejected("err")
+			.optional()
+			.load
+			.assert(nil)
+	}
+	
+	func testOptionalRemove() {
+		ValueStore<Void, String, Int, Int>.rejected("err")
+			.optional()
+			.load
+			.assert(nil)
+	}
 }
