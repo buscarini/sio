@@ -66,8 +66,10 @@ class SIOEffectsTests: XCTestCase {
 	func testTraverse() {
 		let values = Array(1...10)
 		
+		let console = Console.mock("hi")
+		
 		let task = values.traverse { index in
-			Console.defaultPrintLine("\(index)")
+			console.printLine("\(index)")
 				.flatMap {
 					UIO<Int>.of(index)
 			}

@@ -10,15 +10,15 @@ import Foundation
 import Sio
 
 public struct Dates {
-	public var date = defaultDate
+	public var date: UIO<Date>
 	
 	public init(
-		date: UIO<Date>
+		date: UIO<Date> = defaultDate
 	) {
 		self.date = date
 	}
 	
-	static var defaultDate: UIO<Date> {
+	public static var defaultDate: UIO<Date> {
 		return UIO<Date>({ _, reject, resolve in
 			resolve(Date())
 		})

@@ -9,19 +9,14 @@ import SioNetwork
 
 class SIONetworkTests: XCTestCase {
 	func testGet() {
-		let finish = expectation(description: "finish")
+		let urlString = "https://postman-echo.com/get"
 		
-		Network()
-			.get("https://postman-echo.com/get")
-			.fork({ e in
-				XCTFail()
-			}) { result in
-				print(result)
-				
-				finish.fulfill()
-			}
-		
-		
-		waitForExpectations(timeout: 5, handler: nil)
+		let req = Network()
+			.getRequest(urlString)
+			
+		XCTAssertNotNil(req)
+		XCTAssertEqual(req?.url.rawValue.absoluteString, urlString)
+		XCTAssertEqual(req?.method, .get)
+		XCTAssertEqual(req?.successCodes, 200..<299)
 	}
 }

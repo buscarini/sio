@@ -9,27 +9,35 @@ import Foundation
 import Sio
 
 public extension Network {
+	func getRequest(
+		_ string: String,
+		_ params: RequestParameters = .empty,
+		_ headers: [String: String]? = nil
+	) -> Request? {
+		RemoteURL.init(string)
+			.flatMap { url in
+				Request.init(
+					method: .get,
+					url: url,
+					cachePolicy: .useProtocolCachePolicy,
+					timeout: 60,
+					headers: headers,
+					successCodes: 200..<299,
+					queryParams: params,
+					bodyParams: .empty
+				)
+		}
+	}
+	
 	func get(
 		_ string: String,
 		_ params: RequestParameters = .empty,
 		_ headers: [String: String]? = nil
 	) -> SIO<Void, NetworkError, (Data, HTTPResponse)> {
-			let url = RemoteURL.init(string)
-			return SIO<Void, NetworkError, RemoteURL>
-				.from(url, NetworkError.unknown)
-				.flatMap { url in
-					let request = Request.init(
-						method: .get,
-						url: url,
-						cachePolicy: .useProtocolCachePolicy,
-						timeout: 60,
-						headers: headers,
-						successCodes: 200..<299,
-						queryParams: params,
-						bodyParams: .empty
-					)
-					
-					return self.request.provide(request)
-				}
+		SIO<Void, NetworkError, Request>
+			.from(self.getRequest(string, params, headers), NetworkError.unknown)
+			.flatMap { req in
+				self.request.provide(req)
+		}
 	}
 }
