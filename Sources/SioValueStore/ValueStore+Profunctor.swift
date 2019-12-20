@@ -11,7 +11,10 @@ import Sio
 
 public extension ValueStore {
 	// Profunctor dimap: T -> T => U -> T -> T -> U => U -> U
-	func dimap<A0, B0>(_ pre: @escaping (A0) -> A, _ post: @escaping (B) -> B0) -> ValueStore<R, E, A0, B0> {
+	func dimap<A0, B0>(
+		_ pre: @escaping (A0) -> A,
+		_ post: @escaping (B) -> B0
+	) -> ValueStore<R, E, A0, B0> {
 		return ValueStore<R, E, A0, B0>(
 			load: self.load.map(post),
 			save: { a0 in
@@ -22,7 +25,10 @@ public extension ValueStore {
 	}
 	
 	
-	func process<A0, B0>(_ pre: @escaping (A0) -> SIO<R, E, A>, _ post: @escaping (B) -> SIO<R, E, B0>) -> ValueStore<R, E, A0, B0> {
+	func process<A0, B0>(
+		_ pre: @escaping (A0) -> SIO<R, E, A>,
+		_ post: @escaping (B) -> SIO<R, E, B0>
+	) -> ValueStore<R, E, A0, B0> {
 		return ValueStore<R, E, A0, B0>(
 			load: self.load.flatMap(post),
 			save: { u in pre(u).flatMap(self.save).flatMap(post) },
