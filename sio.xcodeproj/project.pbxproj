@@ -32,6 +32,7 @@
 		AC65296C23A45F7400D6B631 /* SioCodecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC65296B23A45F7400D6B631 /* SioCodecTests.swift */; };
 		AC65296E23A4D5AF00D6B631 /* ValueStoreArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC65296D23A4D5AF00D6B631 /* ValueStoreArrayTests.swift */; };
 		AC65297023A4D5CA00D6B631 /* Sio+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC65296F23A4D5CA00D6B631 /* Sio+Tests.swift */; };
+		AC72216B23AD4C0900E6741C /* ValueStoreZipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC72216A23AD4C0900E6741C /* ValueStoreZipTests.swift */; };
 		AC7810D5239C513D0096A105 /* Request+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7810D4239C513D0096A105 /* Request+Creation.swift */; };
 		AC7810D7239D073D0096A105 /* Network+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7810D6239D073D0096A105 /* Network+Utils.swift */; };
 		ACE1E62923A62EA30088200D /* Sio+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE1E62823A62EA30088200D /* Sio+Tests.swift */; };
@@ -435,6 +436,7 @@
 		AC65296B23A45F7400D6B631 /* SioCodecTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioCodecTests.swift; sourceTree = "<group>"; };
 		AC65296D23A4D5AF00D6B631 /* ValueStoreArrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueStoreArrayTests.swift; sourceTree = "<group>"; };
 		AC65296F23A4D5CA00D6B631 /* Sio+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sio+Tests.swift"; sourceTree = "<group>"; };
+		AC72216A23AD4C0900E6741C /* ValueStoreZipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueStoreZipTests.swift; sourceTree = "<group>"; };
 		AC7810D4239C513D0096A105 /* Request+Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Request+Creation.swift"; sourceTree = "<group>"; };
 		AC7810D6239D073D0096A105 /* Network+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network+Utils.swift"; sourceTree = "<group>"; };
 		ACE1E62823A62EA30088200D /* Sio+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sio+Tests.swift"; sourceTree = "<group>"; };
@@ -790,6 +792,7 @@
 				OBJ_149 /* SioValueStoreJSONTests.swift */,
 				OBJ_150 /* SioValueStoreTests.swift */,
 				ACE9CB3E23ABDF66003DB166 /* ValueStoreIsoTests.swift */,
+				AC72216A23AD4C0900E6741C /* ValueStoreZipTests.swift */,
 				AC65296D23A4D5AF00D6B631 /* ValueStoreArrayTests.swift */,
 			);
 			name = SioValueStoreTests;
@@ -1435,6 +1438,7 @@
 				OBJ_421 /* SioCodecTests.swift in Sources */,
 				AC65296E23A4D5AF00D6B631 /* ValueStoreArrayTests.swift in Sources */,
 				OBJ_422 /* SioValueStoreJSONTests.swift in Sources */,
+				AC72216B23AD4C0900E6741C /* ValueStoreZipTests.swift in Sources */,
 				ACE9CB3F23ABDF66003DB166 /* ValueStoreIsoTests.swift in Sources */,
 				OBJ_423 /* SioValueStoreTests.swift in Sources */,
 				AC65297023A4D5CA00D6B631 /* Sio+Tests.swift in Sources */,

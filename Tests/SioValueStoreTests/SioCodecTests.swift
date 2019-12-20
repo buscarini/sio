@@ -21,7 +21,7 @@ class SIOCodecTests: XCTestCase {
 	func testRejected() {
 		ValueStore<Void, String, Int, Int>.rejected("err")
 			.load
-		.assertErr("err")
+			.assertErr("err")
 	}
 	
 	func testCopy() {

@@ -36,7 +36,6 @@ public extension ValueStore where R == Void {
 	}
 }
 
-
 public extension ValueStore where R == Void, A: Equatable, A == B {
 	static func assertOnlySaves(
 		_ expect: XCTestExpectation,
