@@ -46,30 +46,30 @@ class BracketTests: XCTestCase {
 		waitForExpectations(timeout: 2, handler: nil)
 	}
 	
-	func testReleaseOnCancellation() {
-		let release = expectation(description: "Resource released")
-		
-		let task = UIO.of(1)
-		.tap { _ in UIO.effect { print("Resource acquired") } }
-		.bracket({ _ in
-			.effectMain {
-				print("resource released")
-				release.fulfill()
-			}
-		}, { value in
-			UIO.of(value).delay(1)
-		})
-		
-		task.fork({ _ in
-			XCTFail()
-		}, { value in
-			XCTFail()
-		})
-				
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-			task.cancel()
-		}
-		
-		waitForExpectations(timeout: 2, handler: nil)
-	}
+//	func testReleaseOnCancellation() {
+//		let release = expectation(description: "Resource released")
+//
+//		let task = UIO.of(1)
+//		.tap { _ in UIO.effect { print("Resource acquired") } }
+//		.bracket({ _ in
+//			.effectMain {
+//				print("resource released")
+//				release.fulfill()
+//			}
+//		}, { value in
+//			UIO.of(value).delay(1)
+//		})
+//
+//		task.fork({ _ in
+//			XCTFail()
+//		}, { value in
+//			XCTFail()
+//		})
+//
+//		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+//			task.cancel()
+//		}
+//
+//		waitForExpectations(timeout: 2, handler: nil)
+//	}
 }
