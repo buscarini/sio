@@ -99,6 +99,30 @@ class SIOValueStoreTests: XCTestCase {
 		waitForExpectations(timeout: 1, handler: nil)
 	}
 	
+	func testMove() {
+		let finish = expectation(description: "finish")
+
+		let fromRef = Ref<Int?>.init(1)
+		let toRef = Ref<Int?>.init(nil)
+		
+		let from = fromRef.valueStore()
+		let to = toRef.valueStore()
+		
+		from.move(to: to, adapt: id)
+			.fork((), { _ in
+				XCTFail()
+			}, { value in
+				XCTAssert(value == 1)
+				
+				XCTAssertEqual(fromRef.state, nil)
+				XCTAssertEqual(toRef.state, 1)
+				
+				finish.fulfill()
+			})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
 	func testCache() {
 		let finish = expectation(description: "finish")
 
@@ -173,5 +197,120 @@ class SIOValueStoreTests: XCTestCase {
 			.optional()
 			.load
 			.assert(nil)
+	}
+	
+	func testDefault() {
+		ValueStore<Void, String, Int, Int>.rejected("err")
+			.default(1)
+			.load
+			.assert(1)
+	}
+	
+	func testReplacingLoadOld() {
+		let finish = expectation(description: "finish")
+
+		let fromRef = Ref<Int?>.init(1)
+		let toRef = Ref<Int?>.init(nil)
+		
+		let from = fromRef.valueStore()
+		let to = toRef.valueStore()
+		
+		let final = to.replacing(from)
+		
+		final
+			.load
+			.fork((), { _ in
+				XCTFail()
+			}, { value in
+				XCTAssert(value == 1)
+				
+				XCTAssertEqual(fromRef.state, nil)
+				XCTAssertEqual(toRef.state, 1)
+				
+				finish.fulfill()
+			})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testReplacingLoadNew() {
+		let finish = expectation(description: "finish")
+
+		let fromRef = Ref<Int?>.init(2)
+		let toRef = Ref<Int?>.init(1)
+		
+		let from = fromRef.valueStore()
+		let to = toRef.valueStore()
+		
+		let final = to.replacing(from)
+		
+		final
+			.load
+			.fork((), { _ in
+				XCTFail()
+			}, { value in
+				XCTAssert(value == 1)
+				
+				XCTAssertEqual(fromRef.state, nil)
+				XCTAssertEqual(toRef.state, 1)
+				
+				finish.fulfill()
+			})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testReplacingSave() {
+		let saved = expectation(description: "saved")
+		
+		let fromRef = Ref<Int?>.init(nil)
+		let toRef = Ref<Int?>.init(nil)
+
+		let from = fromRef.valueStore()
+		let to = toRef.valueStore()
+
+		let replacing = to.replacing(from)
+
+		replacing
+			.save(2)
+			.fork({ _ in
+				XCTFail()
+			}, { value in
+				XCTAssert(value == 2)
+				
+				XCTAssertEqual(fromRef.state, nil)
+				XCTAssertEqual(toRef.state, 2)
+
+				saved.fulfill()
+			}
+		)
+		
+		waitForExpectations(timeout: 0.01, handler: nil)
+	}
+	
+	func testReplacingRemove() {
+		let removed = expectation(description: "removed")
+		
+		let fromRef = Ref<Int?>.init(2)
+		let toRef = Ref<Int?>.init(1)
+
+		let from = fromRef.valueStore()
+		let to = toRef.valueStore()
+
+		let replacing = to.replacing(from)
+
+		replacing
+			.remove
+			.fork({ _ in
+				XCTFail()
+			}, { value in
+				XCTAssertEqual(fromRef.state, nil)
+				XCTAssertEqual(toRef.state, nil)
+
+				removed.fulfill()
+			}
+		)
+		
+		waitForExpectations(timeout: 0.01, handler: nil)
 	}
 }

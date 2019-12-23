@@ -41,7 +41,7 @@ class Arrays: XCTestCase {
 	func testParallel() {
 		parallel([ IO<Error, Int>.of(1), IO.of(2), IO.of(3)]
 			.map(delayed(0.5)))
-			.assert([ 1, 2, 3 ], timeout: 0.51)
+			.assert([ 1, 2, 3 ], timeout: 0.61)
 	}
 	
 	func testSequenceEmpty() {
@@ -63,7 +63,6 @@ class Arrays: XCTestCase {
 			}
 			
 			value += 1
-			print("\(Date())")
 			
 			resolve(value)
 		})
@@ -75,7 +74,6 @@ class Arrays: XCTestCase {
 			}
 			
 			value += 1
-			print("\(Date())")
 			
 			resolve(value)
 		})
@@ -87,7 +85,6 @@ class Arrays: XCTestCase {
 			}
 			
 			value += 1
-			print("\(Date())")
 			
 			resolve(value)
 		})

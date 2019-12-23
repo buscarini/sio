@@ -114,10 +114,10 @@ class LocalURLTests: XCTestCase {
 		let local = LocalURL<IsRelative, IsFile>.init(url: file2)!
 
 		let final = root <> local
-		let result = file.appendingPathComponent(file2.path).standardized
-		XCTAssert(final.rawValue.absoluteString == result.absoluteString)
+		let result = "\(file.path)/\(file2.path)"
+		XCTAssert(final.rawValue.absoluteString == result)
 		
-		print("\(final.rawValue.absoluteString) == \(result.absoluteString)")
+		print("\(final.rawValue.absoluteString) == \(result)")
 	}
 }
 
