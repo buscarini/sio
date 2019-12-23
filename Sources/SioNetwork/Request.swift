@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Request {
+public struct Request: Equatable {
 	public var method: HTTPMethod
 	public var url: RemoteURL
 	public var cachePolicy: URLRequest.CachePolicy

@@ -42,3 +42,56 @@ extension ParametersEncoding: Hashable {
 	}
 }
 
+//extension ParametersEncoding {
+//	enum CaseKey: String, Equatable, Codable {
+//		case url
+//		case json
+//		case other
+//	}
+//	
+//	var key: CaseKey {
+//		switch self {
+//		case .url:
+//			return .url
+//		case .json:
+//			return .json
+//		case .other:
+//			return .other
+//		}
+//	}
+//	
+//	enum CodingKeys: String, CodingKey {
+//		case key
+//	}
+//}
+//
+//extension ParametersEncoding: Encodable {
+//	public func encode(to encoder: Encoder) throws {
+//		var container = encoder.container(keyedBy: CodingKeys.self)
+//		
+//		try container.encode(self.key, forKey: .key)
+//	}
+//}
+//
+//extension ParametersEncoding: Decodable {
+//	public init(from decoder: Decoder) throws {
+//		let container = try decoder.container(keyedBy: CodingKeys.self)
+//		
+//		let key = try container.decode(CaseKey.self, forKey: .key)
+//		switch key {
+//		case .url:
+//			self = .url
+//		case .json:
+//			self = .json
+//		case .other:
+//			throw EncodingError.invalidValue(
+//				CaseKey.other,
+//				EncodingError.Context(
+//					codingPath: container.codingPath,
+//					debugDescription: "Value .other does not supporting decoding"
+//				)
+//			)
+//		}
+//	}
+//}
+
