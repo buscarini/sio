@@ -78,8 +78,7 @@ class LocalURLTests: XCTestCase {
 		let local = LocalURL<IsRelative, IsFolder>.init(url: file2)!
 
 		let final = join(root, local)
-		let result = file.appendingPathComponent(file2.path)
-		XCTAssert(final.rawValue.absoluteString == result.absoluteString)
+		XCTAssert(final.rawValue.absoluteString == "/tmp/var")
 	}
 
 	func testJoinAbsoluteWithFile() {
@@ -90,8 +89,8 @@ class LocalURLTests: XCTestCase {
 		let local = LocalURL<IsRelative, IsFile>.init(url: file2)!
 
 		let final = root <> local
-		let result = file.appendingPathComponent(file2.path)
-		XCTAssert(final.rawValue.absoluteString == result.absoluteString)
+//		let result = file.appendingPathComponent(file2.path)
+		XCTAssert(final.rawValue.absoluteString == "/tmp/file")
 	}
 
 	func testJoinRelativeWithFolder() {
@@ -103,7 +102,8 @@ class LocalURLTests: XCTestCase {
 
 		let final = root <> local
 		let result = file.appendingPathComponent(file2.path)
-		XCTAssert(final.rawValue.absoluteString == result.absoluteString)
+		
+		XCTAssert(final.rawValue.absoluteString.hasSuffix("tmp/var"))
 	}
 	
 	func testJoinRelativeWithFile() {
@@ -114,10 +114,8 @@ class LocalURLTests: XCTestCase {
 		let local = LocalURL<IsRelative, IsFile>.init(url: file2)!
 
 		let final = root <> local
-		let result = "\(file.path)/\(file2.path)"
-		XCTAssert(final.rawValue.absoluteString == result)
 		
-		print("\(final.rawValue.absoluteString) == \(result)")
+		XCTAssert(final.rawValue.absoluteString.hasSuffix("tmp/file"))
 	}
 }
 

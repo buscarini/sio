@@ -31,7 +31,8 @@
 		AC7FFB8D23B0CF910074EE13 /* Codec+Dates.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7FFB8B23B0CF8B0074EE13 /* Codec+Dates.swift */; };
 		AC7FFB9823B113DE0074EE13 /* Ref+ValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7FFB9623B1138E0074EE13 /* Ref+ValueStore.swift */; };
 		AC7FFB9A23B115110074EE13 /* IsOptional.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7FFB9923B115110074EE13 /* IsOptional.swift */; };
-		AC7FFB9C23B11FB80074EE13 /* SioCodecEpochTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7FFB9B23B11FB80074EE13 /* SioCodecEpochTests.swift */; };
+		AC7FFB9C23B11FB80074EE13 /* SioCodecDateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7FFB9B23B11FB80074EE13 /* SioCodecDateTests.swift */; };
+		AC7FFB9E23B122270074EE13 /* CodecError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7FFB9D23B122270074EE13 /* CodecError.swift */; };
 		OBJ_228 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Application.swift */; };
 		OBJ_229 /* Array+SIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Array+SIO.swift */; };
 		OBJ_230 /* Collection+Chunks.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Collection+Chunks.swift */; };
@@ -489,7 +490,8 @@
 		AC7FFB8B23B0CF8B0074EE13 /* Codec+Dates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codec+Dates.swift"; sourceTree = "<group>"; };
 		AC7FFB9623B1138E0074EE13 /* Ref+ValueStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ref+ValueStore.swift"; sourceTree = "<group>"; };
 		AC7FFB9923B115110074EE13 /* IsOptional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsOptional.swift; sourceTree = "<group>"; };
-		AC7FFB9B23B11FB80074EE13 /* SioCodecEpochTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioCodecEpochTests.swift; sourceTree = "<group>"; };
+		AC7FFB9B23B11FB80074EE13 /* SioCodecDateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioCodecDateTests.swift; sourceTree = "<group>"; };
+		AC7FFB9D23B122270074EE13 /* CodecError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodecError.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Array+SIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+SIO.swift"; sourceTree = "<group>"; };
 		OBJ_100 /* ValueStore+Iso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Iso.swift"; sourceTree = "<group>"; };
 		OBJ_101 /* ValueStore+Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Optional.swift"; sourceTree = "<group>"; };
@@ -823,7 +825,7 @@
 				OBJ_116 /* SioCodecJSONTests.swift */,
 				OBJ_117 /* SioCodecSIOTests.swift */,
 				OBJ_118 /* SioCodecTests.swift */,
-				AC7FFB9B23B11FB80074EE13 /* SioCodecEpochTests.swift */,
+				AC7FFB9B23B11FB80074EE13 /* SioCodecDateTests.swift */,
 			);
 			name = SioCodecTests;
 			path = Tests/SioCodecTests;
@@ -1031,6 +1033,7 @@
 				OBJ_73 /* Codec.swift */,
 				AC7FFB8B23B0CF8B0074EE13 /* Codec+Dates.swift */,
 				OBJ_74 /* SIO+Codec.swift */,
+				AC7FFB9D23B122270074EE13 /* CodecError.swift */,
 			);
 			name = SioCodec;
 			path = Sources/SioCodec;
@@ -1520,6 +1523,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				AC7FFB9E23B122270074EE13 /* CodecError.swift in Sources */,
 				OBJ_292 /* Codec+Base64.swift in Sources */,
 				OBJ_293 /* Codec+Data.swift in Sources */,
 				OBJ_294 /* Codec+Int.swift in Sources */,
@@ -1537,7 +1541,7 @@
 			files = (
 				OBJ_307 /* SIOCodecBase64Tests.swift in Sources */,
 				OBJ_308 /* SIOCodecUTF8Tests.swift in Sources */,
-				AC7FFB9C23B11FB80074EE13 /* SioCodecEpochTests.swift in Sources */,
+				AC7FFB9C23B11FB80074EE13 /* SioCodecDateTests.swift in Sources */,
 				OBJ_309 /* Sio+Tests.swift in Sources */,
 				OBJ_310 /* SioCodecIntTests.swift in Sources */,
 				OBJ_311 /* SioCodecIsoTests.swift in Sources */,

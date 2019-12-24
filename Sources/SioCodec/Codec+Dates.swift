@@ -17,3 +17,13 @@ public extension Codec where E == Error, A == Date, B == Double {
 		})
 	}
 }
+
+public extension Codec where E == Error, A == Date, B == String {
+	static func dateFormatter(_ df: DateFormatter) -> Codec<CodecError, Date, String> {
+		.init(to: { value in
+			.right(df.string(from: value))
+		}, from: { string in
+			.from(df.date(from: string), .invalid)
+		})
+	}
+}
