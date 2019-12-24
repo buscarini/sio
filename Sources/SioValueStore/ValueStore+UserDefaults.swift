@@ -66,6 +66,6 @@ public extension ValueStore where A: Codable {
 		return ValueStoreA<Void, Void, Data>
 			.rawPreference(key)
 			.diMapError { _ in .noData }
-			>>>	Codec.json.mapError(ValueStoreError.encoding)
+			.coded(Codec.json.mapError(ValueStoreError.encoding))
 	}
 }

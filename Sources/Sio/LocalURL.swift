@@ -16,7 +16,7 @@ public enum IsRelative: PathSource {}
 public enum IsAbsolute: PathSource {}
 
 public struct LocalURL<SourceType: PathSource, TargetType: PathTarget>: Equatable, Hashable, Codable {
-	public var rawValue: URL
+	public private(set) var rawValue: URL
 }
 
 public extension LocalURL where TargetType == IsFile, SourceType == IsAbsolute {

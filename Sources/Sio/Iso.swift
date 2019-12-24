@@ -37,4 +37,8 @@ public extension Iso {
 	static func <<< <C>(_ left: Iso<B, C>, _ right: Iso<A, B>) -> Iso<A, C> {
 		return compose(right, left)
 	}
+	
+	var reversed: Iso<B, A> {
+		return .init(from: to, to: from)
+	}
 }

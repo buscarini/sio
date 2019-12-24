@@ -18,6 +18,12 @@ public extension SIO {
 		}
 	}
 	
+	static func lift<B>(_ f: @escaping (A) -> Either<E, B>) -> (A) -> SIO<Void, E, B> {
+		{ a in
+			.from(f(a))
+		}
+	}
+	
 	func either() -> SIO<R, Never, Either<E, A>> {
 		return self
 			.map { a in

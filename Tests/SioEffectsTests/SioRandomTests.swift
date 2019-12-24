@@ -62,4 +62,11 @@ class SIORandomTests: XCTestCase {
 		
 		waitForExpectations(timeout: 1, handler: nil)
 	}
+	
+	func testLCRG() {
+		var gen = LCRNG(seed: 5)
+		var gen2 = LCRNG(seed: 5)
+		
+		XCTAssertEqual(gen.next(), gen2.next())
+	}
 }

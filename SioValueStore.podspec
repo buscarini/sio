@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version      = "0.1"
   s.summary      = "Swift IO"
   s.description  = <<-DESC
-    Swift Effects library, ala ZIO.
+    Swift SIO ValueStore library. Provides abstractions for a store, that can implemented via preferences, a file, network requests, etc.
   DESC
   s.homepage     = "https://github.com/buscarini/sio"
   s.license      = { :type => "MIT", :file => "LICENSE" }

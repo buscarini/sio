@@ -62,6 +62,25 @@ public extension ValueStore where A == B {
 			}
 	}
 	
+	func copy<C>(to store: ValueStoreA<R, E, C>, adapt f: @escaping (B) -> C) -> SIO<R, E, C> {
+		self.copy(to: store, adapt: f).pullback { r in
+			(r, r)
+		}
+	}
+	
+	func move<C, S>(to store: ValueStoreA<S, E, C>, adapt f: @escaping (B) -> C) -> SIO<(R, S), E, C> {
+		copy(to: store, adapt: f)
+			.flatMapR { envs, value in
+				self.remove.provide(envs.0).const(value).require((R, S).self)
+			}
+	}
+	
+	func move<C>(to store: ValueStoreA<R, E, C>, adapt f: @escaping (B) -> C) -> SIO<R, E, C> {
+		move(to: store, adapt: f).pullback { r in
+			(r, r)
+		}
+	}
+	
 	func cached(by cache: ValueStore<R, E, A, B>) -> ValueStore<R, E, A, B> {
 		.init(
 			load: cache.load
@@ -69,16 +88,33 @@ public extension ValueStore where A == B {
 					self.load
 				},
 			save: { a in
-				self.save(a)
-					.flatMap { a in
-						cache.save(a).flatMapError { _ in
-							.of(a)
-						}
-					}
-				},
+				zip(
+					self.save(a),
+					cache.save(a)
+				)
+				.map(const(a))
+			},
+			remove: zip(self.remove, cache.remove).void
+		)
+	}
+	
+	func replacing(_ store: ValueStore<R, E, A, B>) -> ValueStore<R, E, A, B> {
+		.init(
+			load: self.load
+				.flatMap { value in
+					store.remove.biFlatMap(.of(value))
+				}
+				.flatMapError { e in
+					store.move(to: self, adapt: id)
+				}
+			,
+			save: { value in
+				self.save(value)
+			},
 			remove: self.remove
 				.flatMap { _ in
-					cache.remove.flatMapError { _ in
+					store.remove
+					.flatMapError { _ in
 						.of(())
 					}
 				}

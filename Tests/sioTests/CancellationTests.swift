@@ -22,8 +22,7 @@ class CancellationTests: XCTestCase {
 		func long() -> UIO<Void> {
 			return Array(1...800).forEach { item in
 				IO<Never, Int>.init { _ in
-					print(item)
-					return .right(item)
+						.right(item)
 					}
 					.flatMap { int in
 						return IO<Never, Int> { _ in
@@ -54,7 +53,7 @@ class CancellationTests: XCTestCase {
 		func long() -> UIO<Void> {
 			return Array(1...800).forEach { item in
 				IO<Never, Int>.init { _ in
-					return .right(item)
+					.right(item)
 				}
 				.flatMap { int in
 					return IO<Never, Int> { _ in
@@ -96,18 +95,14 @@ class CancellationTests: XCTestCase {
 		let first = Array(1...800).forEach { item in
 			accessM(Console.self) { console -> SIO<Console, Never, Void> in
 					XCTAssert(cancelled == false)
-					print(cancelled)
 					return console.printLine("long \(item)").require(Console.self)
 				}
 				.scheduleOn(.global())
 			}
 			.provide(Console.default)
-//			.provide(Console.mock(""))
 		
 		let second = UIO<[Int]>.init { (_, _, resolve) in
-			(0...800).forEach { Swift.print("\($0)") }
-			
-			print("-------------")
+			(0...800).forEach { _ in }
 			
 			resolve(Array(0...80))
 		}

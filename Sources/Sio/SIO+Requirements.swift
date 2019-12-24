@@ -39,7 +39,9 @@ public extension SIO {
 			self
 		)
 	}
-	
+}
+
+public extension SIO {
 	static func environment<R, E>() -> SIO<R, E, R> {
 		return access(id)
 	}

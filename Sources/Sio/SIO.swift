@@ -132,9 +132,17 @@ public class SIO<R, E, A> {
                 )
             case let .biFlatMap(impl):
 				impl.fork(requirement, { e in
+//					guard self.cancelled == false else {
+//						return
+//					}
+					
 					reject(e)
 					self.running = false
 				}, { a in
+//					guard self.cancelled == false else {
+//						return
+//					}
+					
 					resolve(a)
 					self.running = false
 				})
