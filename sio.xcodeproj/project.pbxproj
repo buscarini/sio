@@ -27,6 +27,7 @@
 /* Begin PBXBuildFile section */
 		AC49E49523B1FDD5004A648B /* RelativeLocalURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC49E49423B1FDD5004A648B /* RelativeLocalURL.swift */; };
 		AC49E49723B20534004A648B /* LocalURLUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC49E49623B20534004A648B /* LocalURLUtils.swift */; };
+		AC49E49D23B230C6004A648B /* ApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC49E49B23B230C1004A648B /* ApplicationTests.swift */; };
 		AC7221C123AF674200E6741C /* AudioResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7221BF23AF673500E6741C /* AudioResource.swift */; };
 		AC7221C323AF674200E6741C /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7221BD23AF672400E6741C /* Player.swift */; };
 		AC7221C423AF674200E6741C /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7221BB23AF670F00E6741C /* AudioPlayer.swift */; };
@@ -488,6 +489,7 @@
 /* Begin PBXFileReference section */
 		AC49E49423B1FDD5004A648B /* RelativeLocalURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativeLocalURL.swift; sourceTree = "<group>"; };
 		AC49E49623B20534004A648B /* LocalURLUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalURLUtils.swift; sourceTree = "<group>"; };
+		AC49E49B23B230C1004A648B /* ApplicationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationTests.swift; sourceTree = "<group>"; };
 		AC7221BB23AF670F00E6741C /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		AC7221BD23AF672400E6741C /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		AC7221BF23AF673500E6741C /* AudioResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioResource.swift; sourceTree = "<group>"; };
@@ -889,6 +891,7 @@
 				OBJ_154 /* SyncValueTests.swift */,
 				OBJ_155 /* TimeoutTests.swift */,
 				OBJ_156 /* sioTests.swift */,
+				AC49E49B23B230C1004A648B /* ApplicationTests.swift */,
 			);
 			name = SioTests;
 			path = Tests/SioTests;
@@ -1632,6 +1635,7 @@
 				OBJ_430 /* Chunked.swift in Sources */,
 				OBJ_431 /* ChunksTests.swift in Sources */,
 				OBJ_432 /* CodableTests.swift in Sources */,
+				AC49E49D23B230C6004A648B /* ApplicationTests.swift in Sources */,
 				OBJ_433 /* ComposeTests.swift in Sources */,
 				OBJ_434 /* ConcurrencyTests.swift in Sources */,
 				OBJ_435 /* CurryTests.swift in Sources */,

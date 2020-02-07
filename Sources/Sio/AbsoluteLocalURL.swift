@@ -43,6 +43,21 @@ public extension AbsoluteLocalURL where TargetType == IsFolder {
 	}
 }
 
+public extension AbsoluteLocalURL {
+	func relativePath(_ baseUrl: AbsoluteLocalURL<IsFolder>) -> RelativeLocalURL<TargetType>? {
+		guard self.rawValue.absoluteString.hasPrefix(baseUrl.rawValue.absoluteString) else {
+			return nil
+		}
+		
+		let trimmed = String(
+			self.rawValue.absoluteString.dropFirst(baseUrl.rawValue.absoluteString.count)
+		)
+		
+		return RelativeLocalURL<TargetType>.init(rawValue:
+			trimmed
+		)
+	}
+}
 
 // MARK: Functor
 extension AbsoluteLocalURL {
