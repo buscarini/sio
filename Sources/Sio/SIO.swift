@@ -68,6 +68,10 @@ public class SIO<R, E, A> {
 		self._cancel = nil
 	}
 	
+	public static func sync(_ sync: @escaping Sync) -> SIO<R, E, A> {
+		.init(sync)
+	}
+	
 	public init(_ async: @escaping Async) {
 		self.implementation = .async(async)
 		self._cancel = nil

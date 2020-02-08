@@ -39,6 +39,25 @@ public extension SIO {
 			self
 		)
 	}
+	
+	func access() -> SIO<R, E, R> {
+		self.flatMapR { r, _ in
+			.of(r)
+		}
+	}
+	
+	func toFunc() -> (R) -> SIO<Void, E, A> {
+		{ r in
+			self.provide(r)
+		}
+	}
+	
+	static func fromFunc(_ f: @escaping (R) -> SIO<Void, E, A>) -> SIO<R, E, A> {
+		environment()
+			.flatMap { r in
+				f(r).require(R.self)
+			}
+	}
 }
 
 public extension SIO {
