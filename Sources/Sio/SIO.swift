@@ -72,6 +72,11 @@ public class SIO<R, E, A> {
 		.init(sync)
 	}
 	
+	public static func syncMain(_ sync: @escaping Sync) -> SIO<R, E, A> {
+		SIO.init(sync)
+			.scheduleOn(.main)
+	}
+	
 	public init(_ async: @escaping Async) {
 		self.implementation = .async(async)
 		self._cancel = nil

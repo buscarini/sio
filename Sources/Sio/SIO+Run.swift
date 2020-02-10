@@ -13,6 +13,12 @@ extension SIO {
 		self.fork(env, { _ in }, resolve)
 	}
 	
+	public func runMain(_ env: R, _ resolve: @escaping ResultCallback) {
+		self
+			.forkOn(.main)
+			.run(env, resolve)
+	}
+	
 	public func runForget(_ env: R) {
 		self.run(env, { _ in })
 	}
