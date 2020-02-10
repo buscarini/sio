@@ -36,20 +36,31 @@ public extension SIO {
 
 public extension SIO where E == Never, A == Void {
 	static var empty: SIO<R, Never, Void> {
-		return .effect { }
+		return .effect { _ in }
 	}
 	
-	static func effect(_ f: @escaping () -> Void) -> SIO<R, Never, Void> {
-		return SIO<R, Never, Void>.init({ _ in
-			f()
+	static func effect(_ f: @escaping (R) -> Void) -> SIO<R, Never, Void> {
+		return SIO<R, Never, Void>.init({ r in
+			f(r)
 			return .right(())
 		})
 	}
 	
-	static func effectMain(_ f: @escaping () -> Void) -> SIO<R, Never, Void> {
+	static func effectMain(_ f: @escaping (R) -> Void) -> SIO<R, Never, Void> {
 		return effect(f).scheduleOn(.main)
 	}
 }
+
+public extension SIO where R == Void, E == Never, A == Void {
+	static func effect(_ f: @escaping () -> Void) -> SIO<R, Never, Void> {
+		.effect { _ in }
+	}
+	
+	static func effectMain(_ f: @escaping () -> Void) -> SIO<R, Never, Void> {
+		.effectMain { _ in }
+	}
+}
+
 
 public extension SIO {
 	static var never: SIO<R, Never, Never> {
