@@ -47,6 +47,10 @@ extension SIO where R == Void {
 				}
 			})
 	}
+	
+	public func runForget() {
+		self.runForget(())
+	}
 }
 
 extension SIO where R == Void, E == Never {
