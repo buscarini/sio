@@ -85,7 +85,7 @@ class RaceTests: XCTestCase {
 		let raced = race(left, right)
 			.scheduleOn(.global())
 			.delay(0.1)
-			.onCancellation(.effectMain {
+			.onCancellation(SIO.effectMain {
 				finish.fulfill()
 			})
 			

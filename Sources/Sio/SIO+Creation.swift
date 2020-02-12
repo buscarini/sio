@@ -51,17 +51,6 @@ public extension SIO where E == Never, A == Void {
 	}
 }
 
-public extension SIO where R == Void, E == Never, A == Void {
-	static func effect(_ f: @escaping () -> Void) -> SIO<R, Never, Void> {
-		.effect { _ in }
-	}
-	
-	static func effectMain(_ f: @escaping () -> Void) -> SIO<R, Never, Void> {
-		.effectMain { _ in }
-	}
-}
-
-
 public extension SIO {
 	static var never: SIO<R, Never, Never> {
 		return .init { (_, _, _) in
