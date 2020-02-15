@@ -24,12 +24,17 @@ public struct Player {
 	}
 
 	public var play: UIO<Void> {
-		.init { (_, _, resolve) in
-			self.player.playFinished = { _ in
-				resolve(())
+		.init(
+			{ (_, _, resolve) in
+				self.player.playFinished = { _ in
+					resolve(())
+				}
+				
+				self.player.play()
+			},
+			cancel: {
+				self.player.stop()
 			}
-
-			self.player.play()
-		}
+		)
 	}
 }
