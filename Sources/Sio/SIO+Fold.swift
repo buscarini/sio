@@ -10,8 +10,8 @@ import Foundation
 
 public extension SIO {
 	func fold<B>(_ f: @escaping (E) -> B, _ g: @escaping (A) -> B) -> SIO<R, Never, B> {
-		return SIO<R, Never, B>({ env, reject, resolve in
-			return self.fork(
+		SIO<R, Never, B>({ env, reject, resolve in
+			self.fork(
 				env,
 				{ error in
 					resolve(f(error))
@@ -24,7 +24,6 @@ public extension SIO {
 	}
 	
 	func foldM<B>(_ f: @escaping (E) -> SIO<R, E, B>, _ g: @escaping (A) -> SIO<R, E, B>) -> SIO<R, E, B> {
-		return self
-			.biFlatMap(f, g)
+		self.biFlatMap(f, g)
 	}
 }

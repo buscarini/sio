@@ -11,6 +11,6 @@ import Foundation
 extension SIO {
 	/// pullback or contramap for Contravariant functors
 	public func pullback<S>(_ f: @escaping (S) -> (R)) -> SIO<S, E, A> {
-		return self.dimap(f, id)
+		self.dimap(f, id)
 	}
 }

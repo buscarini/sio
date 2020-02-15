@@ -25,7 +25,7 @@ public func delayed<R, E, A>(_ delay: TimeInterval, _ queue: DispatchQueue = .gl
 
 public extension SIO {
 	func delay(_ time: TimeInterval, _ queue: DispatchQueue = .global()) -> SIO<R, E, A> {
-		return delayed(time, queue)(self)
+		delayed(time, queue)(self)
 	}
 	
 	func sleep(_ time: TimeInterval) -> SIO<R, E, A> {

@@ -9,22 +9,28 @@
 import Foundation
 
 public func or<R, E, A>(_ first: SIO<R, E, A>, _ second: SIO<R, E, A>) -> SIO<R, E, A> {
-	return SIO<R, E, A>({ (env, reject, resolve) in
+	SIO<R, E, A>(
+		{ (env, reject, resolve) in
 		first.fork(
 			env,
 			{ _ in
 				second.fork(env, reject, resolve)
 			}, resolve
 		)
-	})
+		},
+		cancel: {
+			first.cancel()
+			second.cancel()
+		}
+	)
 }
 
 public func <|><R, E, A>(first: SIO<R, E, A>, second: SIO<R, E, A>) -> SIO<R, E, A> {
-	return or(first, second)
+	or(first, second)
 }
 
 public func firstSuccess<R, E, A>(_ first: SIO<R, E, A>, _ rest: [SIO<R, E, A>]) -> SIO<R, E, A> {
-	return rest.reduce(first, { acc, item in
+	rest.reduce(first, { acc, item in
 		acc <|> item
 	})
 }

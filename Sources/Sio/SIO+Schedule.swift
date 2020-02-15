@@ -16,7 +16,7 @@ public extension SIO {
 	}
 	
 	func forkOn(_ queue: DispatchQueue) -> SIO<R, E, A> {
-		return SIO({ (env, reject, resolve) in
+		SIO({ (env, reject, resolve) in
 			self.fork(
 				env,
 				{ error in

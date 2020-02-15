@@ -22,19 +22,19 @@ public func accessM<R, E, A>(_ type: R.Type, _ f: @escaping (R) -> SIO<R, E, A>)
 
 public extension SIO {
 	func provideSome<R0>(_ f: @escaping (R0) -> R) -> SIO<R0, E, A> {
-		return SIO<R0, E, A>({ r, reject, resolve in
+		SIO<R0, E, A>({ r, reject, resolve in
 			self.fork(f(r), reject, resolve)
 		},cancel: self.cancel)
 	}
 	
 	func provide(_ req: R) -> SIO<Void, E, A> {
-		return self.provideSome { _ in
-			return req
+		self.provideSome { _ in
+			req
 		}
 	}
 	
 	func read() -> SIO<R, E, (R, A)> {
-		return zip(
+		zip(
 			SIO<R, E, A>.environment(),
 			self
 		)
@@ -62,22 +62,22 @@ public extension SIO {
 
 public extension SIO {
 	static func environment<R, E>() -> SIO<R, E, R> {
-		return access(id)
+		access(id)
 	}
 	
 	static func access<S, R, E>(_ f: @escaping (R) -> S) -> SIO<R, E, S> {
-		return SIO<R, E, S>({ r in
-			return .right(f(r))
+		SIO<R, E, S>({ r in
+			.right(f(r))
 		})
 	}
 	
 	static func accessM<R, E>(_ f: @escaping (R) -> SIO<R, E, A>) -> SIO<R, E, A> {
-		return environment().flatMap(f)
+		environment().flatMap(f)
 	}
 }
 
 public extension SIO where R == Void {
 	func require<S>(_ type: S.Type) -> SIO<S, E, A> {
-		return self.pullback(discard)
+		self.pullback(discard)
 	}
 }

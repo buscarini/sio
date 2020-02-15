@@ -13,7 +13,10 @@ public extension SIO {
 		return self.biFlatMap({ _ in io }, { _ in io })
 	}
 	
-	func biFlatMap<F, B>(_ f: @escaping (E) -> SIO<R, F, B>, _ g: @escaping (A) -> SIO<R, F, B>) -> SIO<R, F, B> {
+	func biFlatMap<F, B>(
+		_ f: @escaping (E) -> SIO<R, F, B>,
+		_ g: @escaping (A) -> SIO<R, F, B>
+	) -> SIO<R, F, B> {
 		
 		let result: SIO<R, F, B>
 		
