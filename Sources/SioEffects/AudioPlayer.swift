@@ -11,6 +11,12 @@ import AVFoundation
 public class AudioPlayer: AVAudioPlayer {
 	public var playFinished: ((Bool) -> Void)?
 
+	public init(_ resource: AudioResource) throws {
+		try super.init(contentsOf: resource.url.rawValue)
+		
+		commonInit()
+	}
+	
 	public override init(contentsOf url: URL) throws {
 		try super.init(contentsOf: url)
 		

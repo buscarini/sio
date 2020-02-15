@@ -10,15 +10,19 @@ import Foundation
 
 public extension SIO {
 	func mapError<F>(_ f: @escaping (E) -> (F)) -> SIO<R, F, A> {
-		return self.bimap(f, id)
+		self.bimap(f, id)
 	}
 	
 	func flatMapError<F>(_ f: @escaping (E) -> (SIO<R, F, A>)) -> SIO<R, F, A> {
-		return self.biFlatMap(f, { SIO<R, F, A>.of($0) })
+		self.biFlatMap(f, { SIO<R, F, A>.of($0) })
+	}
+	
+	func flatMapError<F>(_ io: SIO<R, F, A>) -> SIO<R, F, A> {
+		self.flatMapError({ _ in io })
 	}
 	
 	func ignore() -> SIO<R, Void, A> {
-		return mapError { _ in
+		mapError { _ in
 			()
 		}
 	}
