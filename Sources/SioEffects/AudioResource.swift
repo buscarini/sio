@@ -10,19 +10,29 @@ import Sio
 
 public struct AudioResource: Equatable, Hashable, Codable {
 	public var url: FileURL
+	
+	public init(
+		_ url: FileURL
+	) {
+		self.url = url
+	}
 }
 
 public extension AudioResource {
-	static func resource(_ resourceName: String, extension ext: String) -> IO<Void, AudioResource> {
+	static func resource(
+		_ resourceName: String,
+		extension ext: String,
+		bundle: Bundle = .main
+	) -> IO<Void, AudioResource> {
 		SIO.from { _ in
-			Bundle.main.url(forResource: resourceName, withExtension: ext)
+			bundle.url(forResource: resourceName, withExtension: ext)
 		}
 		.flatMap { url in
 			SIO.from { _ in
 				FileURL.init(url: url)
 			}
 		}
-		.map(AudioResource.init(url:))
+		.map(AudioResource.init)
 	}
 }
 
