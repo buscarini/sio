@@ -8,8 +8,9 @@
 
 import Foundation
 
+@inlinable
 public func delayed<R, E, A>(_ delay: TimeInterval, _ queue: DispatchQueue = .global()) -> (SIO<R, E, A>) -> SIO<R, E, A> {
-	return { io in
+	{ io in
 		// FIXME: Change this to setting the queue
 		let res = SIO({ env, reject, resolve in
 			queue.asyncAfter(deadline: .now() + delay) {
@@ -24,10 +25,12 @@ public func delayed<R, E, A>(_ delay: TimeInterval, _ queue: DispatchQueue = .gl
 }
 
 public extension SIO {
+	@inlinable
 	func delay(_ time: TimeInterval, _ queue: DispatchQueue = .global()) -> SIO<R, E, A> {
 		delayed(time, queue)(self)
 	}
 	
+	@inlinable
 	func sleep(_ time: TimeInterval) -> SIO<R, E, A> {
 		self.flatMap { value in
 			SIO<R, E, A>.of(value).delay(time)

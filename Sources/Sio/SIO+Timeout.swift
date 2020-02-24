@@ -9,17 +9,26 @@
 import Foundation
 
 public extension SIO {
-	func timeout(_ timeout: TimeInterval) -> SIO<R, E, A?> {
-		return race(
+	@inlinable
+	func timeout(
+		_ timeout: TimeInterval,
+		_ queue: DispatchQueue = .global()
+	) -> SIO<R, E, A?> {
+		race(
             self.map(A?.some),
-			SIO<R, E, A?>.of(nil).delay(timeout, .global())
+			SIO<R, E, A?>.of(nil).delay(timeout, queue)
 		)
 	}
 	
-	func timeoutTo(_ value: A, _ timeout: TimeInterval) -> SIO<R, E, A> {
-		return race(
+	@inlinable
+	func timeoutTo(
+		_ value: A,
+		_ timeout: TimeInterval,
+		_ queue: DispatchQueue = .global()
+	) -> SIO<R, E, A> {
+		race(
             self,
-            SIO<R, E, A>.of(value).delay(timeout, .global())
+            SIO<R, E, A>.of(value).delay(timeout, queue)
         )
 	}
 }

@@ -29,9 +29,9 @@ class CancellationTests: XCTestCase {
 							lastValue = int
 							return .right(int)
 						}
-				}
-				}
-				.map(const(()))
+				}.scheduleOn(.global())
+			}
+			.map(const(()))
 		}
 		
 		task = long().scheduleOn(DispatchQueue.global())

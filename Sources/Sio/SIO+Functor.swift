@@ -11,7 +11,7 @@ import Foundation
 extension SIO {
 	@inlinable
 	public func map<B>(_ f: @escaping (A) -> (B)) -> SIO<R, E, B> {
-		return self.bimap(id, f)
+		self.bimap(id, f)
 	}
 	
 //	@inlinable

@@ -57,7 +57,7 @@ public func concat<R, E, A>(_ first: SIO<R, E, [A]>, _ second: SIO<R, E, [A]>) -
 
 @inlinable
 public func sequence<R, E, A>(_ ios: [SIO<R, E, A>]) -> SIO<R, E, [A]> {
-	return sequence(ios.map { io in
+	sequence(ios.map { io in
 		io.map { [$0] }
 	})
 }

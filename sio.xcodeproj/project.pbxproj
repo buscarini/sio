@@ -117,7 +117,7 @@
 		OBJ_327 /* SIO+Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_78 /* SIO+Console.swift */; };
 		OBJ_328 /* SIO+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_79 /* SIO+Date.swift */; };
 		OBJ_329 /* SIO+FS.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_80 /* SIO+FS.swift */; };
-		OBJ_330 /* SIO+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_81 /* SIO+Random.swift */; };
+		OBJ_330 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_81 /* Random.swift */; };
 		OBJ_331 /* ValueStore+FS.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_82 /* ValueStore+FS.swift */; };
 		OBJ_333 /* SioValueStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioValueStore::Product" /* SioValueStore.framework */; };
 		OBJ_334 /* SioCodec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioCodec::Product" /* SioCodec.framework */; };
@@ -667,7 +667,7 @@
 		OBJ_78 /* SIO+Console.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Console.swift"; sourceTree = "<group>"; };
 		OBJ_79 /* SIO+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Date.swift"; sourceTree = "<group>"; };
 		OBJ_80 /* SIO+FS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+FS.swift"; sourceTree = "<group>"; };
-		OBJ_81 /* SIO+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Random.swift"; sourceTree = "<group>"; };
+		OBJ_81 /* Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
 		OBJ_82 /* ValueStore+FS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+FS.swift"; sourceTree = "<group>"; };
 		OBJ_84 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		OBJ_85 /* HTTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPResponse.swift; sourceTree = "<group>"; };
@@ -1066,7 +1066,7 @@
 				OBJ_78 /* SIO+Console.swift */,
 				OBJ_79 /* SIO+Date.swift */,
 				OBJ_80 /* SIO+FS.swift */,
-				OBJ_81 /* SIO+Random.swift */,
+				OBJ_81 /* Random.swift */,
 				OBJ_82 /* ValueStore+FS.swift */,
 				AC7221BF23AF673500E6741C /* AudioResource.swift */,
 				AC7221BD23AF672400E6741C /* Player.swift */,
@@ -1573,7 +1573,7 @@
 				OBJ_327 /* SIO+Console.swift in Sources */,
 				OBJ_328 /* SIO+Date.swift in Sources */,
 				OBJ_329 /* SIO+FS.swift in Sources */,
-				OBJ_330 /* SIO+Random.swift in Sources */,
+				OBJ_330 /* Random.swift in Sources */,
 				AC7221C323AF674200E6741C /* Player.swift in Sources */,
 				OBJ_331 /* ValueStore+FS.swift in Sources */,
 			);

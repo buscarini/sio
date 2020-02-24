@@ -158,8 +158,12 @@ public class SIO<R, E, A> {
             }
         }
 		
-		let queue = self.queue ?? .global()
-        queue.asyncAfter(deadline: .now() + self.delay, execute: run)
+		guard let queue = self.queue else {
+			run()
+			return
+		}
+		
+		queue.asyncAfter(deadline: .now() + self.delay, execute: run)
 	}
 	
 	public func cancel() {

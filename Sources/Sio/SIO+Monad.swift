@@ -45,10 +45,12 @@ extension SIO {
 	public func replicate(_ count: Int) -> SIO<R, E, [A]> {
 		return Array(1...count)
 			.forEach { _ in self }
-			
-		
-//		return Array(1...count).traverse { _ in
-//			self
-//		}
+	}
+	
+	@inlinable
+	public func forever() -> SIO<R, E, A> {
+		self.flatMap { _ in
+			self.forever()
+		}
 	}
 }
