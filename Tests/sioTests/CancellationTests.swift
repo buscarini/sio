@@ -29,7 +29,7 @@ class CancellationTests: XCTestCase {
 							lastValue = int
 							return .right(int)
 						}
-				}.scheduleOn(.global())
+				}.scheduleOn(.global()).forkOn(.global())
 			}
 			.map(const(()))
 		}

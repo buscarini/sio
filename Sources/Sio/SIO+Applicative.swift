@@ -10,12 +10,12 @@ import Foundation
 
 @inlinable
 public func liftA2<R, E, A, B, C>(_ iof: SIO<R, E, (A) -> (B) -> C>, _ first: SIO<R, E, A>, _ second: SIO<R, E, B>) -> SIO<R, E, C> {
-	return ap(ap(iof, first), second)
+	ap(ap(iof, first), second)
 }
 
 @inlinable
 public func ap<R, E, A, B, C>(_ iof: SIO<R, E, (A, B) -> C>, _ first: SIO<R, E, A>, _ second: SIO<R, E, B>) -> SIO<R, E, C> {
-	return liftA2(iof.map(curry), first, second)
+	liftA2(iof.map(curry), first, second)
 }
 
 let apQueue = DispatchQueue.init(label: "ap")

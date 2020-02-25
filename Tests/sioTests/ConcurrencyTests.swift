@@ -68,7 +68,7 @@ class ConcurrencyTests: XCTestCase {
 	func testForEach() {
 		let finish = expectation(description: "finish")
 		
-		let values = Array(1...100_000)
+		let values = Array(1...50_000)
 
 		
 		let task = values.forEach {
@@ -80,7 +80,7 @@ class ConcurrencyTests: XCTestCase {
 			finish.fulfill()
 		})
 		
-		wait(for: [finish], timeout: 4)
+		wait(for: [finish], timeout: 100)
 	}
 	
 	func testForEachGlobalQueueDebug() {
@@ -249,14 +249,14 @@ class ConcurrencyTests: XCTestCase {
 	
 	func testForEachPerformanceNoSIO() {
 		measureMetrics([.wallClockTime], automaticallyStartMeasuring: true) {
-			let values = Array(1...100_000)
+			let values = Array(1...10_000)
 			
 			var last: Int = 0
 			values.forEach {
 				last = $0
 			}
 			
-			XCTAssert(last == 100_000)
+			XCTAssert(last == 10_000)
 		}		
 	}
 	
@@ -264,7 +264,7 @@ class ConcurrencyTests: XCTestCase {
 		measureMetrics([.wallClockTime], automaticallyStartMeasuring: true) {
 			let finish = expectation(description: "finish")
 
-			let values = Array(1...100_000)
+			let values = Array(1...10_000)
 			
 			let task = values.forEach {
 				UIO<Int>.of($0)
@@ -274,7 +274,7 @@ class ConcurrencyTests: XCTestCase {
 				finish.fulfill()
 			})
 			
-			waitForExpectations(timeout: 5, handler: { _ in
+			waitForExpectations(timeout: 50, handler: { _ in
 				self.stopMeasuring()
 			})
 		}
@@ -283,7 +283,7 @@ class ConcurrencyTests: XCTestCase {
 	
 	func testReduceRegularPerformance() {
 		measureMetrics([.wallClockTime], automaticallyStartMeasuring: true) {
-			let values = Array(1...100_000)
+			let values = Array(1...10_000)
 			_ = values.reduce(0, { res, value in
 				res + value
 			})
@@ -294,7 +294,7 @@ class ConcurrencyTests: XCTestCase {
 		measureMetrics([.wallClockTime], automaticallyStartMeasuring: true) {
 			let finish = expectation(description: "finish")
 			
-			let values = Array(1...100_000)
+			let values = Array(1...10_000)
 			
 			let task: UIO<Int> = values.foldM(0) {
 				.of($0 + $1)
@@ -304,7 +304,7 @@ class ConcurrencyTests: XCTestCase {
 				finish.fulfill()
 			})
 			
-			waitForExpectations(timeout: 5, handler: { _ in
+			waitForExpectations(timeout: 50, handler: { _ in
 				self.stopMeasuring()
 			})
 		}
