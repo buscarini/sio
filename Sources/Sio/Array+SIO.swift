@@ -52,7 +52,7 @@ public func parallel<R, E, A>(_ ios: [SIO<R, E, A>]) -> SIO<R, E, [A]> {
 
 @inlinable
 public func concat<R, E, A>(_ first: SIO<R, E, [A]>, _ second: SIO<R, E, [A]>) -> SIO<R, E, [A]> {
-	return ap(SIO.of(+), first, second)
+	ap(SIO.of(+), first, second)
 }
 
 @inlinable

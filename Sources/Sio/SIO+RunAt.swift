@@ -8,6 +8,7 @@
 import Foundation
 
 public extension SIO {
+	@inlinable
 	func runAt(_ date: Date) -> SIO<R, E, A> {
 		self |> delayed(date.timeIntervalSinceNow)
 	}

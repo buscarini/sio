@@ -8,6 +8,7 @@
 import Foundation
 
 public extension SIO where A: Encodable, E == Error {
+	@inlinable
 	func encode(encoder: JSONEncoder) -> SIO<R, E, Data> {
 		self.flatMap { a in
 			.init(catching: { _ in
@@ -18,6 +19,7 @@ public extension SIO where A: Encodable, E == Error {
 }
 
 public extension SIO where A == Data, E == Error {
+	@inlinable
 	func decode<T: Decodable>(_ type: T.Type, decoder: JSONDecoder) -> SIO<R, E, T> {
 		self.flatMap { data in
 			.init(catching: { _ in

@@ -9,8 +9,9 @@
 import Foundation
 
 public extension SIO where R == Void, E == Never {
+	@inlinable
 	func adapt<S, F>() -> SIO<S, F, A> {
-		return self
+		self
 			.require(S.self)
 			.mapError(absurd)
 	}

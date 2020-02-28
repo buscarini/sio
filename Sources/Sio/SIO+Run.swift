@@ -9,16 +9,19 @@
 import Foundation
 
 extension SIO {
+	@inlinable
 	public func run(_ env: R, _ resolve: @escaping ResultCallback) {
 		self.fork(env, { _ in }, resolve)
 	}
 	
+	@inlinable
 	public func runMain(_ env: R, _ resolve: @escaping ResultCallback) {
 		self
 			.forkOn(.main)
 			.run(env, resolve)
 	}
 	
+	@inlinable
 	public func runForget(_ env: R) {
 		self.run(env, { _ in })
 	}
@@ -48,17 +51,20 @@ extension SIO where R == Void {
 			})
 	}
 	
+	@inlinable
 	public func runForget() {
 		self.runForget(())
 	}
 }
 
 extension SIO where R == Void, E == Never {
+	@inlinable
 	public func run(_ resolve: @escaping ResultCallback) {
 		self.fork((), absurd, resolve)
 	}
 }
 
+@inlinable
 public func runAll<R, E, A>(_ tasks: [SIO<R, E, A>]) -> SIO<R, E, [A]> {
 	tasks
 		.map { (task: SIO<R, E, A>) -> SIO<R, Never, Either<E, A>> in

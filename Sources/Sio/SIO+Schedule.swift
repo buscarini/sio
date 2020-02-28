@@ -9,12 +9,14 @@
 import Foundation
 
 public extension SIO {
+	@inlinable
 	func scheduleOn(_ queue: DispatchQueue) -> SIO<R, E, A> {
 		let copy = self
 		copy.queue = queue
 		return copy
 	}
 	
+	@inlinable
 	func forkOn(_ queue: DispatchQueue) -> SIO<R, E, A> {
 		SIO({ (env, reject, resolve) in
 			self.fork(

@@ -9,6 +9,8 @@
 import Foundation
 
 public extension SIO {
+	
+	@inlinable
 	func dimap<S, B>(
 		_ pre: @escaping (S) -> R,
 		_ post: @escaping (A) -> B

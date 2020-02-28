@@ -8,6 +8,7 @@
 import Foundation
 
 public extension SIO {
+	@inlinable
 	func onCancellation(_ task: SIO<Void, Never, Void>) -> SIO<R, E, A> {
 		let res = SIO.init({ r, reject, resolve in
 			self.fork(r, reject, resolve)
@@ -22,6 +23,7 @@ public extension SIO {
 		return res
 	}
 	
+	@inlinable
 	func onCompletion(_ task: SIO<Void, Never, Void>) -> SIO<R, E, A> {
 		return self.biFlatMap({ e in
 			task
@@ -37,7 +39,8 @@ public extension SIO {
 		})
 	}
 	
+	@inlinable
 	func onTermination(_ task: SIO<Void, Never, Void>) -> SIO<R, E, A> {
-		return self.onCompletion(task).onCancellation(task)
+		self.onCompletion(task).onCancellation(task)
 	}
 }

@@ -9,6 +9,7 @@
 import Foundation
 
 public extension SIO {
+	@inlinable
 	static func from(_ either: Either<E, A>) -> SIO<Void, E, A> {
 		switch either {
 		case let .left(e):
@@ -18,14 +19,16 @@ public extension SIO {
 		}
 	}
 	
+	@inlinable
 	static func lift<B>(_ f: @escaping (A) -> Either<E, B>) -> (A) -> SIO<Void, E, B> {
 		{ a in
 			.from(f(a))
 		}
 	}
 	
+	@inlinable
 	func either() -> SIO<R, Never, Either<E, A>> {
-		return self
+		self
 			.map { a in
 				Either<E, A>.right(a)
 			}

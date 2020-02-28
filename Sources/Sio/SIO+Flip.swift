@@ -9,6 +9,7 @@
 import Foundation
 
 public extension SIO {
+	@inlinable
 	func flip() -> SIO<R, A, E> {
 		SIO<R, A, E>({ env, reject, resolve in
 			self.fork(

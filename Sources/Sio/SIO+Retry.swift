@@ -9,10 +9,12 @@
 import Foundation
 
 public extension SIO {
+	@inlinable
 	func retry(_ times: Int) -> SIO<R, E, A> {
-		return retry(times: times, modify: id)
+		retry(times: times, modify: id)
 	}
 	
+	@inlinable
 	func retry(times: Int, modify: @escaping (SIO<R, E, A>) -> SIO<R, E, A>) -> SIO<R, E, A> {
 		guard times > 0 else {
 			return self
@@ -22,8 +24,9 @@ public extension SIO {
 	
 	}
 	
+	@inlinable
 	func retry(times: Int, delay: TimeInterval, queue: DispatchQueue) -> SIO<R, E, A> {
-		return self.retry(times: times, modify: { io in
+		self.retry(times: times, modify: { io in
 			io.delay(delay, queue)
 		})
 	}

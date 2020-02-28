@@ -9,6 +9,7 @@
 import Foundation
 
 public extension SIO {
+	@inlinable
 	func biFlatMap<F, B>(_ io: SIO<R, F, B>) -> SIO<R, F, B> {
 		return self.biFlatMap({ _ in io }, { _ in io })
 	}

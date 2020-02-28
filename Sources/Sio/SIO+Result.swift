@@ -9,6 +9,7 @@
 import Foundation
 
 public extension SIO where E: Error {
+	@inlinable
 	static func from(_ result: Result<A, E>) -> SIO<Void, E, A> {
 		switch result {
 		case let .success(a):
@@ -18,8 +19,9 @@ public extension SIO where E: Error {
 		}
 	}
 	
+	@inlinable
 	func result() -> SIO<R, Never, Result<A, E>> {
-		return self
+		self
 			.map { a in
 				Result<A, E>.success(a)
 			}

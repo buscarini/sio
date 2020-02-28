@@ -9,18 +9,22 @@
 import Foundation
 
 public extension SIO {
+	@inlinable
 	func mapError<F>(_ f: @escaping (E) -> (F)) -> SIO<R, F, A> {
 		self.bimap(f, id)
 	}
 	
+	@inlinable
 	func flatMapError<F>(_ f: @escaping (E) -> (SIO<R, F, A>)) -> SIO<R, F, A> {
 		self.biFlatMap(f, { SIO<R, F, A>.of($0) })
 	}
 	
+	@inlinable
 	func flatMapError<F>(_ io: SIO<R, F, A>) -> SIO<R, F, A> {
 		self.flatMapError({ _ in io })
 	}
 	
+	@inlinable
 	func ignore() -> SIO<R, Void, A> {
 		mapError { _ in
 			()
