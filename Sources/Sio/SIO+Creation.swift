@@ -56,7 +56,7 @@ public extension SIO where E == Never, A == Void {
 
 public extension SIO {
 	@inlinable
-	static var never: SIO<R, Never, Never> {
+	static var never: SIO<R, E, A> {
 		.init { (_, _, _) in }
 	}
 }
