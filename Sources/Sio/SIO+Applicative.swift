@@ -40,17 +40,21 @@ public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -
 				switch (leftVal.result, rightVal.result) {
 				case let (.loaded(.right(ab)), .loaded(.right(a))):
 					resolved.result = .loaded(.right(true))
-					DispatchQueue.main.async {
+					
+					let queue = r.queue ?? l.queue ?? DispatchQueue.main
+					queue.async {
 						resolve(ab(a))
 					}
 				case let (.loaded(.left(e)), .loaded):
 					resolved.result = .loaded(.right(false))
-					DispatchQueue.main.async {
+					let queue = l.queue ?? DispatchQueue.main
+					queue.async {
 						reject(e)
 					}
 				case let (.loaded, .loaded(.left(e))):
 					resolved.result = .loaded(.right(false))
-					DispatchQueue.main.async {
+					let queue = r.queue ?? DispatchQueue.main
+					queue.async {
 						reject(e)
 					}
 					
