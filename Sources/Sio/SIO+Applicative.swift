@@ -40,13 +40,19 @@ public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -
 				switch (leftVal.result, rightVal.result) {
 				case let (.loaded(.right(ab)), .loaded(.right(a))):
 					resolved.result = .loaded(.right(true))
-					resolve(ab(a))
+					DispatchQueue.main.async {
+						resolve(ab(a))
+					}
 				case let (.loaded(.left(e)), .loaded):
 					resolved.result = .loaded(.right(false))
-					reject(e)
+					DispatchQueue.main.async {
+						reject(e)
+					}
 				case let (.loaded, .loaded(.left(e))):
 					resolved.result = .loaded(.right(false))
-					reject(e)
+					DispatchQueue.main.async {
+						reject(e)
+					}
 					
 				default:
 					return
