@@ -37,13 +37,8 @@ public extension SIO {
 public extension SIO where E == Void {
 	@inlinable
 	static func from(_ f: @escaping (R) -> A?) -> SIO<R, Void, A> {
-		SIO { env, reject, resolve in
-			guard let value = f(env) else {
-				reject(())
-				return
-			}
-			
-			resolve(value)
+		SIO.sync { env in
+			Either.from(f(env), ())
 		}
 	}
 }
