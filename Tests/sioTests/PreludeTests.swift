@@ -16,8 +16,16 @@ class PreludeTests: XCTestCase {
 	}
 	
 	func testDiscard() {
-		XCTAssert(discard(1) == ())
-		XCTAssert(discard("a") == ())
+		func int(_ a: Int) -> Int {
+			a
+		}
+		
+		func string(_ a: String) -> String {
+			a
+		}
+		
+		XCTAssert(discard(int)(1) == ())
+		XCTAssert(discard(string)("a") == ())
 	}
 	
 	func testConst() {

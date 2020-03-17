@@ -91,6 +91,6 @@ public extension SIO {
 public extension SIO where R == Void {
 	@inlinable
 	func require<S>(_ type: S.Type) -> SIO<S, E, A> {
-		self.pullback(discard)
+		self.pullback { _ in () }
 	}
 }
