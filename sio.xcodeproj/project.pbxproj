@@ -36,6 +36,7 @@
 		AC7FFB9A23B115110074EE13 /* IsOptional.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7FFB9923B115110074EE13 /* IsOptional.swift */; };
 		AC7FFB9C23B11FB80074EE13 /* SioCodecDateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7FFB9B23B11FB80074EE13 /* SioCodecDateTests.swift */; };
 		AC7FFB9E23B122270074EE13 /* CodecError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7FFB9D23B122270074EE13 /* CodecError.swift */; };
+		ACFFB022242820ED00AC2BD6 /* FS+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFFB0202428208700AC2BD6 /* FS+Utils.swift */; };
 		OBJ_228 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Application.swift */; };
 		OBJ_229 /* Array+SIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Array+SIO.swift */; };
 		OBJ_230 /* Collection+Chunks.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Collection+Chunks.swift */; };
@@ -498,6 +499,7 @@
 		AC7FFB9923B115110074EE13 /* IsOptional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsOptional.swift; sourceTree = "<group>"; };
 		AC7FFB9B23B11FB80074EE13 /* SioCodecDateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioCodecDateTests.swift; sourceTree = "<group>"; };
 		AC7FFB9D23B122270074EE13 /* CodecError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodecError.swift; sourceTree = "<group>"; };
+		ACFFB0202428208700AC2BD6 /* FS+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FS+Utils.swift"; sourceTree = "<group>"; };
 		OBJ_10 /* Array+SIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+SIO.swift"; sourceTree = "<group>"; };
 		OBJ_100 /* ValueStore+Iso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Iso.swift"; sourceTree = "<group>"; };
 		OBJ_101 /* ValueStore+Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Optional.swift"; sourceTree = "<group>"; };
@@ -1066,6 +1068,7 @@
 				OBJ_78 /* SIO+Console.swift */,
 				OBJ_79 /* SIO+Date.swift */,
 				OBJ_80 /* SIO+FS.swift */,
+				ACFFB0202428208700AC2BD6 /* FS+Utils.swift */,
 				OBJ_81 /* Random.swift */,
 				OBJ_82 /* ValueStore+FS.swift */,
 				AC7221BF23AF673500E6741C /* AudioResource.swift */,
@@ -1568,6 +1571,7 @@
 			files = (
 				AC7221C123AF674200E6741C /* AudioResource.swift in Sources */,
 				AC7221C423AF674200E6741C /* AudioPlayer.swift in Sources */,
+				ACFFB022242820ED00AC2BD6 /* FS+Utils.swift in Sources */,
 				OBJ_325 /* AnyRandomNumberGenerator.swift in Sources */,
 				OBJ_326 /* LCRNG.swift in Sources */,
 				OBJ_327 /* SIO+Console.swift in Sources */,

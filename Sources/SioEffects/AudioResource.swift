@@ -24,15 +24,8 @@ public extension AudioResource {
 		extension ext: String,
 		bundle: Bundle = .main
 	) -> IO<Void, AudioResource> {
-		SIO.from { _ in
-			bundle.url(forResource: resourceName, withExtension: ext)
-		}
-		.flatMap { url in
-			SIO.from { _ in
-				FileURL.init(url: url)
-			}
-		}
-		.map(AudioResource.init)
+		FS().url(bundle, name: resourceName, extension: ext)
+			.map(AudioResource.init)
 	}
 }
 
