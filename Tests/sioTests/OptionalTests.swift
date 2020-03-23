@@ -238,4 +238,16 @@ class OptionalTests: XCTestCase {
 		XCTAssert(zip4(with: { ($0, $1, $2, $3) })(right, right, right2, right2)?.2 == 2)
 		XCTAssert(zip4(with: { ($0, $1, $2, $3) })(right, right, right2, right2)?.3 == 2)
 	}
+	
+	func testTraverseNoNil() {
+		let values: [Int] = [1, 2, 3, 4, 5 ]
+		
+		XCTAssertEqual(values.traverse { $0 > 0 ? $0 : nil }, values)
+	}
+	
+	func testTraverseNil() {
+		let values: [Int] = [1, 2, 3, 4, 5 ]
+		
+		XCTAssertNil(values.traverse { $0 > 2 ? $0 : nil })
+	}
 }
