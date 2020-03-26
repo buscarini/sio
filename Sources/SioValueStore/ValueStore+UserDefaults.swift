@@ -23,6 +23,7 @@ extension String: PropertyListValue {}
 extension Array: PropertyListValue {}
 extension Dictionary: PropertyListValue {}
 
+extension Bool: PropertyListValue {}
 extension Int: PropertyListValue {}
 extension Int8: PropertyListValue {}
 extension Int16: PropertyListValue {}

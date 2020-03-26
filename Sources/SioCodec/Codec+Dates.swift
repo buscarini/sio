@@ -8,8 +8,8 @@
 import Foundation
 import Sio
 
-public extension Codec where E == Error, A == Date, B == Double {
-	static var epochSeconds: Codec<Error, Date, Double> {
+public extension Codec where E == Never, A == Date, B == Double {
+	static var epochSeconds: Codec<Never, Date, Double> {
 		.init(to: { value in
 			.right(value.timeIntervalSince1970)
 		}, from: { seconds in

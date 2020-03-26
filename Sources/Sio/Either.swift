@@ -104,6 +104,13 @@ extension Either {
 	}
 	
 	@inlinable
+	public func const<V>(_ v: V) -> Either<A, V> {
+		mapRight { _ in
+			v
+		}
+	}
+	
+	@inlinable
 	public func mapLeft<V>(_ f: (A) -> V) -> Either<V, B> {
 		bimap(f, id)
 	}

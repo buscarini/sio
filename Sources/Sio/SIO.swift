@@ -255,15 +255,15 @@ class BiFlatMap<R, E0, E, A0, A>: BiFlatMapBase<R, E, A> {
 //		}
 //	}
 	
+	@inlinable
 	override func biFlatMap<F, B>(_ f: @escaping (E) -> SIO<R, F, B>, _ g: @escaping (A) -> SIO<R, F, B>) -> SIO<R, F, B> {
 		let specific = BiFlatMap<R, E0, F, A0, B>(
 			sio: self.sio,
 			err: { e0 in
-				return self.err(e0).biFlatMap(f, g)
+				self.err(e0).biFlatMap(f, g)
 			},
 			succ: { a0 in
-				return self.succ(a0).biFlatMap(f, g)
-				
+				self.succ(a0).biFlatMap(f, g)
 			}
 		)
 		
