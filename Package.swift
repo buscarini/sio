@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
 	name: "Sio",
+	type: .dynamic
 	platforms: [
 		.macOS(.v10_11), .iOS(.v10),
 	],
