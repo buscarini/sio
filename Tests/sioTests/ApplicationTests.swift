@@ -39,4 +39,12 @@ class ApplicationTests: XCTestCase {
 		let result = incRef <| ref
 		XCTAssertEqual(result.state, 2)
 	}
+	
+	func testApplyMutation() {
+		var value = 1
+		
+		value |> { $0 += 1 }
+		
+		XCTAssertEqual(value, 2)
+	}
 }

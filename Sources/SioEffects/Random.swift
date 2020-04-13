@@ -28,7 +28,7 @@ public struct Random {
 	}
 	
 	public func element<A>(_ from: [A]) -> SIO<Ref<AnyRandomNumberGenerator>, Never, A?> {
-		return SIO<Ref<AnyRandomNumberGenerator>, Never, A?>.init({ r in
+		return SIO<Ref<AnyRandomNumberGenerator>, Never, A?>.sync({ r in
 			return .right(from.randomElement(using: &r.state))
 		})
 		

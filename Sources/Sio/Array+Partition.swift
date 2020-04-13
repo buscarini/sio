@@ -8,19 +8,8 @@
 import Foundation
 
 public extension Array {
-	func split(_ accept: (Element) -> Bool) -> (Array, Array) {
-		return self.reduce( ([Element](), [Element]())
-			, { acc, item in
-			var (accepted, rejected) = acc
-			
-			accept(item) ? accepted.append(item) : rejected.append(item)
-			
-			return (accepted, rejected)
-		})
-	}
-	
 	func partition<B, C>(_ f: (Element) -> Either<B, C>) -> ([B], [C]) {
-		return self.reduce(([],[])) { acc, item in
+		self.reduce(([],[])) { acc, item in
 			var res = acc
 			switch f(item) {
 				case .left(let b):
@@ -33,6 +22,6 @@ public extension Array {
 	}
 	
 	func partition<B, C>() -> ([B], [C]) where Element == Either<B, C> {
-		return self.partition(id)
+		self.partition(id)
 	}
 }

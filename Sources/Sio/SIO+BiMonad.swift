@@ -18,7 +18,6 @@ public extension SIO {
 		_ f: @escaping (E) -> SIO<R, F, B>,
 		_ g: @escaping (A) -> SIO<R, F, B>
 	) -> SIO<R, F, B> {
-		
 		let result: SIO<R, F, B>
 		
 		switch self.implementation {
@@ -39,6 +38,7 @@ public extension SIO {
 		
 		result.queue = self.queue
 		result.delay = self.delay
+		
 		return result
 	}
 }

@@ -453,4 +453,41 @@ class EitherTests: XCTestCase {
 			.mapAll { $0*2 }
 		XCTAssert(result2.right == 2)
 	}
+	
+	func testTraverseLeftMethod() {
+		let left = Either<Int, Int>.left(-1)
+		
+		let nilValue = left.traverseLeft { value in
+			value < 0 ? nil : value
+		}
+		
+		let notNilValue = left.traverseLeft { value in
+			value > 0 ? nil : value
+		}
+		
+		XCTAssertEqual(nilValue, nil)
+		XCTAssertEqual(notNilValue, .left(-1))
+	}
+	
+	func testTraverse() {
+		let left = Either<Int, Int>.left(-1)
+		let right = Either<Int, Int>.right(-1)
+		
+		let nilValue = right.traverse { value in
+			value < 0 ? nil : value
+		}
+		
+		let notNilValue = right.traverse { value in
+			value > 0 ? nil : value
+		}
+		
+		XCTAssertEqual(nilValue, nil)
+		XCTAssertEqual(notNilValue, .right(-1))
+		
+		let leftValue = left.traverse { value in
+			value < 0 ? nil : value
+		}
+		
+		XCTAssertEqual(leftValue, left)
+	}
 }

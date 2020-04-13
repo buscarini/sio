@@ -28,11 +28,11 @@ public func |> <A>(_ a: inout A, _ f: (inout A) throws -> Void) rethrows {
 ///   - f: An in-out function.
 /// - Returns: The result of `f` applied to `a`.
 /// - Note: This function is commonly seen in operator form as "pipe-forward", `|>`.
-public func |> <A>(_ a: A, _ f: (inout A) throws -> Void) rethrows -> A {
-	var a = a
-	try f(&a)
-	return a
-}
+//public func |> <A>(_ a: A, _ f: (inout A) throws -> Void) rethrows -> A {
+//	var a = a
+//	try f(&a)
+//	return a
+//}
 
 /// Left-to-right, reference-mutable function application.
 ///

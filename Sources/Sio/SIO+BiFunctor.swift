@@ -9,15 +9,42 @@
 import Foundation
 
 extension SIO {
-	@inlinable
 	public func bimap<F, B>(
 		_ f: @escaping (E) -> F,
 		_ g: @escaping (A) -> B
 	) -> SIO<R, F, B> {
-		biFlatMap({ e in
-			SIO<R, F, B>.rejected(f(e))
-		}, { a in
-			SIO<R, F, B>.of(g(a))
-		})
+		let result: SIO<R, F, B>
+		
+		switch self.implementation {
+			case let .success(val):
+				result = .of(g(val))
+			case let .fail(e):
+				result = .rejected(f(e))
+			case let .sync(sync):
+				result = .sync { r in
+					sync(r)?.bimap(f, g)
+				}
+			
+			case let .async(async):
+				result = SIO<R, F, B>.init({ (r, reject, resolve) in
+					async(
+						r,
+						{ e in
+							reject(f(e))
+						},
+						{ a in
+							resolve(g(a))
+						}
+					)
+				})
+			
+			case let .biFlatMap(impl):
+				result = impl.bimap(f, g)
+		}
+		
+		result.queue = self.queue
+		result.delay = self.delay
+		
+		return result
 	}
 }

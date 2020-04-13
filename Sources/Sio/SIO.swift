@@ -9,14 +9,14 @@
 import Foundation
 
 /// Swift IO R: Requirements, E: Error, A: Success Value
-public class SIO<R, E, A> {
+public final class SIO<R, E, A> {
 	public typealias ErrorCallback = (E) -> ()
 	public typealias ResultCallback = (A) -> ()
 	public typealias EmptyCallback = () -> ()
 	
 	public typealias Sync = (R) -> Either<E, A>?
 	public typealias Async = (R, @escaping ErrorCallback, @escaping ResultCallback) -> ()
-    
+	
 	public var queue: DispatchQueue?
 	public var delay: TimeInterval = 0
 	public var onCancel: EmptyCallback?
@@ -37,12 +37,12 @@ public class SIO<R, E, A> {
 			}
 		}
 	}
-
+	
 	var implementation: Implementation
 	
 	public var running = false
 	
-//	var _fork: Computation
+	//	var _fork: Computation
 	let _cancel: EmptyCallback?
 	
 	private var _cancelled = false
@@ -63,17 +63,17 @@ public class SIO<R, E, A> {
 		}
 	}
 	
-	public init(_ sync: @escaping Sync) {
+	public init(sync: @escaping Sync) {
 		self.implementation = .sync(sync)
 		self._cancel = nil
 	}
 	
 	public static func sync(_ sync: @escaping Sync) -> SIO<R, E, A> {
-		.init(sync)
+		.init(sync: sync)
 	}
 	
 	public static func syncMain(_ sync: @escaping Sync) -> SIO<R, E, A> {
-		SIO.init(sync)
+		SIO.init(sync: sync)
 			.scheduleOn(.main)
 	}
 	
@@ -81,33 +81,33 @@ public class SIO<R, E, A> {
 		self.implementation = .async(async)
 		self._cancel = nil
 	}
-
+	
 	public init(_ async: @escaping Async, cancel: EmptyCallback?) {
 		self.implementation = .async(async)
-
+		
 		self._cancel = cancel
 	}
 	
 	init(_ implementation: Implementation, cancel: EmptyCallback?) {
 		self.implementation = implementation
-
+		
 		self._cancel = cancel
 	}
 	
 	public func fork(_ requirement: R, _ reject: @escaping ErrorCallback, _ resolve: @escaping ResultCallback) {
-        let run = {
+		let run = {
 			guard self.cancelled == false else {
 				return
 			}
 			
 			self.running = true
-
+			
 			switch self.implementation {
-            case let .success(a):
-                resolve(a)
+			case let .success(a):
+				resolve(a)
 				self.running = false
-            case let .fail(e):
-                reject(e)
+			case let .fail(e):
+				reject(e)
 				self.running = false
 			case let .sync(sync):
 				defer { self.running = false }
@@ -125,38 +125,38 @@ public class SIO<R, E, A> {
 				case nil:
 					return
 				}
-            case let .async(async):
-                async(
-                    requirement,
-                    { error in
+			case let .async(async):
+				async(
+					requirement,
+					{ error in
 						self.running = false
-                        guard !self.cancelled else { return }
-                        reject(error)
-                	},
-                    { result in
+						guard !self.cancelled else { return }
+						reject(error)
+				},
+					{ result in
 						self.running = false
-                        guard !self.cancelled else { return }
-                        resolve(result)
-                	}
-                )
-            case let .biFlatMap(impl):
+						guard !self.cancelled else { return }
+						resolve(result)
+				}
+				)
+			case let .biFlatMap(impl):
 				impl.fork(requirement, { e in
-//					guard self.cancelled == false else {
-//						return
-//					}
+					//					guard self.cancelled == false else {
+					//						return
+					//					}
 					
 					reject(e)
 					self.running = false
 				}, { a in
-//					guard self.cancelled == false else {
-//						return
-//					}
+					//					guard self.cancelled == false else {
+					//						return
+					//					}
 					
 					resolve(a)
 					self.running = false
 				})
-            }
-        }
+			}
+		}
 		
 		guard let queue = self.queue else {
 			run()
@@ -178,21 +178,31 @@ protocol SIOImpl {
 	associatedtype E
 	associatedtype A
 	
-//	func forkSync(_ r: R) -> SIO<R, E, A>.Trampoline?
-    func fork(_ r: R, _ reject: @escaping (E) -> Void, _ resolve: @escaping (A) -> Void)
+	//	func forkSync(_ r: R) -> SIO<R, E, A>.Trampoline?
+	func fork(_ r: R, _ reject: @escaping (E) -> Void, _ resolve: @escaping (A) -> Void)
 	func cancel()
 }
 
 class BiFlatMapBase<R, E, A> {
-    func fork(_ r: R, _ reject: @escaping (E) -> Void, _ resolve: @escaping (A) -> Void) {
-        fatalError()
-    }
-    
-//	func forkSync(_ r: R) -> SIO<R, E, A>.Trampoline? {
-//		fatalError()
-//	}
+	func fork(_ r: R, _ reject: @escaping (E) -> Void, _ resolve: @escaping (A) -> Void) {
+		fatalError()
+	}
 	
-	func biFlatMap<F, B>(_ f: @escaping (E) -> SIO<R, F, B>, _ g: @escaping (A) -> SIO<R, F, B>) -> SIO<R, F, B> {
+	//	func forkSync(_ r: R) -> SIO<R, E, A>.Trampoline? {
+	//		fatalError()
+	//	}
+	
+	func bimap<F, B>(
+		_ f: @escaping (E) -> F,
+		_ g: @escaping (A) -> B
+	) -> SIO<R, F, B> {
+		fatalError()
+	}
+	
+	func biFlatMap<F, B>(
+		_ f: @escaping (E) -> SIO<R, F, B>,
+		_ g: @escaping (A) -> SIO<R, F, B>
+	) -> SIO<R, F, B> {
 		fatalError()
 	}
 	
@@ -200,7 +210,7 @@ class BiFlatMapBase<R, E, A> {
 	}
 }
 
-class BiFlatMap<R, E0, E, A0, A>: BiFlatMapBase<R, E, A> {
+final class BiFlatMap<R, E0, E, A0, A>: BiFlatMapBase<R, E, A> {
 	var sio: SIO<R, E0, A0>
 	var err: (E0) -> SIO<R, E, A>
 	var succ: (A0) -> SIO<R, E, A>
@@ -219,59 +229,82 @@ class BiFlatMap<R, E0, E, A0, A>: BiFlatMapBase<R, E, A> {
 		self.succ = succ
 	}
 	
-//	override func biFlatMap<F, B>(_ f: @escaping (E) -> SIO<R, F, B>, _ g: @escaping (A) -> SIO<R, F, B>) -> SIO<R, F, B> {
-//
-//		let specific = BiFlatMap<R, E0, F, A0, B>(
-//			sio: self.sio,
-//			err: { e0 in
-//				return self.err(e0).biFlatMap(f, g)
-//			},
-//			succ: { a0 in
-//				return self.succ(a0).biFlatMap(f, g)
-//
-//			}
-//		)
-//
-//		switch self.sio.implementation {
-//		case let .success(a):
-//			return self.succ(a).biFlatMap(f, g)
-//		case let .fail(e):
-//			return self.err(e).biFlatMap(f, g)
-//		case let .sync(sync):
-//			return SIO<R, F, B>.init(
-//				.biFlatMap(specific),
-//				cancel: specific.cancel
-//			)
-//		case let .async(async):
-//			return SIO<R, F, B>.init(
-//				.biFlatMap(specific),
-//				cancel: specific.cancel
-//			)
-//		case let .biFlatMap(bfm):
-//			return SIO<R, F, B>.init(
-//				.biFlatMap(specific),
-//				cancel: specific.cancel
-//			)
-//		}
-//	}
+	//	override func biFlatMap<F, B>(_ f: @escaping (E) -> SIO<R, F, B>, _ g: @escaping (A) -> SIO<R, F, B>) -> SIO<R, F, B> {
+	//
+	//		let specific = BiFlatMap<R, E0, F, A0, B>(
+	//			sio: self.sio,
+	//			err: { e0 in
+	//				return self.err(e0).biFlatMap(f, g)
+	//			},
+	//			succ: { a0 in
+	//				return self.succ(a0).biFlatMap(f, g)
+	//
+	//			}
+	//		)
+	//
+	//		switch self.sio.implementation {
+	//		case let .success(a):
+	//			return self.succ(a).biFlatMap(f, g)
+	//		case let .fail(e):
+	//			return self.err(e).biFlatMap(f, g)
+	//		case let .sync(sync):
+	//			return SIO<R, F, B>.init(
+	//				.biFlatMap(specific),
+	//				cancel: specific.cancel
+	//			)
+	//		case let .async(async):
+	//			return SIO<R, F, B>.init(
+	//				.biFlatMap(specific),
+	//				cancel: specific.cancel
+	//			)
+	//		case let .biFlatMap(bfm):
+	//			return SIO<R, F, B>.init(
+	//				.biFlatMap(specific),
+	//				cancel: specific.cancel
+	//			)
+	//		}
+	//	}
 	
 	@inlinable
-	override func biFlatMap<F, B>(_ f: @escaping (E) -> SIO<R, F, B>, _ g: @escaping (A) -> SIO<R, F, B>) -> SIO<R, F, B> {
+	override func bimap<F, B>(
+		_ f: @escaping (E) -> F,
+		_ g: @escaping (A) -> B
+	) -> SIO<R, F, B> {
 		let specific = BiFlatMap<R, E0, F, A0, B>(
 			sio: self.sio,
 			err: { e0 in
-				self.err(e0).biFlatMap(f, g)
-			},
+				self.err(e0).bimap(f, g)
+		},
 			succ: { a0 in
-				self.succ(a0).biFlatMap(f, g)
-			}
+				self.succ(a0).bimap(f, g)
+		}
 		)
 		
 		return SIO<R, F, B>.init(
 			.biFlatMap(specific),
 			cancel: specific.cancel
 		)
+	}
+	
+	@inlinable
+	override func biFlatMap<F, B>(
+		_ f: @escaping (E) -> SIO<R, F, B>,
+		_ g: @escaping (A) -> SIO<R, F, B>
+	) -> SIO<R, F, B> {
+		let specific = BiFlatMap<R, E0, F, A0, B>(
+			sio: self.sio,
+			err: { e0 in
+				self.err(e0).biFlatMap(f, g)
+		},
+			succ: { a0 in
+				self.succ(a0).biFlatMap(f, g)
+		}
+		)
 		
+		return SIO<R, F, B>.init(
+			.biFlatMap(specific),
+			cancel: specific.cancel
+		)
 	}
 	
 	override func cancel() {
@@ -282,12 +315,12 @@ class BiFlatMap<R, E0, E, A0, A>: BiFlatMapBase<R, E, A> {
 	}
 	
 	@inlinable
-    override func fork(_ r: R, _ reject: @escaping (E) -> Void, _ resolve: @escaping (A) -> Void) {
+	override func fork(_ r: R, _ reject: @escaping (E) -> Void, _ resolve: @escaping (A) -> Void) {
 		guard self.cancelled == false else {
 			return
 		}
 		
-        self.sio.fork(r, { e in
+		self.sio.fork(r, { e in
 			guard self.cancelled == false else {
 				return
 			}
@@ -299,9 +332,9 @@ class BiFlatMap<R, E0, E, A0, A>: BiFlatMapBase<R, E, A> {
 				return
 			}
 			
-            nextE.fork(r, reject, resolve)
+			nextE.fork(r, reject, resolve)
 			
-        }) { a in
+		}) { a in
 			guard self.cancelled == false else {
 				return
 			}
@@ -313,7 +346,7 @@ class BiFlatMap<R, E0, E, A0, A>: BiFlatMapBase<R, E, A> {
 				return
 			}
 			
-            nextA.fork(r, reject, resolve)
-        }
+			nextA.fork(r, reject, resolve)
+		}
 	}
 }

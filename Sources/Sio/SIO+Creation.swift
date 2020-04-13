@@ -42,7 +42,7 @@ public extension SIO where E == Never, A == Void {
 	
 	@inlinable
 	static func effect(_ f: @escaping (R) -> Void) -> SIO<R, Never, Void> {
-		SIO<R, Never, Void>.init({ r in
+		SIO<R, Never, Void>.sync({ r in
 			f(r)
 			return .right(())
 		})

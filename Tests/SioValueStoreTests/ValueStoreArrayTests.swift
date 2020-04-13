@@ -20,7 +20,7 @@ class SIOValueStoreArrayTests: XCTestCase {
 				store = values
 				return .of(store)
 			},
-			remove: .init({ _ in
+			remove: .sync({ _ in
 				store = []
 				return .right(())
 			})

@@ -41,7 +41,7 @@ extension Double: PropertyListValue {}
 public extension ValueStore where A: PropertyListValue, E == Void {
 	static func rawPreference(_ key: String) -> ValueStoreA<R, Void, A> {
 		return ValueStoreA<R, Void, A>(
-			load: SIO.init({ _ in
+			load: SIO.sync({ _ in
 				guard let value = (UserDefaults.standard.object(forKey: key) as? A) else {
 					return .left(())
 				}
@@ -49,12 +49,12 @@ public extension ValueStore where A: PropertyListValue, E == Void {
 				return .right(value)
 			}),
 			save: { value in
-				return SIO.init({ _ in
+				return SIO.sync({ _ in
 					UserDefaults.standard.set(value, forKey: key)
 					return .right(value)
 				})
 			},
-			remove: SIO.init({ _ in
+			remove: SIO.sync({ _ in
 				UserDefaults.standard.removeObject(forKey: key)
 				return .right(())
 			})

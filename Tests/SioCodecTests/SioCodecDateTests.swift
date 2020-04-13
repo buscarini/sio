@@ -12,7 +12,7 @@ import SioCodec
 
 class SIOCodecDateTests: XCTestCase {
 	func testEpoch() {
-		let codec = Codec<Error, Date, Double>.epochSeconds
+		let codec = Codec<Never, Date, Double>.epochSeconds
 		let date = Date.init(timeIntervalSince1970: 100)
 		
 		let result = codec.to(date).flatMap(codec.from)

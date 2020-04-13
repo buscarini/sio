@@ -203,11 +203,11 @@ class sioTests: XCTestCase {
 
 		SIO<Void, Int, String>.of("ok")
 			.tapBoth({ value in
-				.init({ _ in
+				.sync({ _ in
 					.right(())
 				})
 			}, { value in
-				.init({ _ in
+				.sync({ _ in
 					tap.fulfill()
 					return .right(())
 				})
@@ -228,13 +228,13 @@ class sioTests: XCTestCase {
 
 		SIO<Void, Int, String>.rejected(1)
 			.tapBoth({ value in
-				.init({ _ in
+				.sync({ _ in
 					tap.fulfill()
 					return .right(())
 				})
 			}, { value in
-				.init({ _ in
-					return .right(())
+				.sync({ _ in
+					.right(())
 				})
 			})
 			.fork({ value in

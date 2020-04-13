@@ -51,18 +51,20 @@ class CancellationTests: XCTestCase {
 		let finish = expectation(description: "cancel")
 		
 		func long() -> UIO<Void> {
-			return Array(1...800).forEach { item in
-				IO<Never, Int>.init { _ in
-					.right(item)
-				}
+			Array(1...100).forEach { item in
+				IO.of(item)				
+//				IO<Never, Int>.init { _ in
+//					.right(item)
+//				}
 				.flatMap { int in
-					return IO<Never, Int> { _ in
+					IO<Never, Int> { _ in
 						let tmp = task?.cancelled
 						XCTAssert(tmp == false)
 						lastValue = int
 						return .right(int)
 					}
 				}
+				.scheduleOn(.global())
 			}
 			.map(const(()))
 		}
@@ -70,7 +72,7 @@ class CancellationTests: XCTestCase {
 		task = long().scheduleOn(DispatchQueue.global())
 		
 		task?
-			.fork(absurd, { a in
+		.fork(absurd, { a in
 			XCTFail()
 		})
 		

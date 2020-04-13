@@ -32,7 +32,7 @@ class SIOCodecTests: XCTestCase {
 		let origin = ValueStoreA<Void, String, Int>.of(6)
 		
 		let target = ValueStoreA<Void, String, Int>.init(
-			load: SIO.init({ _ in
+			load: SIO.sync({ _ in
 				return .right(targetVar)
 			}),
 			save: { a in
@@ -71,7 +71,7 @@ class SIOCodecTests: XCTestCase {
 		let origin = ValueStoreA<Void, String, Int>.rejected("err")
 		
 		let target = ValueStoreA<Void, String, Int>.init(
-			load: SIO.init({ _ in
+			load: SIO.sync({ _ in
 				return .right(targetVar)
 			}),
 			save: { a in

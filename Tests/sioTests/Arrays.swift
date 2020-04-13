@@ -108,4 +108,22 @@ class Arrays: XCTestCase {
 		
 		self.waitForExpectations(timeout: 4.1, handler: nil)
 	}
+	
+	
+	func testPartition() {
+		let (even, odd) = [1, 2, 3, 4, 5].partition { $0 % 2 == 0 ?
+			.left($0)
+			: .right($0)
+		}
+		
+		XCTAssertEqual(even, [2, 4])
+		XCTAssertEqual(odd, [1, 3, 5])
+	}
+	
+	func testPartitionEither() {
+		let (even, odd) = [.right(1), .left(2), .right(3), .left(4), .right(5)].partition()
+		
+		XCTAssertEqual(even, [2, 4])
+		XCTAssertEqual(odd, [1, 3, 5])
+	}
 }

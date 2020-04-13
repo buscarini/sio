@@ -77,7 +77,7 @@ public extension SIO {
 	
 	@inlinable
 	static func access<S, R, E>(_ f: @escaping (R) -> S) -> SIO<R, E, S> {
-		SIO<R, E, S>({ r in
+		SIO<R, E, S>.sync({ r in
 			.right(f(r))
 		})
 	}
