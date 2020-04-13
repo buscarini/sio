@@ -9,12 +9,12 @@
 import XCTest
 import Sio
 
-class Monad: XCTestCase {
+class MonadTests: XCTestCase {
 	func exampleError() -> Error {
 		return NSError(domain: "tests", code: 1, userInfo: nil)
 	}
 	
-    func testFlatMap() {
+	func testFlatMap() {
 		let expectation = self.expectation(description: "task chained")
 		
 		IO<Never, String>.of("blah")
@@ -24,9 +24,26 @@ class Monad: XCTestCase {
 			.run { value in
 				XCTAssert(value == 4)
 				expectation.fulfill()
-			}
+		}
+		
+		
+		self.waitForExpectations(timeout: 1.0, handler: nil)
+	}
 	
-	
+	func testFlatMapSIO() {
+		let expectation = self.expectation(description: "task chained")
+		
+		let stringLen = SIO<String, Never, Int>.sync { string in
+			.right(string.count)
+		}
+		
+		IO<Never, String>.of("blah")
+			.flatMap(stringLen)
+			.run { value in
+				XCTAssert(value == 4)
+				expectation.fulfill()
+		}
+		
 		self.waitForExpectations(timeout: 1.0, handler: nil)
 	}
 	
@@ -40,11 +57,11 @@ class Monad: XCTestCase {
 			.fork((), { error in
 				expectation.fulfill()
 			},
-			{ value in
-				XCTFail()
+					{ value in
+						XCTFail()
 			})
-	
-	
+		
+		
 		self.waitForExpectations(timeout: 1.0, handler: nil)
 	}
 	
@@ -58,8 +75,8 @@ class Monad: XCTestCase {
 			}) { value in
 				XCTAssert(value == 1)
 				expectation.fulfill()
-			}
-	
+		}
+		
 		self.waitForExpectations(timeout: 1.0, handler: nil)
 	}
 }

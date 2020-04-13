@@ -51,11 +51,10 @@ class CancellationTests: XCTestCase {
 		let finish = expectation(description: "cancel")
 		
 		func long() -> UIO<Void> {
-			Array(1...100).forEach { item in
-				IO.of(item)				
-//				IO<Never, Int>.init { _ in
-//					.right(item)
-//				}
+			Array(1...800).forEach { item in
+				IO<Never, Int>.init { _ in
+					.right(item)
+				}
 				.flatMap { int in
 					IO<Never, Int> { _ in
 						let tmp = task?.cancelled

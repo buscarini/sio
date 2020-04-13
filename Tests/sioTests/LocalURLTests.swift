@@ -80,5 +80,19 @@ class LocalURLTests: XCTestCase {
 		
 		XCTAssertEqual(recovered?.rawValue, "file")
 	}
+	
+	func testRelativeFromWrongAbsolute() {
+		let file = URL(fileURLWithPath: "/tmp", isDirectory: true)
+		let root = AbsoluteLocalURL<IsFolder>.init(url: file)!
+
+		let otherFile = URL(fileURLWithPath: "/var", isDirectory: true)
+		let other = AbsoluteLocalURL<IsFolder>.init(url: otherFile)!
+
+		let final = root <> RelativeLocalURL<IsFile>.init(rawValue: "file")
+		
+		let recovered = final.relativePath(other)
+		
+		XCTAssertNil(recovered?.rawValue)
+	}
 }
 

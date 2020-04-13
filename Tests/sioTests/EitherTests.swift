@@ -97,6 +97,37 @@ class EitherTests: XCTestCase {
 		XCTAssert(left.optional() == nil)
 		XCTAssert(right.optional() == 1)
 	}
+	
+	func testLift() {
+		func f(_ int: Int) -> Either<Int, Int> {
+			int % 2 == 0 ? .right(int) : .left(int)
+		}
+
+		let finish = expectation(description: "finish")
+		finish.expectedFulfillmentCount = 2
+		
+		SIO<Void, Int, Int>.lift(f)(1).fork(
+			{ e in
+				XCTAssertEqual(e, 1)
+				finish.fulfill()
+			},
+			{ a in
+				XCTFail()
+			}
+		)
+		
+		SIO<Void, Int, Int>.lift(f)(2).fork(
+			{ _ in
+				XCTFail()
+			},
+			{ a in
+				XCTAssertEqual(a, 2)
+				finish.fulfill()
+			}
+		)
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
 
 	func testCatchingError() {
 		let left = Either<Error, Int>.init(catching: {

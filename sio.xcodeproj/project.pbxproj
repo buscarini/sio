@@ -173,7 +173,7 @@
 		OBJ_463 /* Functor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_153 /* Functor.swift */; };
 		OBJ_464 /* IsoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_154 /* IsoTests.swift */; };
 		OBJ_465 /* LocalURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_155 /* LocalURLTests.swift */; };
-		OBJ_466 /* Monad.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_156 /* Monad.swift */; };
+		OBJ_466 /* MonadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_156 /* MonadTests.swift */; };
 		OBJ_467 /* NoSyncValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_157 /* NoSyncValueTests.swift */; };
 		OBJ_468 /* OptionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_158 /* OptionalTests.swift */; };
 		OBJ_469 /* PreludeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_159 /* PreludeTests.swift */; };
@@ -544,7 +544,7 @@
 		OBJ_153 /* Functor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functor.swift; sourceTree = "<group>"; };
 		OBJ_154 /* IsoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsoTests.swift; sourceTree = "<group>"; };
 		OBJ_155 /* LocalURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalURLTests.swift; sourceTree = "<group>"; };
-		OBJ_156 /* Monad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monad.swift; sourceTree = "<group>"; };
+		OBJ_156 /* MonadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonadTests.swift; sourceTree = "<group>"; };
 		OBJ_157 /* NoSyncValueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSyncValueTests.swift; sourceTree = "<group>"; };
 		OBJ_158 /* OptionalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalTests.swift; sourceTree = "<group>"; };
 		OBJ_159 /* PreludeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreludeTests.swift; sourceTree = "<group>"; };
@@ -903,7 +903,7 @@
 				OBJ_153 /* Functor.swift */,
 				OBJ_154 /* IsoTests.swift */,
 				OBJ_155 /* LocalURLTests.swift */,
-				OBJ_156 /* Monad.swift */,
+				OBJ_156 /* MonadTests.swift */,
 				OBJ_157 /* NoSyncValueTests.swift */,
 				OBJ_158 /* OptionalTests.swift */,
 				OBJ_159 /* PreludeTests.swift */,
@@ -1658,7 +1658,7 @@
 				OBJ_463 /* Functor.swift in Sources */,
 				OBJ_464 /* IsoTests.swift in Sources */,
 				OBJ_465 /* LocalURLTests.swift in Sources */,
-				OBJ_466 /* Monad.swift in Sources */,
+				OBJ_466 /* MonadTests.swift in Sources */,
 				OBJ_467 /* NoSyncValueTests.swift in Sources */,
 				OBJ_468 /* OptionalTests.swift in Sources */,
 				OBJ_469 /* PreludeTests.swift in Sources */,
