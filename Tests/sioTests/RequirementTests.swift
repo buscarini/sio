@@ -39,4 +39,21 @@ class RequirementTests: XCTestCase {
 		
 		waitForExpectations(timeout: 1, handler: nil)
 	}
+	
+	func testFromFunc() {
+		let finish = expectation(description: "finish")
+		
+		func f(_ input: Int) -> SIO<Void, Never, Int> {
+			.of(2 * input)
+		}
+		
+		SIO.fromFunc(f)
+		.provide(2)
+		.run { value in
+			XCTAssertEqual(value, 4)
+			finish.fulfill()
+		}
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
 }

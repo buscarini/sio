@@ -45,7 +45,6 @@ class SIOValueStoreTests: XCTestCase {
 		)
 		
 		origin.copy(to: target, adapt: Sio.id)
-			.pullback { _ in ((), ()) }
 			.fork((), { _ in
 				XCTFail()
 			}, { value in
@@ -83,7 +82,6 @@ class SIOValueStoreTests: XCTestCase {
 		)
 		
 		origin.copy(to: target, adapt: Sio.id)
-			.pullback { _ in ((), ()) }
 			.fork((), { err in
 				XCTAssert(err == "err")
 				target.load.fork({ _ in

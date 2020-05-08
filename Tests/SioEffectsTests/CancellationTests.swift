@@ -126,4 +126,77 @@ class CancellationTests: XCTestCase {
 		
 		waitForExpectations(timeout: 10, handler: nil)
 	}
+	
+	func testCancellationProfunctor() {
+		let finish = expectation(description: "finish")
+		
+		let task = UIO<Int>.of(1).scheduleOn(.global()).delay(0.1)
+		
+		task
+		.fork(absurd, { a in
+			XCTFail()
+		})
+		
+		task.cancel()
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+			finish.fulfill()
+		}
+		
+		waitForExpectations(timeout: 2, handler: nil)
+	}
+	
+	func testCancellationOr() {
+		let finish = expectation(description: "finish")
+		
+		let left = IO<Void, Int>.rejected(())
+		let right = IO<Void,Int>.of(1).scheduleOn(.global()).delay(0.1)
+		
+		let task = or(left, right)
+			
+		task
+		.fork(
+			{ _ in
+				XCTFail()
+			},
+			{ a in
+				XCTFail()
+			}
+		)
+		
+		task.cancel()
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+			finish.fulfill()
+		}
+		
+		waitForExpectations(timeout: 2, handler: nil)
+	}
+	
+	func testCancelSync() {
+		let finish = expectation(description: "finish")
+		
+		let task = UIO.sync {
+			.right(1)
+		}
+		.scheduleOn(.global())
+		
+		task.cancel()
+			
+		task
+		.fork(
+			{ _ in
+				XCTFail()
+			},
+			{ a in
+				XCTFail()
+			}
+		)
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+			finish.fulfill()
+		}
+		
+		waitForExpectations(timeout: 2, handler: nil)
+	}
 }

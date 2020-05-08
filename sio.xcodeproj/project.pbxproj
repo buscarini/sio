@@ -29,6 +29,7 @@
 		AC2F07A42444AF3600AE92FA /* RunAtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2F07A32444AF3600AE92FA /* RunAtTests.swift */; };
 		AC2F07A62444B16900AE92FA /* RequirementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2F07A52444B16900AE92FA /* RequirementTests.swift */; };
 		AC67DC77244119C80031D378 /* CancellationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_144 /* CancellationTests.swift */; };
+		ACEC0E9E2447BB6300F3CCAE /* ValueStoreUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEC0E9C2447BB5A00F3CCAE /* ValueStoreUtilsTests.swift */; };
 		OBJ_242 /* AbsoluteLocalURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AbsoluteLocalURL.swift */; };
 		OBJ_243 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Application.swift */; };
 		OBJ_244 /* Array+Partition.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Array+Partition.swift */; };
@@ -488,6 +489,7 @@
 		AC2F07A12444AD7200AE92FA /* ContravariantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContravariantTests.swift; sourceTree = "<group>"; };
 		AC2F07A32444AF3600AE92FA /* RunAtTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunAtTests.swift; sourceTree = "<group>"; };
 		AC2F07A52444B16900AE92FA /* RequirementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequirementTests.swift; sourceTree = "<group>"; };
+		ACEC0E9C2447BB5A00F3CCAE /* ValueStoreUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueStoreUtilsTests.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		OBJ_100 /* ParametersEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersEncoding.swift; sourceTree = "<group>"; };
 		OBJ_101 /* RemoteURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteURL.swift; sourceTree = "<group>"; };
@@ -935,6 +937,7 @@
 				OBJ_176 /* ValueStore+Tests.swift */,
 				OBJ_177 /* ValueStoreArrayTests.swift */,
 				OBJ_178 /* ValueStoreIsoTests.swift */,
+				ACEC0E9C2447BB5A00F3CCAE /* ValueStoreUtilsTests.swift */,
 				OBJ_179 /* ValueStoreZipTests.swift */,
 			);
 			name = SioValueStoreTests;
@@ -1705,6 +1708,7 @@
 				OBJ_516 /* SioCodecTests.swift in Sources */,
 				OBJ_517 /* SioValueStoreJSONTests.swift in Sources */,
 				OBJ_518 /* SioValueStoreTests.swift in Sources */,
+				ACEC0E9E2447BB6300F3CCAE /* ValueStoreUtilsTests.swift in Sources */,
 				OBJ_519 /* ValueStore+Tests.swift in Sources */,
 				OBJ_520 /* ValueStoreArrayTests.swift in Sources */,
 				OBJ_521 /* ValueStoreIsoTests.swift in Sources */,

@@ -62,7 +62,7 @@ public extension ValueStore where A: PropertyListValue, E == Void {
 	}
 }
 
-public extension ValueStore where A: Codable {
+public extension ValueStore where A: Codable, A == B, R == Void {
 	static func jsonPreference(_ key: String) -> ValueStoreA<Void, ValueStoreError, A> {
 		return ValueStoreA<Void, Void, Data>
 			.rawPreference(key)
