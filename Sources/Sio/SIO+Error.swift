@@ -30,6 +30,13 @@ public extension SIO {
 			()
 		}
 	}
+	
+	@inlinable
+	func `catch`(_ value: A) -> SIO<R, Never, A> {
+		self.flatMapError { _ in
+			.of(value)
+		}
+	}
 }
 
 public extension SIO where E == Error {

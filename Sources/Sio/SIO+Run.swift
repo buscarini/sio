@@ -29,6 +29,16 @@ extension SIO {
 
 extension SIO where R == Void {
 	@inlinable
+	public func run(_ resolve: @escaping ResultCallback) {
+		self.run((), resolve)
+	}
+	
+	@inlinable
+	public func runMain(_ resolve: @escaping ResultCallback) {
+		self.runMain((), resolve)
+	}
+	
+	@inlinable
 	public func fork(_ reject: @escaping ErrorCallback, _ resolve: @escaping ResultCallback) {
 		self.fork((), reject, resolve)
 	}

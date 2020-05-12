@@ -40,7 +40,7 @@ extension Double: PropertyListValue {}
 
 public extension ValueStore where A: PropertyListValue, E == Void {
 	static func rawPreference(_ key: String) -> ValueStoreA<R, Void, A> {
-		return ValueStoreA<R, Void, A>(
+		ValueStoreA<R, Void, A>(
 			load: SIO.sync({ _ in
 				guard let value = (UserDefaults.standard.object(forKey: key) as? A) else {
 					return .left(())
@@ -49,7 +49,7 @@ public extension ValueStore where A: PropertyListValue, E == Void {
 				return .right(value)
 			}),
 			save: { value in
-				return SIO.sync({ _ in
+				SIO.sync({ _ in
 					UserDefaults.standard.set(value, forKey: key)
 					return .right(value)
 				})
@@ -64,7 +64,7 @@ public extension ValueStore where A: PropertyListValue, E == Void {
 
 public extension ValueStore where A: Codable, A == B, R == Void, E == ValueStoreError {
 	static func jsonPreference(_ key: String) -> ValueStoreA<Void, ValueStoreError, A> {
-		return ValueStoreA<Void, Void, Data>
+		ValueStoreA<Void, Void, Data>
 			.rawPreference(key)
 			.diMapError { _ in .noData }
 			.coded(Codec.json.mapError(ValueStoreError.encoding))
