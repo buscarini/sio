@@ -22,6 +22,10 @@ public struct Codec<E, A, B> {
 }
 
 public extension Codec {
+	var reversed: Codec<E, B, A> {
+		.init(to: self.from, from: self.to)
+	}
+	
 	static func compose<C>(_ left: Codec<E, A, B>, _ right: Codec<E, B, C>) -> Codec<E, A, C> {
 		Codec<E, A, C>.init(to: { a in
 			left.to(a).flatMap(right.to)
