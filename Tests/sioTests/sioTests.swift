@@ -38,13 +38,15 @@ class sioTests: XCTestCase {
 	func testVoid() {
 		let finish = expectation(description: "finish tasks")
 
-		SIO<Void, String, String>.of("ok").void
+		SIO<Void, String, String>
+			.of("ok")
+			.void
 			.fork({ _ in
-			XCTFail()
-		}, { value in
-			XCTAssert(value == ())
-			finish.fulfill()
-		})
+				XCTFail()
+			}, { value in
+				XCTAssert(value == ())
+				finish.fulfill()
+			})
 		
 		waitForExpectations(timeout: 1, handler: nil)
 	}
@@ -262,6 +264,22 @@ class sioTests: XCTestCase {
 		waitForExpectations(timeout: 1, handler: nil)
 	}
 	
+	func testCatch() {
+		let finish = expectation(description: "finish tasks")
+		
+		SIO<Void, String, String>.rejected("err")
+		.catch("recovered")
+		.fork({ _ in
+			XCTFail()
+		}, { value in
+			XCTAssert(value == "recovered")
+			
+			finish.fulfill()
+		})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
 	func testCatching() {
 		let finish = expectation(description: "finish tasks")
 		
@@ -391,10 +409,22 @@ class sioTests: XCTestCase {
 			.assert("ok")
 	}
 	
+	func testFlatMapError() {
+		IO<Int, Int>.rejected(1)
+			.flatMapError(IO<Int, Int>.of(2))
+			.assert(2)
+	}
+	
 	func testBiFlatMapErrorToError() {
 		SIO<Void, Int, Int>.rejected(1)
 			.biFlatMap(IO<String, Never>.rejected("ok"))
 			.assertErr("ok")
+	}
+	
+	func testFlatMapErrorToError() {
+		SIO<Void, Int, Int>.rejected(1)
+			.flatMapError(IO<Int, Int>.rejected(2))
+			.assertErr(2)
 	}
 	
 	func testBiFlatMapSuccess() {
