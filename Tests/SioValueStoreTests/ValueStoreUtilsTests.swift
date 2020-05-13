@@ -14,40 +14,23 @@ class SIOValueStoreUtilsTests: XCTestCase {
 	func testMigration() {
 		let finish = expectation(description: "finish")
 
-		var targetVar: Int = 0
+		let sourceRef = Ref<Int?>.init(6)
+		let targetRef = Ref<Int?>.init(nil)
 		
-		let origin = ValueStoreA<Void, String, Int>.of(6)
-		
-		let target = ValueStoreA<Void, String, Int>.init(
-			load: SIO.sync({ _ in
-				return .right(targetVar)
-			}),
-			save: { a in
-				SIO.init { _ in
-					targetVar = a
-					return .right(a)
-				}
-			},
-			remove: SIO.of(())
-		)
+		let origin = sourceRef.valueStore()
+		let target = targetRef.valueStore()
 		
 		target.migrate(from: origin)
 			.fork((), { _ in
 				XCTFail()
 			}, { value in
-				XCTAssert(value == 6)
+				XCTAssertNil(sourceRef.state)
+				XCTAssertEqual(value, 6)
+				XCTAssertEqual(targetRef.state, 6)
 				
-				target.load.fork({ _ in
-					XCTFail()
-				}, { value in
-					XCTAssert(value == 6)
-					finish.fulfill()
-				})
+				finish.fulfill()
 			})
 		
 		waitForExpectations(timeout: 1, handler: nil)
-		
-		
 	}
-	
 }

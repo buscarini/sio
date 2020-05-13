@@ -25,6 +25,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		AC0B1403246C40590067DA85 /* Codec+LosslessStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0B1401246C40370067DA85 /* Codec+LosslessStringConvertible.swift */; };
+		AC0B1406246C41D00067DA85 /* SIOCodecFloatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0B1404246C41AD0067DA85 /* SIOCodecFloatTests.swift */; };
 		AC2F07A22444AD7200AE92FA /* ContravariantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2F07A12444AD7200AE92FA /* ContravariantTests.swift */; };
 		AC2F07A42444AF3600AE92FA /* RunAtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2F07A32444AF3600AE92FA /* RunAtTests.swift */; };
 		AC2F07A62444B16900AE92FA /* RequirementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2F07A52444B16900AE92FA /* RequirementTests.swift */; };
@@ -96,7 +98,7 @@
 		OBJ_311 /* Codec+Base64.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_73 /* Codec+Base64.swift */; };
 		OBJ_312 /* Codec+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_74 /* Codec+Data.swift */; };
 		OBJ_313 /* Codec+Dates.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_75 /* Codec+Dates.swift */; };
-		OBJ_314 /* Codec+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_76 /* Codec+Int.swift */; };
+		OBJ_314 /* Codec+Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_76 /* Codec+Numbers.swift */; };
 		OBJ_315 /* Codec+Iso.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_77 /* Codec+Iso.swift */; };
 		OBJ_316 /* Codec+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_78 /* Codec+JSON.swift */; };
 		OBJ_317 /* Codec.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_79 /* Codec.swift */; };
@@ -486,6 +488,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AC0B1401246C40370067DA85 /* Codec+LosslessStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codec+LosslessStringConvertible.swift"; sourceTree = "<group>"; };
+		AC0B1404246C41AD0067DA85 /* SIOCodecFloatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIOCodecFloatTests.swift; sourceTree = "<group>"; };
 		AC2F07A12444AD7200AE92FA /* ContravariantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContravariantTests.swift; sourceTree = "<group>"; };
 		AC2F07A32444AF3600AE92FA /* RunAtTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunAtTests.swift; sourceTree = "<group>"; };
 		AC2F07A52444B16900AE92FA /* RequirementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequirementTests.swift; sourceTree = "<group>"; };
@@ -668,7 +672,7 @@
 		OBJ_73 /* Codec+Base64.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codec+Base64.swift"; sourceTree = "<group>"; };
 		OBJ_74 /* Codec+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codec+Data.swift"; sourceTree = "<group>"; };
 		OBJ_75 /* Codec+Dates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codec+Dates.swift"; sourceTree = "<group>"; };
-		OBJ_76 /* Codec+Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codec+Int.swift"; sourceTree = "<group>"; };
+		OBJ_76 /* Codec+Numbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codec+Numbers.swift"; sourceTree = "<group>"; };
 		OBJ_77 /* Codec+Iso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codec+Iso.swift"; sourceTree = "<group>"; };
 		OBJ_78 /* Codec+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codec+JSON.swift"; sourceTree = "<group>"; };
 		OBJ_79 /* Codec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codec.swift; sourceTree = "<group>"; };
@@ -855,6 +859,7 @@
 				OBJ_125 /* Sio+Tests.swift */,
 				OBJ_126 /* SioCodecDateTests.swift */,
 				OBJ_127 /* SioCodecIntTests.swift */,
+				AC0B1404246C41AD0067DA85 /* SIOCodecFloatTests.swift */,
 				OBJ_128 /* SioCodecIsoTests.swift */,
 				OBJ_129 /* SioCodecJSONTests.swift */,
 				OBJ_130 /* SioCodecSIOTests.swift */,
@@ -1078,7 +1083,8 @@
 				OBJ_73 /* Codec+Base64.swift */,
 				OBJ_74 /* Codec+Data.swift */,
 				OBJ_75 /* Codec+Dates.swift */,
-				OBJ_76 /* Codec+Int.swift */,
+				OBJ_76 /* Codec+Numbers.swift */,
+				AC0B1401246C40370067DA85 /* Codec+LosslessStringConvertible.swift */,
 				OBJ_77 /* Codec+Iso.swift */,
 				OBJ_78 /* Codec+JSON.swift */,
 				OBJ_79 /* Codec.swift */,
@@ -1550,10 +1556,11 @@
 				OBJ_311 /* Codec+Base64.swift in Sources */,
 				OBJ_312 /* Codec+Data.swift in Sources */,
 				OBJ_313 /* Codec+Dates.swift in Sources */,
-				OBJ_314 /* Codec+Int.swift in Sources */,
+				OBJ_314 /* Codec+Numbers.swift in Sources */,
 				OBJ_315 /* Codec+Iso.swift in Sources */,
 				OBJ_316 /* Codec+JSON.swift in Sources */,
 				OBJ_317 /* Codec.swift in Sources */,
+				AC0B1403246C40590067DA85 /* Codec+LosslessStringConvertible.swift in Sources */,
 				OBJ_318 /* CodecError.swift in Sources */,
 				OBJ_319 /* SIO+Codec.swift in Sources */,
 			);
@@ -1572,6 +1579,7 @@
 				OBJ_334 /* SioCodecJSONTests.swift in Sources */,
 				OBJ_335 /* SioCodecSIOTests.swift in Sources */,
 				OBJ_336 /* SioCodecTests.swift in Sources */,
+				AC0B1406246C41D00067DA85 /* SIOCodecFloatTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
