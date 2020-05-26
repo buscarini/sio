@@ -307,7 +307,7 @@ class sioTests: XCTestCase {
 		let finish = expectation(description: "finish tasks")
 		
 		SIO<Void, String, String>.rejected("ok")
-		.onFail(do: .effect {
+		.onError(do: .effect {
 			finish.fulfill()
 		})
 		.onSuccess(do: .effect {
@@ -326,7 +326,7 @@ class sioTests: XCTestCase {
 		let finish = expectation(description: "finish tasks")
 		
 		SIO<Void, String, String>.lazy("ok")
-		.onFail(do: .effect {
+		.onError(do: .effect {
 			XCTFail()
 		})
 		.onSuccess(do: .effect {
