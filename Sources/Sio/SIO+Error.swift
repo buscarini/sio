@@ -31,6 +31,12 @@ public extension SIO {
 		}
 	}
 	
+	func ignoreErrors() -> SIO<R, Never, A> {
+		.init { (r, reject, resolve) in
+			self.fork(r, { _ in }, resolve)
+		}
+	}
+	
 	@inlinable
 	func `catch`(_ value: A) -> SIO<R, Never, A> {
 		self.flatMapError { _ in
@@ -53,7 +59,7 @@ public extension SIO where E == Error {
 }
 
 public extension SIO where A == Void {
-	func ignoreErrors() -> SIO<R, Never, Void> {
-		self.optional().void
+	func recoverErrors() -> SIO<R, Never, Void> {
+		self.catch(())
 	}
 }

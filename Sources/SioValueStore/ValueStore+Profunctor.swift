@@ -15,11 +15,11 @@ public extension ValueStore {
 		_ pre: @escaping (A0) -> A,
 		_ post: @escaping (B) -> B0
 	) -> ValueStore<R, E, A0, B0> {
-		return ValueStore<R, E, A0, B0>(
+		ValueStore<R, E, A0, B0>(
 			load: self.load.map(post),
 			save: { a0 in
 				self.save(pre(a0)).map(post)
-			},
+		},
 			remove: self.remove
 		)
 	}
@@ -29,7 +29,7 @@ public extension ValueStore {
 		_ pre: @escaping (A0) -> SIO<R, E, A>,
 		_ post: @escaping (B) -> SIO<R, E, B0>
 	) -> ValueStore<R, E, A0, B0> {
-		return ValueStore<R, E, A0, B0>(
+		ValueStore<R, E, A0, B0>(
 			load: self.load.flatMap(post),
 			save: { u in pre(u).flatMap(self.save).flatMap(post) },
 			remove: self.remove
