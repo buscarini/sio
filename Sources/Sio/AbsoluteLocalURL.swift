@@ -79,3 +79,4 @@ public extension AbsoluteLocalURL {
 //
 
 public typealias FileURL = AbsoluteLocalURL<IsFile>
+public typealias FolderURL = AbsoluteLocalURL<IsFolder>

@@ -15,6 +15,13 @@ public extension SIO {
 	}
 	
 	@inlinable
+	func constError<F>(_ value: F) -> SIO<R, F, A> {
+		self.mapError { _ in
+			value
+		}
+	}
+	
+	@inlinable
 	func flatMapError<F>(_ f: @escaping (E) -> (SIO<R, F, A>)) -> SIO<R, F, A> {
 		self.biFlatMap(f, { SIO<R, F, A>.of($0) })
 	}

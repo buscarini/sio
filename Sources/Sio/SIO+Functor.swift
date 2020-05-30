@@ -14,29 +14,24 @@ extension SIO {
 		self.bimap(id, f)
 	}
 	
-//	@inlinable
-//	public func mapR<B>(_ f: @escaping (R, A) -> (B)) -> SIO<R, E, B> {
-//		return self.bimapR({ _, e in e }, f)
-//	}
-	
 	@inlinable
 	public func map2<Element, B>(_ f: @escaping (Element) -> (B)) -> SIO<R, E, [B]> where A == [Element] {
-		return self.bimap(id, { $0.map(f) })
+		self.bimap(id, { $0.map(f) })
 	}
 	
 	@inlinable
 	public func map2<Element, B>(_ f: @escaping (Element) -> (B)) -> SIO<R, E, B?> where A == Element? {
-		return self.bimap(id, { $0.map(f) })
+		self.bimap(id, { $0.map(f) })
 	}
 	
 	@inlinable
 	public var void: SIO<R, E, Void> {
-		return self.map { _ in () }
+		self.map { _ in () }
 	}
 	
 	@inlinable
 	public func const<B>(_ value: B) -> SIO<R, E, B> {
-		return self.map { _ in
+		self.map { _ in
 			value
 		}
 	}
