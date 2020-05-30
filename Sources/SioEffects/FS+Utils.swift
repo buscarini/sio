@@ -9,7 +9,7 @@ import Foundation
 import Sio
 
 public extension FS {
-	func url(
+	func resource(
 		_ bundle: Bundle,
 		name: String,
 		extension ext: String
@@ -31,7 +31,7 @@ public extension FS {
 		name: String,
 		extension ext: String
 	) -> IO<Error, Data> {
-		url(bundle, name: name, extension: ext)
+		resource(bundle, name: name, extension: ext)
 			.mapError { _ in
 				NSError(
 					domain: "Bundle",

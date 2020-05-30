@@ -264,6 +264,17 @@ class sioTests: XCTestCase {
 		waitForExpectations(timeout: 1, handler: nil)
 	}
 	
+	func testIgnoreErrors() {
+		let finish = expectation(description: "finish tasks")
+		finish.isInverted = true
+		
+		SIO<Void, String, String>.rejected("err")
+		.ignoreErrors()
+		.run { _ in }
+		
+		waitForExpectations(timeout: 0.1, handler: nil)
+	}
+	
 	func testCatch() {
 		let finish = expectation(description: "finish tasks")
 		
@@ -298,6 +309,19 @@ class sioTests: XCTestCase {
 		}, { _ in
 			XCTFail()
 		})
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testRecoverErrors() {
+		let finish = expectation(description: "Finish")
+		
+		let io = IO<Int, Void>.rejected(1)
+		
+		io.recoverErrors()
+			.run { _ in
+				finish.fulfill()
+			}
 		
 		waitForExpectations(timeout: 1, handler: nil)
 	}

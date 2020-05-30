@@ -68,4 +68,28 @@ class SIOValueStoreArrayTests: XCTestCase {
 			.remove(1)
 			.assert([])
 	}
+	
+	func testLoadSingle() {
+		let store = ValueStoreA<Void, ValueStoreError, [Int]>.of([1,2,3])
+		
+		store
+			.loadSingle { $0 % 2 == 0 }
+			.assert(2)
+	}
+	
+	func testFunctor() {
+		SIOValueStoreArrayTests.arrayStore()
+			.map { $0.count }
+			.load
+			.assert(1)
+	}
+	
+	func testContravariantFunctor() {
+		SIOValueStoreArrayTests.arrayStore()
+			.pullback { (strings: [String]) in
+				strings.map { $0.count }
+			}
+			.save([ "hello", "world" ])
+			.assert([5, 5])
+	}
 }

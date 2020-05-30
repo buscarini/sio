@@ -24,7 +24,7 @@ public extension AudioResource {
 		extension ext: String,
 		bundle: Bundle = .main
 	) -> IO<Void, AudioResource> {
-		FS().url(bundle, name: resourceName, extension: ext)
+		FS().resource(bundle, name: resourceName, extension: ext)
 			.map(AudioResource.init)
 	}
 }

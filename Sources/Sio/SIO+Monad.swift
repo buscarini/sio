@@ -47,10 +47,10 @@ extension SIO {
 			.forEach { _ in self }
 	}
 	
-	@inlinable
-	public func forever() -> SIO<R, E, A> {
-		self.flatMap { _ in
-			self.forever()
-		}
-	}
+//	@inlinable
+//	public func forever() -> SIO<R, E, A> {
+//		self.flatMap { _ in
+//			self.forever()
+//		}
+//	}
 }

@@ -51,8 +51,8 @@ class ApplicationTests: XCTestCase {
 //	func testLeftApplyMutation() {
 //		var value: Int = 1
 //		
-//		let result = { $0 += 1 } <| value
+//		({ $0 += 1 } <| value)
 //		
-//		XCTAssertEqual(result, 2)
+//		XCTAssertEqual(value, 2)
 //	}
 }

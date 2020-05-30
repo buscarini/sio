@@ -45,4 +45,19 @@ class SIOCodecTests: XCTestCase {
 		XCTAssertEqual(codec.to("1").right, 2)
 		XCTAssertEqual(codec.from(3).right, "2")
 	}
+	
+	func testReversed() {
+		let codec = Codec<Void, String, Int>.int.reversed
+		
+		let origin = "1"
+		
+		let to = codec.from(origin)
+		
+		XCTAssert(to.right == 1)
+		
+		let result = to.flatMap(codec.to)
+		
+		XCTAssert(result.right == origin)
+		
+	}
 }

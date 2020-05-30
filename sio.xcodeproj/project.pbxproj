@@ -33,6 +33,8 @@
 		AC4B2F2E2477B21A00B115E4 /* ValueStore+Functor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4B2F2C2477B21500B115E4 /* ValueStore+Functor.swift */; };
 		AC4B2F302477B51000B115E4 /* ValueStore+Contravariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4B2F2F2477B51000B115E4 /* ValueStore+Contravariant.swift */; };
 		AC67DC77244119C80031D378 /* CancellationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_144 /* CancellationTests.swift */; };
+		ACE387D62482CE7E00092BA9 /* ProfunctorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE387D42482CE7300092BA9 /* ProfunctorTests.swift */; };
+		ACE387D82482DB6900092BA9 /* SIOCodecDoubleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE387D72482DB6900092BA9 /* SIOCodecDoubleTests.swift */; };
 		ACEC0E9E2447BB6300F3CCAE /* ValueStoreUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEC0E9C2447BB5A00F3CCAE /* ValueStoreUtilsTests.swift */; };
 		OBJ_242 /* AbsoluteLocalURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AbsoluteLocalURL.swift */; };
 		OBJ_243 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Application.swift */; };
@@ -175,7 +177,7 @@
 		OBJ_460 /* CurryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_150 /* CurryTests.swift */; };
 		OBJ_461 /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_151 /* Delay.swift */; };
 		OBJ_462 /* EitherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_152 /* EitherTests.swift */; };
-		OBJ_463 /* Functor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_153 /* Functor.swift */; };
+		OBJ_463 /* FunctorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_153 /* FunctorTests.swift */; };
 		OBJ_464 /* IsoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_154 /* IsoTests.swift */; };
 		OBJ_465 /* LocalURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_155 /* LocalURLTests.swift */; };
 		OBJ_466 /* MonadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_156 /* MonadTests.swift */; };
@@ -497,6 +499,8 @@
 		AC2F07A52444B16900AE92FA /* RequirementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequirementTests.swift; sourceTree = "<group>"; };
 		AC4B2F2C2477B21500B115E4 /* ValueStore+Functor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Functor.swift"; sourceTree = "<group>"; };
 		AC4B2F2F2477B51000B115E4 /* ValueStore+Contravariant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Contravariant.swift"; sourceTree = "<group>"; };
+		ACE387D42482CE7300092BA9 /* ProfunctorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfunctorTests.swift; sourceTree = "<group>"; };
+		ACE387D72482DB6900092BA9 /* SIOCodecDoubleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIOCodecDoubleTests.swift; sourceTree = "<group>"; };
 		ACEC0E9C2447BB5A00F3CCAE /* ValueStoreUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueStoreUtilsTests.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		OBJ_100 /* ParametersEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersEncoding.swift; sourceTree = "<group>"; };
@@ -551,7 +555,7 @@
 		OBJ_150 /* CurryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurryTests.swift; sourceTree = "<group>"; };
 		OBJ_151 /* Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
 		OBJ_152 /* EitherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EitherTests.swift; sourceTree = "<group>"; };
-		OBJ_153 /* Functor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functor.swift; sourceTree = "<group>"; };
+		OBJ_153 /* FunctorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctorTests.swift; sourceTree = "<group>"; };
 		OBJ_154 /* IsoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsoTests.swift; sourceTree = "<group>"; };
 		OBJ_155 /* LocalURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalURLTests.swift; sourceTree = "<group>"; };
 		OBJ_156 /* MonadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonadTests.swift; sourceTree = "<group>"; };
@@ -866,6 +870,7 @@
 				OBJ_126 /* SioCodecDateTests.swift */,
 				OBJ_127 /* SioCodecIntTests.swift */,
 				AC0B1404246C41AD0067DA85 /* SIOCodecFloatTests.swift */,
+				ACE387D72482DB6900092BA9 /* SIOCodecDoubleTests.swift */,
 				OBJ_128 /* SioCodecIsoTests.swift */,
 				OBJ_129 /* SioCodecJSONTests.swift */,
 				OBJ_130 /* SioCodecSIOTests.swift */,
@@ -913,7 +918,8 @@
 				OBJ_150 /* CurryTests.swift */,
 				OBJ_151 /* Delay.swift */,
 				OBJ_152 /* EitherTests.swift */,
-				OBJ_153 /* Functor.swift */,
+				OBJ_153 /* FunctorTests.swift */,
+				ACE387D42482CE7300092BA9 /* ProfunctorTests.swift */,
 				OBJ_154 /* IsoTests.swift */,
 				OBJ_155 /* LocalURLTests.swift */,
 				OBJ_156 /* MonadTests.swift */,
@@ -1579,6 +1585,7 @@
 				OBJ_328 /* SIOCodecBase64Tests.swift in Sources */,
 				OBJ_329 /* SIOCodecUTF8Tests.swift in Sources */,
 				OBJ_330 /* Sio+Tests.swift in Sources */,
+				ACE387D82482DB6900092BA9 /* SIOCodecDoubleTests.swift in Sources */,
 				OBJ_331 /* SioCodecDateTests.swift in Sources */,
 				OBJ_332 /* SioCodecIntTests.swift in Sources */,
 				OBJ_333 /* SioCodecIsoTests.swift in Sources */,
@@ -1672,7 +1679,8 @@
 				OBJ_460 /* CurryTests.swift in Sources */,
 				OBJ_461 /* Delay.swift in Sources */,
 				OBJ_462 /* EitherTests.swift in Sources */,
-				OBJ_463 /* Functor.swift in Sources */,
+				ACE387D62482CE7E00092BA9 /* ProfunctorTests.swift in Sources */,
+				OBJ_463 /* FunctorTests.swift in Sources */,
 				OBJ_464 /* IsoTests.swift in Sources */,
 				OBJ_465 /* LocalURLTests.swift in Sources */,
 				OBJ_466 /* MonadTests.swift in Sources */,
