@@ -35,6 +35,7 @@
 		AC67DC77244119C80031D378 /* CancellationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_144 /* CancellationTests.swift */; };
 		ACE387D62482CE7E00092BA9 /* ProfunctorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE387D42482CE7300092BA9 /* ProfunctorTests.swift */; };
 		ACE387D82482DB6900092BA9 /* SIOCodecDoubleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE387D72482DB6900092BA9 /* SIOCodecDoubleTests.swift */; };
+		ACE387DB2482E17A00092BA9 /* SIO+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE387D92482E15D00092BA9 /* SIO+Combine.swift */; };
 		ACEC0E9E2447BB6300F3CCAE /* ValueStoreUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEC0E9C2447BB5A00F3CCAE /* ValueStoreUtilsTests.swift */; };
 		OBJ_242 /* AbsoluteLocalURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AbsoluteLocalURL.swift */; };
 		OBJ_243 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Application.swift */; };
@@ -501,6 +502,7 @@
 		AC4B2F2F2477B51000B115E4 /* ValueStore+Contravariant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueStore+Contravariant.swift"; sourceTree = "<group>"; };
 		ACE387D42482CE7300092BA9 /* ProfunctorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfunctorTests.swift; sourceTree = "<group>"; };
 		ACE387D72482DB6900092BA9 /* SIOCodecDoubleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIOCodecDoubleTests.swift; sourceTree = "<group>"; };
+		ACE387D92482E15D00092BA9 /* SIO+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Combine.swift"; sourceTree = "<group>"; };
 		ACEC0E9C2447BB5A00F3CCAE /* ValueStoreUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueStoreUtilsTests.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		OBJ_100 /* ParametersEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersEncoding.swift; sourceTree = "<group>"; };
@@ -1169,6 +1171,7 @@
 				OBJ_65 /* SIO+Timeout.swift */,
 				OBJ_66 /* SIO+Typealias.swift */,
 				OBJ_67 /* SIO+Zip.swift */,
+				ACE387D92482E15D00092BA9 /* SIO+Combine.swift */,
 				OBJ_68 /* SIO.swift */,
 				OBJ_69 /* SIOError.swift */,
 				OBJ_70 /* Sio+Codable.swift */,
@@ -1558,6 +1561,7 @@
 				OBJ_302 /* SIOError.swift in Sources */,
 				OBJ_303 /* Sio+Codable.swift in Sources */,
 				OBJ_304 /* SyncValue.swift in Sources */,
+				ACE387DB2482E17A00092BA9 /* SIO+Combine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
