@@ -11,11 +11,15 @@ import Combine
 @available(iOS 13.0, *)
 @available(OSX 10.15, *)
 extension SIO where R == Void, E: Error {
-	var future: Future<A, E> {
+	var future: AnyPublisher<A, E> {
 		Future<A, E> { promise in
 			self
 				.result()
 				.run(promise)
 		}
+		.handleEvents(receiveCancel: {
+			self.cancel()
+		})
+		.eraseToAnyPublisher()
 	}
 }
