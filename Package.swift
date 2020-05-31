@@ -37,7 +37,7 @@ let package = Package(
 		)
 	],
 	dependencies: [
-	  .package(name: "SnapshotTesting", url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.7.0")
+	  .package(name: "SnapshotTesting", url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.7.2")
 	],
 	targets: [
 		// Targets are the basic building blocks of a package. A target can define a module or a test suite.

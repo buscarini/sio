@@ -76,7 +76,7 @@ class Retry: XCTestCase {
 	
 		let now = Date()
 	
-		task.retry(times: 3, delay: 1, queue: .main)
+		task.retry(times: 3, delay: 1, scheduler: QueueScheduler.main)
 			.fork({ error in
 				XCTFail()
 			},

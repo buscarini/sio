@@ -14,8 +14,8 @@ class RaceTests: XCTestCase {
 	func testRace() {
 		let finish = expectation(description: "finish")
 		
-		let left = UIO.of(1).scheduleOn(DispatchQueue.init(label: "left")).delay(0.5, DispatchQueue.main)
-		let right = UIO.of(2).scheduleOn(DispatchQueue.init(label: "right")).delay(5, DispatchQueue.main)
+		let left = UIO.of(1).scheduleOn(DispatchQueue.init(label: "left")).delay(0.5, QueueScheduler.main)
+		let right = UIO.of(2).scheduleOn(DispatchQueue.init(label: "right")).delay(5, QueueScheduler.main)
 		
 		race(left, right).run { value in
 			XCTAssert(value == 1)
@@ -29,8 +29,8 @@ class RaceTests: XCTestCase {
 	func testRaceOneFails() {
 		let finish = expectation(description: "finish")
 		
-		let left = SIO<Void, String, Int>.rejected("err").scheduleOn(DispatchQueue.init(label: "left")).delay(0.5, DispatchQueue.main)
-		let right = SIO<Void, String, Int>.of(2).scheduleOn(DispatchQueue.init(label: "right")).delay(1, DispatchQueue.main)
+		let left = SIO<Void, String, Int>.rejected("err").scheduleOn(DispatchQueue.init(label: "left")).delay(0.5, QueueScheduler.main)
+		let right = SIO<Void, String, Int>.of(2).scheduleOn(DispatchQueue.init(label: "right")).delay(1, QueueScheduler.main)
 		
 		race(left, right).fork({ e in
 			XCTFail()
@@ -45,8 +45,8 @@ class RaceTests: XCTestCase {
 	func testRaceCancel1() {
 		let finish = expectation(description: "finish")
 		
-		let left = UIO.of(1).scheduleOn(DispatchQueue.init(label: "left")).delay(0.5, DispatchQueue.main)
-		let right = UIO.of(2).scheduleOn(DispatchQueue.init(label: "right")).delay(2, DispatchQueue.main)
+		let left = UIO.of(1).scheduleOn(DispatchQueue.init(label: "left")).delay(0.5, QueueScheduler.main)
+		let right = UIO.of(2).scheduleOn(DispatchQueue.init(label: "right")).delay(2, QueueScheduler.main)
 		
 		race(left, right).run { value in
 			XCTAssert(value == 2)
@@ -62,8 +62,8 @@ class RaceTests: XCTestCase {
 	func testRaceCancel2() {
 		let finish = expectation(description: "finish")
 		
-		let left = UIO.of(1).scheduleOn(DispatchQueue.init(label: "left")).delay(2, DispatchQueue.main)
-		let right = UIO.of(2).scheduleOn(DispatchQueue.init(label: "right")).delay(0.5, DispatchQueue.main)
+		let left = UIO.of(1).scheduleOn(DispatchQueue.init(label: "left")).delay(2, QueueScheduler.main)
+		let right = UIO.of(2).scheduleOn(DispatchQueue.init(label: "right")).delay(0.5, QueueScheduler.main)
 		
 		race(left, right).run { value in
 			XCTAssert(value == 1)
@@ -79,8 +79,8 @@ class RaceTests: XCTestCase {
 	func testRaceCancel() {
 		let finish = expectation(description: "finish")
 		
-		let left = UIO.of(1).scheduleOn(DispatchQueue.init(label: "left")).delay(2, DispatchQueue.main)
-		let right = UIO.of(2).scheduleOn(DispatchQueue.init(label: "right")).delay(0.5, DispatchQueue.main)
+		let left = UIO.of(1).scheduleOn(DispatchQueue.init(label: "left")).delay(2, QueueScheduler.main)
+		let right = UIO.of(2).scheduleOn(DispatchQueue.init(label: "right")).delay(0.5, QueueScheduler.main)
 		
 		let raced = race(left, right)
 			.scheduleOn(.global())
