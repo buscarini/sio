@@ -11,6 +11,8 @@ import XCTest
 import Sio
 
 class ConcurrencyTests: XCTestCase {
+	let scheduler = TestScheduler()
+	
 	func testZip() {
 		let finish = expectation(description: "finish")
 		
@@ -186,9 +188,9 @@ class ConcurrencyTests: XCTestCase {
 	
 	func testCancelAfterFork() {
 		let finish = expectation(description: "finish")
+		finish.isInverted = true
 		
-		
-		let task = UIO.of(1).scheduleOn(DispatchQueue.global())
+		let task = UIO.of(1).scheduleOn(scheduler)
 		
 		task.fork(absurd, { _ in
 			XCTFail()
@@ -196,41 +198,38 @@ class ConcurrencyTests: XCTestCase {
 		
 		task.cancel()
 		
-		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-			finish.fulfill()
-		}
+		scheduler.advance(1)
 		
 		wait(for: [finish], timeout: 5)
 	}
 	
 	func testCancelZip() {
 		let finish = expectation(description: "finish")
+		finish.isInverted = true
 		
-		let left = UIO.of(1).scheduleOn(DispatchQueue.global())
-		let right = UIO.of(2).scheduleOn(DispatchQueue.global())
+		let left = UIO.of(1).scheduleOn(scheduler)
+		let right = UIO.of(2).scheduleOn(scheduler)
 		
 		let task = zip(left, right)
 			
-		task
-			.fork(absurd, { values in
-				print(values)
-				XCTFail()
-			})
+		task.fork(absurd, { values in
+			print(values)
+			XCTFail()
+		})
 		
 		task.cancel()
 		
-		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-			finish.fulfill()
-		}
+		scheduler.advance(1)
 		
-		wait(for: [finish], timeout: 5)
+		wait(for: [finish], timeout: 0.1)
 	}
 	
 	func testCancelZipLeft() {
 		let finish = expectation(description: "finish")
-		
-		let left = UIO.of(1).scheduleOn(DispatchQueue.global())
-		let right = UIO.of(2).scheduleOn(DispatchQueue.global())
+		finish.isInverted = true
+
+		let left = UIO.of(1).scheduleOn(scheduler)
+		let right = UIO.of(2).scheduleOn(scheduler)
 		
 		left.cancel()
 		
@@ -240,11 +239,9 @@ class ConcurrencyTests: XCTestCase {
 			XCTFail()
 		})
 		
-		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-			finish.fulfill()
-		}
+		scheduler.advance()
 		
-		wait(for: [finish], timeout: 5)
+		wait(for: [finish], timeout: 0.1)
 	}
 	
 	func testForEachPerformanceNoSIO() {

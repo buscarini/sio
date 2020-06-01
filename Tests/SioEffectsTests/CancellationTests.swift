@@ -12,6 +12,7 @@ import Sio
 import SioEffects
 
 class CancellationTests: XCTestCase {
+	let scheduler = TestScheduler()
 	
 	func testNoCancellation() {
 		var lastValue: Int = 0
@@ -129,8 +130,11 @@ class CancellationTests: XCTestCase {
 	
 	func testCancellationProfunctor() {
 		let finish = expectation(description: "finish")
+		finish.isInverted = true
 		
-		let task = UIO<Int>.of(1).scheduleOn(.global()).delay(0.1)
+		let task = UIO<Int>.of(1)
+			.scheduleOn(.global())
+			.delay(0.1, scheduler)
 		
 		task
 		.fork(absurd, { a in
@@ -139,11 +143,9 @@ class CancellationTests: XCTestCase {
 		
 		task.cancel()
 		
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-			finish.fulfill()
-		}
+		scheduler.advance(1)
 		
-		waitForExpectations(timeout: 2, handler: nil)
+		waitForExpectations(timeout: 0.1, handler: nil)
 	}
 	
 	func testCancellationOr() {

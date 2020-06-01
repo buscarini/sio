@@ -31,6 +31,14 @@ public extension SIO {
 	@inlinable
 	func delay(
 		_ time: Seconds<TimeInterval>,
+		_ queue: DispatchQueue
+	) -> SIO<R, E, A> {
+		delayed(time, QueueScheduler.init(queue: queue))(self)
+	}
+	
+	@inlinable
+	func delay(
+		_ time: Seconds<TimeInterval>,
 		_ scheduler: Scheduler = QueueScheduler(queue: .main)
 	) -> SIO<R, E, A> {
 		delayed(time, scheduler)(self)
