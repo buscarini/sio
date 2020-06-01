@@ -42,7 +42,7 @@ extension SIO {
 				result = impl.bimap(f, g)
 		}
 		
-		result.queue = self.queue
+		result.scheduler = self.scheduler
 		result.delay = self.delay
 		
 		return result

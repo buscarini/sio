@@ -17,13 +17,13 @@ public final class TestScheduler: Scheduler {
 	var items: [Item] = []
 	
 	public init() {
-		date = Date()
+		date = Date(timeIntervalSince1970: 0)
 	}
 	
 	public func run(
 		_ work: @escaping Scheduler.Work
 	) -> Void {
-		items.append(.init(date: Date(), work: work))
+		items.append(.init(date: date, work: work))
 	}
 	
 	public func runAfter(
@@ -31,7 +31,7 @@ public final class TestScheduler: Scheduler {
 		_ work: @escaping Scheduler.Work		
 	) -> Void {
 		items.append(.init(
-			date: Date().addingTimeInterval(delay.rawValue),
+			date: date.addingTimeInterval(delay.rawValue),
 			work: work)
 		)
 	}
@@ -42,7 +42,10 @@ public final class TestScheduler: Scheduler {
 		date.addTimeInterval(time)
 		
 		let (past, future) = items.partition { item in
-			item.date < self.date ? .left(item) : .right(item)
+			self.date.timeIntervalSince1970
+				- item.date.timeIntervalSince1970
+			 >= 0
+			 ? .left(item) : .right(item)
 		}
 		
 		past.forEach { $0.work() }

@@ -41,20 +41,20 @@ public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -
 				case let (.loaded(.right(ab)), .loaded(.right(a))):
 					resolved.result = .loaded(.right(true))
 					
-					let queue = r.queue ?? l.queue ?? DispatchQueue.main
-					queue.async {
+					let scheduler = r.scheduler ?? r.scheduler ?? AnyScheduler(QueueScheduler.main)
+					scheduler.run {
 						resolve(ab(a))
 					}
 				case let (.loaded(.left(e)), .loaded):
 					resolved.result = .loaded(.right(false))
-					let queue = l.queue ?? DispatchQueue.main
-					queue.async {
+					let scheduler = l.scheduler ?? AnyScheduler(QueueScheduler.main)
+					scheduler.run {
 						reject(e)
 					}
 				case let (.loaded, .loaded(.left(e))):
 					resolved.result = .loaded(.right(false))
-					let queue = r.queue ?? DispatchQueue.main
-					queue.async {
+					let scheduler = r.scheduler ?? AnyScheduler(QueueScheduler.main)
+					scheduler.run {
 						reject(e)
 					}
 					
