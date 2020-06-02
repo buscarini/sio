@@ -45,9 +45,12 @@ public extension SIO {
 	}
 	
 	@inlinable
-	func sleep(_ time: Seconds<TimeInterval>) -> SIO<R, E, A> {
+	func sleep(
+		_ time: Seconds<TimeInterval>,
+		_ scheduler: Scheduler = QueueScheduler(queue: .main)
+	) -> SIO<R, E, A> {
 		self.flatMap { value in
-			SIO<R, E, A>.of(value).delay(time)
+			SIO<R, E, A>.of(value).delay(time, scheduler)
 		}
 	}
 }

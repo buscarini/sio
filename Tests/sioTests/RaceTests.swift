@@ -34,11 +34,10 @@ class RaceTests: XCTestCase {
 	func testRaceOneFails() {
 		let finish = expectation(description: "finish")
 		
-		let left = SIO<Void, String, Int>.rejected("err")
-			.scheduleOn(DispatchQueue.init(label: "left"))
+		let left = SIO<Void, String, Int>
+			.rejected("err")
 			.delay(0.5, scheduler)
 		let right = SIO<Void, String, Int>.of(2)
-			.scheduleOn(DispatchQueue.init(label: "right"))
 			.delay(1, scheduler)
 		
 		race(left, right).fork({ e in
