@@ -41,6 +41,10 @@ public extension AbsoluteLocalURL where TargetType == IsFolder {
 		
 		rawValue = url.resolvingSymlinksInPath()
 	}
+	
+	func append<T: PathTarget>(_ path: RelativeLocalURL<T>) -> AbsoluteLocalURL<T> {
+		join(self, path)
+	}
 }
 
 public extension AbsoluteLocalURL {

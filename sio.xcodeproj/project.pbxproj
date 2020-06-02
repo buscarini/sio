@@ -26,6 +26,10 @@
 
 /* Begin PBXBuildFile section */
 		AC7D047C2484E56400A9552A /* SchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D047A2484E55F00A9552A /* SchedulerTests.swift */; };
+		AC7D04FA2486B70900A9552A /* ValueStoreFSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D04F92486B70900A9552A /* ValueStoreFSTests.swift */; };
+		AC7D04FC2486B75500A9552A /* PathUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D04FB2486B75500A9552A /* PathUtils.swift */; };
+		AC7D04FE2486F74100A9552A /* FSUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D04FD2486F74100A9552A /* FSUtilsTests.swift */; };
+		AC7D05012486F88F00A9552A /* Resource.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC7D04FF2486F7A400A9552A /* Resource.txt */; };
 		OBJ_258 /* AbsoluteLocalURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AbsoluteLocalURL.swift */; };
 		OBJ_259 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Application.swift */; };
 		OBJ_260 /* Array+Partition.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Array+Partition.swift */; };
@@ -497,8 +501,25 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		AC7D05002486F88600A9552A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				AC7D05012486F88F00A9552A /* Resource.txt in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		AC7D047A2484E55F00A9552A /* SchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerTests.swift; sourceTree = "<group>"; };
+		AC7D04F92486B70900A9552A /* ValueStoreFSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueStoreFSTests.swift; sourceTree = "<group>"; };
+		AC7D04FB2486B75500A9552A /* PathUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathUtils.swift; sourceTree = "<group>"; };
+		AC7D04FD2486F74100A9552A /* FSUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSUtilsTests.swift; sourceTree = "<group>"; };
+		AC7D04FF2486F7A400A9552A /* Resource.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Resource.txt; sourceTree = "<group>"; };
 		OBJ_10 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		OBJ_101 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		OBJ_102 /* HTTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPResponse.swift; sourceTree = "<group>"; };
@@ -920,6 +941,9 @@
 				OBJ_145 /* Sio+Tests.swift */,
 				OBJ_146 /* SioEffectsTests.swift */,
 				OBJ_147 /* SioRandomTests.swift */,
+				AC7D04F92486B70900A9552A /* ValueStoreFSTests.swift */,
+				AC7D04FD2486F74100A9552A /* FSUtilsTests.swift */,
+				AC7D04FF2486F7A400A9552A /* Resource.txt */,
 			);
 			name = SioEffectsTests;
 			path = Tests/SioEffectsTests;
@@ -1225,6 +1249,7 @@
 				OBJ_90 /* AudioPlayer.swift */,
 				OBJ_91 /* AudioResource.swift */,
 				OBJ_92 /* FS+Utils.swift */,
+				AC7D04FB2486B75500A9552A /* PathUtils.swift */,
 				OBJ_93 /* LCRNG.swift */,
 				OBJ_94 /* Player.swift */,
 				OBJ_95 /* Random.swift */,
@@ -1316,6 +1341,7 @@
 			buildPhases = (
 				OBJ_394 /* Sources */,
 				OBJ_400 /* Frameworks */,
+				AC7D05002486F88600A9552A /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1644,6 +1670,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				AC7D04FC2486B75500A9552A /* PathUtils.swift in Sources */,
+				AC7D04FA2486B70900A9552A /* ValueStoreFSTests.swift in Sources */,
+				AC7D04FE2486F74100A9552A /* FSUtilsTests.swift in Sources */,
 				OBJ_395 /* CancellationTests.swift in Sources */,
 				OBJ_396 /* DateTests.swift in Sources */,
 				OBJ_397 /* Sio+Tests.swift in Sources */,
