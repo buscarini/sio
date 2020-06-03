@@ -9,6 +9,8 @@ import Foundation
 import Sio
 
 public enum PathUtils {
+	
+	@available(OSX 10.12, *)
 	static var tmpPath: FolderURL {
 		FolderURL(url: FileManager.default.temporaryDirectory)!
 	}

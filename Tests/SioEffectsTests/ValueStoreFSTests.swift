@@ -14,6 +14,8 @@ import SioValueStore
 import SioCodec
 
 class ValueStoreFSTests: XCTestCase {
+	
+	@available(OSX 10.12, *)
 	func testData() {
 		let finish = expectation(description: "finish")
 		
