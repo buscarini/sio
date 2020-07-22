@@ -15,19 +15,25 @@ public extension SIO {
 	}
 	
 	@inlinable
-	func retry(times: Int, modify: @escaping (SIO<R, E, A>) -> SIO<R, E, A>) -> SIO<R, E, A> {
+	func retry(
+		times: Int,
+		modify: @escaping (SIO<R, E, A>) -> SIO<R, E, A>
+	) -> SIO<R, E, A> {
 		guard times > 0 else {
 			return self
 		}
 		
 		return self <|> modify(self.retry(times: times - 1, modify: modify))
-	
 	}
 	
 	@inlinable
-	func retry(times: Int, delay: TimeInterval, queue: DispatchQueue) -> SIO<R, E, A> {
+	func retry(
+		times: Int,
+		delay: Seconds<TimeInterval>,
+		scheduler: Scheduler
+	) -> SIO<R, E, A> {
 		self.retry(times: times, modify: { io in
-			io.delay(delay, queue)
+			io.delay(delay, scheduler)
 		})
 	}
 }

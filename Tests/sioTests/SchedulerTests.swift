@@ -2,7 +2,7 @@
 //  SchedulerTests.swift
 //  Sio
 //
-//  Created by José Manuel Sánchez Peñarroja on 05/12/2019.
+//  Created by José Manuel Sánchez Peñarroja on 01/06/2020.
 //
 
 import Foundation
@@ -10,120 +10,56 @@ import XCTest
 import Sio
 
 class SchedulerTests: XCTestCase {
-	func testScheduleOn() {
-		let finish = expectation(description: "finish tasks")
-
-		DispatchQueue.global().async {
-			SIO<Void, String, String>.init({ (_, _, resolve) in
-				XCTAssert(Thread.isMainThread)
-				resolve("ok")
-			})
-			.scheduleOn(.main)
-			.fork({ _ in
-				XCTFail()
-			}, { value in
-				XCTAssert(value == "ok")
-				finish.fulfill()
-			})
+	func testNotAdvance() {
+		let inverted = expectation(description: "Don't fulfill")
+		inverted.isInverted = true
+		
+		let scheduler = TestScheduler()
+		scheduler.run {
+			inverted.fulfill()
 		}
 		
-		waitForExpectations(timeout: 1, handler: nil)
+		waitForExpectations(timeout: 0.1, handler: nil)
 	}
 	
-	func testForkOnGlobal() {
-		let finish = expectation(description: "finish tasks")
-
-		SIO<Void, String, String>.of("ok")
-		.forkOn(.global())
-		.fork({ _ in
-			XCTFail()
-		}, { value in
-			XCTAssert(Thread.isMainThread == false)
-			XCTAssert(value == "ok")
-			finish.fulfill()
-		})
+	func testAdvance() {
+		let finish = expectation(description: "Fulfill")
 		
-		waitForExpectations(timeout: 1, handler: nil)
+		let scheduler = TestScheduler()
+		scheduler.run {
+			finish.fulfill()
+		}
+		scheduler.advance()
+		
+		waitForExpectations(timeout: 0.1, handler: nil)
 	}
 	
-	func testForkGlobal() {
-		let finish = expectation(description: "finish tasks")
+	func testAfterNotYet() {
+		let inverted = expectation(description: "Don't fulfill")
+		inverted.isInverted = true
 
-		SIO<Void, String, String>.of("ok")
-		.fork(in: .global(), { _ in
-			XCTFail()
-		}, { value in
-			XCTAssert(Thread.isMainThread == false)
-			XCTAssert(value == "ok")
-			finish.fulfill()
-		})
+		let scheduler = TestScheduler()
+		scheduler.runAfter(after: 3) {
+			inverted.fulfill()
+		}
+		scheduler.advance(1)
 		
-		waitForExpectations(timeout: 1, handler: nil)
+		waitForExpectations(timeout: 0.1, handler: nil)
 	}
 	
-	func testForkOnMain() {
-		let finish = expectation(description: "finish tasks")
+	func testAfterRun() {
+		let finish = expectation(description: "Fulfill")
 
-		SIO<Void, String, String>.of("ok")
-		.scheduleOn(.global())
-		.forkOn(.main)
-		.fork({ _ in
-			XCTFail()
-		}, { value in
-			XCTAssert(Thread.isMainThread)
-			XCTAssert(value == "ok")
+		let scheduler = TestScheduler()
+		scheduler.runAfter(after: 3) {
 			finish.fulfill()
-		})
+		}
+		scheduler.advance(4)
 		
-		waitForExpectations(timeout: 1, handler: nil)
-	}
-	
-	func testForkOnMainError() {
-		let finish = expectation(description: "finish tasks")
-
-		SIO<Void, String, String>.rejected("ok")
-		.scheduleOn(.global())
-		.forkOn(.main)
-		.fork({ value in
-			XCTAssert(Thread.isMainThread)
-			XCTAssert(value == "ok")
-			finish.fulfill()
-		}, { _ in
-			XCTFail()
-		})
+		 // Check that the work is not done more than once
+		scheduler.advance(5)
+		scheduler.advance(6)
 		
-		waitForExpectations(timeout: 1, handler: nil)
-	}
-	
-	func testForkMain() {
-		let finish = expectation(description: "finish tasks")
-
-		SIO<Void, String, String>.of("ok")
-		.scheduleOn(.global())
-		.forkMain({ _ in
-			XCTFail()
-		}, { value in
-			XCTAssert(Thread.isMainThread)
-			XCTAssert(value == "ok")
-			finish.fulfill()
-		})
-		
-		waitForExpectations(timeout: 1, handler: nil)
-	}
-	
-	func testForkMainError() {
-		let finish = expectation(description: "finish tasks")
-
-		SIO<Void, String, String>.rejected("ok")
-		.scheduleOn(.global())
-		.forkMain({ value in
-			XCTAssert(Thread.isMainThread)
-			XCTAssert(value == "ok")
-			finish.fulfill()
-		}, { _ in
-			XCTFail()	
-		})
-		
-		waitForExpectations(timeout: 1, handler: nil)
+		waitForExpectations(timeout: 0.1, handler: nil)
 	}
 }

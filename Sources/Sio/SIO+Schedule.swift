@@ -11,8 +11,13 @@ import Foundation
 public extension SIO {
 	@inlinable
 	func scheduleOn(_ queue: DispatchQueue) -> SIO<R, E, A> {
+		scheduleOn(QueueScheduler(queue: queue))
+	}
+	
+	@inlinable
+	func scheduleOn(_ scheduler: Scheduler) -> SIO<R, E, A> {
 		let copy = self
-		copy.queue = queue
+		copy.scheduler = AnyScheduler(scheduler)
 		return copy
 	}
 	

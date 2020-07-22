@@ -10,6 +10,8 @@ import XCTest
 import Sio
 
 class MonadTests: XCTestCase {
+	let scheduler = TestScheduler()
+	
 	func exampleError() -> Error {
 		return NSError(domain: "tests", code: 1, userInfo: nil)
 	}
@@ -78,5 +80,29 @@ class MonadTests: XCTestCase {
 		}
 		
 		self.waitForExpectations(timeout: 1.0, handler: nil)
+	}
+	
+	func testForever() {
+		let repeated = self.expectation(description: "repeated")
+		repeated.expectedFulfillmentCount = 3
+		
+		let task = IO.effectMain {
+			repeated.fulfill()
+		}
+		.forever()
+		.delay(1, scheduler)
+			
+		task.runForget()
+		
+		scheduler.advance(1)
+		scheduler.advance(1)
+		scheduler.advance(1)
+		
+		task.cancel()
+		
+		repeated.isInverted = true
+		scheduler.advance(1)
+		
+		self.waitForExpectations(timeout: 1, handler: nil)
 	}
 }

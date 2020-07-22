@@ -36,7 +36,7 @@ public extension SIO {
 				result = impl.biFlatMap(f, g)
 		}
 		
-		result.queue = self.queue
+		result.scheduler = self.scheduler
 		result.delay = self.delay
 		
 		return result

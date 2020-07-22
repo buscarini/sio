@@ -38,6 +38,7 @@ public extension SIO where A: Equatable, R == Void {
 	func assert(
 		_ value: A,
 		timeout: TimeInterval = 0.01,
+		prepare: @escaping () -> Void = {},
 		file: StaticString = #file,
 		line: UInt = #line
 	) {
@@ -49,6 +50,8 @@ public extension SIO where A: Equatable, R == Void {
 			XCTAssertEqual(result, value, file: file, line: line)
 			finish.fulfill()
 		}
+		
+		prepare()
 		
 		if XCTWaiter.wait(for: [finish], timeout: timeout) != .completed {
 			XCTFail("Effect didn't finish before timeout", file: file, line: line)

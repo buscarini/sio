@@ -17,8 +17,8 @@ public final class SIO<R, E, A> {
 	public typealias Sync = (R) -> Either<E, A>?
 	public typealias Async = (R, @escaping ErrorCallback, @escaping ResultCallback) -> ()
 	
-	public var queue: DispatchQueue?
-	public var delay: TimeInterval = 0
+	public var scheduler: AnyScheduler?
+	public var delay: Seconds<TimeInterval> = 0
 	public var onCancel: EmptyCallback?
 	
 	enum Implementation {
@@ -158,12 +158,12 @@ public final class SIO<R, E, A> {
 			}
 		}
 		
-		guard let queue = self.queue else {
+		guard let scheduler = self.scheduler else {
 			run()
 			return
 		}
 		
-		queue.asyncAfter(deadline: .now() + self.delay, execute: run)
+		scheduler.runAfter(after: self.delay, run)
 	}
 	
 	public func cancel() {

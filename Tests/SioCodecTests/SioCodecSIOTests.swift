@@ -38,14 +38,14 @@ class SIOCodecSIOTests: XCTestCase {
 	func testDecode() {
 		IO<Void, String>
 			.of("QmxhaA==")
-			.encode(Codec.base64)
+			.decode(Codec.base64)
 			.assert("Blah")
 	}
 	
 	func testEncode() {
 		IO<Void, String>
 			.of("Blah")
-			.decode(Codec.base64)
+			.encode(Codec.base64)
 			.assert("QmxhaA==")
 	}
 }

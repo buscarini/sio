@@ -48,7 +48,7 @@ class ProfunctorTests: XCTestCase {
 			finish.fulfill()
 		}
 		
-		waitForExpectations(timeout: 1, handler: nil)
+		waitForExpectations(timeout: 0.1, handler: nil)
 	}
 	
 }

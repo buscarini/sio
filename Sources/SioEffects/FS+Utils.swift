@@ -9,6 +9,7 @@ import Foundation
 import Sio
 
 public extension FS {
+	@inlinable
 	func resource(
 		_ bundle: Bundle,
 		name: String,
@@ -26,6 +27,7 @@ public extension FS {
 		}
 	}
 	
+	@inlinable
 	func read(
 		_ bundle: Bundle,
 		name: String,
@@ -44,6 +46,7 @@ public extension FS {
 			)
 	}
 	
+	@inlinable
 	func readStr(
 		_ bundle: Bundle,
 		name: String,

@@ -10,7 +10,7 @@ import Sio
 import SioCodec
 import SioValueStore
 
-public extension ValueStore {
+public extension ValueStore where A == Data, B == Data, E == Error, R == FS {
 	static func fileData(_ url: FileURL) -> ValueStoreA<FS, Error, Data> {
 		ValueStoreA<FS, Error, Data>.init(
 			load: environment(FS.self)
@@ -36,8 +36,8 @@ public extension ValueStore {
 public extension ValueStoreA where A: Codable {
 	static func jsonFile(
 		_ url: FileURL,
-		decoder: JSONDecoder,
-		encoder: JSONEncoder
+		decoder: JSONDecoder = JSONDecoder(),
+		encoder: JSONEncoder = JSONEncoder()
 	) -> ValueStoreA<FS, Error, A> {
 		ValueStoreA<FS, Error, Data>.fileData(url)
 			>>> Codec.jsonCodec(decoder, encoder)

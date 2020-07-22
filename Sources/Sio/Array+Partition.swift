@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 public extension Array {
 	func partition<B, C>(_ f: (Element) -> Either<B, C>) -> ([B], [C]) {
 		self.reduce(([],[])) { acc, item in

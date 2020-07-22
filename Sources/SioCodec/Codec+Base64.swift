@@ -9,8 +9,8 @@ import Foundation
 import Sio
 
 public extension Codec where E == Void, A == String, B == String {
-	static var base64: Codec<Void, String, String> {
-		return Codec<Void, String, String>(to: { decoded in
+	static var base64: Codec<E, A, B> {
+		Codec(to: { decoded in
 			Either.from(decoded.data(using: .utf8), ())
 				.map { $0.base64EncodedString() }
 		}, from: { encoded in
