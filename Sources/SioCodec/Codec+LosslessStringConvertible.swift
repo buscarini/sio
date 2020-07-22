@@ -8,12 +8,12 @@
 import Foundation
 import Sio
 
-public extension Codec where E == Void, A == LosslessStringConvertible, B: String {
+public extension Codec where E == Void, A: LosslessStringConvertible, B == String {
 	static var stringConvertible: Codec<Void, A, B> {
-		Codec<Void, A, B>(to: { string in
-			.right(b.description)
-		}, from: { b in
-			Either.from(B(string), ())
+		Codec<Void, A, B>(to: { a in
+			.right(a.description)
+		}, from: { string in
+			Either.from(A(string), ())
 		})
 	}
 }
