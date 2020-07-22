@@ -25,11 +25,13 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		AC336F8E2499EF100026D9A8 /* Codec+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC336F8C2499EEC40026D9A8 /* Codec+URL.swift */; };
 		AC7D047C2484E56400A9552A /* SchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D047A2484E55F00A9552A /* SchedulerTests.swift */; };
 		AC7D04FA2486B70900A9552A /* ValueStoreFSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D04F92486B70900A9552A /* ValueStoreFSTests.swift */; };
 		AC7D04FC2486B75500A9552A /* PathUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D04FB2486B75500A9552A /* PathUtils.swift */; };
 		AC7D04FE2486F74100A9552A /* FSUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D04FD2486F74100A9552A /* FSUtilsTests.swift */; };
 		AC7D05012486F88F00A9552A /* Resource.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC7D04FF2486F7A400A9552A /* Resource.txt */; };
+		ACB122BA24C811E900044388 /* Codec+Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB122B924C811E900044388 /* Codec+Bool.swift */; };
 		OBJ_258 /* AbsoluteLocalURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AbsoluteLocalURL.swift */; };
 		OBJ_259 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Application.swift */; };
 		OBJ_260 /* Array+Partition.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Array+Partition.swift */; };
@@ -515,11 +517,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AC336F8C2499EEC40026D9A8 /* Codec+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codec+URL.swift"; sourceTree = "<group>"; };
 		AC7D047A2484E55F00A9552A /* SchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerTests.swift; sourceTree = "<group>"; };
 		AC7D04F92486B70900A9552A /* ValueStoreFSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueStoreFSTests.swift; sourceTree = "<group>"; };
 		AC7D04FB2486B75500A9552A /* PathUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathUtils.swift; sourceTree = "<group>"; };
 		AC7D04FD2486F74100A9552A /* FSUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSUtilsTests.swift; sourceTree = "<group>"; };
 		AC7D04FF2486F7A400A9552A /* Resource.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Resource.txt; sourceTree = "<group>"; };
+		ACB122B924C811E900044388 /* Codec+Bool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codec+Bool.swift"; sourceTree = "<group>"; };
 		OBJ_10 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		OBJ_101 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		OBJ_102 /* HTTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPResponse.swift; sourceTree = "<group>"; };
@@ -1114,7 +1118,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -1133,7 +1137,6 @@
 				OBJ_251 /* SioEffects.podspec */,
 				OBJ_252 /* Sio.xctestplan */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -1153,11 +1156,13 @@
 			children = (
 				OBJ_78 /* Codec+Base64.swift */,
 				OBJ_79 /* Codec+Data.swift */,
+				AC336F8C2499EEC40026D9A8 /* Codec+URL.swift */,
 				OBJ_80 /* Codec+Dates.swift */,
 				OBJ_81 /* Codec+Iso.swift */,
 				OBJ_82 /* Codec+JSON.swift */,
 				OBJ_83 /* Codec+LosslessStringConvertible.swift */,
 				OBJ_84 /* Codec+Numbers.swift */,
+				ACB122B924C811E900044388 /* Codec+Bool.swift */,
 				OBJ_85 /* Codec.swift */,
 				OBJ_86 /* CodecError.swift */,
 				OBJ_87 /* SIO+Codec.swift */,
@@ -1514,7 +1519,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_231 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1617,11 +1622,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				ACB122BA24C811E900044388 /* Codec+Bool.swift in Sources */,
 				OBJ_332 /* Codec+Base64.swift in Sources */,
 				OBJ_333 /* Codec+Data.swift in Sources */,
 				OBJ_334 /* Codec+Dates.swift in Sources */,
 				OBJ_335 /* Codec+Iso.swift in Sources */,
 				OBJ_336 /* Codec+JSON.swift in Sources */,
+				AC336F8E2499EF100026D9A8 /* Codec+URL.swift in Sources */,
 				OBJ_337 /* Codec+LosslessStringConvertible.swift in Sources */,
 				OBJ_338 /* Codec+Numbers.swift in Sources */,
 				OBJ_339 /* Codec.swift in Sources */,

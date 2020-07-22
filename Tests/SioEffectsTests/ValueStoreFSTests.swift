@@ -25,7 +25,7 @@ class ValueStoreFSTests: XCTestCase {
 		
 		let fs = FS()
 		
-		let data = Codec.utf8.from("hello").right!
+		let data = Codec.utf8.to("hello").right!
 		
 		let store = ValueStore.fileData(fileURL)
 		store.save(data)
@@ -37,7 +37,7 @@ class ValueStoreFSTests: XCTestCase {
 				FileManager.default.fileExists(atPath: fileURL.rawValue.path)
 			)
 			
-			XCTAssertEqual(Codec.utf8.to(data).right, "hello")
+			XCTAssertEqual(Codec.utf8.from(data).right, "hello")
 
 			return store.remove
 		}

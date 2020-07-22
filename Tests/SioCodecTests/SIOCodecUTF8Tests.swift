@@ -12,11 +12,11 @@ import SioCodec
 
 class SIOCodecUTF8Tests: XCTestCase {
 	func testUTF8() {
-		let codec = Codec<Void, Data, String>.utf8
+		let codec = Codec<Void, String, Data>.utf8
 		
 		let origin = "Blah"
 		
-		let result = codec.from(origin).flatMap(codec.to)
+		let result = codec.to(origin).flatMap(codec.from)
 		
 		XCTAssert(result.right == origin)
 	}

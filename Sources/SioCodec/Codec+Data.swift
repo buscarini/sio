@@ -8,12 +8,12 @@
 import Foundation
 import Sio
 
-public extension Codec where E == Void, A == Data, B == String {
-	static var utf8: Codec<Void, Data, String> {
-		return Codec<Void, Data, String>(to: { data in
-			Either.from(String.init(data: data, encoding: .utf8), ())
-		}, from: { string in
+public extension Codec where E == Void, A == String, B == Data {
+	static var utf8: Codec<E, A, B> {
+		Codec(to: { string in
 			Either.from(string.data(using: .utf8), ())
+		}, from: { data in
+			Either.from(String.init(data: data, encoding: .utf8), ())
 		})
 	}
 }
