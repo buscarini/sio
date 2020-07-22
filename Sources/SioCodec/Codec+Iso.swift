@@ -19,35 +19,59 @@ public extension Codec where E == Never {
 }
 	
 public extension Codec {
-	static func compose<C>(_ left: Codec<E, A, B>, _ right: Iso<B, C>) -> Codec<E, A, C> {
-		return Codec<E, A, C>.init(to: { a in
+	@inlinable
+	static func compose<C>(
+		_ left: Codec<E, A, B>,
+		_ right: Iso<B, C>
+	) -> Codec<E, A, C> {
+		Codec<E, A, C>.init(to: { a in
 			left.to(a).map(right.to)
 		}, from: { c in
 			left.from(right.from(c))
 		})
 	}
 	
-	static func compose<C>(_ left: Iso<A, B>, _ right: Codec<E, B, C>) -> Codec<E, A, C> {
-		return Codec<E, A, C>.init(to: { a in
+	@inlinable
+	static func compose<C>(
+		_ left: Iso<A, B>,
+		_ right: Codec<E, B, C>
+	) -> Codec<E, A, C> {
+		Codec<E, A, C>.init(to: { a in
 			right.to(left.to(a))
 		}, from: { c in
 			right.from(c).map(left.from)
 		})
 	}
 	
-	static func >>> <C>(_ left: Codec<E, A, B>, _ right: Iso<B, C>) -> Codec<E, A, C> {
-		return compose(left, right)
+	@inlinable
+	static func >>> <C>(
+		_ left: Codec<E, A, B>,
+		_ right: Iso<B, C>
+	) -> Codec<E, A, C> {
+		compose(left, right)
 	}
 	
-	static func >>> <C>(_ left: Iso<A, B>, _ right: Codec<E, B, C>) -> Codec<E, A, C> {
-		return compose(left, right)
+	@inlinable
+	static func >>> <C>(
+		_ left: Iso<A, B>,
+		_ right: Codec<E, B, C>
+	) -> Codec<E, A, C> {
+		compose(left, right)
 	}
 	
-	static func <<< <C>(_ left: Iso<B, C>, _ right: Codec<E, A, B>) -> Codec<E, A, C> {
-		return compose(right, left)
+	@inlinable
+	static func <<< <C>(
+		_ left: Iso<B, C>,
+		_ right: Codec<E, A, B>
+	) -> Codec<E, A, C> {
+		compose(right, left)
 	}
 	
-	static func <<< <C>(_ left: Codec<E, B, C>, _ right: Iso<A, B>) -> Codec<E, A, C> {
-		return compose(right, left)
+	@inlinable
+	static func <<< <C>(
+		_ left: Codec<E, B, C>,
+		_ right: Iso<A, B>
+	) -> Codec<E, A, C> {
+		compose(right, left)
 	}
 }

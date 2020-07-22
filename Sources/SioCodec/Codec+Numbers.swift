@@ -8,20 +8,20 @@
 import Foundation
 import Sio
 
-public extension Codec where E == Void, A == String, B == Int {
-	static var int: Codec<Void, String, Int> {
+public extension Codec where E == Void, A == Int, B == String {
+	static var int: Codec<Void, Int, String> {
 		Codec.stringConvertible
 	}
 }
 
-public extension Codec where E == Void, A == String, B == Float {
-	static var float: Codec<Void, String, Float> {
+public extension Codec where E == Void, A == Float, B == String {
+	static var float: Codec<Void, Float, String> {
 		Codec.stringConvertible
 	}
 }
 
-public extension Codec where E == Void, A == String, B == Double {
-	static var double: Codec<Void, String, Double> {
+public extension Codec where E == Void, A == Double, B == String {
+	static var double: Codec<Void, Double, String> {
 		Codec.stringConvertible
 	}
 }
