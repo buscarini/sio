@@ -21,6 +21,7 @@ public final class SIO<R, E, A> {
 	public var delay: Seconds<TimeInterval> = 0
 	public var onCancel: EmptyCallback?
 	
+	@usableFromInline
 	enum Implementation {
 		case success(A)
 		case fail(E)
@@ -38,11 +39,13 @@ public final class SIO<R, E, A> {
 		}
 	}
 	
+	@usableFromInline
 	var implementation: Implementation
 	
 	public var running = false
 	
 	//	var _fork: Computation
+	@usableFromInline
 	let _cancel: EmptyCallback?
 	
 	private var _cancelled = false
@@ -63,38 +66,49 @@ public final class SIO<R, E, A> {
 		}
 	}
 	
+	@inlinable
 	public init(sync: @escaping Sync) {
 		self.implementation = .sync(sync)
 		self._cancel = nil
 	}
 	
+	@inlinable
 	public static func sync(_ sync: @escaping Sync) -> SIO<R, E, A> {
 		.init(sync: sync)
 	}
 	
+	@inlinable
 	public static func syncMain(_ sync: @escaping Sync) -> SIO<R, E, A> {
 		SIO.init(sync: sync)
 			.scheduleOn(.main)
 	}
 	
+	@inlinable
 	public init(_ async: @escaping Async) {
 		self.implementation = .async(async)
 		self._cancel = nil
 	}
 	
+	@inlinable
 	public init(_ async: @escaping Async, cancel: EmptyCallback?) {
 		self.implementation = .async(async)
 		
 		self._cancel = cancel
 	}
 	
+	@usableFromInline
 	init(_ implementation: Implementation, cancel: EmptyCallback?) {
 		self.implementation = implementation
 		
 		self._cancel = cancel
 	}
 	
-	public func fork(_ requirement: R, _ reject: @escaping ErrorCallback, _ resolve: @escaping ResultCallback) {
+	@inlinable
+	public func fork(
+		_ requirement: R,
+		_ reject: @escaping ErrorCallback,
+		_ resolve: @escaping ResultCallback
+	) {
 		let run = {
 			guard self.cancelled == false else {
 				return
@@ -183,7 +197,9 @@ protocol SIOImpl {
 	func cancel()
 }
 
+@usableFromInline
 class BiFlatMapBase<R, E, A> {
+	@usableFromInline
 	func fork(_ r: R, _ reject: @escaping (E) -> Void, _ resolve: @escaping (A) -> Void) {
 		fatalError()
 	}
@@ -192,6 +208,7 @@ class BiFlatMapBase<R, E, A> {
 	//		fatalError()
 	//	}
 	
+	@usableFromInline
 	func bimap<F, B>(
 		_ f: @escaping (E) -> F,
 		_ g: @escaping (A) -> B
@@ -199,6 +216,7 @@ class BiFlatMapBase<R, E, A> {
 		fatalError()
 	}
 	
+	@usableFromInline
 	func biFlatMap<F, B>(
 		_ f: @escaping (E) -> SIO<R, F, B>,
 		_ g: @escaping (A) -> SIO<R, F, B>
@@ -206,6 +224,7 @@ class BiFlatMapBase<R, E, A> {
 		fatalError()
 	}
 	
+	@usableFromInline
 	func cancel() {
 	}
 }
@@ -271,6 +290,7 @@ final class BiFlatMap<R, E0, E, A0, A>: BiFlatMapBase<R, E, A> {
 		)
 	}
 	
+	@inlinable
 	override func cancel() {
 		self.cancelled = true
 		self.sio.cancel()

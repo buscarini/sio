@@ -9,28 +9,33 @@
 import Foundation
 
 public extension SIO {
+	@inlinable
 	static func of(_ value: A) -> SIO {
-		return SIO(.success(value), cancel: nil)
+		SIO(.success(value), cancel: nil)
 	}
 	
+	@inlinable
 	static func lazy(_ value: @autoclosure @escaping () -> A) -> SIO {
-		return SIO({ (_, _, resolve) in
-			return resolve(value())
+		SIO({ (_, _, resolve) in
+			resolve(value())
 		})
 	}
 
+	@inlinable
 	static func rejected(_ error: E) -> SIO {
-		return SIO(.fail(error), cancel: nil)
+		SIO(.fail(error), cancel: nil)
 	}
 	
+	@inlinable
 	static func rejectedLazy(_ error: @autoclosure @escaping () -> E) -> SIO {
-		return SIO({ (_, reject, _) in
-			return reject(error())
+		SIO({ (_, reject, _) in
+			reject(error())
 		})
 	}
 	
+	@inlinable
 	static func fromFunc(_ f: @escaping (R) -> A) -> SIO<R, Never, A> {
-		return environment().map(f)
+		environment().map(f)
 	}
 }
 
@@ -60,6 +65,7 @@ public extension SIO {
 		.init { (_, _, _) in }
 	}
 	
+	@inlinable
 	var never: SIO<R, Never, Never> {
 		self.biFlatMap(.never)
 	}

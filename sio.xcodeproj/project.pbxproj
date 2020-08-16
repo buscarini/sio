@@ -26,6 +26,7 @@
 
 /* Begin PBXBuildFile section */
 		AC336F8E2499EF100026D9A8 /* Codec+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC336F8C2499EEC40026D9A8 /* Codec+URL.swift */; };
+		AC45056424E93EA2004E4BE2 /* StackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC45056324E93EA2004E4BE2 /* StackTests.swift */; };
 		AC7D047C2484E56400A9552A /* SchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D047A2484E55F00A9552A /* SchedulerTests.swift */; };
 		AC7D04FA2486B70900A9552A /* ValueStoreFSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D04F92486B70900A9552A /* ValueStoreFSTests.swift */; };
 		AC7D04FC2486B75500A9552A /* PathUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D04FB2486B75500A9552A /* PathUtils.swift */; };
@@ -518,6 +519,7 @@
 
 /* Begin PBXFileReference section */
 		AC336F8C2499EEC40026D9A8 /* Codec+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codec+URL.swift"; sourceTree = "<group>"; };
+		AC45056324E93EA2004E4BE2 /* StackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackTests.swift; sourceTree = "<group>"; };
 		AC7D047A2484E55F00A9552A /* SchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerTests.swift; sourceTree = "<group>"; };
 		AC7D04F92486B70900A9552A /* ValueStoreFSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueStoreFSTests.swift; sourceTree = "<group>"; };
 		AC7D04FB2486B75500A9552A /* PathUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathUtils.swift; sourceTree = "<group>"; };
@@ -987,6 +989,7 @@
 				OBJ_170 /* PreludeTests.swift */,
 				OBJ_171 /* ProfunctorTests.swift */,
 				OBJ_172 /* RaceTests.swift */,
+				AC45056324E93EA2004E4BE2 /* StackTests.swift */,
 				OBJ_173 /* RequirementTests.swift */,
 				OBJ_174 /* ResultTests.swift */,
 				OBJ_175 /* Retry.swift */,
@@ -1746,6 +1749,7 @@
 				AC7D047C2484E56400A9552A /* SchedulerTests.swift in Sources */,
 				OBJ_492 /* NoSyncValueTests.swift in Sources */,
 				OBJ_493 /* OptionalTests.swift in Sources */,
+				AC45056424E93EA2004E4BE2 /* StackTests.swift in Sources */,
 				OBJ_494 /* PreludeTests.swift in Sources */,
 				OBJ_495 /* ProfunctorTests.swift in Sources */,
 				OBJ_496 /* RaceTests.swift in Sources */,

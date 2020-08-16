@@ -12,40 +12,40 @@ import SioCodec
 
 class SIOCodecDoubleTests: XCTestCase {
 	func testDouble() {
-		let codec = Codec<Void, String, Double>.double
+		let codec = Codec<Void, Double, String>.double
 		
 		let origin = "1.0"
 		
-		let to = codec.to(origin)
+		let from = codec.from(origin)
 		
-		XCTAssert(to.right == 1)
+		XCTAssert(from.right == 1)
 		
-		let result = to.flatMap(codec.from)
+		let result = from.flatMap(codec.to)
 		
 		XCTAssert(result.right == origin)
 	}
 	
 	func testDoubleNoDecimals() {
-		let codec = Codec<Void, String, Double>.double
+		let codec = Codec<Void, Double, String>.double
 		
 		let origin = "1"
 		
-		let to = codec.to(origin)
+		let from = codec.from(origin)
 		
-		XCTAssert(to.right == 1)
+		XCTAssert(from.right == 1)
 		
-		let result = to.flatMap(codec.from)
+		let result = from.flatMap(codec.to)
 		
 		XCTAssert(result.right == "1.0")
 	}
 	
 	func testDoubleFail() {
-		let codec = Codec<Void, String, Double>.double
+		let codec = Codec<Void, Double, String>.double
 		
 		let origin = "Blah"
 		
-		let to = codec.to(origin)
+		let from = codec.from(origin)
 		
-		XCTAssert(to.isLeft)
+		XCTAssert(from.isLeft)
 	}
 }

@@ -19,7 +19,7 @@ class SIOCodecTests: XCTestCase {
 	}
 	
 	func testComposeRight() {
-		let left = Codec<Void, String, Int>.int
+		let left = Codec<Void, Int, String>.int.reversed
 		let right = Codec<Void, Int, Int>.init(to: {
 			.right($0 + 1)
 		}, from: {
@@ -33,7 +33,7 @@ class SIOCodecTests: XCTestCase {
 	}
 	
 	func testComposeLeft() {
-		let left = Codec<Void, String, Int>.int
+		let left = Codec<Void, Int, String>.int.reversed
 		let right = Codec<Void, Int, Int>.init(to: {
 			.right($0 + 1)
 		}, from: {
@@ -47,7 +47,7 @@ class SIOCodecTests: XCTestCase {
 	}
 	
 	func testReversed() {
-		let codec = Codec<Void, String, Int>.int.reversed
+		let codec = Codec<Void, Int, String>.int
 		
 		let origin = "1"
 		
@@ -58,6 +58,5 @@ class SIOCodecTests: XCTestCase {
 		let result = to.flatMap(codec.to)
 		
 		XCTAssert(result.right == origin)
-		
 	}
 }

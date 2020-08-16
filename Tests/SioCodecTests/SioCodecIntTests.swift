@@ -12,26 +12,26 @@ import SioCodec
 
 class SIOCodecIntTests: XCTestCase {
 	func testInt() {
-		let codec = Codec<Void, String, Int>.int
+		let codec = Codec<Void, Int, String>.int
 		
 		let origin = "1"
 		
-		let to = codec.to(origin)
+		let from = codec.from(origin)
 		
-		XCTAssert(to.right == 1)
+		XCTAssert(from.right == 1)
 		
-		let result = to.flatMap(codec.from)
+		let result = from.flatMap(codec.to)
 		
 		XCTAssert(result.right == origin)
 	}
 	
 	func testIntFail() {
-		let codec = Codec<Void, String, Int>.int
+		let codec = Codec<Void, Int, String>.int
 		
 		let origin = "Blah"
 		
-		let to = codec.to(origin)
+		let from = codec.from(origin)
 		
-		XCTAssert(to.isLeft)
+		XCTAssert(from.isLeft)
 	}
 }
