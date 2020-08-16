@@ -13,7 +13,7 @@ public extension ValueStore {
 		return ValueStore<R, E, A, B>(
 			load: SIO.of(value),
 			save: { a in
-				return SIO.of(value)
+				SIO.of(value)
 			},
 			remove: SIO.of(())
 		)
@@ -23,7 +23,7 @@ public extension ValueStore {
 		return ValueStore<R, E, A, B>(
 			load: SIO.rejected(e),
 			save: { _ in
-				return SIO.rejected(e)
+				SIO.rejected(e)
 			},
 			remove: SIO.of(())
 		)

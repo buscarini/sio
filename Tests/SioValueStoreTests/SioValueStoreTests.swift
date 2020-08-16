@@ -15,13 +15,25 @@ class SIOValueStoreTests: XCTestCase {
 	func testOf() {
 		ValueStore<Void, String, Int, Int>.of(1)
 			.load
-		.assert(1)
+			.assert(1)
+	}
+	
+	func testOfSave() {
+		ValueStore<Void, String, Int, Int>.of(1)
+			.save(2)
+			.assert(1)
 	}
 	
 	func testRejected() {
 		ValueStore<Void, String, Int, Int>.rejected("err")
 			.load
 		.assertErr("err")
+	}
+	
+	func testRejectedSave() {
+		ValueStore<Void, String, Int, Int>.rejected("err")
+			.save(1)
+			.assertErr("err")
 	}
 	
 	func testCopy() {
@@ -183,6 +195,13 @@ class SIOValueStoreTests: XCTestCase {
 			.assert(1)
 	}
 	
+	func testOptionalSomeSave() {
+		ValueStore<Void, String, Int, Int>.of(1)
+			.optional()
+			.save(2)
+			.assert(1)
+	}
+	
 	func testOptionalNone() {
 		ValueStore<Void, String, Int, Int>.rejected("err")
 			.optional()
@@ -190,10 +209,10 @@ class SIOValueStoreTests: XCTestCase {
 			.assert(nil)
 	}
 	
-	func testOptionalRemove() {
+	func testOptionalNoneSave() {
 		ValueStore<Void, String, Int, Int>.rejected("err")
 			.optional()
-			.load
+			.save(1)
 			.assert(nil)
 	}
 	

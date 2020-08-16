@@ -32,4 +32,22 @@ class SIOValueStoreJSONTests: XCTestCase {
 		}
 		.assert(user)
 	}
+	
+	func testJSONRemove() {
+		let store = ValueStoreA<Void, ValueStoreError, User>.jsonPreference("user")
+		let user = User.mock
+		
+		let removed = expectation(description: "Removed")
+		store
+			.save(user)
+			.flatMap { _ in
+				store.remove
+			}
+			.run { _ in
+				XCTAssertNil(UserDefaults.standard.value(forKey: "user"))
+				removed.fulfill()
+			}
+		
+		waitForExpectations(timeout: 0.1, handler: nil)
+	}
 }

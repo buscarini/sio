@@ -204,7 +204,7 @@
 		OBJ_505 /* SioFoldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_181 /* SioFoldTests.swift */; };
 		OBJ_506 /* SyncValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_182 /* SyncValueTests.swift */; };
 		OBJ_507 /* TimeoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_183 /* TimeoutTests.swift */; };
-		OBJ_508 /* sioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_184 /* sioTests.swift */; };
+		OBJ_508 /* SioBasicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_184 /* SioBasicTests.swift */; };
 		OBJ_510 /* SioValueStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioValueStore::Product" /* SioValueStore.framework */; };
 		OBJ_511 /* SioCodec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioCodec::Product" /* SioCodec.framework */; };
 		OBJ_512 /* Sio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::Sio::Product" /* Sio.framework */; };
@@ -612,7 +612,7 @@
 		OBJ_181 /* SioFoldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioFoldTests.swift; sourceTree = "<group>"; };
 		OBJ_182 /* SyncValueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncValueTests.swift; sourceTree = "<group>"; };
 		OBJ_183 /* TimeoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeoutTests.swift; sourceTree = "<group>"; };
-		OBJ_184 /* sioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sioTests.swift; sourceTree = "<group>"; };
+		OBJ_184 /* SioBasicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioBasicTests.swift; sourceTree = "<group>"; };
 		OBJ_186 /* Sio+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sio+Tests.swift"; sourceTree = "<group>"; };
 		OBJ_187 /* SioCodecTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioCodecTests.swift; sourceTree = "<group>"; };
 		OBJ_188 /* SioValueStoreJSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioValueStoreJSONTests.swift; sourceTree = "<group>"; };
@@ -1002,7 +1002,7 @@
 				OBJ_181 /* SioFoldTests.swift */,
 				OBJ_182 /* SyncValueTests.swift */,
 				OBJ_183 /* TimeoutTests.swift */,
-				OBJ_184 /* sioTests.swift */,
+				OBJ_184 /* SioBasicTests.swift */,
 			);
 			name = SioTests;
 			path = Tests/SioTests;
@@ -1764,7 +1764,7 @@
 				OBJ_505 /* SioFoldTests.swift in Sources */,
 				OBJ_506 /* SyncValueTests.swift in Sources */,
 				OBJ_507 /* TimeoutTests.swift in Sources */,
-				OBJ_508 /* sioTests.swift in Sources */,
+				OBJ_508 /* SioBasicTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
