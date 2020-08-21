@@ -68,8 +68,8 @@ let package = Package(
 			dependencies: [ "Sio", "SioCodec", "SioValueStore" ]),
 		.testTarget(
 			name: "SioEffectsTests",
-			dependencies: ["Sio", "SioEffects", "SioCodec", "SioValueStore" ]),
-		
+			dependencies: ["Sio", "SioEffects", "SioCodec", "SioValueStore" ]
+		),
 		.target(
 			name: "SioNetwork",
 			dependencies: [ "Sio", "SioCodec", "SioValueStore", "SioEffects" ]),

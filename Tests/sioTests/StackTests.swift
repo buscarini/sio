@@ -56,8 +56,6 @@ class StackTests: XCTestCase {
 				value + 1
 			}
 			.run { _ in
-				dump(Thread.callStackSymbols)
-				
 				XCTAssertEqual(Thread.callStackSymbols.count, 50)
 								
 				expectation.fulfill()
@@ -88,9 +86,7 @@ class StackTests: XCTestCase {
 			value + 1
 		}
 		.run { _ in
-			dump(Thread.callStackSymbols)
-			
-			XCTAssertEqual(Thread.callStackSymbols.count, 63)
+			XCTAssertEqual(Thread.callStackSymbols.count, 76)
 							
 			expectation.fulfill()
 		}
@@ -106,10 +102,7 @@ class StackTests: XCTestCase {
 				SIO.of(string.count)
 			})
 			.run { _ in
-				
-				dump(Thread.callStackSymbols)
-				
-				XCTAssertEqual(Thread.callStackSymbols.count, 50)
+				XCTAssertEqual(Thread.callStackSymbols.count, 63)
 								
 				expectation.fulfill()
 			}
@@ -133,10 +126,7 @@ class StackTests: XCTestCase {
 			.flatMap({ value in
 				SIO.of(value + 1)
 			})
-			.run { _ in
-				
-				dump(Thread.callStackSymbols)
-				
+			.run { _ in				
 				XCTAssertEqual(Thread.callStackSymbols.count, 50)
 								
 				expectation.fulfill()
@@ -170,9 +160,7 @@ class StackTests: XCTestCase {
 			.of(value + 1)
 		}
 		.run { _ in
-			dump(Thread.callStackSymbols)
-			
-			XCTAssertEqual(Thread.callStackSymbols.count, 63)
+			XCTAssertEqual(Thread.callStackSymbols.count, 76)
 							
 			expectation.fulfill()
 		}
