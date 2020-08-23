@@ -66,6 +66,14 @@ class IsoTests: XCTestCase {
 		XCTAssert(final.to(.a) == .ready)
 		XCTAssert(final.to(.b) == .loading)
 		
+		let compose = iso.compose(iso2)
+		
+		XCTAssert(compose.from(.ready) == .a)
+		XCTAssert(compose.from(.loading) == .b)
+		
+		XCTAssert(compose.to(.a) == .ready)
+		XCTAssert(compose.to(.b) == .loading)
+
 		
 		let reversed = iso2 <<< iso
 		

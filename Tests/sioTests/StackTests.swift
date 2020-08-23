@@ -38,9 +38,26 @@ class StackTests: XCTestCase {
 	}
 	
 	func testStackLevelSyncMultipleMap() {
-		let expectation = self.expectation(description: "task chained")
+		let first = self.expectation(description: "first task")
+		let second = self.expectation(description: "second task")
+		
+		var firstStackCount: Int?
+		var secondStackCount: Int?
 		
 		IO<Never, String>.sync {
+				.right("blah")
+			}
+			.map { string in
+				string.count
+			}
+			.run { _ in
+				firstStackCount = Thread.callStackSymbols.count
+				
+				first.fulfill()
+			}
+			
+			
+			IO<Never, String>.sync {
 				.right("blah")
 			}
 			.map { string in
@@ -56,16 +73,35 @@ class StackTests: XCTestCase {
 				value + 1
 			}
 			.run { _ in
-				XCTAssertEqual(Thread.callStackSymbols.count, 50)
-								
-				expectation.fulfill()
+				secondStackCount = Thread.callStackSymbols.count
+
+				second.fulfill()
 			}
 		
-		self.waitForExpectations(timeout: 0.1, handler: nil)
+		self.waitForExpectations(timeout: 0.1, handler: { _ in
+			XCTAssertNotNil(firstStackCount)
+			XCTAssertEqual(firstStackCount, secondStackCount)
+		})
 	}
 	
 	func testStackLevelASyncMultipleMap() {
-		let expectation = self.expectation(description: "task chained")
+		let first = self.expectation(description: "first task")
+		let second = self.expectation(description: "second task")
+		
+		var firstStackCount: Int?
+		var secondStackCount: Int?
+
+		IO<Never, String>({ _, reject, resolve in
+			resolve("blah")
+		})
+		.map { string in
+			string.count
+		}
+		.run { _ in
+			firstStackCount = Thread.callStackSymbols.count
+			
+			first.fulfill()
+		}
 		
 		IO<Never, String>({ _, reject, resolve in
 			resolve("blah")
@@ -86,32 +122,34 @@ class StackTests: XCTestCase {
 			value + 1
 		}
 		.run { _ in
-			XCTAssertEqual(Thread.callStackSymbols.count, 76)
-							
-			expectation.fulfill()
+			secondStackCount = Thread.callStackSymbols.count
+
+			second.fulfill()
 		}
 		
-		self.waitForExpectations(timeout: 0.1, handler: nil)
-	}
-	
-	func testStackLevelOfFlatMap() {
-		let expectation = self.expectation(description: "task chained")
-		
-		IO<Never, String>.of("blah")
-			.flatMap({ string in
-				SIO.of(string.count)
-			})
-			.run { _ in
-				XCTAssertEqual(Thread.callStackSymbols.count, 63)
-								
-				expectation.fulfill()
-			}
-		
-		self.waitForExpectations(timeout: 0.1, handler: nil)
+		self.waitForExpectations(timeout: 0.1, handler: { _ in
+			XCTAssertNotNil(firstStackCount)
+			XCTAssertEqual(firstStackCount, secondStackCount)
+		})
 	}
 	
 	func testStackLevelOfMultipleFlatMap() {
-		let expectation = self.expectation(description: "task chained")
+		let first = self.expectation(description: "first task")
+		let second = self.expectation(description: "second task")
+		
+		var firstStackCount: Int?
+		var secondStackCount: Int?
+
+		
+		IO<Never, String>.of("blah")
+		.flatMap({ string in
+			SIO.of(string.count)
+		})
+		.run { _ in
+			firstStackCount = Thread.callStackSymbols.count
+			
+			first.fulfill()
+		}
 		
 		IO<Never, String>.of("blah")
 			.flatMap({ string in
@@ -126,17 +164,35 @@ class StackTests: XCTestCase {
 			.flatMap({ value in
 				SIO.of(value + 1)
 			})
-			.run { _ in				
-				XCTAssertEqual(Thread.callStackSymbols.count, 50)
-								
-				expectation.fulfill()
+			.run { _ in
+				secondStackCount = Thread.callStackSymbols.count
+
+				second.fulfill()
 			}
 		
-		self.waitForExpectations(timeout: 0.1, handler: nil)
-	}
+		self.waitForExpectations(timeout: 0.1, handler: { _ in
+			XCTAssertNotNil(firstStackCount)
+			XCTAssertEqual(firstStackCount, secondStackCount)
+		})	}
 	
 	func testStackLevelASyncMultipleFlatMap() {
-		let expectation = self.expectation(description: "task chained")
+		let first = self.expectation(description: "first task")
+		let second = self.expectation(description: "second task")
+		
+		var firstStackCount: Int?
+		var secondStackCount: Int?
+
+		IO<Never, String>({ _, reject, resolve in
+			resolve("blah")
+		})
+		.flatMap { string in
+			.of(string.count)
+		}
+		.run { _ in
+			firstStackCount = Thread.callStackSymbols.count
+			
+			first.fulfill()
+		}
 		
 		IO<Never, String>({ _, reject, resolve in
 			resolve("blah")
@@ -160,11 +216,14 @@ class StackTests: XCTestCase {
 			.of(value + 1)
 		}
 		.run { _ in
-			XCTAssertEqual(Thread.callStackSymbols.count, 76)
-							
-			expectation.fulfill()
+			secondStackCount = Thread.callStackSymbols.count
+
+			second.fulfill()
 		}
 		
-		self.waitForExpectations(timeout: 0.1, handler: nil)
+		self.waitForExpectations(timeout: 0.1, handler: { _ in
+			XCTAssertNotNil(firstStackCount)
+			XCTAssertEqual(firstStackCount, secondStackCount)
+		})
 	}
 }

@@ -521,4 +521,19 @@ class EitherTests: XCTestCase {
 		
 		XCTAssertEqual(leftValue, left)
 	}
+	
+	func testMap2() {
+		let expectation = self.expectation(description: "task succeeded")
+		
+		let either: Either<String, Int> = .right(1)
+		
+		UIO<Either<String, Int>>.of(either)
+			.map2 { $0*2 }
+			.fork(absurd) { value in
+				XCTAssert(value.right == 2)
+				expectation.fulfill()
+			}
+		
+		waitForExpectations(timeout: 0.1, handler: nil)
+	}
 }

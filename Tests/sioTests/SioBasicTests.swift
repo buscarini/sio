@@ -19,6 +19,28 @@ class sioTests: XCTestCase {
 		var name: String
 	}
 	
+	func testCancellation() {
+		let neverCalled = expectation(description: "inverse")
+		neverCalled.isInverted = true
+		
+		let io = IO<String, String>.of("ok")
+			
+		io.cancel()
+		
+		io.fork({ _ in
+			XCTFail()
+			
+			neverCalled.fulfill()
+		}) { _ in
+			
+			XCTFail()
+			
+			neverCalled.fulfill()
+		}
+		
+		waitForExpectations(timeout: 0.1, handler: nil)
+	}
+	
 	func testLazy() {
 		SIO<Void, String, String>.lazy("ok")
 			.assert("ok")
@@ -33,6 +55,30 @@ class sioTests: XCTestCase {
 		SIO<String, Never, Int>.fromFunc { $0.count }
 			.provide("hello")
 			.assert(5)
+	}
+	
+	func testFromFuncCancel() {
+		let neverCalled = expectation(description: "inverse")
+		neverCalled.isInverted = true
+
+		
+		let io = SIO<String, Never, Int>
+			.fromFunc { (string: String) -> Int in
+				neverCalled.fulfill()
+				return string.count
+			}
+			.provide("hello")
+			
+		
+		io.cancel()
+		
+		io
+			.run { _ in
+				neverCalled.fulfill()
+				XCTFail()
+			}
+		
+		waitForExpectations(timeout: 0.1, handler: nil)
 	}
 	
 	func testVoid() {
@@ -54,6 +100,14 @@ class sioTests: XCTestCase {
 	func testConst() {
 		SIO<Void, Int, String>.of("ok").const("b")
 			.assert("b")
+	}
+	
+	func testConstError() {
+		SIO<Void, Int, String>.of("ok").constError(1)
+			.assert("ok")
+		
+		SIO<Void, Int, String>.rejected(2).constError(1)
+			.assertErr(1)
 	}
 	
 	func testFlip() {
@@ -461,6 +515,36 @@ class sioTests: XCTestCase {
 		SIO<Void, Int, Int>.of(1)
 			.biFlatMap(IO<Never, String>.of("ok"))
 		.assert("ok")
+	}
+	
+	func testFlatMapNever() {
+		SIO<Void, Never, Int>.of(1)
+			.flatMapNever { value in
+				IO<Int, Int>.of(1 + value)
+			}
+			.assert(2)
+	}
+	
+	func testFlatMapNeverError() {
+		SIO<Void, Never, Int>.of(1)
+			.flatMapNever { value in
+				IO<Int, Int>.rejected(3)
+			}
+			.assertErr(3)
+	}
+	
+	func testFlatMapNeverIO() {
+		SIO<Void, Never, Int>.of(1)
+			.flatMapNever(SIO<Int, Int, Int>.of(2))
+			.assert(2)
+	}
+	
+	func testFlatMapNeverErrorIO() {
+		SIO<Void, Never, Int>.of(1)
+			.flatMapNever(
+				SIO<Int, Int, Int>.rejected(3)
+			)
+			.assertErr(3)
 	}
 	
 	func testRunAll() {

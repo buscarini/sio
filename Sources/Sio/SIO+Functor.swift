@@ -19,8 +19,14 @@ extension SIO {
 		self.bimap(id, { $0.map(f) })
 	}
 	
+	
 	@inlinable
 	public func map2<Element, B>(_ f: @escaping (Element) -> (B)) -> SIO<R, E, B?> where A == Element? {
+		self.bimap(id, { $0.map(f) })
+	}
+	
+	@inlinable
+	public func map2<Left, Right, B>(_ f: @escaping (Right) -> (B)) -> SIO<R, E, Either<Left, B>> where A == Either<Left, Right> {
 		self.bimap(id, { $0.map(f) })
 	}
 	

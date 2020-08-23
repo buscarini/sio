@@ -18,7 +18,7 @@ public func absurd<A>(_ n: Never) -> A {}
 
 @inlinable
 public func discard<A, B>(_ f: @escaping (A) -> B) -> (A) -> Void {
-	return { a in
+	{ a in
 		_ = f(a)
 	}
 }
