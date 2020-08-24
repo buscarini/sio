@@ -32,6 +32,8 @@
 		AC7D04FC2486B75500A9552A /* PathUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D04FB2486B75500A9552A /* PathUtils.swift */; };
 		AC7D04FE2486F74100A9552A /* FSUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D04FD2486F74100A9552A /* FSUtilsTests.swift */; };
 		AC7D05012486F88F00A9552A /* Resource.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC7D04FF2486F7A400A9552A /* Resource.txt */; };
+		AC8158E524F313CF00A75BFA /* SIOCodecURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8158E424F313CF00A75BFA /* SIOCodecURLTests.swift */; };
+		AC8158E724F3927500A75BFA /* SIOCodecBoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8158E624F3927500A75BFA /* SIOCodecBoolTests.swift */; };
 		ACB122BA24C811E900044388 /* Codec+Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB122B924C811E900044388 /* Codec+Bool.swift */; };
 		OBJ_258 /* AbsoluteLocalURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AbsoluteLocalURL.swift */; };
 		OBJ_259 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Application.swift */; };
@@ -525,6 +527,8 @@
 		AC7D04FB2486B75500A9552A /* PathUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathUtils.swift; sourceTree = "<group>"; };
 		AC7D04FD2486F74100A9552A /* FSUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSUtilsTests.swift; sourceTree = "<group>"; };
 		AC7D04FF2486F7A400A9552A /* Resource.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Resource.txt; sourceTree = "<group>"; };
+		AC8158E424F313CF00A75BFA /* SIOCodecURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIOCodecURLTests.swift; sourceTree = "<group>"; };
+		AC8158E624F3927500A75BFA /* SIOCodecBoolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIOCodecBoolTests.swift; sourceTree = "<group>"; };
 		ACB122B924C811E900044388 /* Codec+Bool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codec+Bool.swift"; sourceTree = "<group>"; };
 		OBJ_10 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		OBJ_101 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
@@ -927,6 +931,8 @@
 				OBJ_132 /* SIOCodecDoubleTests.swift */,
 				OBJ_133 /* SIOCodecFloatTests.swift */,
 				OBJ_134 /* SIOCodecUTF8Tests.swift */,
+				AC8158E424F313CF00A75BFA /* SIOCodecURLTests.swift */,
+				AC8158E624F3927500A75BFA /* SIOCodecBoolTests.swift */,
 				OBJ_135 /* Sio+Tests.swift */,
 				OBJ_136 /* SioCodecDateTests.swift */,
 				OBJ_137 /* SioCodecIntTests.swift */,
@@ -1644,6 +1650,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				AC8158E524F313CF00A75BFA /* SIOCodecURLTests.swift in Sources */,
 				OBJ_350 /* SIOCodecBase64Tests.swift in Sources */,
 				OBJ_351 /* SIOCodecDoubleTests.swift in Sources */,
 				OBJ_352 /* SIOCodecFloatTests.swift in Sources */,
@@ -1655,6 +1662,7 @@
 				OBJ_358 /* SioCodecJSONTests.swift in Sources */,
 				OBJ_359 /* SioCodecSIOTests.swift in Sources */,
 				OBJ_360 /* SioCodecTests.swift in Sources */,
+				AC8158E724F3927500A75BFA /* SIOCodecBoolTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
