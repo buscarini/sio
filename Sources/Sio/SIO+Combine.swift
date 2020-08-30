@@ -13,7 +13,7 @@ import Combine
 @available(iOS 13.0, *)
 @available(OSX 10.15, *)
 extension SIO where R == Void, E: Error {
-	var future: AnyPublisher<A, E> {
+	public var future: AnyPublisher<A, E> {
 		Future<A, E> { promise in
 			self
 				.result()

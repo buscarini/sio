@@ -34,6 +34,7 @@
 		AC7D05012486F88F00A9552A /* Resource.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC7D04FF2486F7A400A9552A /* Resource.txt */; };
 		AC8158E524F313CF00A75BFA /* SIOCodecURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8158E424F313CF00A75BFA /* SIOCodecURLTests.swift */; };
 		AC8158E724F3927500A75BFA /* SIOCodecBoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8158E624F3927500A75BFA /* SIOCodecBoolTests.swift */; };
+		AC81592F24F39B2300A75BFA /* QueueId.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC81592E24F39B2300A75BFA /* QueueId.swift */; };
 		ACB122BA24C811E900044388 /* Codec+Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB122B924C811E900044388 /* Codec+Bool.swift */; };
 		OBJ_258 /* AbsoluteLocalURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AbsoluteLocalURL.swift */; };
 		OBJ_259 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Application.swift */; };
@@ -529,6 +530,7 @@
 		AC7D04FF2486F7A400A9552A /* Resource.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Resource.txt; sourceTree = "<group>"; };
 		AC8158E424F313CF00A75BFA /* SIOCodecURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIOCodecURLTests.swift; sourceTree = "<group>"; };
 		AC8158E624F3927500A75BFA /* SIOCodecBoolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIOCodecBoolTests.swift; sourceTree = "<group>"; };
+		AC81592E24F39B2300A75BFA /* QueueId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueId.swift; sourceTree = "<group>"; };
 		ACB122B924C811E900044388 /* Codec+Bool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codec+Bool.swift"; sourceTree = "<group>"; };
 		OBJ_10 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		OBJ_101 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
@@ -1245,6 +1247,7 @@
 				OBJ_68 /* SIO+Typealias.swift */,
 				OBJ_69 /* SIO+Zip.swift */,
 				OBJ_70 /* SIO.swift */,
+				AC81592E24F39B2300A75BFA /* QueueId.swift */,
 				OBJ_71 /* SIOError.swift */,
 				OBJ_72 /* Scheduler.swift */,
 				OBJ_73 /* Seconds.swift */,
@@ -1652,6 +1655,7 @@
 			files = (
 				AC8158E524F313CF00A75BFA /* SIOCodecURLTests.swift in Sources */,
 				OBJ_350 /* SIOCodecBase64Tests.swift in Sources */,
+				AC81592F24F39B2300A75BFA /* QueueId.swift in Sources */,
 				OBJ_351 /* SIOCodecDoubleTests.swift in Sources */,
 				OBJ_352 /* SIOCodecFloatTests.swift in Sources */,
 				OBJ_353 /* SIOCodecUTF8Tests.swift in Sources */,
