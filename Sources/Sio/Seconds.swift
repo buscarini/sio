@@ -15,6 +15,16 @@ public struct Seconds<T: Numeric>: RawRepresentable {
 	}
 }
 
+extension Seconds: Equatable {}
+extension Seconds: Hashable where T: Hashable {}
+extension Seconds: Codable where T: Codable {}
+
+extension Seconds {
+	func map<U: Numeric>(_ f: @escaping (T) -> U) -> Seconds<U> {
+		Seconds<U>(rawValue: f(self.rawValue))
+	}
+}
+
 extension Seconds: ExpressibleByFloatLiteral where RawValue: ExpressibleByFloatLiteral {
 	public typealias FloatLiteralType = RawValue.FloatLiteralType
 	
