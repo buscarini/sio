@@ -25,6 +25,16 @@ extension Seconds {
 	}
 }
 
+public func zip<T: Numeric, U: Numeric>(
+	_ left: Seconds<T>,
+	_ right: Seconds<T>,
+	with f: @escaping (T, T) -> U
+) -> Seconds<U> {
+	Seconds<U>(
+		rawValue: f(left.rawValue, right.rawValue)
+	)
+}
+
 extension Seconds: ExpressibleByFloatLiteral where RawValue: ExpressibleByFloatLiteral {
 	public typealias FloatLiteralType = RawValue.FloatLiteralType
 	
