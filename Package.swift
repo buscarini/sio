@@ -1,4 +1,4 @@
-// swift-tools-version:5.2
+// swift-tools-version:5.3
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -33,6 +33,9 @@ let package = Package(
 	],
 	dependencies: [
 	  .package(name: "SnapshotTesting", url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.7.2")
+	],
+	resources: [
+		.copy("Tests/SioEffectsTests/Resource.txt")
 	],
 	targets: [
 		// Targets are the basic building blocks of a package. A target can define a module or a test suite.

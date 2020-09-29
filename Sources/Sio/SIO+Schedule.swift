@@ -23,16 +23,21 @@ public extension SIO {
 	
 	@inlinable
 	func forkOn(_ queue: DispatchQueue) -> SIO<R, E, A> {
+		forkOn(QueueScheduler(queue: queue))
+	}
+	
+	@inlinable
+	func forkOn(_ scheduler: Scheduler) -> SIO<R, E, A> {
 		SIO({ (env, reject, resolve) in
 			self.fork(
 				env,
 				{ error in
-					queue.async {
+					scheduler.run {
 						reject(error)
 					}
 				},
 				{ result in
-					queue.async {
+					scheduler.run {
 						resolve(result)
 					}
 				}
