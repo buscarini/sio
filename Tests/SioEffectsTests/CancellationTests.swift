@@ -111,10 +111,9 @@ class CancellationTests: XCTestCase {
 		
 		let task = zip(
 			first,
-			second
+			second,
+			QueueScheduler(queue: .global())
 		)
-		.scheduleOn(DispatchQueue.global())
-		
 		
 		task.fork(absurd, { a in
 			finish.fulfill()

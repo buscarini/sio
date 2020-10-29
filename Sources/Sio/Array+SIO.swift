@@ -15,7 +15,10 @@ extension Array {
 	}
 	
 	@inlinable
-	public func traverse<R, E, A>(_ f: @escaping (Element) -> SIO<R, E, A>) -> SIO<R, E, [A]> {
+	public func traverse<R, E, A>(
+		_ scheduler: Scheduler,
+		_ f: @escaping (Element) -> SIO<R, E, A>
+	) -> SIO<R, E, [A]> {
 		guard let first = self.first else {
 			return .of([])
 		}
@@ -31,8 +34,9 @@ extension Array {
 
 		return ap(
 			concat,
-			Array(left).traverse(f),
-			Array(right).traverse(f)
+			Array(left).traverse(scheduler, f),
+			Array(right).traverse(scheduler, f),
+			scheduler
 		)
 	}
 	
@@ -46,13 +50,20 @@ extension Array {
 }
 
 @inlinable
-public func parallel<R, E, A>(_ ios: [SIO<R, E, A>]) -> SIO<R, E, [A]> {
-	return ios.traverse({ $0 })
+public func parallel<R, E, A>(
+	_ ios: [SIO<R, E, A>],
+	_ scheduler: Scheduler
+) -> SIO<R, E, [A]> {
+	return ios.traverse(scheduler) { $0 }
 }
 
 @inlinable
-public func concat<R, E, A>(_ first: SIO<R, E, [A]>, _ second: SIO<R, E, [A]>) -> SIO<R, E, [A]> {
-	ap(SIO.of(+), first, second)
+public func concat<R, E, A>(
+	_ first: SIO<R, E, [A]>,
+	_ second: SIO<R, E, [A]>,
+	_ scheduler: Scheduler
+) -> SIO<R, E, [A]> {
+	ap(SIO.of(+), first, second, scheduler)
 }
 
 @inlinable

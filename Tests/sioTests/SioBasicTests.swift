@@ -548,12 +548,14 @@ class sioTests: XCTestCase {
 	}
 	
 	func testRunAll() {
+		let scheduler = TestScheduler()
+		
 		runAll([
 			SIO<Void, Int, Int>.of(1),
 			SIO<Void, Int, Int>.rejected(2),
 			SIO<Void, Int, Int>.of(3),
 			SIO<Void, Int, Int>.rejected(4)
-		])
-		.assert([ 1, 3 ])
+		], scheduler)
+		.assert([ 1, 3 ], scheduler: scheduler)
 	}
 }

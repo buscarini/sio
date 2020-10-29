@@ -40,10 +40,12 @@ public extension SIO {
 	
 	@inlinable
 	func read() -> SIO<R, E, (R, A)> {
-		zip(
-			SIO<R, E, A>.environment(),
-			self
-		)
+		
+		SIO<R, E, A>.environment().flatMap { r in
+			self.map { a in
+				(r, a)
+			}
+		}
 	}
 	
 	@inlinable

@@ -81,20 +81,20 @@ public extension ValueStore where A == B {
 		}
 	}
 	
-	func cached(by cache: ValueStore<R, E, A, B>) -> ValueStore<R, E, A, B> {
+	func cached(
+		by cache: ValueStore<R, E, A, B>
+	) -> ValueStore<R, E, A, B> {
 		.init(
 			load: cache.load
 				.flatMapError { _ in
 					self.load
 				},
 			save: { a in
-				zip(
-					self.save(a),
-					cache.save(a)
-				)
-				.map(const(a))
+				cache.save(a)
+					.biFlatMap(self.save(a))
+					.map(const(a))
 			},
-			remove: zip(self.remove, cache.remove).void
+			remove: cache.remove.biFlatMap(self.remove).void
 		)
 	}
 	

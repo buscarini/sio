@@ -12,28 +12,40 @@ import SioValueStore
 
 class SIOValueStoreZipTests: XCTestCase {
 	func testLoad() {
+		let scheduler = TestScheduler()
+		
 		let vs: ValueStoreA<Void, Void, (Int, Int)> = zip(
 			Ref<Int?>.init(1).valueStore(),
-			Ref<Int?>.init(2).valueStore()
+			Ref<Int?>.init(2).valueStore(),
+			scheduler
 		)
 		
 		vs
 		.load
-		.assert({ (both: (Int, Int)) -> Bool in
-			both.0 == 1 && both.1 == 2
-		})
+		.assert(
+			{ (both: (Int, Int)) -> Bool in
+				both.0 == 1 && both.1 == 2
+			},
+			scheduler: scheduler
+		)
 	}
 	
 	func testSave() {
+		let scheduler = TestScheduler()
+
 		let vs: ValueStoreA<Void, Void, (Int, Int)> = zip(
 			Ref<Int?>.init(nil).valueStore(),
-			Ref<Int?>.init(nil).valueStore()
+			Ref<Int?>.init(nil).valueStore(),
+			scheduler
 		)
 		
 		vs
 		.save((3, 4))
-		.assert({ (both: (Int, Int)) -> Bool in
-			both.0 == 3 && both.1 == 4
-		})
+		.assert(
+			{ (both: (Int, Int)) -> Bool in
+				both.0 == 3 && both.1 == 4
+			},
+			scheduler: scheduler
+		)
 	}
 }

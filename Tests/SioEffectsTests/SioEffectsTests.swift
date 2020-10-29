@@ -64,17 +64,19 @@ class SIOEffectsTests: XCTestCase {
 	}*/
 	
 	func testTraverse() {
+		let scheduler = TestScheduler()
+		
 		let values = Array(1...10)
 		
 		let console = Console.mock("hi")
 		
-		let task = values.traverse { index in
+		let task = values.traverse(scheduler) { index in
 			console.printLine("\(index)")
 				.flatMap {
 					UIO<Int>.of(index)
 			}
 		}
 		
-		task.assert(values, timeout: 1)
+		task.assert(values, scheduler: scheduler, timeout: 1)
 	}
 }

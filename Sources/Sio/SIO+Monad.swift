@@ -32,10 +32,11 @@ extension SIO {
 		
 	@inlinable
 	public func flatMapR<B>(_ f: @escaping (R, A) -> (SIO<R, E, B>)) -> SIO<R, E, B> {
-		zip(
-			Sio.environment(R.self).mapError(absurd),
-			self
-		).flatMap(f)
+		Sio.environment(R.self).mapError(absurd).flatMap { r in
+			self.flatMap { a in
+				f(r, a)
+			}
+		}
 	}
 	
 	@inlinable

@@ -22,33 +22,47 @@ class Arrays: XCTestCase {
 	}
 	
 	func testTraverseEmpty() {
-		[].traverse { IO<Never, Int>.of($0) }
-			.assert([])
+		let scheduler = TestScheduler()
+
+		[].traverse(scheduler) { IO<Never, Int>.of($0) }
+			.assert([], scheduler: scheduler)
 	}
 	
 	func testTraverse() {
-		[1, 2, 3].traverse { IO<Never, Int>.of($0) }
-		.assert([1, 2, 3])
+		let scheduler = TestScheduler()
+
+		[1, 2, 3].traverse(scheduler) { IO<Never, Int>.of($0) }
+			.assert([1, 2, 3], scheduler: scheduler)
 	}
 	
 	func testConcat() {
-		
+		let scheduler = TestScheduler()
+
 		concat(
 			IO<Int, [Int]>.of([1, 2, 3]),
-			IO<Int, [Int]>.of([4, 5, 6])
+			IO<Int, [Int]>.of([4, 5, 6]),
+			scheduler
 		)
-		.assert([ 1, 2, 3, 4, 5, 6 ])
+		.assert([ 1, 2, 3, 4, 5, 6 ], scheduler: scheduler)
 	}
 	
 	func testParallel() {
-		parallel([ IO<Error, Int>.of(1), IO.of(2), IO.of(3)]
-			.map(delayed(0.5, scheduler)))
-			.assert(
-				[ 1, 2, 3 ],
-				timeout: 3,
-				prepare: {
-					self.scheduler.advance(0.5)
-				}
+		let scheduler = TestScheduler()
+
+		parallel(
+			[
+				IO<Error, Int>.of(1), IO.of(2), IO.of(3)
+			]
+			.map(delayed(0.5, scheduler)),
+			scheduler
+		)
+		.assert(
+			[ 1, 2, 3 ],
+			scheduler: scheduler,
+			timeout: 3,
+			prepare: {
+				self.scheduler.advance(0.5)
+			}
 		)
 	}
 	

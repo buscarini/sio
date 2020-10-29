@@ -9,18 +9,32 @@
 import Foundation
 
 @inlinable
-public func liftA2<R, E, A, B, C>(_ iof: SIO<R, E, (A) -> (B) -> C>, _ first: SIO<R, E, A>, _ second: SIO<R, E, B>) -> SIO<R, E, C> {
-	ap(ap(iof, first), second)
+public func liftA2<R, E, A, B, C>(
+	_ iof: SIO<R, E, (A) -> (B) -> C>,
+	_ first: SIO<R, E, A>,
+	_ second: SIO<R, E, B>,
+	_ scheduler: Scheduler
+) -> SIO<R, E, C> {
+	ap(ap(iof, first, scheduler), second, scheduler)
 }
 
 @inlinable
-public func ap<R, E, A, B, C>(_ iof: SIO<R, E, (A, B) -> C>, _ first: SIO<R, E, A>, _ second: SIO<R, E, B>) -> SIO<R, E, C> {
-	liftA2(iof.map(curry), first, second)
+public func ap<R, E, A, B, C>(
+	_ iof: SIO<R, E, (A, B) -> C>,
+	_ first: SIO<R, E, A>,
+	_ second: SIO<R, E, B>,
+	_ scheduler: Scheduler
+) -> SIO<R, E, C> {
+	liftA2(iof.map(curry), first, second, scheduler)
 }
 
 let apQueue = DispatchQueue.init(label: "ap")
 
-public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -> SIO<R, E, B> {
+public func ap<R, E, A, B>(
+	_ left: SIO<R, E, (A) -> B>,
+	_ right: SIO<R, E, A>,
+	_ scheduler: Scheduler
+) -> SIO<R, E, B> {
 	
 	let l = left
 	let r = right
@@ -41,19 +55,16 @@ public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -
 				case let (.loaded(.right(ab)), .loaded(.right(a))):
 					resolved.result = .loaded(.right(true))
 					
-					let scheduler = r.scheduler ?? r.scheduler ?? AnyScheduler(QueueScheduler.main)
 					scheduler.run {
 						resolve(ab(a))
 					}
 				case let (.loaded(.left(e)), .loaded):
 					resolved.result = .loaded(.right(false))
-					let scheduler = l.scheduler ?? AnyScheduler(QueueScheduler.main)
 					scheduler.run {
 						reject(e)
 					}
 				case let (.loaded, .loaded(.left(e))):
 					resolved.result = .loaded(.right(false))
-					let scheduler = r.scheduler ?? AnyScheduler(QueueScheduler.main)
 					scheduler.run {
 						reject(e)
 					}

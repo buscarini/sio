@@ -75,12 +75,15 @@ extension SIO where R == Void, E == Never {
 }
 
 @inlinable
-public func runAll<R, E, A>(_ tasks: [SIO<R, E, A>]) -> SIO<R, E, [A]> {
+public func runAll<R, E, A>(
+	_ tasks: [SIO<R, E, A>],
+	_ scheduler: Scheduler
+) -> SIO<R, E, [A]> {
 	tasks
 		.map { (task: SIO<R, E, A>) -> SIO<R, Never, Either<E, A>> in
 			task.either()
 		}
-		.traverse(id)
+		.traverse(scheduler, id)
 		.mapError(absurd)
 		.map { (eithers: [Either<E, A>]) -> [Either<E, A>] in
 			eithers.filter {
@@ -88,7 +91,7 @@ public func runAll<R, E, A>(_ tasks: [SIO<R, E, A>]) -> SIO<R, E, [A]> {
 			}
 		}
 		.flatMap { (eithers: [Either<E, A>]) -> SIO<R, E, [A]> in
-			eithers.traverse {
+			eithers.traverse(scheduler) {
 				SIO<R, E, A>.from($0).require(R.self)
 			}
 		}
