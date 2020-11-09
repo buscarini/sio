@@ -10,7 +10,7 @@ import Sio
 import SioEffects
 import XCTest
 
-class FSUtilsTests: XCTestCase {
+/*class FSUtilsTests: XCTestCase {
 	func testReadBundleString() {
 		let finish = expectation(description: "finish")
 		let bundle = Bundle(for: type(of: self))
@@ -27,3 +27,4 @@ class FSUtilsTests: XCTestCase {
 		waitForExpectations(timeout: 1, handler: nil)
 	}
 }
+*/

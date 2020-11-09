@@ -90,6 +90,7 @@ class Retry: XCTestCase {
 			})
 		
 		scheduler.advance(1)
+		scheduler.advance(1)
 		
 		self.waitForExpectations(timeout: 5, handler: nil)
 	}

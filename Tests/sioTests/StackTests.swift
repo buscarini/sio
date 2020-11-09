@@ -29,7 +29,7 @@ class StackTests: XCTestCase {
 				value + 1
 			}
 			.run { _ in
-				XCTAssertEqual(Thread.callStackSymbols.count, 50)
+				XCTAssertLessThan(Thread.callStackSymbols.count, 100)
 								
 				expectation.fulfill()
 			}
