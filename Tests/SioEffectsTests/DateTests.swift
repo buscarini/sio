@@ -13,9 +13,11 @@ import SioEffects
 
 class DateTests: XCTestCase {
 	func testDate() {
+		let scheduler = TestScheduler()
+
 		let date = Date.init(timeIntervalSince1970: 0)
 		let dates = Dates.init(date: .of(date))
 		
-		dates.date.assert(date)
+		dates.date.assert(date, scheduler: scheduler)
 	}
 }

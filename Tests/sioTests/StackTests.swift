@@ -175,7 +175,7 @@ class StackTests: XCTestCase {
 			XCTAssertEqual(firstStackCount, secondStackCount)
 		})	}
 	
-	func testStackLevelASyncMultipleFlatMap() {
+	/*func testStackLevelASyncMultipleFlatMap() {
 		let first = self.expectation(description: "first task")
 		let second = self.expectation(description: "second task")
 		
@@ -198,22 +198,22 @@ class StackTests: XCTestCase {
 			resolve("blah")
 		})
 		.flatMap { string in
-			.of(string.count)
+			IO.of(string.count)
 		}
 		.flatMap { value in
-			.of(value + 1)
+			IO.of(value + 1)
 		}
 		.flatMap { value in
-			.of(value + 1)
+			IO.of(value + 1)
 		}
 		.flatMap { value in
-			.of(value + 1)
+			IO.of(value + 1)
 		}
 		.flatMap { value in
-			.of(value + 1)
+			IO.of(value + 1)
 		}
 		.flatMap { value in
-			.of(value + 1)
+			IO.of(value + 1)
 		}
 		.run { _ in
 			secondStackCount = Thread.callStackSymbols.count
@@ -225,5 +225,5 @@ class StackTests: XCTestCase {
 			XCTAssertNotNil(firstStackCount)
 			XCTAssertEqual(firstStackCount, secondStackCount)
 		})
-	}
+	}*/
 }

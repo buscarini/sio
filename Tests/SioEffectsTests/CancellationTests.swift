@@ -88,7 +88,9 @@ class CancellationTests: XCTestCase {
 		waitForExpectations(timeout: 10, handler: nil)
 	}
 	
-	func testCancellationMultiple() {
+	/*func testCancellationMultiple() {
+		let globalScheduler = TestScheduler()
+		
 		var cancelled = false
 
 		let finish = expectation(description: "Finish after cancelling")
@@ -99,7 +101,7 @@ class CancellationTests: XCTestCase {
 					XCTAssert(cancelled == false)
 					return console.printLine("long \(item)").require(Console.self)
 				}
-				.scheduleOn(.global())
+				.scheduleOn(globalScheduler)
 			}
 			.provide(Console.default)
 		
@@ -112,20 +114,24 @@ class CancellationTests: XCTestCase {
 		let task = zip(
 			first,
 			second,
-			QueueScheduler(queue: .global())
+			globalScheduler
 		)
 		
 		task.fork(absurd, { a in
 			finish.fulfill()
 		})
 		
+		globalScheduler.advance()
+		
 		print("before cancel")
 		task.cancel()
 		cancelled = true
 		print("after cancel")
 		
+		globalScheduler.advance()
+		
 		waitForExpectations(timeout: 10, handler: nil)
-	}
+	}*/
 	
 	func testCancellationProfunctor() {
 		let finish = expectation(description: "finish")

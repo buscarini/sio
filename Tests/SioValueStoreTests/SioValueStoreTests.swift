@@ -13,27 +13,34 @@ import SioValueStore
 
 class SIOValueStoreTests: XCTestCase {
 	func testOf() {
+		let scheduler = TestScheduler()
 		ValueStore<Void, String, Int, Int>.of(1)
 			.load
-			.assert(1)
+			.assert(1, scheduler: scheduler)
 	}
 	
 	func testOfSave() {
+		let scheduler = TestScheduler()
+
 		ValueStore<Void, String, Int, Int>.of(1)
 			.save(2)
-			.assert(1)
+			.assert(1, scheduler: scheduler)
 	}
 	
 	func testRejected() {
+		let scheduler = TestScheduler()
+
 		ValueStore<Void, String, Int, Int>.rejected("err")
 			.load
-		.assertErr("err")
+		.assertErr("err", scheduler: scheduler)
 	}
 	
 	func testRejectedSave() {
+		let scheduler = TestScheduler()
+
 		ValueStore<Void, String, Int, Int>.rejected("err")
 			.save(1)
-			.assertErr("err")
+			.assertErr("err", scheduler: scheduler)
 	}
 	
 	func testCopy() {
@@ -189,38 +196,48 @@ class SIOValueStoreTests: XCTestCase {
 	}
 	
 	func testOptionalSome() {
+		let scheduler = TestScheduler()
+
 		ValueStore<Void, String, Int, Int>.of(1)
 			.optional()
 			.load
-			.assert(1)
+			.assert(1, scheduler: scheduler)
 	}
 	
 	func testOptionalSomeSave() {
+		let scheduler = TestScheduler()
+
 		ValueStore<Void, String, Int, Int>.of(1)
 			.optional()
 			.save(2)
-			.assert(1)
+			.assert(1, scheduler: scheduler)
 	}
 	
 	func testOptionalNone() {
+		let scheduler = TestScheduler()
+
 		ValueStore<Void, String, Int, Int>.rejected("err")
 			.optional()
 			.load
-			.assert(nil)
+			.assert(nil, scheduler: scheduler)
 	}
 	
 	func testOptionalNoneSave() {
+		let scheduler = TestScheduler()
+
 		ValueStore<Void, String, Int, Int>.rejected("err")
 			.optional()
 			.save(1)
-			.assert(nil)
+			.assert(nil, scheduler: scheduler)
 	}
 	
 	func testDefault() {
+		let scheduler = TestScheduler()
+
 		ValueStore<Void, String, Int, Int>.rejected("err")
 			.default(1)
 			.load
-			.assert(1)
+			.assert(1, scheduler: scheduler)
 	}
 	
 	func testReplacingLoadOld() {

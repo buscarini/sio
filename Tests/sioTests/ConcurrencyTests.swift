@@ -14,6 +14,8 @@ class ConcurrencyTests: XCTestCase {
 	let scheduler = TestScheduler()
 	
 	func testZip() {
+		let scheduler = TestScheduler()
+		
 		let finish = expectation(description: "finish")
 		
 		let values = Array(1...100)
@@ -28,19 +30,27 @@ class ConcurrencyTests: XCTestCase {
 		
 		zip(
 			left,
-			right
+			right,
+			scheduler
 		)
-		.scheduleOn(DispatchQueue.global())
 		.run((), { result in
 			XCTAssert(result.0 == values)
 			XCTAssert(result.1 == values)
 			finish.fulfill()
 		})
 		
-		wait(for: [finish], timeout: 1)
+		scheduler.advance()
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+			scheduler.advance()
+		}
+		
+		waitForExpectations(timeout: 2, handler: nil)
 	}
 	
 	func testZipStackOverflow() {
+		let scheduler = TestScheduler()
+
 		let finish = expectation(description: "finish")
 		
 		let values = Array(1...10000)
@@ -55,15 +65,18 @@ class ConcurrencyTests: XCTestCase {
 		
 		zip(
 			left,
-			right
-			)
-			.scheduleOn(DispatchQueue.global())
-			.run((), { result in
-				XCTAssert(result.0 == values)
-				XCTAssert(result.1 == values)
-				finish.fulfill()
-			})
+			right,
+			scheduler
+		)
+//		.scheduleOn(DispatchQueue.global())
+		.run((), { result in
+			XCTAssert(result.0 == values)
+			XCTAssert(result.1 == values)
+			finish.fulfill()
+		})
 		
+		scheduler.advance()
+	
 		wait(for: [finish], timeout: 1)
 	}
 	
@@ -204,13 +217,15 @@ class ConcurrencyTests: XCTestCase {
 	}
 	
 	func testCancelZip() {
+		let scheduler = TestScheduler()
+
 		let finish = expectation(description: "finish")
 		finish.isInverted = true
 		
 		let left = UIO.of(1).scheduleOn(scheduler)
 		let right = UIO.of(2).scheduleOn(scheduler)
 		
-		let task = zip(left, right)
+		let task = zip(left, right, scheduler)
 			
 		task.fork(absurd, { values in
 			print(values)
@@ -225,6 +240,8 @@ class ConcurrencyTests: XCTestCase {
 	}
 	
 	func testCancelZipLeft() {
+		let scheduler = TestScheduler()
+
 		let finish = expectation(description: "finish")
 		finish.isInverted = true
 
@@ -233,13 +250,14 @@ class ConcurrencyTests: XCTestCase {
 		
 		left.cancel()
 		
-		zip(left, right)
+		zip(left, right, scheduler)
 		.fork(absurd, { values in
 			print(values)
 			XCTFail()
 		})
 		
 		scheduler.advance()
+//		scheduler.advance()
 		
 		wait(for: [finish], timeout: 0.1)
 	}

@@ -15,6 +15,7 @@ public extension SIO where R == Void {
 		_ check: @escaping (A) -> Bool,
 		scheduler: TestScheduler?,
 		timeout: TimeInterval = 0.01,
+		prepare: (() -> Void)? = nil,
 		file: StaticString = #file,
 		line: UInt = #line
 	) {
@@ -29,7 +30,8 @@ public extension SIO where R == Void {
 			finish.fulfill()
 		}
 		
-		scheduler?.advance()
+		let advance = prepare ?? { scheduler?.advance() }
+		advance()
 		
 		if XCTWaiter.wait(for: [finish], timeout: timeout) != .completed {
 			XCTFail("Effect didn't finish before timeout", file: file, line: line)
@@ -42,6 +44,7 @@ public extension SIO where A: Equatable, R == Void {
 		_ value: A,
 		scheduler: TestScheduler?,
 		timeout: TimeInterval = 0.01,
+		prepare: (() -> Void)? = nil,
 		file: StaticString = #file,
 		line: UInt = #line
 	) {
@@ -54,7 +57,8 @@ public extension SIO where A: Equatable, R == Void {
 			finish.fulfill()
 		}
 		
-		scheduler?.advance()
+		let advance = prepare ?? { scheduler?.advance() }
+		advance()
 		
 		if XCTWaiter.wait(for: [finish], timeout: timeout) != .completed {
 			XCTFail("Effect didn't finish before timeout", file: file, line: line)
@@ -66,6 +70,7 @@ public extension SIO where E: Equatable, R == Void {
 	func assertErr(
 		_ error: E,
 		scheduler: TestScheduler?,
+		prepare: (() -> Void)? = nil,
 		timeout: TimeInterval = 0.01,
 		file: StaticString = #file,
 		line: UInt = #line
@@ -79,8 +84,9 @@ public extension SIO where E: Equatable, R == Void {
 			XCTFail("Effect didn't fail", file: file, line: line)
 		}
 		
-		scheduler?.advance()
-		
+		let advance = prepare ?? { scheduler?.advance() }
+		advance()
+
 		if XCTWaiter.wait(for: [finish], timeout: timeout) != .completed {
 			XCTFail("Effect didn't finish before timeout", file: file, line: line)
 		}

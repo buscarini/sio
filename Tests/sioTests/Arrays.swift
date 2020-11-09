@@ -10,11 +10,11 @@ import XCTest
 import Sio
 
 class Arrays: XCTestCase {
-	let scheduler = TestScheduler()
-	
 	func testMap2() {
+		let scheduler = TestScheduler()
+		
 		UIO<[Int]>.of([1, 2, 3]).map2 { $0*2 }
-			.assert([ 2, 4, 6 ])
+			.assert([ 2, 4, 6 ], scheduler: scheduler)
 	}
 		
 	func exampleError() -> Error {
@@ -31,8 +31,24 @@ class Arrays: XCTestCase {
 	func testTraverse() {
 		let scheduler = TestScheduler()
 
-		[1, 2, 3].traverse(scheduler) { IO<Never, Int>.of($0) }
-			.assert([1, 2, 3], scheduler: scheduler)
+		[1, 2, 3]
+			.traverse(scheduler) { value in
+				IO.effectMain {
+					print("Traversed")
+				}.flatMap { _ in
+					IO<Never, Int>.of(value)
+				}
+			}
+			.assert(
+				[1, 2, 3],
+				scheduler: scheduler,
+				prepare: {
+					scheduler.advance(
+						numSteps: 6,
+						queue: .main
+					)
+				}
+			)
 	}
 	
 	func testConcat() {
@@ -43,7 +59,9 @@ class Arrays: XCTestCase {
 			IO<Int, [Int]>.of([4, 5, 6]),
 			scheduler
 		)
-		.assert([ 1, 2, 3, 4, 5, 6 ], scheduler: scheduler)
+		.assert([ 1, 2, 3, 4, 5, 6 ], scheduler: scheduler, prepare: {
+			scheduler.advance()
+		})
 	}
 	
 	func testParallel() {
@@ -61,15 +79,18 @@ class Arrays: XCTestCase {
 			scheduler: scheduler,
 			timeout: 3,
 			prepare: {
-				self.scheduler.advance(0.5)
+				scheduler.advance()
+				scheduler.advance(0.5)
 			}
 		)
 	}
 	
 	func testSequenceEmpty() {
+		let scheduler = TestScheduler()
+
 		let ios: [SIO<Void, Void, [Int]>] = []
 		sequence(ios)
-			.assert([])
+			.assert([], scheduler: scheduler)
 	}
 	
 	func testSequence() {

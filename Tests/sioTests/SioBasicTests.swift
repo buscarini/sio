@@ -42,19 +42,24 @@ class sioTests: XCTestCase {
 	}
 	
 	func testLazy() {
+		let scheduler = TestScheduler()
 		SIO<Void, String, String>.lazy("ok")
-			.assert("ok")
+			.assert("ok", scheduler: scheduler)
 	}
 	
 	func testRejectedLazy() {
+		let scheduler = TestScheduler()
+
 		SIO<Void, String, String>.rejectedLazy("err")
-			.assertErr("err")
+			.assertErr("err", scheduler: scheduler)
 	}
 	
 	func testFromFunc() {
+		let scheduler = TestScheduler()
+
 		SIO<String, Never, Int>.fromFunc { $0.count }
 			.provide("hello")
-			.assert(5)
+			.assert(5, scheduler: scheduler)
 	}
 	
 	func testFromFuncCancel() {
@@ -98,52 +103,68 @@ class sioTests: XCTestCase {
 	}
 	
 	func testConst() {
+		let scheduler = TestScheduler()
+
 		SIO<Void, Int, String>.of("ok").const("b")
-			.assert("b")
+			.assert("b", scheduler: scheduler)
 	}
 	
 	func testConstError() {
+		let scheduler = TestScheduler()
+
 		SIO<Void, Int, String>.of("ok").constError(1)
-			.assert("ok")
+			.assert("ok", scheduler: scheduler)
 		
 		SIO<Void, Int, String>.rejected(2).constError(1)
-			.assertErr(1)
+			.assertErr(1, scheduler: scheduler)
 	}
 	
 	func testFlip() {
+		let scheduler = TestScheduler()
+
 		SIO<Void, String, Int>.rejected("ok").flip()
-			.assert("ok")
+			.assert("ok", scheduler: scheduler)
 	}
 	
 	func testFlipInverse() {
+		let scheduler = TestScheduler()
+
 		SIO<Void, String, Int>.of(1).flip()
-			.assertErr(1)
+			.assertErr(1, scheduler: scheduler)
 	}
 	
 	func testEitherLeft() {
+		let scheduler = TestScheduler()
+
 		IO.from(Either<String, Int>.left("ok"))
-			.assertErr("ok")
+			.assertErr("ok", scheduler: scheduler)
 	}
 	
 	func testEitherRight() {
+		let scheduler = TestScheduler()
+
 		IO.from(Either<String, Int>.right(1))
-			.assert(1)
+			.assert(1, scheduler: scheduler)
 	}
 	
 	func testToEitherLeft() {
+		let scheduler = TestScheduler()
+
 		IO<String, Int>.rejected("err")
 			.either()
 			.assert({ value in
 				value.isLeft && value.left == "err"
-			})
+			}, scheduler: scheduler)
 	}
 	
 	func testToEitherRight() {
+		let scheduler = TestScheduler()
+
 		IO<String, Int>.of(1)
 			.either()
 			.assert({ value in
 				value.isRight && value.right == 1
-			})
+			}, scheduler: scheduler)
 	}
 	
 	func testOnCompletionError() {
@@ -419,18 +440,22 @@ class sioTests: XCTestCase {
 	}
 	
 	func testAccess() {
+		let scheduler = TestScheduler()
+
 		let sio: SIO<(Int, Int), Never, Int> = SIO<(Int, Int), Never, Int>.access { $0.0 }
 			
 		sio
 			.provide((1, 2))
-			.assert(1)
+			.assert(1, scheduler: scheduler)
 	}
 	
 	func testAccessPath() {
+		let scheduler = TestScheduler()
+
 		let io: SIO<User, Void, String> = access(\User.name)
 		io
 			.provide(User.init(name: "john"))
-			.assert("john")
+			.assert("john", scheduler: scheduler)
 	}
 	
 	func testEmpty() {
@@ -482,69 +507,89 @@ class sioTests: XCTestCase {
 	}
 	
 	func testBiFlatMapError() {
+		let scheduler = TestScheduler()
+
 		SIO<Void, Int, Int>.rejected(1)
 			.biFlatMap(IO<Never, String>.of("ok"))
-			.assert("ok")
+			.assert("ok", scheduler: scheduler)
 	}
 	
 	func testFlatMapError() {
+		let scheduler = TestScheduler()
+
 		IO<Int, Int>.rejected(1)
 			.flatMapError(IO<Int, Int>.of(2))
-			.assert(2)
+			.assert(2, scheduler: scheduler)
 	}
 	
 	func testBiFlatMapErrorToError() {
+		let scheduler = TestScheduler()
+
 		SIO<Void, Int, Int>.rejected(1)
 			.biFlatMap(IO<String, Never>.rejected("ok"))
-			.assertErr("ok")
+			.assertErr("ok", scheduler: scheduler)
 	}
 	
 	func testFlatMapErrorToError() {
+		let scheduler = TestScheduler()
+
 		SIO<Void, Int, Int>.rejected(1)
 			.flatMapError(IO<Int, Int>.rejected(2))
-			.assertErr(2)
+			.assertErr(2, scheduler: scheduler)
 	}
 	
 	func testBiFlatMapSuccess() {
+		let scheduler = TestScheduler()
+
 		SIO<Void, Int, Int>.of(1)
 			.biFlatMap(IO<Never, String>.of("ok"))
-			.assert("ok")
+			.assert("ok", scheduler: scheduler)
 	}
 	
 	func testBiFlatMapSuccessToError() {
+		let scheduler = TestScheduler()
+
 		SIO<Void, Int, Int>.of(1)
 			.biFlatMap(IO<Never, String>.of("ok"))
-		.assert("ok")
+		.assert("ok", scheduler: scheduler)
 	}
 	
 	func testFlatMapNever() {
+		let scheduler = TestScheduler()
+
 		SIO<Void, Never, Int>.of(1)
 			.flatMapNever { value in
 				IO<Int, Int>.of(1 + value)
 			}
-			.assert(2)
+			.assert(2, scheduler: scheduler)
 	}
 	
 	func testFlatMapNeverError() {
+		let scheduler = TestScheduler()
+
 		SIO<Void, Never, Int>.of(1)
 			.flatMapNever { value in
 				IO<Int, Int>.rejected(3)
 			}
-			.assertErr(3)
+			.assertErr(3, scheduler: scheduler)
 	}
 	
 	func testFlatMapNeverIO() {
+		let scheduler = TestScheduler()
+
 		SIO<Void, Never, Int>.of(1)
 			.flatMapNever(SIO<Int, Int, Int>.of(2))
-			.assert(2)
+			.assert(2, scheduler: scheduler)
 	}
 	
 	func testFlatMapNeverErrorIO() {
+		let scheduler = TestScheduler()
+
 		SIO<Void, Never, Int>.of(1)
 			.flatMapNever(
 				SIO<Int, Int, Int>.rejected(3)
 			)
-			.assertErr(3)
+			.assertErr(3, scheduler: scheduler)
 	}
 	
 	func testRunAll() {

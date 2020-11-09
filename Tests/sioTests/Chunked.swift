@@ -20,17 +20,21 @@ class Chunked: XCTestCase {
     }
     
     func testChunks() {
+		let scheduler = TestScheduler()
+
 		let values = Array(1...10)
 		let tasks = values
 				.map { IO<Error, Int>.of($0) }
-				.map(delayed(1))
+				.map(delayed(1, scheduler))
 		
 		let taskChunks = tasks.chunked(by: 5) // [[task1, …, task5],[task6, …, task10]]
-			.map { parallel($0) } // [ task[], task[] ]
+			.map {
+				parallel($0, scheduler)
+			} // [ task[], task[] ]
 		
 		let expectation = self.expectation(description: "tasks completed")
 		
-		let now = Date()
+//		let now = Date()
 
 		sequence(taskChunks) // task[]
 			.fork((), { _ in
@@ -38,11 +42,14 @@ class Chunked: XCTestCase {
 			},
 			{ results in
 				XCTAssert(results == values)
-				XCTAssert(-now.timeIntervalSinceNow > 2.0)
+//				XCTAssert(-now.timeIntervalSinceNow > 2.0)
 				
 				expectation.fulfill()
 			})
-		
+
+		scheduler.advance(1)
+		scheduler.advance(1)
+
 		self.waitForExpectations(timeout: 2.5, handler: nil)
     }
 }

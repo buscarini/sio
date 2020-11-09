@@ -13,15 +13,19 @@ import SioValueStore
 
 class SIOCodecTests: XCTestCase {
 	func testOf() {
+		let scheduler = TestScheduler()
+		
 		ValueStore<Void, String, Int, Int>.of(1)
 			.load
-			.assert(1)
+			.assert(1, scheduler: scheduler)
 	}
 	
 	func testRejected() {
+		let scheduler = TestScheduler()
+
 		ValueStore<Void, String, Int, Int>.rejected("err")
 			.load
-			.assertErr("err")
+			.assertErr("err", scheduler: scheduler)
 	}
 	
 	func testCopy() {

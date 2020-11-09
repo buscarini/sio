@@ -22,6 +22,8 @@ class SIOValueStoreJSONTests: XCTestCase {
 	}
 	
 	func testJSON() {
+		let scheduler = TestScheduler()
+
 		let store = ValueStoreA<Void, ValueStoreError, User>.jsonPreference("user")
 		let user = User.mock
 		
@@ -30,7 +32,7 @@ class SIOValueStoreJSONTests: XCTestCase {
 		.flatMap { user in
 			store.load
 		}
-		.assert(user)
+		.assert(user, scheduler: scheduler)
 	}
 	
 	func testJSONRemove() {

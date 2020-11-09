@@ -38,6 +38,8 @@ class SIOValueStoreIsoTests: XCTestCase {
 	})
 	
 	func testDimapRightOne() {
+		let scheduler = TestScheduler()
+
 		let vs = dimap(
 			ValueStoreA<Void, String, Left>.of(.a),
 			SIOValueStoreIsoTests.leftMiddle
@@ -45,10 +47,12 @@ class SIOValueStoreIsoTests: XCTestCase {
 			
 		vs
 			.load
-			.assert(.one)
+			.assert(.one, scheduler: scheduler)
 	}
 	
 	func testDimapRightTwo() {
+		let scheduler = TestScheduler()
+
 		let vs = dimap(
 			ValueStoreA<Void, String, Left>.of(.b),
 			SIOValueStoreIsoTests.leftMiddle
@@ -56,28 +60,34 @@ class SIOValueStoreIsoTests: XCTestCase {
 			
 		vs
 			.load
-			.assert(.two)
+			.assert(.two, scheduler: scheduler)
 	}
 	
 	func testComposeRightOne() {
+		let scheduler = TestScheduler()
+
 		let vs = ValueStoreA<Void, String, Left>.of(.a)
 			>>> SIOValueStoreIsoTests.leftMiddle
 			
 		vs
 			.load
-			.assert(.one)
+			.assert(.one, scheduler: scheduler)
 	}
 	
 	func testComposeRightTwo() {
+		let scheduler = TestScheduler()
+
 		let vs = ValueStoreA<Void, String, Left>.of(.b)
 			>>> SIOValueStoreIsoTests.leftMiddle
 			
 		vs
 			.load
-			.assert(.two)
+			.assert(.two, scheduler: scheduler)
 	}
 	
 	func testComposeRightIso() {
+		let scheduler = TestScheduler()
+
 		let saves = expectation(description: "saves")
 		
 		let vs = ValueStoreA<Void, String, Middle>.assertOnlySaves(saves, .one)
@@ -85,40 +95,48 @@ class SIOValueStoreIsoTests: XCTestCase {
 		
 		(SIOValueStoreIsoTests.leftMiddle >>> vs)
 			.save(.a)
-			.assert(.one)
+			.assert(.one, scheduler: scheduler)
 		
 		waitForExpectations(timeout: 0.01, handler: nil)
 	}
 
 	func testComposeRightTwoIso() {
+		let scheduler = TestScheduler()
+
 		let saves = expectation(description: "saves")
 		
 		let vs = ValueStoreA<Void, String, Middle>.assertOnlySaves(saves, .two)
 		
 		(SIOValueStoreIsoTests.leftMiddle >>> vs)
 			.save(.b)
-			.assert(.two)
+			.assert(.two, scheduler: scheduler)
 		
 		waitForExpectations(timeout: 0.01, handler: nil)
 	}
 	
 	func testComposeLeft() {
+		let scheduler = TestScheduler()
+
 		let vs = (SIOValueStoreIsoTests.leftMiddle.reversed <<< ValueStoreA<Void, String, Middle>.of(.one))
 			
 		vs
 			.load
-			.assert(.a)
+			.assert(.a, scheduler: scheduler)
 	}
 	
 	func testComposeLeftTwo() {
+		let scheduler = TestScheduler()
+
 		let vs = (SIOValueStoreIsoTests.leftMiddle.reversed <<< ValueStoreA<Void, String, Middle>.of(.two))
 			
 		vs
 			.load
-			.assert(.b)
+			.assert(.b, scheduler: scheduler)
 	}
 	
 	func testComposeLeftIso() {
+		let scheduler = TestScheduler()
+
 		let saves = expectation(description: "saves")
 		
 		let vs = ValueStoreA<Void, String, Middle>.assertOnlySaves(saves, .one)
@@ -126,19 +144,21 @@ class SIOValueStoreIsoTests: XCTestCase {
 		
 		(vs <<< SIOValueStoreIsoTests.leftMiddle)
 			.save(.a)
-			.assert(.one)
+			.assert(.one, scheduler: scheduler)
 		
 		waitForExpectations(timeout: 0.01, handler: nil)
 	}
 
 	func testComposeLeftTwoIso() {
+		let scheduler = TestScheduler()
+
 		let saves = expectation(description: "saves")
 		
 		let vs = ValueStoreA<Void, String, Middle>.assertOnlySaves(saves, .two)
 		
 		(vs <<< SIOValueStoreIsoTests.leftMiddle)
 			.save(.b)
-			.assert(.two)
+			.assert(.two, scheduler: scheduler)
 		
 		waitForExpectations(timeout: 0.01, handler: nil)
 	}

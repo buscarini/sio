@@ -40,6 +40,32 @@ extension Array {
 		)
 	}
 	
+	@inlinable
+	public func wither<R, E, A>(
+		_ scheduler: Scheduler,
+		_ f: @escaping (Element) -> SIO<R, E, A?>
+	) -> SIO<R, E, [A]> {
+		guard let first = self.first else {
+			return .of([])
+		}
+
+		guard self.count > 1 else {
+			return f(first).map { [$0].compactMap { $0 } }
+		}
+
+		let concat = SIO<R, E, ([A], [A]) -> [A]>.of(+)
+		let half = self.count/2
+		let left = self[0..<half]
+		let right = self[half..<count]
+
+		return ap(
+			concat,
+			Array(left).wither(scheduler, f),
+			Array(right).wither(scheduler, f),
+			scheduler
+		)
+	}
+	
 	public func foldM<R, E, S>(_ initial: S, _ f: @escaping (S, Element) -> SIO<R, E, S>) -> SIO<R, E, S> {
 		return self.reduce(SIO<R, E, S>.of(initial)) { acc, item in
 			acc.flatMap { s in
@@ -54,7 +80,7 @@ public func parallel<R, E, A>(
 	_ ios: [SIO<R, E, A>],
 	_ scheduler: Scheduler
 ) -> SIO<R, E, [A]> {
-	return ios.traverse(scheduler) { $0 }
+	ios.traverse(scheduler) { $0 }
 }
 
 @inlinable

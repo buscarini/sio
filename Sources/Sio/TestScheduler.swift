@@ -8,6 +8,8 @@
 import Foundation
 
 public final class TestScheduler: Scheduler {
+	private let queue = DispatchQueue(label: "Test Scheduler")
+	
 	struct Item {
 		var date: Date
 		var work: Scheduler.Work
@@ -23,33 +25,72 @@ public final class TestScheduler: Scheduler {
 	public func run(
 		_ work: @escaping Scheduler.Work
 	) -> Void {
-		items.append(.init(date: date, work: work))
+		self.queue.async {
+			self.items.append(.init(date: self.date, work: work))
+		}
 	}
 	
 	public func runAfter(
 		after delay: Seconds<Double>,
 		_ work: @escaping Scheduler.Work		
 	) -> Void {
-		items.append(.init(
-			date: date.addingTimeInterval(delay.rawValue),
-			work: work)
-		)
+		self.queue.async {
+			self.items.append(
+				.init(
+					date: self.date.addingTimeInterval(delay.rawValue),
+					work: work)
+			)
+		}
 	}
 	
 	public func advance(
 		_ time: TimeInterval = 0.01
 	) {
-		date.addTimeInterval(time)
+		self.queue.sync {
+			self.date.addTimeInterval(time)
+		}
 		
-		let (past, future) = items.partition { item in
-			self.date.timeIntervalSince1970
-				- item.date.timeIntervalSince1970
-			 >= 0
-			 ? .left(item) : .right(item)
+		var past: [Item] = []
+		var future: [Item] = []
+			
+		self.queue.sync {
+			(past, future) = self.items.partition { item in
+				self.date.timeIntervalSince1970
+					- item.date.timeIntervalSince1970
+					>= 0
+					? .left(item) : .right(item)
+			}
+		}
+		
+		print("Tasks to run \(past.count) \(future.count)")
+		
+		guard past.count > 0 else {
+			return
+		}
+
+		self.queue.sync {
+			self.items = future
 		}
 		
 		past.forEach { $0.work() }
 		
-		items = future
+		
+		// Reentrant
+		print("reenter")
+		self.advance()
+	}
+	
+	public func advance(
+		numSteps: Int,
+		queue: DispatchQueue
+	) {
+		guard numSteps > 0 else {
+			return
+		}
+		
+		self.advance()
+		queue.async {
+			self.advance(numSteps: numSteps - 1, queue: queue)
+		}
 	}
 }
