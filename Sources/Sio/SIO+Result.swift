@@ -10,23 +10,23 @@ import Foundation
 
 public extension SIO where E: Error {
 	@inlinable
-	static func from(_ result: Result<A, E>) -> SIO<Void, E, A> {
+	static func from(_ result: Result<A, E>) -> Sync<Void, E, A> {
 		switch result {
 		case let .success(a):
-			return SIO<Void, E, A>.of(a)
+			return Sync { _ in .right(a) }
 		case let .failure(e):
-			return SIO<Void, E, A>.rejected(e)
+			return Sync { _ in .left(e) }
 		}
 	}
 	
-	@inlinable
-	func result() -> SIO<R, Never, Result<A, E>> {
-		self
-			.map { a in
-				Result<A, E>.success(a)
-			}
-			.flatMapError { e in
-				SIO<R, Never, Result<A, E>>.of(Result<A, E>.failure(e))
-			}
-	}
+//	@inlinable
+//	func result() -> Sync<R, Never, Result<A, E>> {
+//		self
+//			.map { a in
+//				Result<A, E>.success(a)
+//			}
+//			.flatMapError { e in
+//				SIO<R, Never, Result<A, E>>.of(Result<A, E>.failure(e))
+//			}
+//	}
 }

@@ -8,38 +8,55 @@
 
 import Foundation
 
-public extension SIO {
-	@inlinable
-	func biFlatMap<F, B>(
-		_ io: SIO<R, F, B>
-	) -> SIO<R, F, B> {
-		self.biFlatMap({ _ in io }, { _ in io })
-	}
-	
-	func biFlatMap<F, B>(
-		_ f: @escaping (E) -> SIO<R, F, B>,
-		_ g: @escaping (A) -> SIO<R, F, B>
-	) -> SIO<R, F, B> {
-		let result: SIO<R, F, B>
-		
-		switch self.implementation {
-			case let .success(val):
-				result = g(val)
-			case let .fail(e):
-				result = f(e)
-			case .sync, .async:
-				let specific = BiFlatMap(sio: self, err: f, succ: g)
-				result = SIO<R, F, B>.init(
-					.biFlatMap(specific),
-					cancel: self.cancel
-				)
-				result.scheduler = self.scheduler
-				result.delay = self.delay
-		
-			case let .biFlatMap(impl):
-				result = impl.biFlatMap(f, g)
-		}
-		
-		return result
-	}
-}
+
+//public final class BiFlatMap<R, E, A, F, B>: SIO {
+//	var rejected: (E) -> Async<R, F, B>
+//	var resolved: (A) -> Async<R, F, B>
+//	
+//	public init(
+//		rejected: (E) -> Async<R, F, B>,
+//		resolved: (A) -> Async<R, F, B>
+//	) {
+//		self.rejected = rejected
+//		self.resolved = resolved
+//	}
+//	
+//	
+//}
+
+
+//public extension SIO {
+//	@inlinable
+//	func biFlatMap<F, B>(
+//		_ io: SIO<R, F, B>
+//	) -> SIO<R, F, B> {
+//		self.biFlatMap({ _ in io }, { _ in io })
+//	}
+//
+//	func biFlatMap<F, B>(
+//		_ f: @escaping (E) -> SIO<R, F, B>,
+//		_ g: @escaping (A) -> SIO<R, F, B>
+//	) -> SIO<R, F, B> {
+//		let result: SIO<R, F, B>
+//
+//		switch self.implementation {
+//			case let .success(val):
+//				result = g(val)
+//			case let .fail(e):
+//				result = f(e)
+//			case .sync, .async:
+//				let specific = BiFlatMap(sio: self, err: f, succ: g)
+//				result = SIO<R, F, B>.init(
+//					.biFlatMap(specific),
+//					cancel: self.cancel
+//				)
+//				result.scheduler = self.scheduler
+//				result.delay = self.delay
+//
+//			case let .biFlatMap(impl):
+//				result = impl.biFlatMap(f, g)
+//		}
+//
+//		return result
+//	}
+//}

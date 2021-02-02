@@ -10,63 +10,65 @@ import Foundation
 
 public extension SIO {
 	@inlinable
-	static func of(_ value: A) -> SIO {
-		SIO(.success(value), cancel: nil)
+	static func of(_ value: A) -> Just<R, E, A> {
+		Just(value)
 	}
 	
 	@inlinable
-	static func lazy(_ value: @autoclosure @escaping () -> A) -> SIO {
-		SIO({ (_, _, resolve) in
-			resolve(value())
-		})
+	static func lazy(_ value: @autoclosure @escaping () -> A) -> Sync<R, E, A> {
+		Sync { _ in
+			.right(value())
+		}
 	}
 
 	@inlinable
-	static func rejected(_ error: E) -> SIO {
-		SIO(.fail(error), cancel: nil)
+	static func rejected(_ error: E) -> Rejected<R, E, A> {
+		Rejected(error)
 	}
 	
 	@inlinable
-	static func rejectedLazy(_ error: @autoclosure @escaping () -> E) -> SIO {
-		SIO({ (_, reject, _) in
-			reject(error())
-		})
+	static func rejectedLazy(_ error: @autoclosure @escaping () -> E) -> Sync<R, E, A> {
+		Sync { _ in
+			.left(error())
+		}
 	}
 	
 	@inlinable
-	static func fromFunc(_ f: @escaping (R) -> A) -> SIO<R, Never, A> {
-		environment().map(f)
+	static func fromFunc(_ f: @escaping (R) -> A) -> Sync<R, E, A> {
+		Sync { r in
+			.right(f(r))
+		}
 	}
 }
 
 public extension SIO where E == Never, A == Void {
 	@inlinable
-	static var empty: SIO<R, Never, Void> {
-		.effect { _ in }
+	static var empty: Just<R, E, A> {
+		Just(())
 	}
 	
 	@inlinable
-	static func effect(_ f: @escaping (R) -> Void) -> SIO<R, Never, Void> {
-		SIO<R, Never, Void>.sync({ r in
+	static func effect(_ f: @escaping (R) -> Void) -> Sync<R, Never, Void> {
+		Sync { r in
 			f(r)
 			return .right(())
-		})
+		}
 	}
 	
-	@inlinable
-	static func effectMain(_ f: @escaping (R) -> Void) -> SIO<R, Never, Void> {
-		effect(f).scheduleOn(.main)
-	}
+//	@inlinable
+//	static func effectMain(_ f: @escaping (R) -> Void) -> Sync<R, Never, Void> {
+//		effect(f).scheduleOn(.main)
+//	}
 }
 
 public extension SIO {
 	@inlinable
-	static var never: SIO<R, Never, Never> {
-		.init { (_, _, _) in }
+	static var never: Async<R, Never, Never> {
+		Async<R, Never, Never>({ _, _ ,_ in }, cancel: nil)
 	}
 	
-	@inlinable
-	var never: SIO<R, Never, Never> {
-		self.biFlatMap(.never)
-	}
+//	@inlinable
+//	var never: Async<R, Never, Never> {
+//		self.biFlatMap(.never)
+//	}
 }
