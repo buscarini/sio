@@ -25,6 +25,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		ACA1AEA825C949F700DBD40E /* IValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA1AEA725C949F700DBD40E /* IValueStore.swift */; };
 		OBJ_268 /* AbsoluteLocalURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AbsoluteLocalURL.swift */; };
 		OBJ_269 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Application.swift */; };
 		OBJ_270 /* Array+Partition.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Array+Partition.swift */; };
@@ -506,6 +507,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		ACA1AEA725C949F700DBD40E /* IValueStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IValueStore.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		OBJ_100 /* SIO+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Date.swift"; sourceTree = "<group>"; };
 		OBJ_101 /* SIO+FS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+FS.swift"; sourceTree = "<group>"; };
@@ -855,6 +857,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ACA1AEA625C949E700DBD40E /* SioIValueStore */ = {
+			isa = PBXGroup;
+			children = (
+				ACA1AEA725C949F700DBD40E /* IValueStore.swift */,
+			);
+			path = SioIValueStore;
+			sourceTree = "<group>";
+		};
 		OBJ_103 /* SioNetwork */ = {
 			isa = PBXGroup;
 			children = (
@@ -1113,7 +1123,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -1132,12 +1142,12 @@
 				OBJ_261 /* SioEffects.podspec */,
 				OBJ_262 /* Sio.xctestplan */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				ACA1AEA625C949E700DBD40E /* SioIValueStore */,
 				OBJ_8 /* Sio */,
 				OBJ_77 /* SioCodec */,
 				OBJ_90 /* SioEffects */,
@@ -1514,7 +1524,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_241 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1607,6 +1617,7 @@
 				OBJ_330 /* SIOError.swift in Sources */,
 				OBJ_331 /* Scheduler.swift in Sources */,
 				OBJ_332 /* Seconds.swift in Sources */,
+				ACA1AEA825C949F700DBD40E /* IValueStore.swift in Sources */,
 				OBJ_333 /* Sio+Codable.swift in Sources */,
 				OBJ_334 /* SyncValue.swift in Sources */,
 				OBJ_335 /* TestScheduler.swift in Sources */,
