@@ -61,27 +61,27 @@ public func ap<R, E, A, B>(
 				}
 				
 //				print(Thread.callStackSymbols)
-				print("ap \(leftVal) \(rightVal)")
+//				print("ap \(leftVal) \(rightVal)")
 				
 				switch (leftVal, rightVal) {
 				case let (.right(ab)?, .right(a)?):
 					resolved = true
-					print("ap loaded both")
+//					print("ap loaded both")
 					resolve(ab(a))
 				case let (.left(e)?, .some):
 					resolved = false
-					print("ap error right")
+//					print("ap error right")
 					reject(e)
 				case let (.some, .left(e)?):
 					resolved = false
 					
-					print("ap error left")
+//					print("ap error left")
 					
 					reject(e)
 					
 				default:
 					
-					print("other")
+//					print("other")
 					
 					return
 				}
@@ -89,31 +89,31 @@ public func ap<R, E, A, B>(
 		}
 		
 		l.fork(env, { error in
-			print("left error")
+//			print("left error")
 			checkContinue {
 				leftVal = .left(error)
-				print("updated left val error")
+//				print("updated left val error")
 			}
 			
 		}, { loadedF in
-			print("left success")
+//			print("left success")
 			checkContinue {
 				leftVal = .right(loadedF)
-				print("updated left val success")
+//				print("updated left val success")
 			}
 		})
 	
 		r.fork(env, { error in
-			print("right error")
+//			print("right error")
 			checkContinue {
 				rightVal = .left(error)
-				print("updated right val error")
+//				print("updated right val error")
 			}
 		}, { loadedVal in
-			print("right success")
+//			print("right success")
 			checkContinue {
 				rightVal = .right(loadedVal)
-				print("updated right val success")
+//				print("updated right val success")
 			}
 		})
 		

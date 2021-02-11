@@ -5,7 +5,7 @@ public struct LCRNG: RandomNumberGenerator {
 	@inlinable
 	public init(seed: UInt64) {
 		self.seed = seed
-		print("Init LCRNG with seed \(seed)")
+//		print("Init LCRNG with seed \(seed)")
 	}
 	
 	@inlinable

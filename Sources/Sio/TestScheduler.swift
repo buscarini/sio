@@ -62,7 +62,7 @@ public final class TestScheduler: Scheduler {
 			}
 		}
 		
-		print("Tasks to run \(past.count) \(future.count)")
+//		print("Tasks to run \(past.count) \(future.count)")
 		
 		guard past.count > 0 else {
 			return
@@ -76,7 +76,7 @@ public final class TestScheduler: Scheduler {
 		
 		
 		// Reentrant
-		print("reenter")
+//		print("reenter")
 		self.advance()
 	}
 	
