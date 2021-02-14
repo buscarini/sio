@@ -25,11 +25,11 @@ class Chunked: XCTestCase {
 		let values = Array(1...10)
 		let tasks = values
 				.map { IO<Error, Int>.of($0) }
-				.map(delayed(1, AnyScheduler(scheduler)))
+				.map(delayed(1, scheduler))
 		
 		let taskChunks = tasks.chunked(by: 5) // [[task1, …, task5],[task6, …, task10]]
 			.map {
-				parallel($0, AnyScheduler(scheduler))
+				parallel($0, scheduler)
 			} // [ task[], task[] ]
 		
 		let expectation = self.expectation(description: "tasks completed")

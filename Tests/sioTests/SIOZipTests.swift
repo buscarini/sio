@@ -60,7 +60,7 @@ class SioZipTests: XCTestCase {
 		let left = IO<Int, Int>.of(1)
 		let right = IO<Int, Int>.of(2)
 		
-		zip(left, right, AnyScheduler(scheduler))
+		zip(left, right, scheduler)
 		.fork({ _ in
 			XCTFail()
 		}) { (l, r) in
@@ -84,7 +84,7 @@ class SioZipTests: XCTestCase {
 		let right = IO<Int, Int>.of(1)
 		let right2 = IO<Int, Int>.of(2)
 		
-		zip(left, left2, AnyScheduler(scheduler))
+		zip(left, left2, scheduler)
 		.fork({ e in
 			XCTAssert(e == -1)
 		}) { (_) in
@@ -93,7 +93,7 @@ class SioZipTests: XCTestCase {
 		
 		scheduler.advance()
 		
-		zip(left, right, AnyScheduler(scheduler))
+		zip(left, right, scheduler)
 		.fork({ e in
 			XCTAssert(e == -1)
 		}) { (_) in
@@ -102,7 +102,7 @@ class SioZipTests: XCTestCase {
 		
 		scheduler.advance()
 		
-		zip(right, left, AnyScheduler(scheduler))
+		zip(right, left, scheduler)
 		.fork({ e in
 			XCTAssert(e == -1)
 		}) { (_) in
@@ -111,7 +111,7 @@ class SioZipTests: XCTestCase {
 		
 		scheduler.advance()
 		
-		zip(right, right2, AnyScheduler(scheduler))
+		zip(right, right2, scheduler)
 		.fork({ _ in
 			XCTFail()
 		}) { both in
@@ -136,28 +136,28 @@ class SioZipTests: XCTestCase {
 		let right = IO<Int, Int>.of(1)
 		let right2 = IO<Int, Int>.of(2)
 		
-		zip2(with: { ($0, $1) })(left, left2, AnyScheduler(scheduler))
+		zip2(with: { ($0, $1) })(left, left2, scheduler)
 		.fork({ e in
 			XCTAssert(e == -1)
 		}) { (_) in
 			XCTFail()
 		}
 		
-		zip2(with: { ($0, $1) })(left, right, AnyScheduler(scheduler))
+		zip2(with: { ($0, $1) })(left, right, scheduler)
 		.fork({ e in
 			XCTAssert(e == -1)
 		}) { (_) in
 			XCTFail()
 		}
 		
-		zip2(with: { ($0, $1) })(right, left, AnyScheduler(scheduler))
+		zip2(with: { ($0, $1) })(right, left, scheduler)
 		.fork({ e in
 			XCTAssert(e == -1)
 		}) { (_) in
 			XCTFail()
 		}
 		
-		zip2(with: { ($0, $1) })(right, right2, AnyScheduler(scheduler))
+		zip2(with: { ($0, $1) })(right, right2, scheduler)
 		.fork({ _ in
 			XCTFail()
 		}) { both in
@@ -182,7 +182,7 @@ class SioZipTests: XCTestCase {
 		let right = IO<Int, Int>.of(1)
 		let right2 = IO<Int, Int>.of(2)
 		
-		zip3(left, left2, left2, AnyScheduler(scheduler))
+		zip3(left, left2, left2, scheduler)
 		.fork({ e in
 			XCTAssert(e == -1)
 		}) { (_) in
@@ -192,7 +192,7 @@ class SioZipTests: XCTestCase {
 		scheduler.advance()
 		scheduler.advance()
 		
-		zip3(left, left2, right, AnyScheduler(scheduler))
+		zip3(left, left2, right, scheduler)
 		.fork({ e in
 			XCTAssert(e == -1)
 		}) { (_) in
@@ -202,7 +202,7 @@ class SioZipTests: XCTestCase {
 		scheduler.advance()
 		scheduler.advance()
 		
-		zip3(right, left, left2, AnyScheduler(scheduler))
+		zip3(right, left, left2, scheduler)
 		.fork({ e in
 			XCTAssert(e == -1)
 		}) { (_) in
@@ -212,7 +212,7 @@ class SioZipTests: XCTestCase {
 		scheduler.advance()
 		scheduler.advance()
 		
-		zip3(right, right, right2, AnyScheduler(scheduler))
+		zip3(right, right, right2, scheduler)
 		.fork({ _ in
 			XCTFail()
 		}) { both in
@@ -243,7 +243,7 @@ class SioZipTests: XCTestCase {
 		let right = IO<Int, Int>.of(1)
 		let right2 = IO<Int, Int>.of(2)
 		
-		zip3(with: { ($0, $1, $2) })(left, left, left2, AnyScheduler(scheduler))
+		zip3(with: { ($0, $1, $2) })(left, left, left2, scheduler)
 		.fork({ e in
 			XCTAssert(e == -1)
 		}) { (_) in
@@ -253,7 +253,7 @@ class SioZipTests: XCTestCase {
 		scheduler.advance()
 		scheduler.advance()
 
-		zip3(with: { ($0, $1, $2) })(left, right, right2, AnyScheduler(scheduler))
+		zip3(with: { ($0, $1, $2) })(left, right, right2, scheduler)
 		.fork({ e in
 			XCTAssert(e == -1)
 		}) { (_) in
@@ -263,7 +263,7 @@ class SioZipTests: XCTestCase {
 		scheduler.advance()
 		scheduler.advance()
 		
-		zip3(with: { ($0, $1, $2) })(right, left, left2, AnyScheduler(scheduler))
+		zip3(with: { ($0, $1, $2) })(right, left, left2, scheduler)
 		.fork({ e in
 			XCTAssert(e == -1)
 		}) { (_) in
@@ -273,7 +273,7 @@ class SioZipTests: XCTestCase {
 		scheduler.advance()
 		scheduler.advance()
 		
-		zip3(with: { ($0, $1, $2) })(right, right, right2, AnyScheduler(scheduler))
+		zip3(with: { ($0, $1, $2) })(right, right, right2, scheduler)
 		.fork({ _ in
 			XCTFail()
 		}) { both in
@@ -300,28 +300,28 @@ class SioZipTests: XCTestCase {
 		let right = IO<Int, Int>.of(1)
 		let right2 = IO<Int, Int>.of(2)
 		
-		zip4(left, left2, left2, left, AnyScheduler(scheduler))
+		zip4(left, left2, left2, left, scheduler)
 		.fork({ e in
 			XCTAssert(e == -1)
 		}) { (_) in
 			XCTFail()
 		}
 		
-		zip4(left, left2, right, right2, AnyScheduler(scheduler))
+		zip4(left, left2, right, right2, scheduler)
 		.fork({ e in
 			XCTAssert(e == -1)
 		}) { (_) in
 			XCTFail()
 		}
 		
-		zip4(right, left, left2, right, AnyScheduler(scheduler))
+		zip4(right, left, left2, right, scheduler)
 		.fork({ e in
 			XCTAssert(e == -1)
 		}) { (_) in
 			XCTFail()
 		}
 		
-		zip4(right, right, right2, right2, AnyScheduler(scheduler))
+		zip4(right, right, right2, right2, scheduler)
 		.fork({ _ in
 			XCTFail()
 		}) { both in
@@ -348,28 +348,28 @@ class SioZipTests: XCTestCase {
 		let right = IO<Int, Int>.of(1)
 		let right2 = IO<Int, Int>.of(2)
 		
-		zip4(with: { ($0, $1, $2, $3) })(left, left, left, left2, AnyScheduler(scheduler))
+		zip4(with: { ($0, $1, $2, $3) })(left, left, left, left2, scheduler)
 		.fork({ e in
 			XCTAssert(e == -1)
 		}) { (_) in
 			XCTFail()
 		}
 		
-		zip4(with: { ($0, $1, $2, $3) })(left, right, right2, right, AnyScheduler(scheduler))
+		zip4(with: { ($0, $1, $2, $3) })(left, right, right2, right, scheduler)
 		.fork({ e in
 			XCTAssert(e == -1)
 		}) { (_) in
 			XCTFail()
 		}
 		
-		zip4(with: { ($0, $1, $2, $3) })(right, left, left2, right, AnyScheduler(scheduler))
+		zip4(with: { ($0, $1, $2, $3) })(right, left, left2, right, scheduler)
 		.fork({ e in
 			XCTAssert(e == -1)
 		}) { (_) in
 			XCTFail()
 		}
 		
-		zip4(with: { ($0, $1, $2, $3) })(right, right, right2, right2, AnyScheduler(scheduler))
+		zip4(with: { ($0, $1, $2, $3) })(right, right, right2, right2, scheduler)
 		.fork({ _ in
 			XCTFail()
 		}) { both in

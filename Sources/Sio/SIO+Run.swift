@@ -77,7 +77,7 @@ extension SIO where R == Void, E == Never {
 @inlinable
 public func runAll<R, E, A>(
 	_ tasks: [SIO<R, E, A>],
-	_ scheduler: AnyScheduler
+	_ scheduler: Scheduler
 ) -> SIO<R, E, [A]> {
 	tasks
 		.map { (task: SIO<R, E, A>) -> SIO<R, Never, Either<E, A>> in

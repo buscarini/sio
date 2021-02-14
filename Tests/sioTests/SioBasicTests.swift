@@ -600,7 +600,7 @@ class sioTests: XCTestCase {
 			SIO<Void, Int, Int>.rejected(2),
 			SIO<Void, Int, Int>.of(3),
 			SIO<Void, Int, Int>.rejected(4)
-		], AnyScheduler(scheduler))
+		], scheduler)
 		.assert([ 1, 3 ], scheduler: scheduler)
 	}
 }

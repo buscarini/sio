@@ -11,7 +11,7 @@ public extension SIO {
 	@inlinable
 	func runAt(
 		_ date: Date,
-		_ scheduler: AnyScheduler = AnyScheduler(QueueScheduler(queue: .main))
+		_ scheduler: Scheduler = QueueScheduler(queue: .main)
 	) -> SIO<R, E, A> {
 		self |> delayed(
 			Seconds(rawValue: date.timeIntervalSinceNow),

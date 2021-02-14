@@ -11,7 +11,7 @@ import Sio
 public func zip<R, E, LA, LB, RA, RB>(
 	_ left: ValueStore<R, E, LA, LB>,
 	_ right: ValueStore<R, E, RA, RB>,
-	_ scheduler: AnyScheduler
+	_ scheduler: Scheduler
 ) -> ValueStore<R, E, (LA, RA), (LB, RB)> {
 	return ValueStore<R, E, (LA, RA), (LB, RB)>.init(
 		load: zip(left.load, right.load, scheduler),
