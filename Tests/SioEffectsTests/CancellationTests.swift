@@ -139,7 +139,7 @@ class CancellationTests: XCTestCase {
 		
 		let task = UIO<Int>.of(1)
 			.scheduleOn(.global())
-			.delay(0.1, scheduler)
+			.delay(0.1, AnyScheduler(scheduler))
 		
 		task
 		.fork(absurd, { a in

@@ -11,7 +11,7 @@ import Foundation
 @inlinable
 public func delayed<R, E, A>(
 	_ delay: Seconds<TimeInterval>,
-	_ scheduler: Scheduler = QueueScheduler(queue: .global())
+	_ scheduler: AnyScheduler = AnyScheduler(QueueScheduler(queue: .global()))
 ) -> (SIO<R, E, A>) -> SIO<R, E, A> {
 	{ io in
 		// FIXME: Change this to setting the queue
@@ -33,13 +33,18 @@ public extension SIO {
 		_ time: Seconds<TimeInterval>,
 		_ queue: DispatchQueue
 	) -> SIO<R, E, A> {
-		delayed(time, QueueScheduler.init(queue: queue))(self)
+		delayed(
+			time,
+			AnyScheduler(
+				QueueScheduler.init(queue: queue)
+			)
+		)(self)
 	}
 	
 	@inlinable
 	func delay(
 		_ time: Seconds<TimeInterval>,
-		_ scheduler: Scheduler = QueueScheduler(queue: .main)
+		_ scheduler: AnyScheduler = AnyScheduler(QueueScheduler(queue: .main))
 	) -> SIO<R, E, A> {
 		delayed(time, scheduler)(self)
 	}
@@ -47,7 +52,7 @@ public extension SIO {
 	@inlinable
 	func sleep(
 		_ time: Seconds<TimeInterval>,
-		_ scheduler: Scheduler = QueueScheduler(queue: .main)
+		_ scheduler: AnyScheduler = AnyScheduler(QueueScheduler(queue: .main))
 	) -> SIO<R, E, A> {
 		self.flatMap { value in
 			SIO<R, E, A>.of(value).delay(time, scheduler)

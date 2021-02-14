@@ -90,7 +90,7 @@ class MonadTests: XCTestCase {
 			repeated.fulfill()
 		}
 		.forever()
-		.delay(1, scheduler)
+		.delay(1, AnyScheduler(scheduler))
 			
 		task.runForget()
 		

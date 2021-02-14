@@ -30,7 +30,7 @@ public extension SIO {
 	func retry(
 		times: Int,
 		delay: Seconds<TimeInterval>,
-		scheduler: Scheduler
+		scheduler: AnyScheduler
 	) -> SIO<R, E, A> {
 		self.retry(times: times, modify: { io in
 			io.delay(delay, scheduler)

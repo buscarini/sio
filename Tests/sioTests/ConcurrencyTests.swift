@@ -31,7 +31,7 @@ class ConcurrencyTests: XCTestCase {
 		zip(
 			left,
 			right,
-			scheduler
+			AnyScheduler(scheduler)
 		)
 		.run((), { result in
 			XCTAssert(result.0 == values)
@@ -66,7 +66,7 @@ class ConcurrencyTests: XCTestCase {
 		zip(
 			left,
 			right,
-			scheduler
+			AnyScheduler(scheduler)
 		)
 //		.scheduleOn(DispatchQueue.global())
 		.run((), { result in
@@ -225,7 +225,7 @@ class ConcurrencyTests: XCTestCase {
 		let left = UIO.of(1).scheduleOn(scheduler)
 		let right = UIO.of(2).scheduleOn(scheduler)
 		
-		let task = zip(left, right, scheduler)
+		let task = zip(left, right, AnyScheduler(scheduler))
 			
 		task.fork(absurd, { values in
 			print(values)
@@ -250,7 +250,7 @@ class ConcurrencyTests: XCTestCase {
 		
 		left.cancel()
 		
-		zip(left, right, scheduler)
+		zip(left, right, AnyScheduler(scheduler))
 		.fork(absurd, { values in
 			print(values)
 			XCTFail()

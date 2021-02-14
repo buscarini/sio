@@ -24,7 +24,7 @@ class Arrays: XCTestCase {
 	func testTraverseEmpty() {
 		let scheduler = TestScheduler()
 
-		[].traverse(scheduler) { IO<Never, Int>.of($0) }
+		[].traverse(AnyScheduler(scheduler)) { IO<Never, Int>.of($0) }
 			.assert([], scheduler: scheduler)
 	}
 	
@@ -32,7 +32,7 @@ class Arrays: XCTestCase {
 		let scheduler = TestScheduler()
 
 		[1, 2, 3]
-			.traverse(scheduler) { value in
+			.traverse(AnyScheduler(scheduler)) { value in
 				IO.effectMain {
 					print("Traversed")
 				}.flatMap { _ in
@@ -57,7 +57,7 @@ class Arrays: XCTestCase {
 		concat(
 			IO<Int, [Int]>.of([1, 2, 3]),
 			IO<Int, [Int]>.of([4, 5, 6]),
-			scheduler
+			AnyScheduler(scheduler)
 		)
 		.assert([ 1, 2, 3, 4, 5, 6 ], scheduler: scheduler, prepare: {
 			scheduler.advance()
@@ -71,8 +71,8 @@ class Arrays: XCTestCase {
 			[
 				IO<Error, Int>.of(1), IO.of(2), IO.of(3)
 			]
-			.map(delayed(0.5, scheduler)),
-			scheduler
+			.map(delayed(0.5, AnyScheduler(scheduler))),
+			AnyScheduler(scheduler)
 		)
 		.assert(
 			[ 1, 2, 3 ],

@@ -14,7 +14,7 @@ class TimeoutTests: XCTestCase {
 	func testTimeoutTo() {
 		let finish = expectation(description: "finish")
 
-		let task = UIO.of(1).delay(10, QueueScheduler.main).timeoutTo(0, 0.1)
+		let task = UIO.of(1).delay(10, AnyScheduler(QueueScheduler.main)).timeoutTo(0, 0.1)
 		
 		task.run((), { value in
 			XCTAssert(value == 0)
@@ -27,7 +27,7 @@ class TimeoutTests: XCTestCase {
 	func testTimeout() {
 		let finish = expectation(description: "finish")
         
-		let task = UIO.of(1).delay(10, QueueScheduler.main).timeout(0.1)
+		let task = UIO.of(1).delay(10, AnyScheduler(QueueScheduler.main)).timeout(0.1)
 		
 		task.run((), { value in
 			XCTAssert(value == nil)

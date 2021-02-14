@@ -80,7 +80,7 @@ class Retry: XCTestCase {
 			self.scheduler.advance(1)
 		})
 	
-		task.retry(times: 3, delay: 1, scheduler: scheduler)
+		task.retry(times: 3, delay: 1, scheduler: AnyScheduler(scheduler))
 			.fork({ error in
 				XCTFail()
 			},

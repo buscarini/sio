@@ -70,7 +70,7 @@ class SIOEffectsTests: XCTestCase {
 		
 		let console = Console.mock("hi")
 		
-		let task = values.traverse(scheduler) { index in
+		let task = values.traverse(AnyScheduler(scheduler)) { index in
 			console.printLine("\(index)")
 				.flatMap {
 					UIO<Int>.of(index)

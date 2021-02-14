@@ -21,7 +21,7 @@ class Delay: XCTestCase {
 		
 		let task = IO<Error, Int>.of(1)
 				
-		task.delay(1, scheduler)
+		task.delay(1, AnyScheduler(scheduler))
 			.fork((), { error in
 				XCTFail()
 			},
@@ -40,7 +40,7 @@ class Delay: XCTestCase {
 		
 		let task = IO<Error, Int>.rejected(self.exampleError())
 		
-		task.delay(1, scheduler)
+		task.delay(1, AnyScheduler(scheduler))
 			.fork((), { error in
 				expectation.fulfill()
 			},
@@ -61,7 +61,7 @@ class Delay: XCTestCase {
 		let task = IO.effect {
 			runEffect.fulfill()
 		}
-		.sleep(1, scheduler)
+		.sleep(1, AnyScheduler(scheduler))
 		.flatMap { _ in
 			.effect {
 				delayedContinuation.fulfill()

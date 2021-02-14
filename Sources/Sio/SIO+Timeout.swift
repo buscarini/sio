@@ -12,7 +12,7 @@ public extension SIO {
 	@inlinable
 	func timeout(
 		_ timeout: Seconds<TimeInterval>,
-		_ scheduler: Scheduler = QueueScheduler(queue: .global())
+		_ scheduler: AnyScheduler = AnyScheduler(QueueScheduler(queue: .global()))
 	) -> SIO<R, E, A?> {
 		race(
 			self.map(A?.some),
@@ -24,7 +24,7 @@ public extension SIO {
 	func timeoutTo(
 		_ value: A,
 		_ timeout: Seconds<TimeInterval>,
-		_ scheduler: Scheduler = QueueScheduler(queue: .global())
+		_ scheduler: AnyScheduler = AnyScheduler(QueueScheduler(queue: .global()))
 	) -> SIO<R, E, A> {
 		race(
 			self,

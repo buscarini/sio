@@ -15,8 +15,8 @@ class RaceTests: XCTestCase {
 	func testRace() {
 		let finish = expectation(description: "finish")
 		
-		let left = UIO.of(1).delay(0.5, scheduler)
-		let right = UIO.of(2).delay(5, scheduler)
+		let left = UIO.of(1).delay(0.5, AnyScheduler(scheduler))
+		let right = UIO.of(2).delay(5, AnyScheduler(scheduler))
 		
 		race(left, right).run { value in
 			XCTAssert(value == 1)
@@ -35,9 +35,9 @@ class RaceTests: XCTestCase {
 		
 		let left = SIO<Void, String, Int>
 			.rejected("err")
-			.delay(0.5, scheduler)
+			.delay(0.5, AnyScheduler(scheduler))
 		let right = SIO<Void, String, Int>.of(2)
-			.delay(1, scheduler)
+			.delay(1, AnyScheduler(scheduler))
 		
 		race(left, right).fork({ e in
 			XCTFail()
@@ -55,8 +55,8 @@ class RaceTests: XCTestCase {
 	func testRaceCancel1() {
 		let finish = expectation(description: "finish")
 		
-		let left = UIO.of(1).delay(0.5, scheduler)
-		let right = UIO.of(2).delay(2, scheduler)
+		let left = UIO.of(1).delay(0.5, AnyScheduler(scheduler))
+		let right = UIO.of(2).delay(2, AnyScheduler(scheduler))
 		
 		race(left, right).run { value in
 			XCTAssert(value == 2)
@@ -75,8 +75,8 @@ class RaceTests: XCTestCase {
 	func testRaceCancel2() {
 		let finish = expectation(description: "finish")
 		
-		let left = UIO.of(1).delay(2, scheduler)
-		let right = UIO.of(2).delay(0.5, scheduler)
+		let left = UIO.of(1).delay(2, AnyScheduler(scheduler))
+		let right = UIO.of(2).delay(0.5, AnyScheduler(scheduler))
 		
 		race(left, right).run { value in
 			XCTAssert(value == 1)
@@ -95,11 +95,11 @@ class RaceTests: XCTestCase {
 	func testRaceCancel() {
 		let finish = expectation(description: "finish")
 		
-		let left = UIO.of(1).delay(2, scheduler)
-		let right = UIO.of(2).delay(0.5, scheduler)
+		let left = UIO.of(1).delay(2, AnyScheduler(scheduler))
+		let right = UIO.of(2).delay(0.5, AnyScheduler(scheduler))
 		
 		let raced = race(left, right)
-			.delay(0.1, scheduler)
+			.delay(0.1, AnyScheduler(scheduler))
 			.onCancellation(SIO.effectMain {
 				finish.fulfill()
 			})

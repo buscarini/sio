@@ -17,7 +17,7 @@ class SIOValueStoreZipTests: XCTestCase {
 		let vs: ValueStoreA<Void, Void, (Int, Int)> = zip(
 			Ref<Int?>.init(1).valueStore(),
 			Ref<Int?>.init(2).valueStore(),
-			scheduler
+			AnyScheduler(scheduler)
 		)
 		
 		vs
@@ -36,7 +36,7 @@ class SIOValueStoreZipTests: XCTestCase {
 		let vs: ValueStoreA<Void, Void, (Int, Int)> = zip(
 			Ref<Int?>.init(nil).valueStore(),
 			Ref<Int?>.init(nil).valueStore(),
-			scheduler
+			AnyScheduler(scheduler)
 		)
 		
 		vs
