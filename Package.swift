@@ -23,6 +23,10 @@ let package = Package(
 			targets: ["SioValueStore"]
 		),
 		.library(
+			name: "SioIValueStore",
+			targets: ["SioIValueStore"]
+		),
+		.library(
 			name: "SioEffects",
 			targets: ["SioEffects"]
 		),
@@ -59,6 +63,13 @@ let package = Package(
 			dependencies: ["Sio", "SioCodec", "SioValueStore" ]),
 		
 		.target(
+			name: "SioIValueStore",
+			dependencies: [ "Sio", "SioCodec", "SioValueStore" ]),
+		.testTarget(
+			name: "SioIValueStoreTests",
+			dependencies: ["Sio", "SioCodec", "SioValueStore", "SioIValueStore" ]),
+		
+		.target(
 			name: "SioEffects",
 			dependencies: [ "Sio", "SioCodec", "SioValueStore" ]),
 		.testTarget(
@@ -73,6 +84,11 @@ let package = Package(
 			dependencies: [ "Sio", "SioCodec", "SioValueStore", "SioEffects" ]),
 		.testTarget(
 			name: "SioNetworkTests",
-			dependencies: ["Sio", "SioNetwork", "SioCodec", "SioValueStore", "SioEffects", "SnapshotTesting" ])
+			dependencies: ["Sio", "SioNetwork", "SioCodec", "SioValueStore", "SioEffects", "SnapshotTesting" ],
+			resources: [
+				.copy("__Snapshots__")
+			]
+			
+		)
 	]
 )
