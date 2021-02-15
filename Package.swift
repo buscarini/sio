@@ -84,6 +84,11 @@ let package = Package(
 			dependencies: [ "Sio", "SioCodec", "SioValueStore", "SioEffects" ]),
 		.testTarget(
 			name: "SioNetworkTests",
-			dependencies: ["Sio", "SioNetwork", "SioCodec", "SioValueStore", "SioEffects", "SnapshotTesting" ])
+			dependencies: ["Sio", "SioNetwork", "SioCodec", "SioValueStore", "SioEffects", "SnapshotTesting" ],
+			resources: [
+				.copy("__Snapshots__")
+			]
+			
+		)
 	]
 )
