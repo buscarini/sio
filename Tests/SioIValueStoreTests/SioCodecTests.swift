@@ -1,30 +1,30 @@
 //
-//  SIOValueStoreTests.swift
-//  SIOValueStore
+//  SIOIValueStoreTests.swift
+//  SIOIValueStore
 //
 //  Created by José Manuel Sánchez on 19/5/19.
-//  Copyright © 2019 SIOValueStoreTests. All rights reserved.
+//  Copyright © 2019 SIOIValueStoreTests. All rights reserved.
 //
 
 import Foundation
 import XCTest
 import Sio
-import SioValueStore
+import SioIValueStore
 
 class SIOCodecTests: XCTestCase {
 	func testOf() {
 		let scheduler = TestScheduler()
 		
-		ValueStore<Void, String, Int, Int>.of(1)
-			.load
+		IValueStore<Void, Int, String, Int, Int>.of(1)
+			.load(1)
 			.assert(1, scheduler: scheduler)
 	}
 	
 	func testRejected() {
 		let scheduler = TestScheduler()
 
-		ValueStore<Void, String, Int, Int>.rejected("err")
-			.load
+		IValueStore<Void, Int, String, Int, Int>.rejected("err")
+			.load(1)
 			.assertErr("err", scheduler: scheduler)
 	}
 	
@@ -33,28 +33,30 @@ class SIOCodecTests: XCTestCase {
 
 		var targetVar: Int = 0
 		
-		let origin = ValueStoreA<Void, String, Int>.of(6)
+		let origin = IValueStoreA<Void, Int, String, Int>.of(6)
 		
-		let target = ValueStoreA<Void, String, Int>.init(
-			load: SIO.sync({ _ in
-				return .right(targetVar)
-			}),
-			save: { a in
+		let target = IValueStoreA<Void, Int, String, Int>.init(
+			load: { k in
+				SIO.sync({ _ in
+					return .right(targetVar)
+				})
+			},
+			save: { k, a in
 				return SIO.init { _ in
 					targetVar = a
 					return .right(a)
 				}
 			},
-			remove: SIO.of(())
+			remove: { _ in SIO.of(()) }
 		)
 		
-		origin.copy(to: target, adapt: Sio.id)
+		origin.copy(to: target, key: 1, adapt: Sio.id)
 			.fork((), { _ in
 				XCTFail()
 			}, { value in
 				XCTAssert(value == 6)
 				
-				target.load.fork({ _ in
+				target.load(1).fork({ _ in
 					XCTFail()
 				}, { value in
 					XCTAssert(value == 6)
@@ -71,25 +73,27 @@ class SIOCodecTests: XCTestCase {
 		
 		var targetVar: Int = 0
 		
-		let origin = ValueStoreA<Void, String, Int>.rejected("err")
+		let origin = IValueStoreA<Void, Int, String, Int>.rejected("err")
 		
-		let target = ValueStoreA<Void, String, Int>.init(
-			load: SIO.sync({ _ in
-				return .right(targetVar)
-			}),
-			save: { a in
-				return SIO.init { _ in
+		let target = IValueStoreA<Void, Int, String, Int>.init(
+			load: { _ in
+				SIO.sync({ _ in
+					.right(targetVar)
+				})
+			},
+			save: { _, a in
+				SIO.init { _ in
 					targetVar = a
 					return .right(a)
 				}
-		},
-			remove: SIO.of(())
+			},
+			remove: { _ in SIO.of(()) }
 		)
 		
-		origin.copy(to: target, adapt: Sio.id)
+		origin.copy(to: target, key: 1, adapt: Sio.id)
 			.fork((), { err in
 				XCTAssert(err == "err")
-				target.load.fork({ _ in
+				target.load(1).fork({ _ in
 					XCTFail()
 				}, { value in
 					XCTAssert(value == 0)

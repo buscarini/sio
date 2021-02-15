@@ -8,27 +8,31 @@
 import XCTest
 import Foundation
 import Sio
-import SioValueStore
+import SioIValueStore
 
-public extension ValueStore where R == Void {
+public extension IValueStore where R == Void {
 	static func assertOnlyLoads(
 		_ expect: XCTestExpectation,
 		_ value: B,
 		file: StaticString = #file,
 		line: UInt = #line
-	) -> ValueStore {
-		let vs = ValueStore.init(
-			load: .init { _ in
-				expect.fulfill()
-				return .right(value)
+	) -> IValueStore {
+		let vs = IValueStore.init(
+			load: { _ in
+				.init { _ in
+					expect.fulfill()
+					return .right(value)
+				}
 			},
-			save: { toSave in
+			save: { _, toSave in
 				XCTFail("Tried to save", file: file, line: line)
 				return .of(value)
 			},
-			remove: .init { _ in
-				XCTFail("Tried to remove", file: file, line: line)
-				return .right(())
+			remove: { _ in
+				.init { _ in
+					XCTFail("Tried to remove", file: file, line: line)
+					return .right(())
+				}
 			}
 		)
 		
@@ -36,26 +40,30 @@ public extension ValueStore where R == Void {
 	}
 }
 
-public extension ValueStore where R == Void, A: Equatable, A == B {
+public extension IValueStore where R == Void, A: Equatable, A == B {
 	static func assertOnlySaves(
 		_ expect: XCTestExpectation,
 		_ value: A,
 		file: StaticString = #file,
 		line: UInt = #line
-	) -> ValueStore {
-		let vs = ValueStore.init(
-			load: .init { _ in
-				XCTFail("Tried to load", file: file, line: line)
-				return .right(value)
+	) -> IValueStore {
+		let vs = IValueStore.init(
+			load: { _ in
+				.init { _ in
+					XCTFail("Tried to load", file: file, line: line)
+					return .right(value)
+				}
 			},
-			save: { toSave in
+			save: { _, toSave in
 				XCTAssert(value == toSave)
 				expect.fulfill()
 				return .of(toSave)
 			},
-			remove: .init { _ in
-				XCTFail("Tried to remove", file: file, line: line)
-				return .right(())
+			remove: { _ in
+				.init { _ in
+					XCTFail("Tried to remove", file: file, line: line)
+					return .right(())
+				}
 			}
 		)
 		

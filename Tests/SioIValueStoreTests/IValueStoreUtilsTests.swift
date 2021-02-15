@@ -8,25 +8,25 @@
 import Foundation
 import XCTest
 import Sio
-import SioValueStore
+import SioIValueStore
 
-class SIOValueStoreUtilsTests: XCTestCase {
+class SIOIValueStoreUtilsTests: XCTestCase {
 	func testMigration() {
 		let finish = expectation(description: "finish")
 
-		let sourceRef = Ref<Int?>.init(6)
-		let targetRef = Ref<Int?>.init(nil)
+		let sourceRef = Ref<[String: Int]>.init(["key": 6])
+		let targetRef = Ref<[String: Int]>.init([:])
 		
-		let origin = sourceRef.valueStore()
-		let target = targetRef.valueStore()
+		let origin = sourceRef.iValueStore()
+		let target = targetRef.iValueStore()
 		
-		target.migrate(from: origin)
+		target.migrate(from: origin, key: "key")
 			.fork((), { _ in
 				XCTFail()
 			}, { value in
-				XCTAssertNil(sourceRef.state)
+				XCTAssertEqual(sourceRef.state, [:])
 				XCTAssertEqual(value, 6)
-				XCTAssertEqual(targetRef.state, 6)
+				XCTAssertEqual(targetRef.state, ["key": 6])
 				
 				finish.fulfill()
 			})

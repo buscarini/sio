@@ -8,20 +8,20 @@
 import Foundation
 import XCTest
 import Sio
-import SioValueStore
+import SioIValueStore
 
-class SIOValueStoreZipTests: XCTestCase {
+class SIOIValueStoreZipTests: XCTestCase {
 	func testLoad() {
 		let scheduler = TestScheduler()
 		
-		let vs: ValueStoreA<Void, Void, (Int, Int)> = zip(
-			Ref<Int?>.init(1).valueStore(),
-			Ref<Int?>.init(2).valueStore(),
+		let vs: IValueStoreA<Void, Int, Void, (Int, Int)> = zip(
+			Ref<[Int: Int]>.init([1: 1]).iValueStore(),
+			Ref<[Int: Int]>.init([1: 2]).iValueStore(),
 			scheduler
 		)
 		
 		vs
-		.load
+		.load(1)
 		.assert(
 			{ (both: (Int, Int)) -> Bool in
 				both.0 == 1 && both.1 == 2
@@ -33,14 +33,14 @@ class SIOValueStoreZipTests: XCTestCase {
 	func testSave() {
 		let scheduler = TestScheduler()
 
-		let vs: ValueStoreA<Void, Void, (Int, Int)> = zip(
-			Ref<Int?>.init(nil).valueStore(),
-			Ref<Int?>.init(nil).valueStore(),
+		let vs: IValueStoreA<Void, Int, Void, (Int, Int)> = zip(
+			Ref<[Int: Int]>.init([:]).iValueStore(),
+			Ref<[Int: Int]>.init([:]).iValueStore(),
 			scheduler
 		)
 		
 		vs
-		.save((3, 4))
+		.save(1, (3, 4))
 		.assert(
 			{ (both: (Int, Int)) -> Bool in
 				both.0 == 3 && both.1 == 4

@@ -9,107 +9,122 @@ import Foundation
 import XCTest
 import Sio
 import SioValueStore
+import SioIValueStore
 
-class SIOValueStoreArrayTests: XCTestCase {
-	static func arrayStore() -> ValueStoreA<Void, String, [Int]> {
+class SIOIValueStoreArrayTests: XCTestCase {
+	static let validKey = "a"
+	
+	static func arrayStore() -> IValueStoreA<Void, String, String, [Int]> {
 		var store: [Int] = [1]
 		
-		return ValueStoreA<Void, String, [Int]>(
-			load: .of(store),
-			save: { values in
+		return IValueStoreA<Void, String, String, [Int]>(
+			load: { k in
+				k == validKey ? .of(store) : .rejected("error")
+			},
+			save: { k, values in
+				guard k == validKey else {
+					return .rejected("error")
+				}
+				
 				store = values
 				return .of(store)
 			},
-			remove: .sync({ _ in
-				store = []
-				return .right(())
-			})
+			remove: { k in
+				guard k == validKey else {
+					return .rejected("error")
+				}
+				
+				return .sync({ _ in
+					store = []
+					return .right(())
+				})
+			}
 		)
 	}
 	
 	func testPrepend() {
 		let scheduler = TestScheduler()
 
-		SIOValueStoreArrayTests.arrayStore()
-			.prepend(2)
+		Self.arrayStore()
+			.prepend(key: Self.validKey, 2)
 			.assert([2, 1], scheduler: scheduler)
 	}
 	
 	func testPrependUnique() {
 		let scheduler = TestScheduler()
 
-		SIOValueStoreArrayTests.arrayStore()
-			.prependUnique(1)
+		Self.arrayStore()
+			.prependUnique(key: Self.validKey, 1)
 			.assert([1], scheduler: scheduler)
 	}
 	
 	func testPrependUniqueRepeated() {
 		let scheduler = TestScheduler()
 
-		SIOValueStoreArrayTests.arrayStore()
-			.prependUnique(2)
+		Self.arrayStore()
+			.prependUnique(key: Self.validKey, 2)
 			.assert([2, 1], scheduler: scheduler)
 	}
 	
 	func testAppend() {
 		let scheduler = TestScheduler()
 
-		SIOValueStoreArrayTests.arrayStore()
-			.append(2)
+		Self.arrayStore()
+			.append(key: Self.validKey, 2)
 			.assert([1, 2], scheduler: scheduler)
 	}
 	
 	func testAppendUniqueRepeated() {
 		let scheduler = TestScheduler()
 
-		SIOValueStoreArrayTests.arrayStore()
-			.appendUnique(1)
+		Self.arrayStore()
+			.appendUnique(key: Self.validKey, 1)
 			.assert([1], scheduler: scheduler)
 	}
 	
 	func testAppendUnique() {
 		let scheduler = TestScheduler()
 
-		SIOValueStoreArrayTests.arrayStore()
-			.appendUnique(2)
+		Self.arrayStore()
+			.appendUnique(key: Self.validKey, 2)
 			.assert([1, 2], scheduler: scheduler)
 	}
 	
 	func testRemove() {
 		let scheduler = TestScheduler()
 
-		SIOValueStoreArrayTests.arrayStore()
-			.remove(1)
+		Self.arrayStore()
+			.remove(key: Self.validKey, 1)
 			.assert([], scheduler: scheduler)
 	}
 	
 	func testLoadSingle() {
 		let scheduler = TestScheduler()
 
-		let store = ValueStoreA<Void, ValueStoreError, [Int]>.of([1,2,3])
+		let store = IValueStoreA<Void, String, ValueStoreError, [Int]>.of([1,2,3])
 		
 		store
-			.loadSingle { $0 % 2 == 0 }
+			.loadSingle(key: Self.validKey) { $0 % 2 == 0 }
 			.assert(2, scheduler: scheduler)
 	}
 	
 	func testFunctor() {
 		let scheduler = TestScheduler()
 
-		SIOValueStoreArrayTests.arrayStore()
+		Self.arrayStore()
 			.map { $0.count }
-			.load
+			.load(Self.validKey)
 			.assert(1, scheduler: scheduler)
 	}
 	
 	func testContravariantFunctor() {
 		let scheduler = TestScheduler()
 
-		SIOValueStoreArrayTests.arrayStore()
+		Self.arrayStore()
 			.pullback { (strings: [String]) in
 				strings.map { $0.count }
 			}
-			.save([ "hello", "world" ])
+			.save(Self.validKey, [ "hello", "world" ])
 			.assert([5, 5], scheduler: scheduler)
 	}
 }

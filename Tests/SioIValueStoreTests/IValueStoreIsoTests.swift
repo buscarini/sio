@@ -8,9 +8,9 @@
 import Foundation
 import XCTest
 import Sio
-import SioValueStore
+import SioIValueStore
 
-class SIOValueStoreIsoTests: XCTestCase {
+class SIOIValueStoreIsoTests: XCTestCase {
 	enum Left: String, Equatable {
 		case a
 		case b
@@ -41,12 +41,12 @@ class SIOValueStoreIsoTests: XCTestCase {
 		let scheduler = TestScheduler()
 
 		let vs = dimap(
-			ValueStoreA<Void, String, Left>.of(.a),
-			SIOValueStoreIsoTests.leftMiddle
+			IValueStoreA<Void, Int, String, Left>.of(.a),
+			Self.leftMiddle
 		)
 			
 		vs
-			.load
+			.load(1)
 			.assert(.one, scheduler: scheduler)
 	}
 	
@@ -54,34 +54,34 @@ class SIOValueStoreIsoTests: XCTestCase {
 		let scheduler = TestScheduler()
 
 		let vs = dimap(
-			ValueStoreA<Void, String, Left>.of(.b),
-			SIOValueStoreIsoTests.leftMiddle
+			IValueStoreA<Void, Int, String, Left>.of(.b),
+			Self.leftMiddle
 		)
 			
 		vs
-			.load
+			.load(1)
 			.assert(.two, scheduler: scheduler)
 	}
 	
 	func testComposeRightOne() {
 		let scheduler = TestScheduler()
 
-		let vs = ValueStoreA<Void, String, Left>.of(.a)
-			>>> SIOValueStoreIsoTests.leftMiddle
+		let vs = IValueStoreA<Void, Int, String, Left>.of(.a)
+			>>> Self.leftMiddle
 			
 		vs
-			.load
+			.load(1)
 			.assert(.one, scheduler: scheduler)
 	}
 	
 	func testComposeRightTwo() {
 		let scheduler = TestScheduler()
 
-		let vs = ValueStoreA<Void, String, Left>.of(.b)
-			>>> SIOValueStoreIsoTests.leftMiddle
+		let vs = IValueStoreA<Void, Int, String, Left>.of(.b)
+			>>> Self.leftMiddle
 			
 		vs
-			.load
+			.load(1)
 			.assert(.two, scheduler: scheduler)
 	}
 	
@@ -90,11 +90,11 @@ class SIOValueStoreIsoTests: XCTestCase {
 
 		let saves = expectation(description: "saves")
 		
-		let vs = ValueStoreA<Void, String, Middle>.assertOnlySaves(saves, .one)
+		let vs = IValueStoreA<Void, Int, String, Middle>.assertOnlySaves(saves, .one)
 		
 		
-		(SIOValueStoreIsoTests.leftMiddle >>> vs)
-			.save(.a)
+		(Self.leftMiddle >>> vs)
+			.save(1, .a)
 			.assert(.one, scheduler: scheduler)
 		
 		waitForExpectations(timeout: 0.01, handler: nil)
@@ -105,10 +105,10 @@ class SIOValueStoreIsoTests: XCTestCase {
 
 		let saves = expectation(description: "saves")
 		
-		let vs = ValueStoreA<Void, String, Middle>.assertOnlySaves(saves, .two)
+		let vs = IValueStoreA<Void, Int, String, Middle>.assertOnlySaves(saves, .two)
 		
-		(SIOValueStoreIsoTests.leftMiddle >>> vs)
-			.save(.b)
+		(Self.leftMiddle >>> vs)
+			.save(1, .b)
 			.assert(.two, scheduler: scheduler)
 		
 		waitForExpectations(timeout: 0.01, handler: nil)
@@ -117,20 +117,20 @@ class SIOValueStoreIsoTests: XCTestCase {
 	func testComposeLeft() {
 		let scheduler = TestScheduler()
 
-		let vs = (SIOValueStoreIsoTests.leftMiddle.reversed <<< ValueStoreA<Void, String, Middle>.of(.one))
+		let vs = (Self.leftMiddle.reversed <<< IValueStoreA<Void, Int, String, Middle>.of(.one))
 			
 		vs
-			.load
+			.load(1)
 			.assert(.a, scheduler: scheduler)
 	}
 	
 	func testComposeLeftTwo() {
 		let scheduler = TestScheduler()
 
-		let vs = (SIOValueStoreIsoTests.leftMiddle.reversed <<< ValueStoreA<Void, String, Middle>.of(.two))
+		let vs = (Self.leftMiddle.reversed <<< IValueStoreA<Void, Int, String, Middle>.of(.two))
 			
 		vs
-			.load
+			.load(1)
 			.assert(.b, scheduler: scheduler)
 	}
 	
@@ -139,11 +139,11 @@ class SIOValueStoreIsoTests: XCTestCase {
 
 		let saves = expectation(description: "saves")
 		
-		let vs = ValueStoreA<Void, String, Middle>.assertOnlySaves(saves, .one)
+		let vs = IValueStoreA<Void, Int, String, Middle>.assertOnlySaves(saves, .one)
 		
 		
-		(vs <<< SIOValueStoreIsoTests.leftMiddle)
-			.save(.a)
+		(vs <<< Self.leftMiddle)
+			.save(1, .a)
 			.assert(.one, scheduler: scheduler)
 		
 		waitForExpectations(timeout: 0.01, handler: nil)
@@ -154,10 +154,10 @@ class SIOValueStoreIsoTests: XCTestCase {
 
 		let saves = expectation(description: "saves")
 		
-		let vs = ValueStoreA<Void, String, Middle>.assertOnlySaves(saves, .two)
+		let vs = IValueStoreA<Void, Int, String, Middle>.assertOnlySaves(saves, .two)
 		
-		(vs <<< SIOValueStoreIsoTests.leftMiddle)
-			.save(.b)
+		(vs <<< Self.leftMiddle)
+			.save(1, .b)
 			.assert(.two, scheduler: scheduler)
 		
 		waitForExpectations(timeout: 0.01, handler: nil)

@@ -38,6 +38,7 @@
 		ACD6BE0C25DA79CA00E6AB68 /* IValueStore+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD6BE0B25DA79CA00E6AB68 /* IValueStore+Utils.swift */; };
 		ACD6BE1E25DA7FFB00E6AB68 /* IValueStore+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD6BE1D25DA7FFB00E6AB68 /* IValueStore+Zip.swift */; };
 		ACD6BE3025DA804E00E6AB68 /* IValueStore+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD6BE2F25DA804E00E6AB68 /* IValueStore+Error.swift */; };
+		ACD6BE4225DA80BD00E6AB68 /* IValueStore+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD6BE4125DA80BD00E6AB68 /* IValueStore+Array.swift */; };
 		OBJ_282 /* AbsoluteLocalURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AbsoluteLocalURL.swift */; };
 		OBJ_283 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Application.swift */; };
 		OBJ_284 /* Array+Partition.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Array+Partition.swift */; };
@@ -171,7 +172,6 @@
 		OBJ_462 /* IValueStoreZipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_163 /* IValueStoreZipTests.swift */; };
 		OBJ_463 /* Sio+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_164 /* Sio+Tests.swift */; };
 		OBJ_464 /* SioCodecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_165 /* SioCodecTests.swift */; };
-		OBJ_465 /* SioIValueStoreJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_166 /* SioIValueStoreJSONTests.swift */; };
 		OBJ_466 /* SioIValueStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_167 /* SioIValueStoreTests.swift */; };
 		OBJ_468 /* SioIValueStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioIValueStore::Product" /* SioIValueStore.framework */; };
 		OBJ_469 /* SioValueStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Sio::SioValueStore::Product" /* SioValueStore.framework */; };
@@ -604,6 +604,7 @@
 		ACD6BE0B25DA79CA00E6AB68 /* IValueStore+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IValueStore+Utils.swift"; sourceTree = "<group>"; };
 		ACD6BE1D25DA7FFB00E6AB68 /* IValueStore+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IValueStore+Zip.swift"; sourceTree = "<group>"; };
 		ACD6BE2F25DA804E00E6AB68 /* IValueStore+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IValueStore+Error.swift"; sourceTree = "<group>"; };
+		ACD6BE4125DA80BD00E6AB68 /* IValueStore+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IValueStore+Array.swift"; sourceTree = "<group>"; };
 		OBJ_10 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		OBJ_100 /* SIO+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+Date.swift"; sourceTree = "<group>"; };
 		OBJ_101 /* SIO+FS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIO+FS.swift"; sourceTree = "<group>"; };
@@ -670,7 +671,6 @@
 		OBJ_163 /* IValueStoreZipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IValueStoreZipTests.swift; sourceTree = "<group>"; };
 		OBJ_164 /* Sio+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sio+Tests.swift"; sourceTree = "<group>"; };
 		OBJ_165 /* SioCodecTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioCodecTests.swift; sourceTree = "<group>"; };
-		OBJ_166 /* SioIValueStoreJSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioIValueStoreJSONTests.swift; sourceTree = "<group>"; };
 		OBJ_167 /* SioIValueStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioIValueStoreTests.swift; sourceTree = "<group>"; };
 		OBJ_169 /* SioNetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SioNetworkTests.swift; sourceTree = "<group>"; };
 		OBJ_17 /* Either+Applicative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Either+Applicative.swift"; sourceTree = "<group>"; };
@@ -1002,6 +1002,7 @@
 				ACD6BE0B25DA79CA00E6AB68 /* IValueStore+Utils.swift */,
 				ACD6BE1D25DA7FFB00E6AB68 /* IValueStore+Zip.swift */,
 				ACD6BE2F25DA804E00E6AB68 /* IValueStore+Error.swift */,
+				ACD6BE4125DA80BD00E6AB68 /* IValueStore+Array.swift */,
 			);
 			name = SioIValueStore;
 			path = Sources/SioIValueStore;
@@ -1110,7 +1111,6 @@
 				OBJ_163 /* IValueStoreZipTests.swift */,
 				OBJ_164 /* Sio+Tests.swift */,
 				OBJ_165 /* SioCodecTests.swift */,
-				OBJ_166 /* SioIValueStoreJSONTests.swift */,
 				OBJ_167 /* SioIValueStoreTests.swift */,
 			);
 			name = SioIValueStoreTests;
@@ -1905,6 +1905,7 @@
 				AC7E85F525DA6E0F005803A9 /* IValueStore+Creation.swift in Sources */,
 				ACD6BDE825DA78E500E6AB68 /* IValueStore+Optional.swift in Sources */,
 				ACD6BDA225DA753B00E6AB68 /* IValueStore+Profunctor.swift in Sources */,
+				ACD6BE4225DA80BD00E6AB68 /* IValueStore+Array.swift in Sources */,
 				ACD6BD9025DA752A00E6AB68 /* IValueStore+Functor.swift in Sources */,
 				ACD6BDD625DA75DE00E6AB68 /* Ref+IValueStore.swift in Sources */,
 				AC7E85E325DA6DE9005803A9 /* IValueStore+Typealias.swift in Sources */,
@@ -1929,7 +1930,6 @@
 				OBJ_462 /* IValueStoreZipTests.swift in Sources */,
 				OBJ_463 /* Sio+Tests.swift in Sources */,
 				OBJ_464 /* SioCodecTests.swift in Sources */,
-				OBJ_465 /* SioIValueStoreJSONTests.swift in Sources */,
 				OBJ_466 /* SioIValueStoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
