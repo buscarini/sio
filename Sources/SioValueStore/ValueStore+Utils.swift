@@ -10,6 +10,18 @@ import Foundation
 import Sio
 
 public extension ValueStore {
+	func provide(
+		_ r: R
+	) -> ValueStore<Void, E, A, B> {
+		.init(
+			load: self.load.provide(r),
+			save: { a in
+				self.save(a).provide(r)
+			},
+			remove: self.remove.provide(r)
+		)
+	}
+	
 	func `default`(_ value: B) -> ValueStore<R, E, A, B> {
 		ValueStore<R, E, A, B>(load: self.load.default(value), save: self.save, remove: self.remove)
 	}
