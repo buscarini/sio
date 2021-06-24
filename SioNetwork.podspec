@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SioNetwork"
-  s.version      = "0.1"
+  s.version      = "0.2"
   s.summary      = "Swift IO"
   s.description  = <<-DESC
     Swift SIO Network library.
