@@ -8,22 +8,25 @@
 import Foundation
 
 public extension SIO {
+	@inlinable
 	func tap(_ f: @escaping (A) -> SIO<R, E, Void>) -> SIO<R, E, A> {
-		return self.flatMap { a in
+		self.flatMap { a in
 			f(a).const(a)
 		}
 	}
 	
+	@inlinable
 	func tapError(_ f: @escaping (E) -> SIO<R, E, Void>) -> SIO<R, E, A> {
-		return self.flatMapError { e in
+		self.flatMapError { e in
 			f(e).flatMap { _ in
 				.rejected(e)
 			}
 		}
 	}
 	
+	@inlinable
 	func tapBoth(_ f: @escaping (E) -> SIO<R, E, Void>, _ g: @escaping (A) -> SIO<R, E, Void>) -> SIO<R, E, A> {
-		return self
+		self
 			.tap(g)
 			.tapError(f)
 	}

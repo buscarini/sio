@@ -1,0 +1,53 @@
+{
+  "configurations" : [
+    {
+      "id" : "191F136E-4342-4088-8A67-43BAF21E06A3",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Sio.xcodeproj",
+      "identifier" : "Sio::SioCodec",
+      "name" : "SioCodec"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Sio.xcodeproj",
+        "identifier" : "Sio::SioValueStoreTests",
+        "name" : "SioValueStoreTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Sio.xcodeproj",
+        "identifier" : "Sio::SioCodecTests",
+        "name" : "SioCodecTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Sio.xcodeproj",
+        "identifier" : "Sio::SioTests",
+        "name" : "SioTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Sio.xcodeproj",
+        "identifier" : "Sio::SioEffectsTests",
+        "name" : "SioEffectsTests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -8,15 +8,12 @@
 import Foundation
 
 public extension Either {
+	@inlinable
 	static func from(_ optional: B?, default value: B) -> Either<A, B> {
-		if let value = optional {
-			return .right(value)
-		}
-		else {
-			return .right(value)
-		}
+		.right(optional ?? value)
 	}
 	
+	@inlinable
 	static func from(_ optional: B?, _ error: A) -> Either {
 		if let value = optional {
 			return .right(value)
@@ -26,7 +23,8 @@ public extension Either {
 		}
 	}
 	
+	@inlinable
 	func optional() -> B? {
-		return self.right
+		self.right
 	}
 }

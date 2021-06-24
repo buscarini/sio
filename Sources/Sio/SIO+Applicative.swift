@@ -9,18 +9,32 @@
 import Foundation
 
 @inlinable
-public func liftA2<R, E, A, B, C>(_ iof: SIO<R, E, (A) -> (B) -> C>, _ first: SIO<R, E, A>, _ second: SIO<R, E, B>) -> SIO<R, E, C> {
-	return ap(ap(iof, first), second)
+public func liftA2<R, E, A, B, C>(
+	_ iof: SIO<R, E, (A) -> (B) -> C>,
+	_ first: SIO<R, E, A>,
+	_ second: SIO<R, E, B>,
+	_ scheduler: Scheduler
+) -> SIO<R, E, C> {
+	ap(ap(iof, first, scheduler), second, scheduler)
 }
 
 @inlinable
-public func ap<R, E, A, B, C>(_ iof: SIO<R, E, (A, B) -> C>, _ first: SIO<R, E, A>, _ second: SIO<R, E, B>) -> SIO<R, E, C> {
-	return liftA2(iof.map(curry), first, second)
+public func ap<R, E, A, B, C>(
+	_ iof: SIO<R, E, (A, B) -> C>,
+	_ first: SIO<R, E, A>,
+	_ second: SIO<R, E, B>,
+	_ scheduler: Scheduler
+) -> SIO<R, E, C> {
+	liftA2(iof.map(curry), first, second, scheduler)
 }
 
-let apQueue = DispatchQueue.init(label: "ap")
+//let apQueue = DispatchQueue.init(label: "ap")
 
-public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -> SIO<R, E, B> {
+public func ap<R, E, A, B>(
+	_ left: SIO<R, E, (A) -> B>,
+	_ right: SIO<R, E, A>,
+	_ scheduler: Scheduler
+) -> SIO<R, E, B> {
 	
 	let l = left
 	let r = right
@@ -29,55 +43,85 @@ public func ap<R, E, A, B>(_ left: SIO<R, E, (A) -> B>, _ right: SIO<R, E, A>) -
 	
 	return SIO<R, E, B>({ (env, reject: @escaping (E) -> (), resolve: @escaping (B) -> ()) in
 	
-		let resolved = SyncValue<Never, Bool>()
-		let leftVal = SyncValue<E, (A) -> B>()
-		let rightVal = SyncValue<E, A>()
+		var resolved: Bool?
+		var leftVal: Either<E, (A) -> B>?
+		var rightVal: Either<E, A>?
 		
-		let checkContinue = {
-			apQueue.async {
-				guard resolved.notLoaded, cancelled == false, l.cancelled == false, r.cancelled == false else { return }
+		let checkContinue: (@escaping () -> Void) -> Void = { update in
+			scheduler.run {
+				update()
 				
-				switch (leftVal.result, rightVal.result) {
-				case let (.loaded(.right(ab)), .loaded(.right(a))):
-					resolved.result = .loaded(.right(true))
+				guard
+					resolved == nil,
+					cancelled == false,
+					l.cancelled == false,
+					r.cancelled == false
+				else {
+					return
+				}
+				
+//				print(Thread.callStackSymbols)
+//				print("ap \(leftVal) \(rightVal)")
+				
+				switch (leftVal, rightVal) {
+				case let (.right(ab)?, .right(a)?):
+					resolved = true
+//					print("ap loaded both")
 					resolve(ab(a))
-				case let (.loaded(.left(e)), .loaded):
-					resolved.result = .loaded(.right(false))
+				case let (.left(e)?, .some):
+					resolved = false
+//					print("ap error right")
 					reject(e)
-				case let (.loaded, .loaded(.left(e))):
-					resolved.result = .loaded(.right(false))
+				case let (.some, .left(e)?):
+					resolved = false
+					
+//					print("ap error left")
+					
 					reject(e)
 					
 				default:
+					
+//					print("other")
+					
 					return
 				}
 			}
 		}
 		
 		l.fork(env, { error in
-			leftVal.result = .loaded(.left(error))
-			
-			checkContinue()
+//			print("left error")
+			checkContinue {
+				leftVal = .left(error)
+//				print("updated left val error")
+			}
 			
 		}, { loadedF in
-			leftVal.result = .loaded(.right(loadedF))
-			
-			checkContinue()
+//			print("left success")
+			checkContinue {
+				leftVal = .right(loadedF)
+//				print("updated left val success")
+			}
 		})
 	
 		r.fork(env, { error in
-			rightVal.result = .loaded(.left(error))
-			
-			checkContinue()
+//			print("right error")
+			checkContinue {
+				rightVal = .left(error)
+//				print("updated right val error")
+			}
 		}, { loadedVal in
-			rightVal.result = .loaded(.right(loadedVal))
-			
-			checkContinue()
+//			print("right success")
+			checkContinue {
+				rightVal = .right(loadedVal)
+//				print("updated right val success")
+			}
 		})
 		
 	}, cancel: {
-		cancelled = true
-		l.cancel()
-		r.cancel()
+		scheduler.run {
+			cancelled = true
+			l.cancel()
+			r.cancel()
+		}
 	})
 }

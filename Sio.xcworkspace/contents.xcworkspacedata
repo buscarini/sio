@@ -2,9 +2,15 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Tests/Sio-Package.xctestplan">
+   </FileRef>
+   <FileRef
       location = "group:SIO.playground">
    </FileRef>
    <FileRef
       location = "group:Sio.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Sio.xctestplan">
    </FileRef>
 </Workspace>

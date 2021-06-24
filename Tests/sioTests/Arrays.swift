@@ -10,55 +10,95 @@ import XCTest
 import Sio
 
 class Arrays: XCTestCase {
-	
+	func testMap2() {
+		let scheduler = TestScheduler()
+		
+		UIO<[Int]>.of([1, 2, 3]).map2 { $0*2 }
+			.assert([ 2, 4, 6 ], scheduler: scheduler)
+	}
+		
 	func exampleError() -> Error {
 		return NSError(domain: "tests", code: 1, userInfo: nil)
 	}
-    
-    func testTraverse() {
 	
-		let expectation = self.expectation(description: "task succeeded")
+	func testTraverseEmpty() {
+		let scheduler = TestScheduler()
+
+		[].traverse(scheduler) { IO<Never, Int>.of($0) }
+			.assert([], scheduler: scheduler)
+	}
 	
-		[1, 2, 3].traverse { IO<Never, Int>.of($0) }
-			.fork({ error in
-				XCTFail()
-			},
-			{ values in
-				XCTAssert(values.count == 3)
-				XCTAssert(values[0] == 1)
-				XCTAssert(values[1] == 2)
-				XCTAssert(values[2] == 3)
-				expectation.fulfill()
-			})
-		
-		self.waitForExpectations(timeout: 1.0, handler: nil)
-    }
+	func testTraverse() {
+		let scheduler = TestScheduler()
+
+		[1, 2, 3]
+			.traverse(scheduler) { value in
+				IO.effectMain {
+					print("Traversed")
+				}.flatMap { _ in
+					IO<Never, Int>.of(value)
+				}
+			}
+			.assert(
+				[1, 2, 3],
+				scheduler: scheduler,
+				prepare: {
+					scheduler.advance(
+						numSteps: 6,
+						queue: .main
+					)
+				}
+			)
+	}
+	
+	func testConcat() {
+		let scheduler = TestScheduler()
+
+		concat(
+			IO<Int, [Int]>.of([1, 2, 3]),
+			IO<Int, [Int]>.of([4, 5, 6]),
+			scheduler
+		)
+		.assert([ 1, 2, 3, 4, 5, 6 ], scheduler: scheduler, prepare: {
+			scheduler.advance()
+		})
+	}
 	
 	func testParallel() {
-	
-		let expectation = self.expectation(description: "task succeeded")
-	
-		 parallel([ IO<Error, Int>.of(1), IO.of(2), IO.of(3)].map(delayed(1)))
-			.fork((), { error in
-				XCTFail()
-			},
-			{ values in
-				XCTAssert(values.count == 3)
-				XCTAssert(values[0] == 1)
-				XCTAssert(values[1] == 2)
-				XCTAssert(values[2] == 3)
-				expectation.fulfill()
-			})
-		
-		self.waitForExpectations(timeout: 1.1, handler: nil)
-    }
+		let scheduler = TestScheduler()
 
+		parallel(
+			[
+				IO<Error, Int>.of(1), IO.of(2), IO.of(3)
+			]
+			.map(delayed(0.5, scheduler)),
+			scheduler
+		)
+		.assert(
+			[ 1, 2, 3 ],
+			scheduler: scheduler,
+			timeout: 3,
+			prepare: {
+				scheduler.advance()
+				scheduler.advance(0.5)
+			}
+		)
+	}
+	
+	func testSequenceEmpty() {
+		let scheduler = TestScheduler()
+
+		let ios: [SIO<Void, Void, [Int]>] = []
+		sequence(ios)
+			.assert([], scheduler: scheduler)
+	}
+	
 	func testSequence() {
-	
+		
 		let expectation = self.expectation(description: "task succeeded")
-	
+		
 		var value = 0
-	
+		
 		let first = IO<Error, Int>({ (_, reject, resolve) in
 			guard value == 0 else {
 				reject(self.exampleError())
@@ -66,7 +106,6 @@ class Arrays: XCTestCase {
 			}
 			
 			value += 1
-			print("\(Date())")
 			
 			resolve(value)
 		})
@@ -78,7 +117,6 @@ class Arrays: XCTestCase {
 			}
 			
 			value += 1
-			print("\(Date())")
 			
 			resolve(value)
 		})
@@ -90,28 +128,45 @@ class Arrays: XCTestCase {
 			}
 			
 			value += 1
-			print("\(Date())")
 			
 			resolve(value)
 		})
-	
+		
 		let now = Date()
-
+		
 		sequence([ first, second, third ].map(delayed(1)))
 			.fork({ error in
 				XCTFail()
 			},
-			{ values in
-				print("\(now.timeIntervalSinceNow)")
-				XCTAssert(-now.timeIntervalSinceNow > 3.0)
-			
-				XCTAssert(values.count == 3)
-				XCTAssert(values[0] == 1)
-				XCTAssert(values[1] == 2)
-				XCTAssert(values[2] == 3)
-				expectation.fulfill()
+					{ values in
+						print("\(now.timeIntervalSinceNow)")
+						XCTAssert(-now.timeIntervalSinceNow > 3.0)
+						
+						XCTAssert(values.count == 3)
+						XCTAssert(values[0] == 1)
+						XCTAssert(values[1] == 2)
+						XCTAssert(values[2] == 3)
+						expectation.fulfill()
 			})
 		
 		self.waitForExpectations(timeout: 4.1, handler: nil)
-    }
+	}
+	
+	
+	func testPartition() {
+		let (even, odd) = [1, 2, 3, 4, 5].partition { $0 % 2 == 0 ?
+			.left($0)
+			: .right($0)
+		}
+		
+		XCTAssertEqual(even, [2, 4])
+		XCTAssertEqual(odd, [1, 3, 5])
+	}
+	
+	func testPartitionEither() {
+		let (even, odd) = [.right(1), .left(2), .right(3), .left(4), .right(5)].partition()
+		
+		XCTAssertEqual(even, [2, 4])
+		XCTAssertEqual(odd, [1, 3, 5])
+	}
 }

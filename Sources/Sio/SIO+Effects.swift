@@ -9,21 +9,37 @@
 import Foundation
 
 public extension SIO {
-	func onFail(do io: SIO<Void, E, Void>) -> SIO<R, E, A> {
-		return self.flatMapError({ error in
-			io.require(R.self).biFlatMap({ _ in
-				SIO<R, E, A>.rejected(error)
-			}, { _ in
-				SIO<R, E, A>.rejected(error)
-			})
-		})
+	@inlinable
+	func onError(_ f: @escaping (E) -> IO<Never, Void>) -> SIO<R, E, A> {
+		self.flatMapError { e in
+			f(e)
+				.require(R.self)
+				.mapError(absurd)
+				.flatMap { _ in
+					SIO<R, E, A>.rejected(e)
+				}
+		}
 	}
 	
-	func onSuccess(do io: SIO<Void, E, Void>) -> SIO<R, E, A> {
-		return self.flatMap { a in
-			io.require(R.self).map { _ in
-				a
-			}
+	@inlinable
+	func onError(do io: IO<Never, Void>) -> SIO<R, E, A> {
+		self.onError { _ in io }
+	}
+	
+	@inlinable
+	func onSuccess(_ f: @escaping (A) -> SIO<Void, Never, Void>) -> SIO<R, E, A> {
+		self.flatMap { a in
+			f(a)
+			.adapt()
+			.require(R.self)
+			.const(a)
+		}
+	}
+	
+	@inlinable
+	func onSuccess(do io: SIO<Void, Never, Void>) -> SIO<R, E, A> {
+		onSuccess { _ in
+			io
 		}
 	}
 }

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Sio::SioCodec"
-               BuildableName = "SioCodec.framework"
-               BlueprintName = "SioCodec"
+               BlueprintIdentifier = "Sio::SioValueStore"
+               BuildableName = "SioValueStore.framework"
+               BlueprintName = "SioValueStore"
                ReferencedContainer = "container:Sio.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -42,9 +42,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Sio::SioValueStore"
-               BuildableName = "SioValueStore.framework"
-               BlueprintName = "SioValueStore"
+               BlueprintIdentifier = "Sio::SioNetwork"
+               BuildableName = "SioNetwork.framework"
+               BlueprintName = "SioNetwork"
                ReferencedContainer = "container:Sio.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -62,6 +62,34 @@
                ReferencedContainer = "container:Sio.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Sio::SioCodec"
+               BuildableName = "SioCodec.framework"
+               BlueprintName = "SioCodec"
+               ReferencedContainer = "container:Sio.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Sio::SioIValueStore"
+               BuildableName = "SioIValueStore.framework"
+               BlueprintName = "SioIValueStore"
+               ReferencedContainer = "container:Sio.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -70,6 +98,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Sio::SioNetworkTests"
+               BuildableName = "SioNetworkTests.xctest"
+               BlueprintName = "SioNetworkTests"
+               ReferencedContainer = "container:Sio.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Sio::SioIValueStoreTests"
+               BuildableName = "SioIValueStoreTests.xctest"
+               BlueprintName = "SioIValueStoreTests"
+               ReferencedContainer = "container:Sio.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
@@ -84,9 +132,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Sio::SioCodecTests"
-               BuildableName = "SioCodecTests.xctest"
-               BlueprintName = "SioCodecTests"
+               BlueprintIdentifier = "Sio::SioEffectsTests"
+               BuildableName = "SioEffectsTests.xctest"
+               BlueprintName = "SioEffectsTests"
                ReferencedContainer = "container:Sio.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -104,15 +152,13 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Sio::SioEffectsTests"
-               BuildableName = "SioEffectsTests.xctest"
-               BlueprintName = "SioEffectsTests"
+               BlueprintIdentifier = "Sio::SioCodecTests"
+               BuildableName = "SioCodecTests.xctest"
+               BlueprintName = "SioCodecTests"
                ReferencedContainer = "container:Sio.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -124,17 +170,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Sio::SioCodec"
-            BuildableName = "SioCodec.framework"
-            BlueprintName = "SioCodec"
-            ReferencedContainer = "container:Sio.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

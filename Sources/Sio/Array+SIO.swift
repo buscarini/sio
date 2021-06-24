@@ -11,11 +11,14 @@ import Foundation
 extension Array {
 	@inlinable
 	public func forEach<R, E, A>(_ f: @escaping (Element) -> SIO<R, E, A>) -> SIO<R, E, [A]> {
-		return Sio.sequence(self.map(f))
+		Sio.sequence(self.map(f))
 	}
 	
 	@inlinable
-	public func traverse<R, E, A>(_ f: @escaping (Element) -> SIO<R, E, A>) -> SIO<R, E, [A]> {
+	public func traverse<R, E, A>(
+		_ scheduler: Scheduler,
+		_ f: @escaping (Element) -> SIO<R, E, A>
+	) -> SIO<R, E, [A]> {
 		guard let first = self.first else {
 			return .of([])
 		}
@@ -31,8 +34,35 @@ extension Array {
 
 		return ap(
 			concat,
-			Array(left).traverse(f),
-			Array(right).traverse(f)
+			Array(left).traverse(scheduler, f),
+			Array(right).traverse(scheduler, f),
+			scheduler
+		)
+	}
+	
+	@inlinable
+	public func wither<R, E, A>(
+		_ scheduler: Scheduler,
+		_ f: @escaping (Element) -> SIO<R, E, A?>
+	) -> SIO<R, E, [A]> {
+		guard let first = self.first else {
+			return .of([])
+		}
+
+		guard self.count > 1 else {
+			return f(first).map { [$0].compactMap { $0 } }
+		}
+
+		let concat = SIO<R, E, ([A], [A]) -> [A]>.of(+)
+		let half = self.count/2
+		let left = self[0..<half]
+		let right = self[half..<count]
+
+		return ap(
+			concat,
+			Array(left).wither(scheduler, f),
+			Array(right).wither(scheduler, f),
+			scheduler
 		)
 	}
 	
@@ -46,25 +76,25 @@ extension Array {
 }
 
 @inlinable
-public func parallel<R, E, A>(_ ios: [SIO<R, E, A>]) -> SIO<R, E, [A]> {
-	return ios.traverse({ $0 })
+public func parallel<R, E, A>(
+	_ ios: [SIO<R, E, A>],
+	_ scheduler: Scheduler
+) -> SIO<R, E, [A]> {
+	ios.traverse(scheduler) { $0 }
 }
 
 @inlinable
-public func concat<R, E, A>(_ first: SIO<R, E, [A]>, _ second: SIO<R, E, [A]>) -> SIO<R, E, [A]> {
-	return ap(SIO.of(+), first, second)
-}
-
-@inlinable
-public func parallel<R, E, A>(_ ios: [SIO<R, E, [A]>]) -> SIO<R, E, [A]> {
-	return ios.reduce(SIO.of([])) { acc, item in
-		return concat(acc, item)
-	}
+public func concat<R, E, A>(
+	_ first: SIO<R, E, [A]>,
+	_ second: SIO<R, E, [A]>,
+	_ scheduler: Scheduler
+) -> SIO<R, E, [A]> {
+	ap(SIO.of(+), first, second, scheduler)
 }
 
 @inlinable
 public func sequence<R, E, A>(_ ios: [SIO<R, E, A>]) -> SIO<R, E, [A]> {
-	return sequence(ios.map { io in
+	sequence(ios.map { io in
 		io.map { [$0] }
 	})
 }

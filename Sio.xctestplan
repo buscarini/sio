@@ -1,0 +1,60 @@
+{
+  "configurations" : [
+    {
+      "id" : "5B068035-16D9-4C8F-A12A-07ED5D942DD4",
+      "name" : "Configuration 1",
+      "options" : {
+        "addressSanitizer" : {
+          "enabled" : false
+        },
+        "threadSanitizerEnabled" : false
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Sio.xcodeproj",
+        "identifier" : "Sio::SioEffectsTests",
+        "name" : "SioEffectsTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Sio.xcodeproj",
+        "identifier" : "Sio::SioValueStoreTests",
+        "name" : "SioValueStoreTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Sio.xcodeproj",
+        "identifier" : "Sio::SioTests",
+        "name" : "SioTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Sio.xcodeproj",
+        "identifier" : "Sio::SioCodecTests",
+        "name" : "SioCodecTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Sio.xcodeproj",
+        "identifier" : "Sio::SioNetworkTests",
+        "name" : "SioNetworkTests"
+      }
+    }
+  ],
+  "version" : 1
+}

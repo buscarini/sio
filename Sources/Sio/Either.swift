@@ -39,6 +39,7 @@ public enum Either<A, B> {
 		}
 	}
 	
+	@inlinable
 	public var isRight: Bool {
 		switch self {
 		case .left:
@@ -48,14 +49,17 @@ public enum Either<A, B> {
 		}
 	}
 	
+	@inlinable
 	public func left(default value: A) -> A {
-		return left ?? value
+		left ?? value
 	}
 	
+	@inlinable
 	public func right(default value: B) -> B {
-		return right ?? value
+		right ?? value
 	}
 	
+	@inlinable
 	public func fold<C>(_ left: (A) -> C, _ right: (B) -> C) -> C {
 		switch self {
 		case .left(let l):
@@ -67,6 +71,7 @@ public enum Either<A, B> {
 }
 
 extension Either: Equatable where A: Equatable, B: Equatable {
+	@inlinable
 	public static func == (lhs: Either<A, B>, rhs: Either<A, B>) -> Bool {
 		switch (lhs, rhs) {
 		case let (.left(l1), .left(l2)):
@@ -93,18 +98,29 @@ extension Either: Hashable where A: Hashable, B: Hashable {
 }
 
 extension Either {
+	@inlinable
 	public func map<V>(_ f: (B) -> V) -> Either<A, V> {
-		return mapRight(f)
+		mapRight(f)
 	}
 	
+	@inlinable
+	public func const<V>(_ v: V) -> Either<A, V> {
+		mapRight { _ in
+			v
+		}
+	}
+	
+	@inlinable
 	public func mapLeft<V>(_ f: (A) -> V) -> Either<V, B> {
-		return bimap(f, id)
+		bimap(f, id)
 	}
 	
+	@inlinable
 	public func mapRight<V>(_ f: (B) -> V) -> Either<A, V> {
-		return bimap(id, f)
+		bimap(id, f)
 	}
 	
+	@inlinable
 	public func bimap<V, W>(_ f: (A) -> V, _ g: (B) -> W) -> Either<V, W> {
 		switch self {
 		case let .left(left):
@@ -114,6 +130,7 @@ extension Either {
 		}
 	}
 	
+	@inlinable
 	public var swapped: Either<B, A> {
 		switch self {
 		case let .left(left):
@@ -125,7 +142,8 @@ extension Either {
 }
 
 extension Either where A == B {
+	@inlinable
 	public func mapAll<V>(_ f: (A) -> V) -> Either<V, V> {
-		return bimap(f, f)
+		bimap(f, f)
 	}
 }

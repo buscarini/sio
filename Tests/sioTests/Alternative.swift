@@ -1,5 +1,5 @@
 //
-//  Applicative.swift
+//  Alternative.swift
 //  sio-iOS Tests
 //
 //  Created by José Manuel Sánchez Peñarroja on 21/06/2019.
@@ -84,6 +84,65 @@ class Alternative: XCTestCase {
 				  { value in
 					XCTAssert(value == 22)
 					expectation.fulfill()
+			})
+		
+		self.waitForExpectations(timeout: 1.0, handler: nil)
+	}
+	
+	func testFirstSuccess() {
+		let expectation = self.expectation(description: "success")
+		
+		firstSuccess(
+			IO.of(22),
+			[
+				IO<Error, Int>.rejected(self.exampleError())
+			]
+		)
+			.fork({ error in
+				XCTFail()
+			},
+			{ value in
+				XCTAssert(value == 22)
+				expectation.fulfill()
+			})
+		
+		self.waitForExpectations(timeout: 1.0, handler: nil)
+	}
+	
+	func testFirstSuccessSecond() {
+		let expectation = self.expectation(description: "success")
+		
+		firstSuccess(
+			IO<Error, Int>.rejected(self.exampleError()),
+			[
+				IO.of(22)
+			]
+		)
+			.fork({ error in
+				XCTFail()
+			},
+			{ value in
+				XCTAssert(value == 22)
+				expectation.fulfill()
+			})
+		
+		self.waitForExpectations(timeout: 1.0, handler: nil)
+	}
+	
+	func testFirstSuccessError() {
+		let expectation = self.expectation(description: "success")
+		
+		firstSuccess(
+			IO<Error, Int>.rejected(self.exampleError()),
+			[
+				IO<Error, Int>.rejected(self.exampleError())
+			]
+		)
+			.fork({ error in
+				expectation.fulfill()
+			},
+			{ value in
+				XCTFail()
 			})
 		
 		self.waitForExpectations(timeout: 1.0, handler: nil)

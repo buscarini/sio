@@ -1,0 +1,17 @@
+▿ Optional<Request>
+  ▿ some: Request
+    ▿ bodyParams: RequestParameters
+      - encoding: ParametersEncoding.url
+      - items: 0 elements
+    - cachePolicy: NSURLRequestCachePolicy.NSURLRequestCachePolicy
+    - headers: Optional<Dictionary<String, String>>.none
+    - method: HTTPMethod.get
+    ▿ queryParams: RequestParameters
+      - encoding: ParametersEncoding.url
+      - items: 0 elements
+    ▿ successCodes: 200..<299
+      - lowerBound: 200
+      - upperBound: 299
+    - timeout: 60.0
+    ▿ url: RemoteURL
+      - rawValue: https://postman-echo.com/get

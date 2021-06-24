@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
   s.name         = "SioEffects"
-  s.version      = "0.1"
+  s.version      = "0.2"
   s.summary      = "Swift IO"
   s.description  = <<-DESC
-    Swift Effects library, ala ZIO.
+    Swift Effects library. Console, fs, …
   DESC
   s.homepage     = "https://github.com/buscarini/sio"
   s.license      = { :type => "MIT", :file => "LICENSE" }
@@ -17,6 +17,8 @@ Pod::Spec.new do |s|
 
   s.frameworks  = "Foundation"
   s.dependency 'Sio'
+  s.dependency 'SioCodec'
+  s.dependency 'SioValueStore'
   s.source_files  = "Sources/SioEffects/**/*"
   	
 end

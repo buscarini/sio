@@ -28,7 +28,7 @@ class SIORandomTests: XCTestCase {
 
 		Random.Default.randomInt(0...9)
 			.fork(.init(.init(gen)), absurd, { num in
-				XCTAssert(num == 0)
+				XCTAssert(num == 1)
 				finish.fulfill()
 			})
 		
@@ -56,10 +56,17 @@ class SIORandomTests: XCTestCase {
 			.fork(.init(.init(gen)), {
 				XCTFail()
 			}, { id in
-				XCTAssert(id == "515995-777315-555151")
+				XCTAssert(id == "6A1N9J-H133I5-60R0BO")
 				finish.fulfill()
 			})
 		
 		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testLCRG() {
+		var gen = LCRNG(seed: 5)
+		var gen2 = LCRNG(seed: 5)
+		
+		XCTAssertEqual(gen.next(), gen2.next())
 	}
 }

@@ -9,12 +9,17 @@
 import Foundation
 
 public extension SIO {
-	func biFlatMap<F, B>(_ io: SIO<R, F, B>) -> SIO<R, F, B> {
-		return self.biFlatMap({ _ in io }, { _ in io })
+	@inlinable
+	func biFlatMap<F, B>(
+		_ io: SIO<R, F, B>
+	) -> SIO<R, F, B> {
+		self.biFlatMap({ _ in io }, { _ in io })
 	}
 	
-	func biFlatMap<F, B>(_ f: @escaping (E) -> SIO<R, F, B>, _ g: @escaping (A) -> SIO<R, F, B>) -> SIO<R, F, B> {
-		
+	func biFlatMap<F, B>(
+		_ f: @escaping (E) -> SIO<R, F, B>,
+		_ g: @escaping (A) -> SIO<R, F, B>
+	) -> SIO<R, F, B> {
 		let result: SIO<R, F, B>
 		
 		switch self.implementation {
@@ -28,13 +33,13 @@ public extension SIO {
 					.biFlatMap(specific),
 					cancel: self.cancel
 				)
-			
+				result.scheduler = self.scheduler
+				result.delay = self.delay
+		
 			case let .biFlatMap(impl):
 				result = impl.biFlatMap(f, g)
 		}
 		
-		result.queue = self.queue
-		result.delay = self.delay
 		return result
 	}
 }

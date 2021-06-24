@@ -23,6 +23,7 @@ extension String: PropertyListValue {}
 extension Array: PropertyListValue {}
 extension Dictionary: PropertyListValue {}
 
+extension Bool: PropertyListValue {}
 extension Int: PropertyListValue {}
 extension Int8: PropertyListValue {}
 extension Int16: PropertyListValue {}
@@ -39,8 +40,8 @@ extension Double: PropertyListValue {}
 
 public extension ValueStore where A: PropertyListValue, E == Void {
 	static func rawPreference(_ key: String) -> ValueStoreA<R, Void, A> {
-		return ValueStoreA<R, Void, A>(
-			load: SIO.init({ _ in
+		ValueStoreA<R, Void, A>(
+			load: SIO.sync({ _ in
 				guard let value = (UserDefaults.standard.object(forKey: key) as? A) else {
 					return .left(())
 				}
@@ -48,12 +49,12 @@ public extension ValueStore where A: PropertyListValue, E == Void {
 				return .right(value)
 			}),
 			save: { value in
-				return SIO.init({ _ in
+				SIO.sync({ _ in
 					UserDefaults.standard.set(value, forKey: key)
 					return .right(value)
 				})
 			},
-			remove: SIO.init({ _ in
+			remove: SIO.sync({ _ in
 				UserDefaults.standard.removeObject(forKey: key)
 				return .right(())
 			})
@@ -61,11 +62,11 @@ public extension ValueStore where A: PropertyListValue, E == Void {
 	}
 }
 
-public extension ValueStore where A: Codable {
+public extension ValueStore where A: Codable, A == B, R == Void, E == ValueStoreError {
 	static func jsonPreference(_ key: String) -> ValueStoreA<Void, ValueStoreError, A> {
-		return ValueStoreA<Void, Void, Data>
+		ValueStoreA<Void, Void, Data>
 			.rawPreference(key)
 			.diMapError { _ in .noData }
-			>>>	Codec.json.mapError(ValueStoreError.encoding)
+			.coded(Codec.json.mapError(ValueStoreError.encoding))
 	}
 }

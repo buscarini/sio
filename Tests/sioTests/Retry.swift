@@ -10,6 +10,7 @@ import XCTest
 import Sio
 
 class Retry: XCTestCase {
+	let scheduler = TestScheduler()
 	var value:Int = 0
 	
 	override func setUp() {
@@ -21,12 +22,15 @@ class Retry: XCTestCase {
 		return NSError(domain: "tests", code: 1, userInfo: nil)
 	}
 	
-	func fails2Times() -> IO<Error, Int> {
+	func fails2Times(
+		_ onError: @escaping () -> Void
+	) -> IO<Error, Int> {
 		return IO<Error, Int>({ (_, reject, resolve) in
 			self.value += 1
 			
 			if self.value < 3 {
 				print("reject")
+				onError()
 				reject(self.exampleError())
 			}
 			else {
@@ -39,7 +43,7 @@ class Retry: XCTestCase {
 	func testRetry() {
 		let expectation = self.expectation(description: "task is retried and succeeds")
 		
-		let task = fails2Times()
+		let task = fails2Times({})
 	
 		task.retry(3)
 			.fork({ error in
@@ -56,7 +60,7 @@ class Retry: XCTestCase {
     func testFail() {
 		let expectation = self.expectation(description: "task is retried but fails")
 		
-		let task = fails2Times()
+		let task = fails2Times({})
 		
 		task.retry(1)
 			.fork({ error in
@@ -72,26 +76,21 @@ class Retry: XCTestCase {
 	func testRetryDelayed() {
 		let expectation = self.expectation(description: "task is retried with a delay")
 		
-		let task = fails2Times()
+		let task = fails2Times({
+			self.scheduler.advance(1)
+		})
 	
-		let now = Date()
-	
-		task.retry(times: 3, delay: 1, queue: .main)
+		task.retry(times: 3, delay: 1, scheduler: scheduler)
 			.fork({ error in
 				XCTFail()
 			},
 			{ value in
-				
-				let interval = Date().timeIntervalSince(now)
-				
-				print(interval)
-				
-				XCTAssert(interval > 1.9)
-				XCTAssert(interval < 2.5)
-				
 				XCTAssert(value == 3)
 				expectation.fulfill()
 			})
+		
+		scheduler.advance(1)
+		scheduler.advance(1)
 		
 		self.waitForExpectations(timeout: 5, handler: nil)
 	}

@@ -11,7 +11,11 @@ import XCTest
 import Sio
 
 class ConcurrencyTests: XCTestCase {
+	let scheduler = TestScheduler()
+	
 	func testZip() {
+		let scheduler = TestScheduler()
+		
 		let finish = expectation(description: "finish")
 		
 		let values = Array(1...100)
@@ -26,19 +30,27 @@ class ConcurrencyTests: XCTestCase {
 		
 		zip(
 			left,
-			right
+			right,
+			scheduler
 		)
-		.scheduleOn(DispatchQueue.global())
 		.run((), { result in
 			XCTAssert(result.0 == values)
 			XCTAssert(result.1 == values)
 			finish.fulfill()
 		})
 		
-		wait(for: [finish], timeout: 1)
+		scheduler.advance()
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+			scheduler.advance()
+		}
+		
+		waitForExpectations(timeout: 2, handler: nil)
 	}
 	
 	func testZipStackOverflow() {
+		let scheduler = TestScheduler()
+
 		let finish = expectation(description: "finish")
 		
 		let values = Array(1...10000)
@@ -53,22 +65,25 @@ class ConcurrencyTests: XCTestCase {
 		
 		zip(
 			left,
-			right
-			)
-			.scheduleOn(DispatchQueue.global())
-			.run((), { result in
-				XCTAssert(result.0 == values)
-				XCTAssert(result.1 == values)
-				finish.fulfill()
-			})
+			right,
+			scheduler
+		)
+//		.scheduleOn(DispatchQueue.global())
+		.run((), { result in
+			XCTAssert(result.0 == values)
+			XCTAssert(result.1 == values)
+			finish.fulfill()
+		})
 		
+		scheduler.advance()
+	
 		wait(for: [finish], timeout: 1)
 	}
 	
 	func testForEach() {
 		let finish = expectation(description: "finish")
 		
-		let values = Array(1...100_000)
+		let values = Array(1...50_000)
 
 		
 		let task = values.forEach {
@@ -80,7 +95,7 @@ class ConcurrencyTests: XCTestCase {
 			finish.fulfill()
 		})
 		
-		wait(for: [finish], timeout: 4)
+		wait(for: [finish], timeout: 100)
 	}
 	
 	func testForEachGlobalQueueDebug() {
@@ -186,9 +201,9 @@ class ConcurrencyTests: XCTestCase {
 	
 	func testCancelAfterFork() {
 		let finish = expectation(description: "finish")
+		finish.isInverted = true
 		
-		
-		let task = UIO.of(1).scheduleOn(DispatchQueue.global())
+		let task = UIO.of(1).scheduleOn(scheduler)
 		
 		task.fork(absurd, { _ in
 			XCTFail()
@@ -196,67 +211,67 @@ class ConcurrencyTests: XCTestCase {
 		
 		task.cancel()
 		
-		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-			finish.fulfill()
-		}
+		scheduler.advance(1)
 		
 		wait(for: [finish], timeout: 5)
 	}
 	
 	func testCancelZip() {
+		let scheduler = TestScheduler()
+
 		let finish = expectation(description: "finish")
+		finish.isInverted = true
 		
-		let left = UIO.of(1).scheduleOn(DispatchQueue.global())
-		let right = UIO.of(2).scheduleOn(DispatchQueue.global())
+		let left = UIO.of(1).scheduleOn(scheduler)
+		let right = UIO.of(2).scheduleOn(scheduler)
 		
-		let task = zip(left, right)
+		let task = zip(left, right, scheduler)
 			
-		task
-			.fork(absurd, { values in
-				print(values)
-				XCTFail()
-			})
+		task.fork(absurd, { values in
+			print(values)
+			XCTFail()
+		})
 		
 		task.cancel()
 		
-		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-			finish.fulfill()
-		}
+		scheduler.advance(1)
 		
-		wait(for: [finish], timeout: 5)
+		wait(for: [finish], timeout: 0.1)
 	}
 	
 	func testCancelZipLeft() {
+		let scheduler = TestScheduler()
+
 		let finish = expectation(description: "finish")
-		
-		let left = UIO.of(1).scheduleOn(DispatchQueue.global())
-		let right = UIO.of(2).scheduleOn(DispatchQueue.global())
+		finish.isInverted = true
+
+		let left = UIO.of(1).scheduleOn(scheduler)
+		let right = UIO.of(2).scheduleOn(scheduler)
 		
 		left.cancel()
 		
-		zip(left, right)
+		zip(left, right, scheduler)
 		.fork(absurd, { values in
 			print(values)
 			XCTFail()
 		})
 		
-		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-			finish.fulfill()
-		}
+		scheduler.advance()
+//		scheduler.advance()
 		
-		wait(for: [finish], timeout: 5)
+		wait(for: [finish], timeout: 0.1)
 	}
 	
 	func testForEachPerformanceNoSIO() {
 		measureMetrics([.wallClockTime], automaticallyStartMeasuring: true) {
-			let values = Array(1...100_000)
+			let values = Array(1...10_000)
 			
 			var last: Int = 0
 			values.forEach {
 				last = $0
 			}
 			
-			XCTAssert(last == 100_000)
+			XCTAssert(last == 10_000)
 		}		
 	}
 	
@@ -264,7 +279,7 @@ class ConcurrencyTests: XCTestCase {
 		measureMetrics([.wallClockTime], automaticallyStartMeasuring: true) {
 			let finish = expectation(description: "finish")
 
-			let values = Array(1...100_000)
+			let values = Array(1...10_000)
 			
 			let task = values.forEach {
 				UIO<Int>.of($0)
@@ -274,7 +289,7 @@ class ConcurrencyTests: XCTestCase {
 				finish.fulfill()
 			})
 			
-			waitForExpectations(timeout: 5, handler: { _ in
+			waitForExpectations(timeout: 50, handler: { _ in
 				self.stopMeasuring()
 			})
 		}
@@ -283,7 +298,7 @@ class ConcurrencyTests: XCTestCase {
 	
 	func testReduceRegularPerformance() {
 		measureMetrics([.wallClockTime], automaticallyStartMeasuring: true) {
-			let values = Array(1...100_000)
+			let values = Array(1...10_000)
 			_ = values.reduce(0, { res, value in
 				res + value
 			})
@@ -294,7 +309,7 @@ class ConcurrencyTests: XCTestCase {
 		measureMetrics([.wallClockTime], automaticallyStartMeasuring: true) {
 			let finish = expectation(description: "finish")
 			
-			let values = Array(1...100_000)
+			let values = Array(1...10_000)
 			
 			let task: UIO<Int> = values.foldM(0) {
 				.of($0 + $1)
@@ -304,7 +319,7 @@ class ConcurrencyTests: XCTestCase {
 				finish.fulfill()
 			})
 			
-			waitForExpectations(timeout: 5, handler: { _ in
+			waitForExpectations(timeout: 50, handler: { _ in
 				self.stopMeasuring()
 			})
 		}

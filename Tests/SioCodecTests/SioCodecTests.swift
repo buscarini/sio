@@ -1,117 +1,62 @@
 //
-//  SIOValueStoreTests.swift
-//  SIOValueStore
+//  SioCodecTests.swift
+//  SioCodecTests
 //
-//  Created by José Manuel Sánchez on 19/5/19.
-//  Copyright © 2019 SIOValueStoreTests. All rights reserved.
+//  Created by José Manuel Sánchez Peñarroja on 14/12/2019.
 //
 
 import Foundation
 import XCTest
+
 import Sio
-import SioValueStore
+import SioCodec
 
-class SIOValueStoreTests: XCTestCase {
-	func testOf() {
-		let finish = expectation(description: "finish")
+class SIOCodecTests: XCTestCase {
+	func testEmpty() {
+		let empty = Codec<Never, Int, Int>.empty
 		
-		ValueStore<Void, String, Int, Int>.of(1).load.fork({ _ in
-			XCTFail()
-		}, { value in
-			XCTAssert(value == 1)
-			finish.fulfill()
+		XCTAssertEqual(empty.to(1), empty.from(1))
+	}
+	
+	func testComposeRight() {
+		let left = Codec<Void, Int, String>.int.reversed
+		let right = Codec<Void, Int, Int>.init(to: {
+			.right($0 + 1)
+		}, from: {
+			.right($0 - 1)
 		})
 		
-		waitForExpectations(timeout: 1, handler: nil)
+		let codec = left >>> right
+		
+		XCTAssertEqual(codec.to("1").right, 2)
+		XCTAssertEqual(codec.from(3).right, "2")
 	}
 	
-	func testRejected() {
-		let finish = expectation(description: "finish")
-		
-		ValueStore<Void, String, Int, Int>.rejected("err").load.fork({ err in
-			XCTAssert(err == "err")
-			finish.fulfill()
-		}, { _ in
-			XCTFail()
+	func testComposeLeft() {
+		let left = Codec<Void, Int, String>.int.reversed
+		let right = Codec<Void, Int, Int>.init(to: {
+			.right($0 + 1)
+		}, from: {
+			.right($0 - 1)
 		})
 		
-		waitForExpectations(timeout: 1, handler: nil)
+		let codec = right <<< left
+		
+		XCTAssertEqual(codec.to("1").right, 2)
+		XCTAssertEqual(codec.from(3).right, "2")
 	}
 	
-	func testCopy() {
-		let finish = expectation(description: "finish")
-
+	func testReversed() {
+		let codec = Codec<Void, Int, String>.int
 		
-		var targetVar: Int = 0
+		let origin = "1"
 		
-		let origin = ValueStoreA<Void, String, Int>.of(6)
+		let to = codec.from(origin)
 		
-		let target = ValueStoreA<Void, String, Int>.init(
-			load: SIO.init({ _ in
-				return .right(targetVar)
-			}),
-			save: { a in
-				return SIO.init { _ in
-					targetVar = a
-					return .right(a)
-				}
-			},
-			remove: SIO.of(())
-		)
+		XCTAssert(to.right == 1)
 		
-		origin.copy(to: target, adapt: Sio.id)
-			.pullback { _ in ((), ()) }
-			.fork((), { _ in
-				XCTFail()
-			}, { value in
-				XCTAssert(value == 6)
-				
-				target.load.fork({ _ in
-					XCTFail()
-				}, { value in
-					XCTAssert(value == 6)
-					finish.fulfill()
-				})
-			})
+		let result = to.flatMap(codec.to)
 		
-		waitForExpectations(timeout: 1, handler: nil)
-
-	}
-	
-	func testCopyFail() {
-		let finish = expectation(description: "fail")
-		
-		var targetVar: Int = 0
-		
-		let origin = ValueStoreA<Void, String, Int>.rejected("err")
-		
-		let target = ValueStoreA<Void, String, Int>.init(
-			load: SIO.init({ _ in
-				return .right(targetVar)
-			}),
-			save: { a in
-				return SIO.init { _ in
-					targetVar = a
-					return .right(a)
-				}
-		},
-			remove: SIO.of(())
-		)
-		
-		origin.copy(to: target, adapt: Sio.id)
-			.pullback { _ in ((), ()) }
-			.fork((), { err in
-				XCTAssert(err == "err")
-				target.load.fork({ _ in
-					XCTFail()
-				}, { value in
-					XCTAssert(value == 0)
-					finish.fulfill()
-				})
-			}, { value in
-				XCTFail()
-			})
-		
-		waitForExpectations(timeout: 1, handler: nil)
+		XCTAssert(result.right == origin)
 	}
 }

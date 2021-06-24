@@ -8,6 +8,7 @@
 
 import Foundation
 
+@inlinable
 public func <*><E, A, B>(lhs: Either<E, (A) -> B>, rhs: Either<E, A>) -> Either<E, B> {
 	switch (lhs, rhs) {
 	case let (.right(f), .right(a)):
@@ -19,6 +20,7 @@ public func <*><E, A, B>(lhs: Either<E, (A) -> B>, rhs: Either<E, A>) -> Either<
 	}
 }
 
+@inlinable
 public func pure<E, A>(_ x: A) -> Either<E, A> {
-	return .right(x)
+	.right(x)
 }

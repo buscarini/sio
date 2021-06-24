@@ -12,6 +12,7 @@ import Sio
 import SioEffects
 
 class CancellationTests: XCTestCase {
+	let scheduler = TestScheduler()
 	
 	func testNoCancellation() {
 		var lastValue: Int = 0
@@ -22,17 +23,16 @@ class CancellationTests: XCTestCase {
 		func long() -> UIO<Void> {
 			return Array(1...800).forEach { item in
 				IO<Never, Int>.init { _ in
-					print(item)
-					return .right(item)
+						.right(item)
 					}
 					.flatMap { int in
 						return IO<Never, Int> { _ in
 							lastValue = int
 							return .right(int)
 						}
-				}
-				}
-				.map(const(()))
+				}.scheduleOn(.global()).forkOn(.global())
+			}
+			.map(const(()))
 		}
 		
 		task = long().scheduleOn(DispatchQueue.global())
@@ -52,18 +52,19 @@ class CancellationTests: XCTestCase {
 		let finish = expectation(description: "cancel")
 		
 		func long() -> UIO<Void> {
-			return Array(1...800).forEach { item in
+			Array(1...800).forEach { item in
 				IO<Never, Int>.init { _ in
-					return .right(item)
+					.right(item)
 				}
 				.flatMap { int in
-					return IO<Never, Int> { _ in
+					IO<Never, Int> { _ in
 						let tmp = task?.cancelled
 						XCTAssert(tmp == false)
 						lastValue = int
 						return .right(int)
 					}
 				}
+				.scheduleOn(.global())
 			}
 			.map(const(()))
 		}
@@ -71,7 +72,7 @@ class CancellationTests: XCTestCase {
 		task = long().scheduleOn(DispatchQueue.global())
 		
 		task?
-			.fork(absurd, { a in
+		.fork(absurd, { a in
 			XCTFail()
 		})
 		
@@ -87,7 +88,9 @@ class CancellationTests: XCTestCase {
 		waitForExpectations(timeout: 10, handler: nil)
 	}
 	
-	func testCancellationMultiple() {
+	/*func testCancellationMultiple() {
+		let globalScheduler = TestScheduler()
+		
 		var cancelled = false
 
 		let finish = expectation(description: "Finish after cancelling")
@@ -96,38 +99,111 @@ class CancellationTests: XCTestCase {
 		let first = Array(1...800).forEach { item in
 			accessM(Console.self) { console -> SIO<Console, Never, Void> in
 					XCTAssert(cancelled == false)
-					print(cancelled)
 					return console.printLine("long \(item)").require(Console.self)
 				}
-				.scheduleOn(.global())
+				.scheduleOn(globalScheduler)
 			}
 			.provide(Console.default)
-//			.provide(Console.mock(""))
 		
 		let second = UIO<[Int]>.init { (_, _, resolve) in
-			(0...800).forEach { Swift.print("\($0)") }
-			
-			print("-------------")
+			(0...800).forEach { _ in }
 			
 			resolve(Array(0...80))
 		}
 		
 		let task = zip(
 			first,
-			second
+			second,
+			globalScheduler
 		)
-		.scheduleOn(DispatchQueue.global())
-		
 		
 		task.fork(absurd, { a in
 			finish.fulfill()
 		})
+		
+		globalScheduler.advance()
 		
 		print("before cancel")
 		task.cancel()
 		cancelled = true
 		print("after cancel")
 		
+		globalScheduler.advance()
+		
 		waitForExpectations(timeout: 10, handler: nil)
+	}*/
+	
+	func testCancellationProfunctor() {
+		let finish = expectation(description: "finish")
+		finish.isInverted = true
+		
+		let task = UIO<Int>.of(1)
+			.scheduleOn(.global())
+			.delay(0.1, scheduler)
+		
+		task
+		.fork(absurd, { a in
+			XCTFail()
+		})
+		
+		task.cancel()
+		
+		scheduler.advance(1)
+		
+		waitForExpectations(timeout: 0.1, handler: nil)
+	}
+	
+	func testCancellationOr() {
+		let finish = expectation(description: "finish")
+		
+		let left = IO<Void, Int>.rejected(())
+		let right = IO<Void,Int>.of(1).scheduleOn(.global()).delay(0.1)
+		
+		let task = or(left, right)
+			
+		task
+		.fork(
+			{ _ in
+				XCTFail()
+			},
+			{ a in
+				XCTFail()
+			}
+		)
+		
+		task.cancel()
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+			finish.fulfill()
+		}
+		
+		waitForExpectations(timeout: 2, handler: nil)
+	}
+	
+	func testCancelSync() {
+		let finish = expectation(description: "finish")
+		
+		let task = UIO.sync {
+			.right(1)
+		}
+		.scheduleOn(.global())
+		
+		task.cancel()
+			
+		task
+		.fork(
+			{ _ in
+				XCTFail()
+			},
+			{ a in
+				XCTFail()
+			}
+		)
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+			finish.fulfill()
+		}
+		
+		waitForExpectations(timeout: 2, handler: nil)
 	}
 }

@@ -9,11 +9,21 @@
 import Foundation
 
 public extension SIO {
-	func dimap<S, B>(_ pre: @escaping (S) -> R, _ post: @escaping (A) -> B) -> SIO<S, E, B> {
-		return SIO<S, E, B>({ s, reject, resolve in
-			self.fork(pre(s), reject, { a in
-				resolve(post(a))
-			})
-		})
+	
+	@inlinable
+	func dimap<S, B>(
+		_ pre: @escaping (S) -> R,
+		_ post: @escaping (A) -> B
+	) -> SIO<S, E, B> {
+		SIO<S, E, B>(
+			{ s, reject, resolve in
+				self.fork(pre(s), reject, { a in
+					resolve(post(a))
+				})
+			},
+			cancel: {
+				self.cancel()
+			}
+		)
 	}
 }

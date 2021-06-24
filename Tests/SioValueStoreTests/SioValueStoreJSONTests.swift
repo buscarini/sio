@@ -22,22 +22,34 @@ class SIOValueStoreJSONTests: XCTestCase {
 	}
 	
 	func testJSON() {
-		let finish = expectation(description: "finish")
-		
+		let scheduler = TestScheduler()
+
 		let store = ValueStoreA<Void, ValueStoreError, User>.jsonPreference("user")
 		let user = User.mock
 		
-		store.save(user).flatMap { user in
+		store
+		.save(user)
+		.flatMap { user in
 			store.load
 		}
-		.fork({ _ in
-			XCTFail()
-		}, { loaded in
-			XCTAssert(loaded == user)
-			
-			finish.fulfill()
-		})
+		.assert(user, scheduler: scheduler)
+	}
+	
+	func testJSONRemove() {
+		let store = ValueStoreA<Void, ValueStoreError, User>.jsonPreference("user")
+		let user = User.mock
 		
-		waitForExpectations(timeout: 1, handler: nil)
+		let removed = expectation(description: "Removed")
+		store
+			.save(user)
+			.flatMap { _ in
+				store.remove
+			}
+			.run { _ in
+				XCTAssertNil(UserDefaults.standard.value(forKey: "user"))
+				removed.fulfill()
+			}
+		
+		waitForExpectations(timeout: 0.1, handler: nil)
 	}
 }

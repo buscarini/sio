@@ -10,18 +10,20 @@ import Foundation
 
 @inlinable
 public func id<a>(_ a: a) -> a {
-	return a
+	a
 }
 
 @inlinable
-public func absurd<A>(_ n: Never) -> A {
-}
+public func absurd<A>(_ n: Never) -> A {}
 
 @inlinable
-public func discard<A>(_ value: A) -> Void {	
+public func discard<A, B>(_ f: @escaping (A) -> B) -> (A) -> Void {
+	{ a in
+		_ = f(a)
+	}
 }
 
 @inlinable
 public func const<A, B>(_ b: B) -> (_ a: A) -> B {
-	return { _ in b }
+	{ _ in b }
 }

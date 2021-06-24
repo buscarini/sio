@@ -9,12 +9,17 @@ import Foundation
 import Sio
 
 public extension Codec where E == Error, A: Codable, B == Data {
+	@inlinable
 	static var json: Codec<Error, A, Data> {
-		return jsonCodec(JSONDecoder(), JSONEncoder())
+		jsonCodec(JSONDecoder(), JSONEncoder())
 	}
 	
-	static func jsonCodec(_ decoder: JSONDecoder, _ encoder: JSONEncoder) -> Codec<Error, A, Data> {
-		return Codec<Error, A, Data>(to: { value in
+	@inlinable
+	static func jsonCodec(
+		_ decoder: JSONDecoder,
+		_ encoder: JSONEncoder
+	) -> Codec<Error, A, Data> {
+		Codec<Error, A, Data>(to: { value in
 			Either<Error, Data>.init(catching: {
 				try encoder.encode(value)
 			})

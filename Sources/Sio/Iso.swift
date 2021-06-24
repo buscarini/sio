@@ -23,18 +23,26 @@ public struct Iso<A, B> {
 
 public extension Iso {
 	static func compose<C>(_ left: Iso<A, B>, _ right: Iso<B, C>) -> Iso<A, C> {
-		return Iso<A, C>.init(from: { c in
+		Iso<A, C>.init(from: { c in
 			left.from(right.from(c))
 		}, to: { a in
 			right.to(left.to(a))
 		})
 	}
 	
+	func compose<C>(_ iso: Iso<B, C>) -> Iso<A, C> {
+		Iso.compose(self, iso)
+	}
+	
 	static func >>> <C>(_ left: Iso<A, B>, _ right: Iso<B, C>) -> Iso<A, C> {
-		return compose(left, right)
+		compose(left, right)
 	}
 	
 	static func <<< <C>(_ left: Iso<B, C>, _ right: Iso<A, B>) -> Iso<A, C> {
-		return compose(right, left)
+		compose(right, left)
+	}
+	
+	var reversed: Iso<B, A> {
+		.init(from: to, to: from)
 	}
 }

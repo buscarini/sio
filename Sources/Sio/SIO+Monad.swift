@@ -11,42 +11,64 @@ import Foundation
 extension SIO {
 	@inlinable
 	public func flatMap<B>(_ f: @escaping (A) -> (SIO<R, E, B>)) -> SIO<R, E, B> {
-		return self.biFlatMap({ e in .rejected(e)}, f)
+		self.biFlatMap({ e in .rejected(e)}, f)
+	}
+	
+	@inlinable
+	public func flatMap<B>(_ io: SIO<A, E, B>) -> SIO<R, E, B> {
+		self.flatMap { a in
+			io
+				.provide(a)
+				.require(R.self)
+		}
 	}
 	
 	@inlinable
 	public func `default`(_ a: A) -> SIO<R, E, A> {
-		return self.flatMapError { _ in
+		self.flatMapError { _ in
 			SIO.of(a)
 		}
 	}
-	
-//	@inlinable
-//	public func flatMap<B>(_ f: @escaping (A) -> (SIO<Void, E, B>)) -> SIO<R, E, B> {
-//		return self.biFlatMap({ e in .rejected(e) }, {
-//			f($0).require(R.self)
-//		})
-//	}
-	
+		
 	@inlinable
 	public func flatMapR<B>(_ f: @escaping (R, A) -> (SIO<R, E, B>)) -> SIO<R, E, B> {
-		
-		return zip(
-			Sio.environment(R.self).mapError(absurd),
-			self
-		).flatMap(f)
-		
-//		return self.biFlatMapR({ _, e in SIO<R, E, B>.rejected(e) }, f)
+		Sio.environment(R.self).mapError(absurd).flatMap { r in
+			self.flatMap { a in
+				f(r, a)
+			}
+		}
 	}
 	
 	@inlinable
 	public func replicate(_ count: Int) -> SIO<R, E, [A]> {
-		return Array(1...count)
+		Array(1...count)
 			.forEach { _ in self }
-			
-		
-//		return Array(1...count).traverse { _ in
-//			self
-//		}
+	}
+	
+	@inlinable
+	public func forever() -> SIO<R, E, A> {
+		self.flatMap { _ in
+			self.forever()
+		}
+	}
+}
+
+extension SIO {
+	@inlinable
+	public func flatMapNever<F, B>(_ f: @escaping (A) -> (SIO<R, F, B>)) -> SIO<R, F, B> where E == Never {
+		self
+			.biFlatMap(absurd, f)
+
+	}
+
+	@inlinable
+	public func flatMapNever<F, B>(_ io: SIO<A, F, B>) -> SIO<R, F, B>  where E == Never {
+		self
+			.mapError(absurd)
+			.flatMap { a in
+				io
+					.provide(a)
+					.require(R.self)
+			}
 	}
 }
