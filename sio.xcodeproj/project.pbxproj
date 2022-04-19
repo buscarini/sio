@@ -26,6 +26,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		2A586511280EAE510042570F /* Codec+StringNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A586510280EAE510042570F /* Codec+StringNumber.swift */; };
+		2A586513280EAF720042570F /* Codec+BiProfunctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A586512280EAF720042570F /* Codec+BiProfunctor.swift */; };
 		AC7E85D125DA6DB8005803A9 /* IValueStore+Codec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7E85D025DA6DB8005803A9 /* IValueStore+Codec.swift */; };
 		AC7E85E325DA6DE9005803A9 /* IValueStore+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7E85E225DA6DE9005803A9 /* IValueStore+Typealias.swift */; };
 		AC7E85F525DA6E0F005803A9 /* IValueStore+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7E85F425DA6E0F005803A9 /* IValueStore+Creation.swift */; };
@@ -592,6 +594,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A586510280EAE510042570F /* Codec+StringNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codec+StringNumber.swift"; sourceTree = "<group>"; };
+		2A586512280EAF720042570F /* Codec+BiProfunctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codec+BiProfunctor.swift"; sourceTree = "<group>"; };
 		AC7E85D025DA6DB8005803A9 /* IValueStore+Codec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IValueStore+Codec.swift"; sourceTree = "<group>"; };
 		AC7E85E225DA6DE9005803A9 /* IValueStore+Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IValueStore+Typealias.swift"; sourceTree = "<group>"; };
 		AC7E85F425DA6E0F005803A9 /* IValueStore+Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IValueStore+Creation.swift"; sourceTree = "<group>"; };
@@ -1326,6 +1330,8 @@
 				OBJ_79 /* Codec+Bool.swift */,
 				OBJ_80 /* Codec+Data.swift */,
 				OBJ_81 /* Codec+Dates.swift */,
+				2A586512280EAF720042570F /* Codec+BiProfunctor.swift */,
+				2A586510280EAE510042570F /* Codec+StringNumber.swift */,
 				OBJ_82 /* Codec+Iso.swift */,
 				OBJ_83 /* Codec+JSON.swift */,
 				OBJ_84 /* Codec+LosslessStringConvertible.swift */,
@@ -1831,8 +1837,10 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_356 /* Codec+Base64.swift in Sources */,
+				2A586513280EAF720042570F /* Codec+BiProfunctor.swift in Sources */,
 				OBJ_357 /* Codec+Bool.swift in Sources */,
 				OBJ_358 /* Codec+Data.swift in Sources */,
+				2A586511280EAE510042570F /* Codec+StringNumber.swift in Sources */,
 				OBJ_359 /* Codec+Dates.swift in Sources */,
 				OBJ_360 /* Codec+Iso.swift in Sources */,
 				OBJ_361 /* Codec+JSON.swift in Sources */,

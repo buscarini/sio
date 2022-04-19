@@ -111,6 +111,20 @@ extension Either {
 	}
 	
 	@inlinable
+	public static func mapLeft<A, B, C>(
+		_ transform: @escaping (A) -> C
+	) -> (Either<A, B>) -> Either<C, B> {
+		{ $0.mapLeft(transform) }
+	}
+	
+	@inlinable
+	public static func mapRight<A, B, C>(
+		_ transform: @escaping (B) -> C
+	) -> (Either<A, B>) -> Either<A, C> {
+		{ $0.mapRight(transform) }
+	}
+	
+	@inlinable
 	public func mapLeft<V>(_ f: (A) -> V) -> Either<V, B> {
 		bimap(f, id)
 	}

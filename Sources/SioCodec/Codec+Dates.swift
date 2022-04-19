@@ -27,3 +27,10 @@ public extension Codec where E == Error, A == Date, B == String {
 		})
 	}
 }
+
+public extension Codec where E == Void, A == Date, B == String {
+	static var epochString: Codec<Void, Date, String> {
+		Codec<Never, Date, TimeInterval>.epochSeconds.mapError(absurd)
+		>>> Codec<Void, String, TimeInterval>.stringTimeInterval.reversed
+	}
+}
