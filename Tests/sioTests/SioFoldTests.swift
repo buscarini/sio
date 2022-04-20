@@ -15,9 +15,7 @@ class SioFoldTests: XCTestCase {
 		
 		IO<String, Int>.rejected("a")
 			.fold({ _ in 1 }, { $0*2 })
-			.fork({ _ in
-				XCTFail()
-			}) { value in
+			.fork(absurd) { value in
 				XCTAssert(value == 1)
 				expectation.fulfill()
 			}
@@ -30,9 +28,7 @@ class SioFoldTests: XCTestCase {
 		
 		IO<String, Int>.of(1)
 			.fold({ _ in 1 }, { $0*2 })
-			.fork({ _ in
-				XCTFail()
-			}) { value in
+			.fork(absurd) { value in
 				XCTAssert(value == 2)
 				expectation.fulfill()
 			}

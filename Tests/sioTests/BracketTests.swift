@@ -19,9 +19,7 @@ class BracketTests: XCTestCase {
 			UIO.of(value)
 		})
 		
-		task.fork({ _ in
-			XCTFail()
-		}, { value in
+		task.fork(absurd, { value in
 			XCTAssert(value == 1)
 		})
 		
