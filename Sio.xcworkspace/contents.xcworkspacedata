@@ -5,9 +5,6 @@
       location = "group:Tests/Sio-Package.xctestplan">
    </FileRef>
    <FileRef
-      location = "group:SIO.playground">
-   </FileRef>
-   <FileRef
       location = "group:Sio.xcodeproj">
    </FileRef>
    <FileRef
