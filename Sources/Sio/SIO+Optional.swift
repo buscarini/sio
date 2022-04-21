@@ -32,6 +32,12 @@ public extension SIO {
 				return SIO<R, Never, A?>.of(nil)
 		}
 	}
+	
+	@inlinable
+	func optional(default value: A) -> SIO<R, Never, A> {
+		self.optional()
+			.map { $0 ?? value }
+	}
 }
 
 public extension SIO where E == Void {
