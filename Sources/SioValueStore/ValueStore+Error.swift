@@ -10,12 +10,16 @@ import Sio
 
 public extension ValueStore {
 	func diMapError<F>(_ f: @escaping (E) -> F) -> ValueStore<R, F, A, B> {
-		return ValueStore<R, F, A, B>.init(
+		ValueStore<R, F, A, B>.init(
 			load: self.load.mapError(f),
 			save: { a in
 				self.save(a).mapError(f)
 			},
 			remove: self.remove.mapError(f)
 		)
+	}
+	
+	func constError<F>(_ error: F) -> ValueStore<R, F, A, B> {
+		self.diMapError(const(error))
 	}
 }

@@ -10,6 +10,7 @@ import Foundation
 import XCTest
 import Sio
 
+
 class sioTests: XCTestCase {
 	enum TestError: Error {
 		case unknown
@@ -355,9 +356,7 @@ class sioTests: XCTestCase {
 		
 		SIO<Void, String, String>.rejected("err")
 		.catch("recovered")
-		.fork({ _ in
-			XCTFail()
-		}, { value in
+		.fork(absurd, { value in
 			XCTAssert(value == "recovered")
 			
 			finish.fulfill()
