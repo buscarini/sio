@@ -43,3 +43,29 @@ public extension SIO {
 		return result
 	}
 }
+
+public extension SIO {
+	@inlinable
+	func when(
+		_ f: @escaping (A) -> Bool,
+		run: @escaping (A) -> SIO<R, E, A>) -> SIO<R, E, A> {
+		self.flatMap { value in
+			guard f(value) else {
+				return .of(value)
+			}
+			
+			return run(value)
+		}
+	}
+	
+	@inlinable
+	func `guard`<B>(
+		_ f: @escaping (A) -> Bool,
+		else left: @escaping (A) -> SIO<R, E, B>,
+		run right: @escaping (A) -> SIO<R, E, B>
+	) -> SIO<R, E, B> {
+		self.flatMap { t in
+			f(t) ? right(t) : left(t)
+		}
+	}
+}

@@ -39,6 +39,16 @@ public extension SIO {
 	}
 }
 
+public extension SIO where R == Void {
+	convenience init(
+		_ callback: @escaping (@escaping ErrorCallback, @escaping ResultCallback) -> ()
+	) {
+		self.init({ _, reject, resolve in
+			callback(reject, resolve)
+		})
+	}
+}
+
 public extension SIO where E == Never, A == Void {
 	@inlinable
 	static var empty: SIO<R, Never, Void> {
