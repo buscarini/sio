@@ -23,7 +23,11 @@ public extension ValueStore {
 	}
 	
 	func `default`(_ value: B) -> ValueStore<R, E, A, B> {
-		ValueStore<R, E, A, B>(load: self.load.default(value), save: self.save, remove: self.remove)
+		ValueStore<R, E, A, B>(
+			load: self.load.default(value).mapError(absurd),
+			save: self.save,
+			remove: self.remove
+		)
 	}
 	
 	func update(_ f: @escaping (B) -> A) -> SIO<R, E, B> {

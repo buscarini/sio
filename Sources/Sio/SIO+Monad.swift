@@ -24,9 +24,9 @@ extension SIO {
 	}
 	
 	@inlinable
-	public func `default`(_ a: A) -> SIO<R, E, A> {
+	public func `default`(_ a: A) -> SIO<R, Never, A> {
 		self.flatMapError { _ in
-			SIO.of(a)
+			SIO<R, Never, A>.of(a)
 		}
 	}
 		

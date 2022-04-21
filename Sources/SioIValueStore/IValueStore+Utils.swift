@@ -11,7 +11,7 @@ import Sio
 public extension IValueStore {
 	func `default`(_ value: B) -> IValueStore<R, K, E, A, B> {
 		.init(
-			load: { k in self.load(k).default(value) },
+			load: { k in self.load(k).default(value).mapError(absurd) },
 			save: self.save,
 			remove: self.remove
 		)
