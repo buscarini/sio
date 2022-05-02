@@ -28,6 +28,7 @@
 /* Begin PBXBuildFile section */
 		2A586511280EAE510042570F /* Codec+StringNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A586510280EAE510042570F /* Codec+StringNumber.swift */; };
 		2A586513280EAF720042570F /* Codec+BiProfunctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A586512280EAF720042570F /* Codec+BiProfunctor.swift */; };
+		2A79F3F2281FBDFD0087331F /* ImmediateScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A79F3F1281FBDFD0087331F /* ImmediateScheduler.swift */; };
 		AC7E85D125DA6DB8005803A9 /* IValueStore+Codec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7E85D025DA6DB8005803A9 /* IValueStore+Codec.swift */; };
 		AC7E85E325DA6DE9005803A9 /* IValueStore+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7E85E225DA6DE9005803A9 /* IValueStore+Typealias.swift */; };
 		AC7E85F525DA6E0F005803A9 /* IValueStore+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7E85F425DA6E0F005803A9 /* IValueStore+Creation.swift */; };
@@ -596,6 +597,7 @@
 /* Begin PBXFileReference section */
 		2A586510280EAE510042570F /* Codec+StringNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codec+StringNumber.swift"; sourceTree = "<group>"; };
 		2A586512280EAF720042570F /* Codec+BiProfunctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codec+BiProfunctor.swift"; sourceTree = "<group>"; };
+		2A79F3F1281FBDFD0087331F /* ImmediateScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmediateScheduler.swift; sourceTree = "<group>"; };
 		AC7E85D025DA6DB8005803A9 /* IValueStore+Codec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IValueStore+Codec.swift"; sourceTree = "<group>"; };
 		AC7E85E225DA6DE9005803A9 /* IValueStore+Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IValueStore+Typealias.swift"; sourceTree = "<group>"; };
 		AC7E85F425DA6E0F005803A9 /* IValueStore+Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IValueStore+Creation.swift"; sourceTree = "<group>"; };
@@ -1416,6 +1418,7 @@
 				OBJ_74 /* Sio+Codable.swift */,
 				OBJ_75 /* SyncValue.swift */,
 				OBJ_76 /* TestScheduler.swift */,
+				2A79F3F1281FBDFD0087331F /* ImmediateScheduler.swift */,
 			);
 			name = Sio;
 			path = Sources/Sio;
@@ -1724,7 +1727,7 @@
 				LastSwiftMigration = 9999;
 				LastUpgradeCheck = 9999;
 			};
-			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "Sio" */;
+			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "sio" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -1795,6 +1798,7 @@
 				OBJ_313 /* SIO+Applicative.swift in Sources */,
 				OBJ_314 /* SIO+BiFunctor.swift in Sources */,
 				OBJ_315 /* SIO+BiMonad.swift in Sources */,
+				2A79F3F2281FBDFD0087331F /* ImmediateScheduler.swift in Sources */,
 				OBJ_316 /* SIO+Bracket.swift in Sources */,
 				OBJ_317 /* SIO+Combine.swift in Sources */,
 				OBJ_318 /* SIO+Contravariant.swift in Sources */,
@@ -3107,7 +3111,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		OBJ_2 /* Build configuration list for PBXProject "Sio" */ = {
+		OBJ_2 /* Build configuration list for PBXProject "sio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				OBJ_3 /* Debug */,

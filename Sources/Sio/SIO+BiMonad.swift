@@ -16,6 +16,7 @@ public extension SIO {
 		self.biFlatMap({ _ in io }, { _ in io })
 	}
 	
+	@inlinable
 	func biFlatMap<F, B>(
 		_ f: @escaping (E) -> SIO<R, F, B>,
 		_ g: @escaping (A) -> SIO<R, F, B>

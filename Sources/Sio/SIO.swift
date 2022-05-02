@@ -225,19 +225,20 @@ class BiFlatMapBase<R, E, A> {
 	}
 	
 	@usableFromInline
-	func cancel() {
-	}
+	func cancel() {}
 }
 
+@usableFromInline
 final class BiFlatMap<R, E0, E, A0, A>: BiFlatMapBase<R, E, A> {
-	var sio: SIO<R, E0, A0>
-	var err: (E0) -> SIO<R, E, A>
-	var succ: (A0) -> SIO<R, E, A>
+	@usableFromInline var sio: SIO<R, E0, A0>
+	@usableFromInline var err: (E0) -> SIO<R, E, A>
+	@usableFromInline var succ: (A0) -> SIO<R, E, A>
 	
 	public var cancelled = false
-	private var nextErr: SIO<R, E, A>?
-	private var nextSucc: SIO<R, E, A>?
+	@usableFromInline var nextErr: SIO<R, E, A>?
+	@usableFromInline var nextSucc: SIO<R, E, A>?
 	
+	@usableFromInline
 	init(
 		sio: SIO<R, E0, A0>,
 		err: @escaping (E0) -> SIO<R, E, A>,

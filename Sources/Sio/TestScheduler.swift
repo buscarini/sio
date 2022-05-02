@@ -1,10 +1,3 @@
-//
-//  TestScheduler.swift
-//  Sio
-//
-//  Created by José Manuel Sánchez Peñarroja on 31/05/2020.
-//
-
 import Foundation
 
 public final class TestScheduler: Scheduler {
@@ -22,9 +15,17 @@ public final class TestScheduler: Scheduler {
 		date = Date(timeIntervalSince1970: 0)
 	}
 	
+	
+	public func sync(
+		_ work: @escaping Scheduler.Work
+	) {
+		self.queue.sync {
+			work()
+		}
+	}
 	public func run(
 		_ work: @escaping Scheduler.Work
-	) -> Void {
+	) {
 		self.queue.async {
 			self.items.append(.init(date: self.date, work: work))
 		}
@@ -33,7 +34,7 @@ public final class TestScheduler: Scheduler {
 	public func runAfter(
 		after delay: Seconds<Double>,
 		_ work: @escaping Scheduler.Work		
-	) -> Void {
+	) {
 		self.queue.async {
 			self.items.append(
 				.init(

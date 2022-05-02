@@ -1,13 +1,7 @@
-//
-//  QueueScheduler.swift
-//  Sio
-//
-//  Created by José Manuel Sánchez Peñarroja on 31/05/2020.
-//
-
 import Foundation
 
 public final class QueueScheduler: Scheduler {
+	@usableFromInline
 	var queue: DispatchQueue
 	
 	public init(queue: DispatchQueue) {
@@ -18,6 +12,16 @@ public final class QueueScheduler: Scheduler {
 		.init(queue: .main)
 	}
 	
+	@inlinable
+	public func sync(
+		_ work: Scheduler.Work
+	) -> Void {
+		queue.sync {
+			work()
+		}
+	}
+	
+	@inlinable
 	public func run(
 		_ work: @escaping Scheduler.Work
 	) -> Void {
@@ -26,6 +30,7 @@ public final class QueueScheduler: Scheduler {
 		}
 	}
 	
+	@inlinable
 	public func runAfter(
 		after delay: Seconds<Double>,
 		_ work: @escaping Scheduler.Work
