@@ -26,10 +26,20 @@ public struct ValueStore<R, E, A, B> {
 	}
 	
 	public var load: SIO<R, E, B> {
-		self._load()
+		get {
+			self._load()
+		}
+		set {
+			self._load = { newValue }
+		}
 	}
 	
 	public var remove: SIO<R, E, Void> {
-		self._remove()
+		get {
+			self._remove()
+		}
+		set {
+			self._remove = { newValue }
+		}
 	}
 }
