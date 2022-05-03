@@ -347,4 +347,20 @@ class SIOValueStoreTests: XCTestCase {
 		
 		waitForExpectations(timeout: 0.01, handler: nil)
 	}
+	
+	func testCancelLoad() {
+		let store = ValueStore<Void, String, Int, Int>.of(1)
+		store.load.cancel()
+
+		let expectLoad = expectation(description: "load")
+		
+		store.load.fork({ _ in
+			XCTFail()
+		}) { value in
+			XCTAssertEqual(value, 1)
+			expectLoad.fulfill()
+		}
+		
+		waitForExpectations(timeout: 1)
+	}
 }

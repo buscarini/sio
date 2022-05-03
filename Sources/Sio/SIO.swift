@@ -42,14 +42,31 @@ public final class SIO<R, E, A> {
 	@usableFromInline
 	var implementation: Implementation
 	
-	public var running = false
+	@usableFromInline
+	var _running = false
+
+	private let runningSyncQueue = DispatchQueue(label: "sio_running", attributes: .concurrent)
+	public var running: Bool {
+		get {
+			var result = false
+			runningSyncQueue.sync {
+				result = _running
+			}
+			return result
+		}
+		set {
+			runningSyncQueue.async(flags: .barrier) {
+				self._running = newValue
+			}
+		}
+	}
 	
 	//	var _fork: Computation
 	@usableFromInline
 	let _cancel: EmptyCallback?
 	
 	private var _cancelled = false
-	private let cancelSyncQueue = DispatchQueue(label: "task_cancel", attributes: .concurrent)
+	private let cancelSyncQueue = DispatchQueue(label: "sio_cancel", attributes: .concurrent)
 	public private(set) var cancelled: Bool {
 		get {
 			var result = false

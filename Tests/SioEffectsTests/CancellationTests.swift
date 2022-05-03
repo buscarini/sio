@@ -44,13 +44,13 @@ class CancellationTests: XCTestCase {
 		
 		waitForExpectations(timeout: 10, handler: nil)
 	}
-	
+
 	func testCancellation() {
 		var lastValue: Int = 0
 		var task: UIO<Void>?
-		
+
 		let finish = expectation(description: "cancel")
-		
+
 		func long() -> UIO<Void> {
 			Array(1...800).forEach { item in
 				IO<Never, Int>.init { _ in
@@ -68,23 +68,23 @@ class CancellationTests: XCTestCase {
 			}
 			.map(const(()))
 		}
-		
+
 		task = long().scheduleOn(DispatchQueue.global())
-		
+
 		task?
 		.fork(absurd, { a in
 			XCTFail()
 		})
-		
+
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 			task?.cancel()
 		}
-		
+
 		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 			XCTAssert(lastValue < 800)
 			finish.fulfill()
 		}
-		
+
 		waitForExpectations(timeout: 10, handler: nil)
 	}
 	

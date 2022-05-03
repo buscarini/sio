@@ -42,4 +42,22 @@ public extension SIO {
 			io
 		}
 	}
+	
+	@inlinable
+	func runOnError(_ f: @escaping (E) -> Void) -> SIO<R, E, A> {
+		self.onError { e in
+			.effect {
+				f(e)
+			}
+		}
+	}
+	
+	@inlinable
+	func runOnSuccess(_ f: @escaping (A) -> Void) -> SIO<R, E, A> {
+		self.onSuccess { a in
+			.effect {
+				f(a)
+			}
+		}
+	}
 }
