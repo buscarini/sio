@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SioValueStore"
-  s.version      = "0.2.7"
+  s.version      = "0.2.8"
   s.summary      = "Swift IO"
   s.description  = <<-DESC
     Swift SIO ValueStore library. Provides abstractions for a store, that can implemented via preferences, a file, network requests, etc.
