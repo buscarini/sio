@@ -19,4 +19,15 @@ public extension ValueStore {
 			remove: self.remove.optional().void
 		)
 	}
+	
+	func set(
+		_ value: A?
+	) -> SIO<R, E, Void> {
+		if let a = value {
+			return self.save(a).void
+		}
+		else {
+			return self.remove
+		}
+	}
 }

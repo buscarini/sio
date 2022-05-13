@@ -45,6 +45,14 @@ public extension ValueStore {
 	}
 }
 
+public extension ValueStore where R == Void {
+	@inlinable
+	func require<S>(_ type: S.Type) -> ValueStore<S, E, A, B> {
+		self.pullbackR { _ in () }
+	}
+}
+
+
 public extension ValueStore where A == B {
 	func migrate(from old: ValueStore) -> SIO<R, E, B> {
 		migrate(from: old, with: { $0 })
