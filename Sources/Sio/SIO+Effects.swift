@@ -11,13 +11,8 @@ import Foundation
 public extension SIO {
 	@inlinable
 	func onError(_ f: @escaping (E) -> IO<Never, Void>) -> SIO<R, E, A> {
-		self.flatMapError { e in
-			f(e)
-				.require(R.self)
-				.mapError(absurd)
-				.flatMap { _ in
-					SIO<R, E, A>.rejected(e)
-				}
+		self.runOnError { e in
+			f(e).runForget()
 		}
 	}
 	
@@ -28,11 +23,8 @@ public extension SIO {
 	
 	@inlinable
 	func onSuccess(_ f: @escaping (A) -> SIO<Void, Never, Void>) -> SIO<R, E, A> {
-		self.flatMap { a in
-			f(a)
-			.adapt()
-			.require(R.self)
-			.const(a)
+		self.runOnSuccess { a in
+			f(a).runForget()
 		}
 	}
 	
@@ -45,19 +37,25 @@ public extension SIO {
 	
 	@inlinable
 	func runOnError(_ f: @escaping (E) -> Void) -> SIO<R, E, A> {
-		self.onError { e in
-			.effect {
+		self.flatMapError { e in
+			SIO<Void, Never, Void>.effect {
 				f(e)
+			}
+			.adapt()
+			.flatMap { _ in
+				.rejected(e)
 			}
 		}
 	}
 	
 	@inlinable
 	func runOnSuccess(_ f: @escaping (A) -> Void) -> SIO<R, E, A> {
-		self.onSuccess { a in
-			.effect {
+		self.flatMap { a in
+			SIO<Void, Never, Void>.effect {
 				f(a)
 			}
+			.adapt()
+			.const(a)
 		}
 	}
 }
