@@ -21,27 +21,58 @@ public extension SIO {
 		_ f: @escaping (E) -> SIO<R, F, B>,
 		_ g: @escaping (A) -> SIO<R, F, B>
 	) -> SIO<R, F, B> {
-		let result: SIO<R, F, B>
-		
-		switch self.implementation {
-			case let .success(val):
-				result = g(val)
-			case let .fail(e):
-				result = f(e)
-			case .sync, .async:
-				let specific = BiFlatMap(sio: self, err: f, succ: g)
-				result = SIO<R, F, B>.init(
-					.biFlatMap(specific),
-					cancel: self.cancel
+		SIO<R, F, B>(
+			work: { r, reject, resolve in
+				Work<F, B>(
+					{
+						_ = self.work(
+							r,
+							{ e in
+								f(e).fork(r, reject, resolve)
+							},
+							{ a in
+								g(a).fork(r, reject, resolve)
+							}
+						)
+					},
+					cancel: self.onCancel
 				)
-				result.scheduler = self.scheduler
-				result.delay = self.delay
+				
+//				self.work(
+//					r,
+//					{ e in
+//						f(e).fork(r, reject, resolve)
+//					},
+//					{ a in
+//						g(a).fork(r, reject, resolve)
+//					}
+//				)
+			}
+		)
 		
-			case let .biFlatMap(impl):
-				result = impl.biFlatMap(f, g)
-		}
 		
-		return result
+		
+//		let result: SIO<R, F, B>
+//
+//		switch self.implementation {
+//			case let .success(val):
+//				result = g(val)
+//			case let .fail(e):
+//				result = f(e)
+//			case .sync, .async:
+//				let specific = BiFlatMap(sio: self, err: f, succ: g)
+//				result = SIO<R, F, B>.init(
+//					.biFlatMap(specific),
+//					cancel: self.cancel
+//				)
+//				result.scheduler = self.scheduler
+//				result.delay = self.delay
+//
+//			case let .biFlatMap(impl):
+//				result = impl.biFlatMap(f, g)
+//		}
+//
+//		return result
 	}
 }
 

@@ -14,13 +14,15 @@ import Combine
 @available(OSX 10.15, *)
 extension SIO where R == Void, E: Error {
 	public var future: AnyPublisher<A, E> {
-		Future<A, E> { promise in
-			self
+		var work: Work<Never, Result<A, E>>?
+		
+		return Future<A, E> { promise in
+			work = self
 				.result()
 				.run(promise)
 		}
 		.handleEvents(receiveCancel: {
-			self.cancel()
+			work?.cancel()
 		})
 		.eraseToAnyPublisher()
 	}

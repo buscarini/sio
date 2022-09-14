@@ -10,46 +10,64 @@ import Foundation
 
 extension SIO {
 	@inlinable
-	public func run(_ env: R, _ resolve: @escaping ResultCallback) {
+	@discardableResult
+	public func run(_ env: R, _ resolve: @escaping ResultCallback) -> Work<E, A> {
 		self.fork(env, { _ in }, resolve)
 	}
 	
 	@inlinable
-	public func runMain(_ env: R, _ resolve: @escaping ResultCallback) {
+	@discardableResult
+	public func runMain(_ env: R, _ resolve: @escaping ResultCallback) -> Work<E, A> {
 		self
 			.forkOn(.main)
 			.run(env, resolve)
 	}
 	
 	@inlinable
-	public func runForget(_ env: R) {
+	@discardableResult
+	public func runForget(_ env: R) -> Work<E, A> {
 		self.run(env, { _ in })
 	}
 }
 
 extension SIO where R == Void {
 	@inlinable
-	public func run(_ resolve: @escaping ResultCallback) {
+	@discardableResult
+	public func run(_ resolve: @escaping ResultCallback) -> Work<E, A> {
 		self.run((), resolve)
 	}
 	
 	@inlinable
-	public func runMain(_ resolve: @escaping ResultCallback) {
+	@discardableResult
+	public func runMain(_ resolve: @escaping ResultCallback) -> Work<E, A> {
 		self.runMain((), resolve)
 	}
 	
 	@inlinable
-	public func fork(_ reject: @escaping ErrorCallback, _ resolve: @escaping ResultCallback) {
+	@discardableResult
+	public func fork(
+		_ reject: @escaping ErrorCallback,
+		_ resolve: @escaping ResultCallback
+	) -> Work<E, A> {
 		self.fork((), reject, resolve)
 	}
 	
 	@inlinable
-	public func forkMain(_ reject: @escaping ErrorCallback, _ resolve: @escaping ResultCallback) {
+	@discardableResult
+	public func forkMain(
+		_ reject: @escaping ErrorCallback,
+		_ resolve: @escaping ResultCallback
+	) -> Work<E, A> {
 		self.fork(in: DispatchQueue.main, reject, resolve)
 	}
 	
 	@inlinable
-	public func fork(in queue: DispatchQueue, _ reject: @escaping ErrorCallback, _ resolve: @escaping ResultCallback) {
+	@discardableResult
+	public func fork(
+		in queue: DispatchQueue,
+		_ reject: @escaping ErrorCallback,
+		_ resolve: @escaping ResultCallback
+	) -> Work<E, A> {
 			self.fork((), { e in
 				queue.async {
 					reject(e)
@@ -69,7 +87,8 @@ extension SIO where R == Void {
 
 extension SIO where R == Void, E == Never {
 	@inlinable
-	public func run(_ resolve: @escaping ResultCallback) {
+	@discardableResult
+	public func run(_ resolve: @escaping ResultCallback) -> Work<Never, A> {
 		self.fork((), absurd, resolve)
 	}
 }

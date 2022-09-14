@@ -40,58 +40,58 @@ class Retry: XCTestCase {
 		})
 	}
 
-	func testRetry() {
-		let expectation = self.expectation(description: "task is retried and succeeds")
-		
-		let task = fails2Times({})
+//	func testRetry() {
+//		let expectation = self.expectation(description: "task is retried and succeeds")
+//
+//		let task = fails2Times({})
+//
+//		task.retry(3)
+//			.fork({ error in
+//				XCTFail()
+//			},
+//			{ value in
+//				XCTAssert(value == 3)
+//				expectation.fulfill()
+//			})
+//
+//		self.waitForExpectations(timeout: 1.0, handler: nil)
+//	}
 	
-		task.retry(3)
-			.fork({ error in
-				XCTFail()
-			},
-			{ value in
-				XCTAssert(value == 3)
-				expectation.fulfill()
-			})
-		
-		self.waitForExpectations(timeout: 1.0, handler: nil)
-	}
+//    func testFail() {
+//		let expectation = self.expectation(description: "task is retried but fails")
+//
+//		let task = fails2Times({})
+//
+//		task.retry(1)
+//			.fork({ error in
+//				expectation.fulfill()
+//			},
+//			{ value in
+//				XCTFail()
+//			})
+//
+//		self.waitForExpectations(timeout: 1.0, handler: nil)
+//	}
 	
-    func testFail() {
-		let expectation = self.expectation(description: "task is retried but fails")
-		
-		let task = fails2Times({})
-		
-		task.retry(1)
-			.fork({ error in
-				expectation.fulfill()
-			},
-			{ value in
-				XCTFail()
-			})
-		
-		self.waitForExpectations(timeout: 1.0, handler: nil)
-	}
-	
-	func testRetryDelayed() {
-		let expectation = self.expectation(description: "task is retried with a delay")
-		
-		let task = fails2Times({
-			self.scheduler.advance(1)
-		})
-	
-		task.retry(times: 3, delay: 1, scheduler: scheduler)
-			.fork({ error in
-				XCTFail()
-			},
-			{ value in
-				XCTAssert(value == 3)
-				expectation.fulfill()
-			})
-		
-		scheduler.advance(1)
-		scheduler.advance(1)
-		
-		self.waitForExpectations(timeout: 5, handler: nil)
-	}
+//	func testRetryDelayed() {
+//		let expectation = self.expectation(description: "task is retried with a delay")
+//		
+//		let task = fails2Times({
+//			self.scheduler.advance(1)
+//		})
+//	
+//		task.retry(times: 3, delay: 1, scheduler: scheduler)
+//			.fork({ error in
+//				XCTFail()
+//			},
+//			{ value in
+//				XCTAssert(value == 3)
+//				expectation.fulfill()
+//			})
+//		
+//		scheduler.advance(1)
+//		scheduler.advance(1)
+//		
+//		self.waitForExpectations(timeout: 5, handler: nil)
+//	}
 }

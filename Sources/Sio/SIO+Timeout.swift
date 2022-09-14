@@ -8,27 +8,27 @@
 
 import Foundation
 
-public extension SIO {
-	@inlinable
-	func timeout(
-		_ timeout: Seconds<TimeInterval>,
-		_ scheduler: Scheduler = QueueScheduler(queue: .global())
-	) -> SIO<R, E, A?> {
-		race(
-			self.map(A?.some),
-			SIO<R, E, A?>.of(nil).delay(timeout, scheduler)
-		)
-	}
-	
-	@inlinable
-	func timeoutTo(
-		_ value: A,
-		_ timeout: Seconds<TimeInterval>,
-		_ scheduler: Scheduler = QueueScheduler(queue: .global())
-	) -> SIO<R, E, A> {
-		race(
-			self,
-			SIO<R, E, A>.of(value).delay(timeout, scheduler)
-		)
-	}
-}
+//public extension SIO {
+//	@inlinable
+//	func timeout(
+//		_ timeout: Seconds<TimeInterval>,
+//		_ scheduler: Scheduler = QueueScheduler(queue: .global())
+//	) -> SIO<R, E, A?> {
+//		race(
+//			self.map(A?.some),
+//			SIO<R, E, A?>.of(nil).delay(timeout, scheduler)
+//		)
+//	}
+//	
+//	@inlinable
+//	func timeoutTo(
+//		_ value: A,
+//		_ timeout: Seconds<TimeInterval>,
+//		_ scheduler: Scheduler = QueueScheduler(queue: .global())
+//	) -> SIO<R, E, A> {
+//		race(
+//			self,
+//			SIO<R, E, A>.of(value).delay(timeout, scheduler)
+//		)
+//	}
+//}

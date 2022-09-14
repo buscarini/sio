@@ -17,17 +17,17 @@ public class AnyScheduler: Scheduler {
 	}
 	
 	@inlinable
-	public func sync(_ work: @escaping Work) -> Void {
+	public func sync(_ work: @escaping Scheduler.Work) -> Void {
 		self.impl.sync(work)
 	}
 	
 	@inlinable
-	public func run(_ work: @escaping Work) -> Void {
+	public func run(_ work: @escaping Scheduler.Work) -> Void {
 		self.impl.run(work)
 	}
 	
 	@inlinable
-	public func runAfter(after delay: Seconds<Double>, _ work: @escaping Work) -> Void {
+	public func runAfter(after delay: Seconds<Double>, _ work: @escaping Scheduler.Work) -> Void {
 		self.impl.runAfter(after: delay, work)
 	}
 }

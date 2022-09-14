@@ -15,14 +15,16 @@ public extension SIO {
 		_ pre: @escaping (S) -> R,
 		_ post: @escaping (A) -> B
 	) -> SIO<S, E, B> {
-		SIO<S, E, B>(
+		var work: Work<E, A>?
+		
+		return SIO<S, E, B>(
 			{ s, reject, resolve in
-				self.fork(pre(s), reject, { a in
+				work = self.fork(pre(s), reject, { a in
 					resolve(post(a))
 				})
 			},
 			cancel: {
-				self.cancel()
+				work?.cancel()
 			}
 		)
 	}

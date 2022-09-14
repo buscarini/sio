@@ -11,7 +11,11 @@ import Foundation
 public extension SIO {
 	@inlinable
 	static func of(_ value: A) -> SIO {
-		SIO(.success(value), cancel: nil)
+		SIO { _, _, resolve in
+			resolve(value)
+		}
+		
+//		SIO(.success(value), cancel: nil)
 	}
 	
 	@inlinable
@@ -23,7 +27,10 @@ public extension SIO {
 
 	@inlinable
 	static func rejected(_ error: E) -> SIO {
-		SIO(.fail(error), cancel: nil)
+		SIO { _, reject, _ in
+			reject(error)
+		}
+//		SIO(.fail(error), cancel: nil)
 	}
 	
 	@inlinable
@@ -40,7 +47,7 @@ public extension SIO {
 }
 
 public extension SIO where R == Void {
-	convenience init(
+	init(
 		_ callback: @escaping (@escaping ErrorCallback, @escaping ResultCallback) -> ()
 	) {
 		self.init({ _, reject, resolve in

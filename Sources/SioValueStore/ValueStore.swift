@@ -11,35 +11,17 @@ import Sio
 
 // Represents a value store. It can be implemented to use a file, network calls, preferences, etc.
 public struct ValueStore<R, E, A, B> {
-	public var _load: () -> SIO<R, E, B>
+	public var load: SIO<R, E, B>
 	public var save: (A) -> SIO<R, E, B>
-	public var _remove: () -> SIO<R, E, Void>
+	public var remove: SIO<R, E, Void>
 	
 	public init(
-		load: @autoclosure @escaping () -> SIO<R, E, B>,
+		load: SIO<R, E, B>,
 		save: @escaping (A) -> SIO<R, E, B>,
-		remove: @autoclosure @escaping () -> SIO<R, E, Void>
+		remove: SIO<R, E, Void>
 	) {
-		self._load = load
+		self.load = load
 		self.save = save
-		self._remove = remove
-	}
-	
-	public var load: SIO<R, E, B> {
-		get {
-			self._load()
-		}
-		set {
-			self._load = { newValue }
-		}
-	}
-	
-	public var remove: SIO<R, E, Void> {
-		get {
-			self._remove()
-		}
-		set {
-			self._remove = { newValue }
-		}
+		self.remove = remove
 	}
 }

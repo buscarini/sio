@@ -1,10 +1,3 @@
-//
-//  SIOZipTests.swift
-//  SioTests
-//
-//  Created by José Manuel Sánchez Peñarroja on 03/12/2019.
-//
-
 import Foundation
 import XCTest
 import Sio

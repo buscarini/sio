@@ -16,7 +16,7 @@ public extension SIO {
 	
 	@inlinable
 	func scheduleOn(_ scheduler: Scheduler) -> SIO<R, E, A> {
-		let copy = self
+		var copy = self
 		copy.scheduler = AnyScheduler(scheduler)
 		return copy
 	}

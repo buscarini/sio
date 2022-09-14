@@ -36,13 +36,15 @@ public func ap<R, E, A, B>(
 	_ scheduler: Scheduler
 ) -> SIO<R, E, B> {
 	
-	let l = left
-	let r = right
+//	let l = left
+//	let r = right
+	
+	var leftWork: Work<E, (A) -> B>?
+	var rightWork: Work<E, A>?
 	
 	var cancelled = false
 	
 	return SIO<R, E, B>({ (env, reject: @escaping (E) -> (), resolve: @escaping (B) -> ()) in
-	
 		var resolved: Bool?
 		var leftVal: Either<E, (A) -> B>?
 		var rightVal: Either<E, A>?
@@ -54,8 +56,8 @@ public func ap<R, E, A, B>(
 				guard
 					resolved == nil,
 					cancelled == false,
-					l.cancelled == false,
-					r.cancelled == false
+					leftWork?.cancelled == false,
+					rightWork?.cancelled == false
 				else {
 					return
 				}
@@ -88,7 +90,7 @@ public func ap<R, E, A, B>(
 			}
 		}
 		
-		l.fork(env, { error in
+		leftWork = left.fork(env, { error in
 //			print("left error")
 			checkContinue {
 				leftVal = .left(error)
@@ -103,7 +105,7 @@ public func ap<R, E, A, B>(
 			}
 		})
 	
-		r.fork(env, { error in
+		rightWork = right.fork(env, { error in
 //			print("right error")
 			checkContinue {
 				rightVal = .left(error)
@@ -120,8 +122,11 @@ public func ap<R, E, A, B>(
 	}, cancel: {
 		scheduler.run {
 			cancelled = true
-			l.cancel()
-			r.cancel()
+			leftWork?.cancel()
+			rightWork?.cancel()
+			
+//			l.cancel()
+//			r.cancel()
 		}
 	})
 }

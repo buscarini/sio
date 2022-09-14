@@ -43,6 +43,10 @@
 
 	SIO<R, E, A> -> SIO<R, Never, Result<A, E>>
 
+.fold((E) -> B, (A) -> B)
+
+	SIO<R, E, A> -> SIO<R, Never, B>
+
 ### Never => E
 
 .mapError(absurd)

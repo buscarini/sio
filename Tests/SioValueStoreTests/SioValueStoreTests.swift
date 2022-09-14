@@ -350,7 +350,7 @@ class SIOValueStoreTests: XCTestCase {
 	
 	func testCancelLoad() {
 		let store = ValueStore<Void, String, Int, Int>.of(1)
-		store.load.cancel()
+//		store.load. cancel()
 
 		let expectLoad = expectation(description: "load")
 		
@@ -360,6 +360,7 @@ class SIOValueStoreTests: XCTestCase {
 			XCTAssertEqual(value, 1)
 			expectLoad.fulfill()
 		}
+		.cancel()
 		
 		waitForExpectations(timeout: 1)
 	}

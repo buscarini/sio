@@ -14,29 +14,48 @@ extension SIO {
 		_ f: @escaping (E) -> F,
 		_ g: @escaping (A) -> B
 	) -> SIO<R, F, B> {
+		SIO<R, F, B>(
+			work: { r, reject, resolve in
+				Work<F, B>(
+					{
+						_ = self.work(
+							r,
+							{ e in
+								reject(f(e))
+							},
+							{ a in
+								resolve(g(a))
+							}
+						)
+					},
+					cancel: self.onCancel
+				)
+			}
+		)
 		
-		switch self.implementation {
-		case let .success(val):
-			return .of(g(val))
-		case let .fail(e):
-			return .rejected(f(e))
-		case let .sync(sync):
-			let result = SIO<R, F, B>.sync { r in
-				sync(r)?.bimap(f, g)
-			}
-			
-			result.scheduler = self.scheduler
-			result.delay = self.delay
-
-			return result
-			
-		default:
-			return biFlatMap({ e in
-				.rejected(f(e))
-			}) { a in
-				.of(g(a))
-			}
-		}
+		
+//		switch self.implementation {
+//		case let .success(val):
+//			return .of(g(val))
+//		case let .fail(e):
+//			return .rejected(f(e))
+//		case let .sync(sync):
+//			let result = SIO<R, F, B>.sync { r in
+//				sync(r)?.bimap(f, g)
+//			}
+//
+//			result.scheduler = self.scheduler
+//			result.delay = self.delay
+//
+//			return result
+//
+//		default:
+//			return biFlatMap({ e in
+//				.rejected(f(e))
+//			}) { a in
+//				.of(g(a))
+//			}
+//		}
 	}
 	
 //	@inlinable

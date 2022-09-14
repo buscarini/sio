@@ -10,12 +10,14 @@ import Foundation
 public extension SIO {
 	@inlinable
 	func onCancellation(_ task: SIO<Void, Never, Void>) -> SIO<R, E, A> {
-		let res = SIO.init({ r, reject, resolve in
-			self.fork(r, reject, resolve)
+		var work: Work<E, A>?
+		
+		var res = SIO.init({ r, reject, resolve in
+			work = self.fork(r, reject, resolve)
 		})
 		
 		res.onCancel = {
-			self.cancel()
+			work?.cancel()
 			
 			task.fork(absurd, { _ in })
 		}

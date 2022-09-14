@@ -8,32 +8,32 @@
 
 import Foundation
 
-@inlinable
-public func or<R, E, A>(_ first: SIO<R, E, A>, _ second: SIO<R, E, A>) -> SIO<R, E, A> {
-	SIO<R, E, A>(
-		{ (env, reject, resolve) in
-		first.fork(
-			env,
-			{ _ in
-				second.fork(env, reject, resolve)
-			}, resolve
-		)
-		},
-		cancel: {
-			first.cancel()
-			second.cancel()
-		}
-	)
-}
-
-@inlinable
-public func <|><R, E, A>(first: SIO<R, E, A>, second: SIO<R, E, A>) -> SIO<R, E, A> {
-	or(first, second)
-}
-
-@inlinable
-public func firstSuccess<R, E, A>(_ first: SIO<R, E, A>, _ rest: [SIO<R, E, A>]) -> SIO<R, E, A> {
-	rest.reduce(first, { acc, item in
-		acc <|> item
-	})
-}
+//@inlinable
+//public func or<R, E, A>(_ first: SIO<R, E, A>, _ second: SIO<R, E, A>) -> SIO<R, E, A> {
+//	SIO<R, E, A>(
+//		{ (env, reject, resolve) in
+//		first.fork(
+//			env,
+//			{ _ in
+//				second.fork(env, reject, resolve)
+//			}, resolve
+//		)
+//		},
+//		cancel: {
+//			first.cancel()
+//			second.cancel()
+//		}
+//	)
+//}
+//
+//@inlinable
+//public func <|><R, E, A>(first: SIO<R, E, A>, second: SIO<R, E, A>) -> SIO<R, E, A> {
+//	or(first, second)
+//}
+//
+//@inlinable
+//public func firstSuccess<R, E, A>(_ first: SIO<R, E, A>, _ rest: [SIO<R, E, A>]) -> SIO<R, E, A> {
+//	rest.reduce(first, { acc, item in
+//		acc <|> item
+//	})
+//}

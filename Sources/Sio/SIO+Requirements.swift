@@ -26,9 +26,16 @@ public func accessM<R, E, A>(_ type: R.Type, _ f: @escaping (R) -> SIO<R, E, A>)
 public extension SIO {
 	@inlinable
 	func provideSome<R0>(_ f: @escaping (R0) -> R) -> SIO<R0, E, A> {
-		SIO<R0, E, A>({ r, reject, resolve in
-			self.fork(f(r), reject, resolve)
-		},cancel: self.cancel)
+		var work: Work<E, A>?
+		
+		return SIO<R0, E, A>(
+			{ r, reject, resolve in
+				work = self.fork(f(r), reject, resolve)
+			},
+			cancel: {
+				work?.cancel()
+			}
+		)
 	}
 	
 	@inlinable
