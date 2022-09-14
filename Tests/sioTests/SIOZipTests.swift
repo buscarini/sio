@@ -20,7 +20,7 @@ class SioZipTests: XCTestCase {
 		
 		(left <&> left2)
 		.fork({ e in
-			XCTAssert(e == -1)
+			XCTAssert(e == -2)
 		}) { (_) in
 			XCTFail()
 		}
@@ -86,7 +86,7 @@ class SioZipTests: XCTestCase {
 		
 		zip(left, left2, scheduler)
 		.fork({ e in
-			XCTAssert(e == -1)
+			XCTAssert(e == -2)
 		}) { (_) in
 			XCTFail()
 		}
@@ -138,7 +138,7 @@ class SioZipTests: XCTestCase {
 		
 		zip2(with: { ($0, $1) })(left, left2, scheduler)
 		.fork({ e in
-			XCTAssert(e == -1)
+			XCTAssert(e == -2)
 		}) { (_) in
 			XCTFail()
 		}
@@ -172,7 +172,29 @@ class SioZipTests: XCTestCase {
 		waitForExpectations(timeout: 1, handler: nil)
 	}
 	
-	func testZip3() {
+	func testZip3AllFailed() {
+		let scheduler = TestScheduler()
+
+		let finish = expectation(description: "finish")
+		
+		let left = IO<Int, Int>.rejected(-1)
+		let left2 = IO<Int, Int>.rejected(-2)
+		let left3 = IO<Int, Int>.rejected(-3)
+		
+		zip3(left, left2, left3, scheduler)
+		.fork({ e in
+			XCTAssert(e == -1)
+			finish.fulfill()
+		}) { (_) in
+			XCTFail()
+		}
+		
+		scheduler.advance()
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testZip3OneOK() {
 		let scheduler = TestScheduler()
 
 		let finish = expectation(description: "finish")
@@ -180,54 +202,62 @@ class SioZipTests: XCTestCase {
 		let left = IO<Int, Int>.rejected(-1)
 		let left2 = IO<Int, Int>.rejected(-2)
 		let right = IO<Int, Int>.of(1)
-		let right2 = IO<Int, Int>.of(2)
-		
-		zip3(left, left2, left2, scheduler)
-		.fork({ e in
-			XCTAssert(e == -1)
-		}) { (_) in
-			XCTFail()
-		}
-		
-		scheduler.advance()
-		scheduler.advance()
 		
 		zip3(left, left2, right, scheduler)
 		.fork({ e in
 			XCTAssert(e == -1)
+			finish.fulfill()
 		}) { (_) in
 			XCTFail()
 		}
 		
 		scheduler.advance()
-		scheduler.advance()
 		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testZip3FirstOK() {
+		let scheduler = TestScheduler()
+
+		let finish = expectation(description: "finish")
+		
+		let left = IO<Int, Int>.rejected(-1)
+		let left2 = IO<Int, Int>.rejected(-2)
+		let right = IO<Int, Int>.of(1)
+				
 		zip3(right, left, left2, scheduler)
 		.fork({ e in
-			XCTAssert(e == -1)
+			XCTAssert(e == -2)
+			finish.fulfill()
 		}) { (_) in
 			XCTFail()
 		}
 		
 		scheduler.advance()
-		scheduler.advance()
 		
-		zip3(right, right, right2, scheduler)
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	func testZip3AllOK() {
+		let scheduler = TestScheduler()
+
+		let finish = expectation(description: "finish")
+		
+		let right = IO<Int, Int>.of(1)
+		let right2 = IO<Int, Int>.of(2)
+		let right3 = IO<Int, Int>.of(3)
+		
+		zip3(right, right2, right3, scheduler)
 		.fork({ _ in
 			XCTFail()
 		}) { both in
 			XCTAssert(both.0 == 1)
-			XCTAssert(both.1 == 1)
-			XCTAssert(both.2 == 2)
+			XCTAssert(both.1 == 2)
+			XCTAssert(both.2 == 3)
 			
 			finish.fulfill()
 		}
 		
-		scheduler.advance()
-		scheduler.advance()
-		scheduler.advance()
-		scheduler.advance()
-		scheduler.advance()
 		scheduler.advance()
 		
 		waitForExpectations(timeout: 1, handler: nil)
@@ -380,6 +410,33 @@ class SioZipTests: XCTestCase {
 			
 			finish.fulfill()
 		}
+		
+		scheduler.advance()
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
+	/// If one operation fails, the other one should be cancelled
+	func testZipCancels() {
+		let scheduler = TestScheduler()
+
+		let cancelled = expectation(description: "cancelled")
+		let finish = expectation(description: "finish")
+
+		let left = IO<String, Int>.rejected("An error")
+		let right = IO<String, Int> { _, _, _ in
+		} cancel: {
+			cancelled.fulfill()
+		}
+		
+		zip(left, right, scheduler)
+			.fork({ error in
+				XCTAssertEqual(error, "An error")
+				finish.fulfill()
+			}, { _ in
+				XCTFail("Should not succeed")
+			}
+		)
 		
 		scheduler.advance()
 		
