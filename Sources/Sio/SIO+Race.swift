@@ -13,7 +13,7 @@ public func race<R, E, A>(_ left: SIO<R, E, A>, _ right: SIO<R, E, A>) -> SIO<R,
 	let r: SIO<R, E, A> = right
 	return SIO<R, E, A>.init({ env, reject, resolve in
 		
-		let resolved = SyncValue<Never, Bool>()
+		let resolved = SyncValue<E, Bool>()
 		let leftVal = SyncValue<E, A>()
 		let rightVal = SyncValue<E, A>()
 		
@@ -31,16 +31,19 @@ public func race<R, E, A>(_ left: SIO<R, E, A>, _ right: SIO<R, E, A>) -> SIO<R,
 			}
 			
 			switch (leftVal.result, rightVal.result) {
-			case let (.loaded(.right(a)), _):
-				resolved.result = .loaded(.right(true))
-				r.cancel()
-				resolve(a)
-			case let (_, .loaded(.right(a))):
-				resolved.result = .loaded(.right(true))
-				l.cancel()
-				resolve(a)
-			default:
-				return
+				case let (.loaded(.right(a)), _):
+					resolved.result = .loaded(.right(true))
+					r.cancel()
+					resolve(a)
+				case let (_, .loaded(.right(a))):
+					resolved.result = .loaded(.right(true))
+					l.cancel()
+					resolve(a)
+				case let (.loaded(.left(l)), .loaded(.left)):
+					resolved.result = .loaded(.left(l))
+					reject(l)
+				default:
+					return
 			}
 		}
 		
@@ -56,7 +59,7 @@ public func race<R, E, A>(_ left: SIO<R, E, A>, _ right: SIO<R, E, A>) -> SIO<R,
 			rightVal.result = .loaded(.left(errorR))
 			checkContinue()
 		}, { successR in
-
+			
 			rightVal.result = .loaded(.right(successR))
 			checkContinue()
 		})

@@ -52,6 +52,29 @@ class RaceTests: XCTestCase {
 		waitForExpectations(timeout: 1, handler: nil)
 	}
 	
+	func testRaceTwoFail() {
+		let finish = expectation(description: "finish")
+		
+		let left = SIO<Void, String, Int>
+			.rejected("err")
+			.delay(0.5, scheduler)
+		let right = SIO<Void, String, Int>
+			.rejected("err2")
+			.delay(1, scheduler)
+		
+		race(left, right).fork({ e in
+			XCTAssert(e == "err")
+			finish.fulfill()
+		}, { value in
+			XCTFail()
+		})
+		
+		scheduler.advance(0.5)
+		scheduler.advance(1)
+		
+		waitForExpectations(timeout: 1, handler: nil)
+	}
+	
 	func testRaceCancel1() {
 		let finish = expectation(description: "finish")
 		
