@@ -15,7 +15,7 @@ class CancellationTests: XCTestCase {
 	let scheduler = TestScheduler()
 	
 	func testNoCancellation() {
-		let lastValue: Int = 0
+		var lastValue: Int = 0
 		var task: UIO<Void>?
 		
 		let finish = expectation(description: "finish")
