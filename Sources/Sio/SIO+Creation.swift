@@ -35,7 +35,7 @@ public extension SIO {
 	
 	@inlinable
 	static func fromFunc(_ f: @escaping (R) -> A) -> SIO<R, Never, A> {
-		environment().map(f)
+		SIO<R, Never, A>.environment().map(f)
 	}
 }
 

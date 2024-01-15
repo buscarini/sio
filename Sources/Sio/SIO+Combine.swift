@@ -12,6 +12,7 @@ import Combine
 
 @available(iOS 13.0, *)
 @available(OSX 10.15, *)
+@available(tvOS 13.0, *)
 extension SIO where R == Void, E: Error {
 	public var future: AnyPublisher<A, E> {
 		Future<A, E> { promise in

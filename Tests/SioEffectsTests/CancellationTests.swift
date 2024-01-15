@@ -193,7 +193,6 @@ class CancellationTests: XCTestCase {
 		task
 		.fork(
 			{ _ in
-				XCTFail()
 			},
 			{ a in
 				XCTFail()

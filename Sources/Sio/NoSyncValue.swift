@@ -9,13 +9,13 @@
 import Foundation
 
 public class NoSyncValue<E, A> {
-	public enum State<E, A> {
+	public enum State {
 		case notLoaded
 		case cancelled
 		case loaded(Either<E, A>)
 	}
 	
-	public var result: State<E, A> = .notLoaded
+	public var result: State = .notLoaded
 	
 	public var notLoaded: Bool {
 		switch self.result {
