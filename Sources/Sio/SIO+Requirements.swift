@@ -73,20 +73,20 @@ public extension SIO {
 
 public extension SIO {
 	@inlinable
-	static func environment<R, E>() -> SIO<R, E, R> {
+	static func environment() -> SIO<R, E, R> {
 		access(id)
 	}
 	
 	@inlinable
-	static func access<S, R, E>(_ f: @escaping (R) -> S) -> SIO<R, E, S> {
+	static func access<S>(_ f: @escaping (R) -> S) -> SIO<R, E, S> {
 		SIO<R, E, S>.sync({ r in
 			.right(f(r))
 		})
 	}
 	
 	@inlinable
-	static func accessM<R, E>(_ f: @escaping (R) -> SIO<R, E, A>) -> SIO<R, E, A> {
-		environment().flatMap(f)
+	static func accessM(_ f: @escaping (R) -> SIO<R, E, A>) -> SIO<R, E, A> {
+		self.environment().flatMap(f)
 	}
 }
 

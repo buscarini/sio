@@ -9,16 +9,16 @@
 import Foundation
 
 public class SyncValue<E, A> {
-	public enum State<E, A> {
+	public enum State {
 		case notLoaded
 		case cancelled
 		case loaded(Either<E, A>)
 	}
 	
 	private let barrier = DispatchQueue(label: "es.josesanchez.barrier", attributes: .concurrent)
-	private var _result: State<E, A> = .notLoaded
+	private var _result: State = .notLoaded
 	
-	public var result: State<E, A> {
+	public var result: State {
 		set {
 			barrier.async(flags: .barrier) {
 				self._result = newValue
@@ -26,7 +26,7 @@ public class SyncValue<E, A> {
 		}
 		
 		get {
-			var res: State<E, A>?
+			var res: State?
 			barrier.sync {
 				res = self._result
 			}

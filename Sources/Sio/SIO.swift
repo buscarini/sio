@@ -31,10 +31,10 @@ public final class SIO<R, E, A> {
 		
 		var bfm: BiFlatMapBase<R, E, A>? {
 			switch self {
-			case let .biFlatMap(bfm):
-				return bfm
-			default:
-				return nil
+				case let .biFlatMap(bfm):
+					return bfm
+				default:
+					return nil
 			}
 		}
 	}
@@ -44,7 +44,7 @@ public final class SIO<R, E, A> {
 	
 	@usableFromInline
 	var _running = false
-
+	
 	private let runningSyncQueue = DispatchQueue(label: "sio_running", attributes: .concurrent)
 	public var running: Bool {
 		get {
@@ -134,58 +134,58 @@ public final class SIO<R, E, A> {
 			self.running = true
 			
 			switch self.implementation {
-			case let .success(a):
-				resolve(a)
-				self.running = false
-			case let .fail(e):
-				reject(e)
-				self.running = false
-			case let .sync(sync):
-				defer { self.running = false }
-				
-				let res = sync(requirement)
-				guard self.cancelled == false else {
-					return
-				}
-				
-				switch res {
-				case let .left(e)?:
-					reject(e)
-				case let .right(a)?:
+				case let .success(a):
 					resolve(a)
-				case nil:
-					return
-				}
-			case let .async(async):
-				async(
-					requirement,
-					{ error in
-						self.running = false
-						guard !self.cancelled else { return }
-						reject(error)
-				},
-					{ result in
-						self.running = false
-						guard !self.cancelled else { return }
-						resolve(result)
-				}
-				)
-			case let .biFlatMap(impl):
-				impl.fork(requirement, { e in
+					self.running = false
+				case let .fail(e):
+					reject(e)
+					self.running = false
+				case let .sync(sync):
+					defer { self.running = false }
+					
+					let res = sync(requirement)
 					guard self.cancelled == false else {
 						return
 					}
 					
-					reject(e)
-					self.running = false
-				}, { a in
-					guard self.cancelled == false else {
-						return
+					switch res {
+						case let .left(e)?:
+							reject(e)
+						case let .right(a)?:
+							resolve(a)
+						case nil:
+							return
 					}
-					
-					resolve(a)
-					self.running = false
-				})
+				case let .async(async):
+					async(
+						requirement,
+						{ error in
+							self.running = false
+							guard !self.cancelled else { return }
+							reject(error)
+						},
+						{ result in
+							self.running = false
+							guard !self.cancelled else { return }
+							resolve(result)
+						}
+					)
+				case let .biFlatMap(impl):
+					impl.fork(requirement, { e in
+						guard self.cancelled == false else {
+							return
+						}
+						
+						reject(e)
+						self.running = false
+					}, { a in
+						guard self.cancelled == false else {
+							return
+						}
+						
+						resolve(a)
+						self.running = false
+					})
 			}
 		}
 		
@@ -275,10 +275,10 @@ final class BiFlatMap<R, E0, E, A0, A>: BiFlatMapBase<R, E, A> {
 			sio: self.sio,
 			err: { e0 in
 				self.err(e0).bimap(f, g)
-		},
+			},
 			succ: { a0 in
 				self.succ(a0).bimap(f, g)
-		}
+			}
 		)
 		
 		return SIO<R, F, B>.init(
@@ -296,10 +296,10 @@ final class BiFlatMap<R, E0, E, A0, A>: BiFlatMapBase<R, E, A> {
 			sio: self.sio,
 			err: { e0 in
 				self.err(e0).biFlatMap(f, g)
-		},
+			},
 			succ: { a0 in
 				self.succ(a0).biFlatMap(f, g)
-		}
+			}
 		)
 		
 		return SIO<R, F, B>.init(

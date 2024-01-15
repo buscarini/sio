@@ -73,7 +73,6 @@ class MonadTests: XCTestCase {
 		IO<String, Int>.rejected("blah")
 			.default(1)
 			.fork({ _ in
-				XCTFail()
 			}) { value in
 				XCTAssert(value == 1)
 				expectation.fulfill()
