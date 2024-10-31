@@ -28,7 +28,7 @@ class SIOCodecURLTests: XCTestCase {
 	func testURLFail() {
 		let codec = Codec<Void, URL, String>.url
 		
-		let origin = "https://á"
+		let origin = "https://  á"
 		
 		let from = codec.from(origin)
 		
