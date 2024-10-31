@@ -7,6 +7,7 @@
 
 import Foundation
 
+@Sendable
 public func |> <A, B>(_ a: A, _ f: (A) throws -> B) rethrows -> B {
 	return try f(a)
 }
@@ -17,6 +18,7 @@ public func |> <A, B>(_ a: A, _ f: (A) throws -> B) rethrows -> B {
 ///   - a: A mutable value.
 ///   - f: An in-out function.
 /// - Note: This function is commonly seen in operator form as "pipe-forward", `|>`.
+@Sendable
 public func |> <A>(_ a: inout A, _ f: (inout A) throws -> Void) rethrows {
 	try f(&a)
 }

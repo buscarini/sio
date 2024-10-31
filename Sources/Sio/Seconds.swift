@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Seconds<T: Numeric>: RawRepresentable {
+public struct Seconds<T: Numeric & Sendable>: RawRepresentable, Sendable {
 	public var rawValue: T
 	
 	public init(rawValue: T) {
