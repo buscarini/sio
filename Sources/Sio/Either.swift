@@ -161,3 +161,5 @@ extension Either where A == B {
 		bimap(f, f)
 	}
 }
+
+extension Either: Sendable where A: Sendable, B: Sendable {}
