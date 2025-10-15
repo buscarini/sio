@@ -1,10 +1,3 @@
-//
-//  Seconds.swift
-//  Sio
-//
-//  Created by José Manuel Sánchez Peñarroja on 31/05/2020.
-//
-
 import Foundation
 
 public struct Seconds<T: Numeric & Sendable>: RawRepresentable, Sendable {

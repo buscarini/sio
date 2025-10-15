@@ -1,12 +1,6 @@
-//
-//  sio.swift
-//  sio
-//
-//  Created by José Manuel Sánchez on 19/5/19.
-//  Copyright © 2019 sio. All rights reserved.
-//
-
 import Foundation
+
+import CombineSchedulers
 
 /// Swift IO R: Requirements, E: Error, A: Success Value
 public final class SIO<R, E, A> {
@@ -17,7 +11,7 @@ public final class SIO<R, E, A> {
 	public typealias Sync = (R) -> Either<E, A>?
 	public typealias Async = (R, @escaping ErrorCallback, @escaping ResultCallback) -> ()
 	
-	public var scheduler: AnyScheduler?
+	public var scheduler: AnySchedulerOf<DispatchQueue>?
 	public var delay: Seconds<TimeInterval> = 0
 	public var onCancel: EmptyCallback?
 	
@@ -97,7 +91,7 @@ public final class SIO<R, E, A> {
 	@inlinable
 	public static func syncMain(_ sync: @escaping Sync) -> SIO<R, E, A> {
 		SIO.init(sync: sync)
-			.scheduleOn(.main)
+			.scheduleOn(DispatchQueue.main)
 	}
 	
 	@inlinable
@@ -194,7 +188,7 @@ public final class SIO<R, E, A> {
 			return
 		}
 		
-		scheduler.runAfter(after: self.delay, run)
+		scheduler.run(after: self.delay, run)
 	}
 	
 	public func cancel() {

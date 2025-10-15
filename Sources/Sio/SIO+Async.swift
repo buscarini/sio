@@ -13,3 +13,40 @@ extension SIO where R == Void, E: Error {
 		}
 	}
 }
+
+extension SIO {
+	public static func await(
+		_ f: @escaping () async -> A
+	) -> SIO<R, E, A> {
+//		var task: _Concurrency.Task<Void, Never>?
+		return SIO { _, _, resolve in
+//			task =
+			_Concurrency.Task {
+				let a = await f()
+				resolve(a)
+			}
+		} cancel: {
+//			task?.cancel()
+		}
+	}
+}
+
+extension SIO where R == Void, E == any Error {
+	public static func tryAwait(
+		_ f: @escaping () async throws -> A
+	) -> IO<any Error, A> {
+		var task: _Concurrency.Task<Void, Never>?
+		return SIO { _, reject, resolve in
+			task = _Concurrency.Task {
+				do {
+					let a = try await f()
+					resolve(a)
+				} catch {
+					reject(error)
+				}
+			}
+		} cancel: {
+			task?.cancel()
+		}
+	}
+}

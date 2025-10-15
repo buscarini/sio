@@ -1,12 +1,8 @@
-//
-//  SioValueStoreJSONTests.swift
-//  SioValueStore
-//
-//  Created by José Manuel Sánchez Peñarroja on 02/07/2019.
-//
-
 import Foundation
 import XCTest
+
+import CombineSchedulers
+
 import Sio
 import SioValueStore
 
@@ -22,7 +18,7 @@ class SIOValueStoreJSONTests: XCTestCase {
 	}
 	
 	func testJSON() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let store = ValueStoreA<Void, ValueStoreError, User>.jsonPreference("user")
 		let user = User.mock

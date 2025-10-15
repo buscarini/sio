@@ -1,16 +1,11 @@
-//
-//  Delay.swift
-//  Task
-//
-//  Created by José Manuel Sánchez Peñarroja on 10/3/17.
-//  Copyright © 2017 CocoaPods. All rights reserved.
-//
-
 import XCTest
+
+import Combine
+
 import Sio
 
 class Delay: XCTestCase {
-	let scheduler = TestScheduler()
+	let scheduler = DispatchQueue.test
 	
 	func exampleError() -> Error {
 		return NSError(domain: "tests", code: 1, userInfo: nil)
@@ -30,7 +25,7 @@ class Delay: XCTestCase {
 				expectation.fulfill()
 			})
 		
-		scheduler.advance(1)
+		scheduler.advance(by: .seconds(1))
 		
 		self.waitForExpectations(timeout: 2.0, handler: nil)
 	}
@@ -48,8 +43,8 @@ class Delay: XCTestCase {
 				XCTFail()
 			})
 		
-		scheduler.advance(1)
-		
+		scheduler.advance(by: .seconds(1))
+
 		self.waitForExpectations(timeout: 2.0, handler: nil)
 	}
 	
@@ -73,8 +68,8 @@ class Delay: XCTestCase {
 		}
 		
 		scheduler.advance()
-		scheduler.advance(0.5)
-		
+		scheduler.advance(by: .seconds(0.5))
+
 		self.waitForExpectations(timeout: 0.1, handler: nil)
 	}
 }

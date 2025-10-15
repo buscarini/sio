@@ -1,19 +1,14 @@
-//
-//  SIOIValueStoreTests.swift
-//  SIOIValueStore
-//
-//  Created by José Manuel Sánchez on 19/5/19.
-//  Copyright © 2019 SIOIValueStoreTests. All rights reserved.
-//
-
 import Foundation
 import XCTest
+
+import CombineSchedulers
+
 import Sio
 import SioIValueStore
 
 class SIOCodecTests: XCTestCase {
 	func testOf() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 		
 		IValueStore<Void, Int, String, Int, Int>.of(1)
 			.load(1)
@@ -21,7 +16,7 @@ class SIOCodecTests: XCTestCase {
 	}
 	
 	func testRejected() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		IValueStore<Void, Int, String, Int, Int>.rejected("err")
 			.load(1)

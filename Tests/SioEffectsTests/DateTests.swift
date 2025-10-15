@@ -1,19 +1,15 @@
-//
-//  DateTests.swift
-//  Sio
-//
-//  Created by José Manuel Sánchez Peñarroja on 13/12/2019.
-//
-
 import Foundation
+import Combine
 import XCTest
+
+import CombineSchedulers
 
 import Sio
 import SioEffects
 
 class DateTests: XCTestCase {
 	func testDate() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let date = Date.init(timeIntervalSince1970: 0)
 		let dates = Dates.init(date: .of(date))

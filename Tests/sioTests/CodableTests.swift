@@ -33,9 +33,9 @@ class CodableTests: XCTestCase {
 		
 		let expectation = self.expectation(description: "data decoded")
 		
-		Task.of(raw)
+		IO<Error, String>.of(raw)
 			.flatMap { string in
-				Task.from(string.data(using: .utf8), TestError.data)
+				IO.from(string.data(using: .utf8), TestError.data)
 			}
 			.decode(User.self, decoder: JSONDecoder())
 			.fork((), { error in
@@ -56,7 +56,7 @@ class CodableTests: XCTestCase {
 		
 		let expectation = self.expectation(description: "roundtrip")
 		
-		Task.of(user)
+		IO<Error, User>.of(user)
 			.encode(encoder: JSONEncoder())
 			.decode(User.self, decoder: JSONDecoder())
 			.fork((), { error in

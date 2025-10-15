@@ -1,16 +1,12 @@
-//
-//  RaceTests.swift
-//  SioTests
-//
-//  Created by José Manuel Sánchez Peñarroja on 03/07/2019.
-//
-
 import Foundation
 import XCTest
+
+import CombineSchedulers
+
 import Sio
 
 class RaceTests: XCTestCase {
-	let scheduler = TestScheduler()
+	let scheduler = DispatchQueue.test
 	
 	func testRace() {
 		let finish = expectation(description: "finish")
@@ -24,9 +20,9 @@ class RaceTests: XCTestCase {
 			finish.fulfill()
 		}
 		
-		scheduler.advance(0.5)
-		scheduler.advance(6)
-		
+		scheduler.advance(by: .seconds(0.5))
+		scheduler.advance(by: .seconds(6.0))
+
 		waitForExpectations(timeout: 5, handler: nil)
 	}
 	
@@ -46,8 +42,8 @@ class RaceTests: XCTestCase {
 			finish.fulfill()
 		})
 		
-		scheduler.advance(0.5)
-		scheduler.advance(1)
+		scheduler.advance(by: .seconds(0.5))
+		scheduler.advance(by: .seconds(1.0))
 		
 		waitForExpectations(timeout: 1, handler: nil)
 	}
@@ -69,9 +65,9 @@ class RaceTests: XCTestCase {
 			XCTFail()
 		})
 		
-		scheduler.advance(0.5)
-		scheduler.advance(1)
-		
+		scheduler.advance(by: .seconds(0.5))
+		scheduler.advance(by: .seconds(1.0))
+
 		waitForExpectations(timeout: 1, handler: nil)
 	}
 	
@@ -89,9 +85,9 @@ class RaceTests: XCTestCase {
 		
 		left.cancel()
 		
-		scheduler.advance(0.5)
-		scheduler.advance(2)
-		
+		scheduler.advance(by: .seconds(0.5))
+		scheduler.advance(by: .seconds(2.0))
+
 		waitForExpectations(timeout: 1, handler: nil)
 	}
 	
@@ -109,9 +105,9 @@ class RaceTests: XCTestCase {
 		
 		right.cancel()
 		
-		scheduler.advance(0.5)
-		scheduler.advance(2)
-		
+		scheduler.advance(by: .seconds(0.5))
+		scheduler.advance(by: .seconds(2.0))
+
 		waitForExpectations(timeout: 1, handler: nil)
 	}
 	
@@ -134,10 +130,10 @@ class RaceTests: XCTestCase {
 		
 		raced.cancel()
 		
-		scheduler.advance(0.1)
-		scheduler.advance(1)
-		scheduler.advance(2)
-		
+		scheduler.advance(by: .seconds(0.1))
+		scheduler.advance(by: .seconds(1.0))
+		scheduler.advance(by: .seconds(2.0))
+
 		waitForExpectations(timeout: 1, handler: nil)
 	}
 }

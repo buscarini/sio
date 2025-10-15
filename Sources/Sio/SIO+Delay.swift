@@ -1,27 +1,19 @@
-//
-//  SIO+Delay.swift
-//  sio-iOS
-//
-//  Created by José Manuel Sánchez Peñarroja on 20/05/2019.
-//  Copyright © 2019 sio. All rights reserved.
-//
-
 import Foundation
+import Combine
+
+import CombineSchedulers
 
 @inlinable
-public func delayed<R, E, A>(
+public func delayed<R, E, A, S: Scheduler>(
 	_ delay: Seconds<TimeInterval>,
-	_ scheduler: Scheduler = QueueScheduler(queue: .global())
+	_ scheduler: S = DispatchQueue.global().eraseToAnyScheduler()
 ) -> (SIO<R, E, A>) -> SIO<R, E, A> {
 	{ io in
-		// FIXME: Change this to setting the queue
 		let res = SIO({ env, reject, resolve in
-			scheduler.runAfter(after: delay) {
+			scheduler.run(after: delay) {
 				io.fork(env, reject, resolve)
 			}
 		}, cancel: io.cancel)
-//		res.queue = queue
-//		res.delay = delay
 		
 		return res
 	}
@@ -33,21 +25,21 @@ public extension SIO {
 		_ time: Seconds<TimeInterval>,
 		_ queue: DispatchQueue
 	) -> SIO<R, E, A> {
-		delayed(time, QueueScheduler.init(queue: queue))(self)
+		delayed(time, queue.eraseToAnyScheduler())(self)
 	}
 	
 	@inlinable
-	func delay(
+	func delay<S: Scheduler>(
 		_ time: Seconds<TimeInterval>,
-		_ scheduler: Scheduler = QueueScheduler(queue: .main)
+		_ scheduler: S = DispatchQueue.main.eraseToAnyScheduler()
 	) -> SIO<R, E, A> {
 		delayed(time, scheduler)(self)
 	}
 	
 	@inlinable
-	func sleep(
+	func sleep<S: Scheduler>(
 		_ time: Seconds<TimeInterval>,
-		_ scheduler: Scheduler = QueueScheduler(queue: .main)
+		_ scheduler: S = DispatchQueue.main.eraseToAnyScheduler()
 	) -> SIO<R, E, A> {
 		self.flatMap { value in
 			SIO<R, E, A>.of(value).delay(time, scheduler)

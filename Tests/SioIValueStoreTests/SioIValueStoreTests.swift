@@ -1,11 +1,3 @@
-//
-//  SIOValueStoreTests.swift
-//  SIOValueStore
-//
-//  Created by José Manuel Sánchez on 19/5/19.
-//  Copyright © 2019 SIOValueStoreTests. All rights reserved.
-//
-
 import Foundation
 import XCTest
 import Sio
@@ -13,14 +5,15 @@ import SioValueStore
 
 class SIOValueStoreTests: XCTestCase {
 	func testOf() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
+
 		ValueStore<Void, String, Int, Int>.of(1)
 			.load
 			.assert(1, scheduler: scheduler)
 	}
 	
 	func testOfSave() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		ValueStore<Void, String, Int, Int>.of(1)
 			.save(2)
@@ -28,7 +21,7 @@ class SIOValueStoreTests: XCTestCase {
 	}
 	
 	func testRejected() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		ValueStore<Void, String, Int, Int>.rejected("err")
 			.load
@@ -36,7 +29,7 @@ class SIOValueStoreTests: XCTestCase {
 	}
 	
 	func testRejectedSave() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		ValueStore<Void, String, Int, Int>.rejected("err")
 			.save(1)
@@ -116,28 +109,22 @@ class SIOValueStoreTests: XCTestCase {
 		waitForExpectations(timeout: 1, handler: nil)
 	}
 	
-	func testMove() {
-		let finish = expectation(description: "finish")
-
+	@MainActor
+	func testMove() async throws {
 		let fromRef = Ref<Int?>.init(1)
 		let toRef = Ref<Int?>.init(nil)
 		
-		let from = fromRef.valueStore()
-		let to = toRef.valueStore()
+		let from = await fromRef.valueStore()
+		let to = await toRef.valueStore()
 		
-		from.move(to: to, adapt: id)
-			.fork((), { _ in
-				XCTFail()
-			}, { value in
-				XCTAssert(value == 1)
+		let value = try await from.move(to: to, adapt: id).constError(SIOError.empty).task
+
+		XCTAssert(value == 1)
 				
-				XCTAssertEqual(fromRef.state, nil)
-				XCTAssertEqual(toRef.state, 1)
-				
-				finish.fulfill()
-			})
-		
-		waitForExpectations(timeout: 1, handler: nil)
+		let fromValue = await fromRef.value()
+		XCTAssertEqual(fromValue, nil)
+		let toValue = await toRef.value()
+		XCTAssertEqual(toValue, 1)
 	}
 	
 	func testCache() {
@@ -196,7 +183,7 @@ class SIOValueStoreTests: XCTestCase {
 	}
 	
 	func testOptionalSome() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		ValueStore<Void, String, Int, Int>.of(1)
 			.optional()
@@ -205,7 +192,7 @@ class SIOValueStoreTests: XCTestCase {
 	}
 	
 	func testOptionalSomeSave() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		ValueStore<Void, String, Int, Int>.of(1)
 			.optional()
@@ -214,7 +201,7 @@ class SIOValueStoreTests: XCTestCase {
 	}
 	
 	func testOptionalNone() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		ValueStore<Void, String, Int, Int>.rejected("err")
 			.optional()
@@ -223,7 +210,7 @@ class SIOValueStoreTests: XCTestCase {
 	}
 	
 	func testOptionalNoneSave() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		ValueStore<Void, String, Int, Int>.rejected("err")
 			.optional()
@@ -232,7 +219,7 @@ class SIOValueStoreTests: XCTestCase {
 	}
 	
 	func testDefault() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		ValueStore<Void, String, Int, Int>.rejected("err")
 			.default(1)
@@ -240,111 +227,85 @@ class SIOValueStoreTests: XCTestCase {
 			.assert(1, scheduler: scheduler)
 	}
 	
-	func testReplacingLoadOld() {
-		let finish = expectation(description: "finish")
-
+	@MainActor
+	func testReplacingLoadOld() async throws {
 		let fromRef = Ref<Int?>.init(1)
 		let toRef = Ref<Int?>.init(nil)
 		
-		let from = fromRef.valueStore()
-		let to = toRef.valueStore()
+		let from = await fromRef.valueStore()
+		let to = await toRef.valueStore()
 		
 		let final = to.replacing(from)
 		
-		final
-			.load
-			.fork((), { _ in
-				XCTFail()
-			}, { value in
-				XCTAssert(value == 1)
-				
-				XCTAssertEqual(fromRef.state, nil)
-				XCTAssertEqual(toRef.state, 1)
-				
-				finish.fulfill()
-			})
+		let value = try await final.load.constError(SIOError.empty).task
 		
-		waitForExpectations(timeout: 1, handler: nil)
+		XCTAssert(value == 1)
+		
+		let fromValue = await fromRef.value()
+		XCTAssertEqual(fromValue, nil)
+		
+		let toValue = await toRef.value()
+		XCTAssertEqual(toValue, 1)
 	}
 	
-	func testReplacingLoadNew() {
-		let finish = expectation(description: "finish")
-
+	@MainActor
+	func testReplacingLoadNew() async throws {
 		let fromRef = Ref<Int?>.init(2)
 		let toRef = Ref<Int?>.init(1)
 		
-		let from = fromRef.valueStore()
-		let to = toRef.valueStore()
+		let from = await fromRef.valueStore()
+		let to = await toRef.valueStore()
 		
 		let final = to.replacing(from)
 		
-		final
-			.load
-			.fork((), { _ in
-				XCTFail()
-			}, { value in
-				XCTAssert(value == 1)
-				
-				XCTAssertEqual(fromRef.state, nil)
-				XCTAssertEqual(toRef.state, 1)
-				
-				finish.fulfill()
-			})
+		let value = try await final.load.constError(SIOError.empty).task
 		
-		waitForExpectations(timeout: 1, handler: nil)
+		XCTAssert(value == 1)
+		
+		let fromValue = await fromRef.value()
+		XCTAssertEqual(fromValue, nil)
+		
+		let toValue = await toRef.value()
+		XCTAssertEqual(toValue, 1)
 	}
 	
-	func testReplacingSave() {
-		let saved = expectation(description: "saved")
-		
+	@MainActor
+	func testReplacingSave() async throws {
 		let fromRef = Ref<Int?>.init(nil)
 		let toRef = Ref<Int?>.init(nil)
 
-		let from = fromRef.valueStore()
-		let to = toRef.valueStore()
+		let from = await fromRef.valueStore()
+		let to = await toRef.valueStore()
 
 		let replacing = to.replacing(from)
 
-		replacing
-			.save(2)
-			.fork({ _ in
-				XCTFail()
-			}, { value in
-				XCTAssert(value == 2)
-				
-				XCTAssertEqual(fromRef.state, nil)
-				XCTAssertEqual(toRef.state, 2)
-
-				saved.fulfill()
-			}
-		)
+		let value = try await replacing.save(2).constError(SIOError.empty).task
 		
-		waitForExpectations(timeout: 0.01, handler: nil)
+		XCTAssert(value == 2)
+		
+		let fromValue = await fromRef.value()
+		XCTAssertEqual(fromValue, nil)
+		
+		let toValue = await toRef.value()
+		XCTAssertEqual(toValue, 2)
 	}
 	
-	func testReplacingRemove() {
-		let removed = expectation(description: "removed")
-		
+	@MainActor
+	func testReplacingRemove() async throws {
 		let fromRef = Ref<Int?>.init(2)
 		let toRef = Ref<Int?>.init(1)
 
-		let from = fromRef.valueStore()
-		let to = toRef.valueStore()
+		let from = await fromRef.valueStore()
+		let to = await toRef.valueStore()
 
 		let replacing = to.replacing(from)
 
-		replacing
-			.remove
-			.fork({ _ in
-				XCTFail()
-			}, { value in
-				XCTAssertEqual(fromRef.state, nil)
-				XCTAssertEqual(toRef.state, nil)
+		try await replacing.remove.constError(SIOError.empty).task
 
-				removed.fulfill()
-			}
-		)
+		let fromValue = await fromRef.value()
+		XCTAssertEqual(fromValue, nil)
 		
-		waitForExpectations(timeout: 0.01, handler: nil)
+		let toValue = await toRef.value()
+		XCTAssertEqual(toValue, nil)
 	}
 }

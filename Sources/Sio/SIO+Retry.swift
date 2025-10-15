@@ -1,12 +1,5 @@
-//
-//  SIO+Retry.swift
-//  sio-iOS
-//
-//  Created by José Manuel Sánchez Peñarroja on 20/05/2019.
-//  Copyright © 2019 sio. All rights reserved.
-//
-
 import Foundation
+import Combine
 
 public extension SIO {
 	@inlinable
@@ -27,10 +20,10 @@ public extension SIO {
 	}
 	
 	@inlinable
-	func retry(
+	func retry<S: Scheduler>(
 		times: Int,
 		delay: Seconds<TimeInterval>,
-		scheduler: Scheduler
+		scheduler: S
 	) -> SIO<R, E, A> {
 		self.retry(times: times, modify: { io in
 			io.delay(delay, scheduler)
