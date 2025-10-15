@@ -5,8 +5,7 @@ import CombineSchedulers
 
 import Sio
 
-public extension SIO where R == Void, E: Error {
-	@MainActor
+public extension SIO where R == Void {
 	func assert(
 		_ check: @escaping (A) -> Bool,
 		scheduler: TestSchedulerOf<DispatchQueue>?,
@@ -14,31 +13,24 @@ public extension SIO where R == Void, E: Error {
 		prepare: (() -> Void)? = nil,
 		file: StaticString = #file,
 		line: UInt = #line
-	) async throws {
-//		let finish = XCTestExpectation(description: "finish")
-		
-		let advance = prepare ?? { scheduler?.advance() }
-		
-		async let result = try self.task
-		
-		advance()
-		
-		if check(try await result) == false {
-			XCTFail("check failed", file: file, line: line)
+	) {
+		let finish = XCTestExpectation(description: "finish")
+				
+		self.fork({ _ in
+			XCTFail("Effect failed", file: file, line: line)
+		}) { result in
+			if check(result) == false {
+				XCTFail("check failed", file: file, line: line)
+			}
+			finish.fulfill()
 		}
 		
-//		self.fork({ _ in
-//			XCTFail("Effect failed", file: file, line: line)
-//		}) { result in
-//			if check(result) == false {
-//				XCTFail("check failed", file: file, line: line)
-//			}
-//			finish.fulfill()
-//		}
-		
-//		if XCTWaiter.wait(for: [finish], timeout: timeout) != .completed {
-//			XCTFail("Effect didn't finish before timeout", file: file, line: line)
-//		}
+		let advance = prepare ?? { _Concurrency.Task { await scheduler?.advance() } }
+		advance()
+
+		if XCTWaiter.wait(for: [finish], timeout: timeout) != .completed {
+			XCTFail("Effect didn't finish before timeout", file: file, line: line)
+		}
 	}
 }
 

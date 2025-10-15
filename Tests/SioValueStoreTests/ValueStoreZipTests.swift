@@ -7,8 +7,7 @@ import Sio
 import SioValueStore
 
 class SIOValueStoreZipTests: XCTestCase {
-	@MainActor
-	func testLoad() async throws {
+	func testLoad() async {
 		let scheduler = DispatchQueue.test
 		
 		let vs: ValueStoreA<Void, Void, (Int, Int)> = zip(
@@ -17,8 +16,7 @@ class SIOValueStoreZipTests: XCTestCase {
 			scheduler
 		)
 		
-		try await vs
-			.load.constError(SIOError.empty)
+		vs.load
 			.assert(
 				{ (both: (Int, Int)) -> Bool in
 					both.0 == 1 && both.1 == 2
@@ -27,8 +25,7 @@ class SIOValueStoreZipTests: XCTestCase {
 			)
 	}
 	
-	@MainActor
-	func testSave() async throws {
+	func testSave() async {
 		let scheduler = DispatchQueue.test
 		
 		let vs: ValueStoreA<Void, Void, (Int, Int)> = zip(
@@ -37,8 +34,7 @@ class SIOValueStoreZipTests: XCTestCase {
 			scheduler
 		)
 		
-		try await vs
-			.save((3, 4)).constError(SIOError.empty)
+		vs.save((3, 4))
 			.assert(
 				{ (both: (Int, Int)) -> Bool in
 					both.0 == 3 && both.1 == 4

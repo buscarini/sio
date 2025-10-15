@@ -26,7 +26,10 @@ public extension SIO where R == Void {
 			}
 		}
 		
-		let advance = prepare ?? { scheduler?.advance() }
+		let advance = prepare ?? {
+			_Concurrency.Task { await scheduler?.advance() }
+		}
+		
 		advance()
 		
 		if XCTWaiter.wait(for: [finish], timeout: timeout) != .completed {

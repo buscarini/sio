@@ -1,6 +1,8 @@
 import Foundation
 import Combine
 
+import CombineSchedulers
+
 public extension SIO {
 	@inlinable
 	func runAt<S: Scheduler>(

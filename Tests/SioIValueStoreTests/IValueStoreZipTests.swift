@@ -7,16 +7,18 @@ import Sio
 import SioIValueStore
 
 class SIOIValueStoreZipTests: XCTestCase {
-	@MainActor
 	func testLoad() async {
 		let scheduler = DispatchQueue.test
 		
+		let left = await Ref<[Int: Int]>([1: 1]).iValueStore()
+		let right = await Ref<[Int: Int]>([1: 2]).iValueStore()
+		
 		let vs: IValueStoreA<Void, Int, Void, (Int, Int)> = zip(
-			await Ref<[Int: Int]>([1: 1]).iValueStore(),
-			await Ref<[Int: Int]>([1: 2]).iValueStore(),
+			left,
+			right,
 			scheduler
 		)
-
+		
 		vs
 		.load(1)
 		.assert(
@@ -27,7 +29,6 @@ class SIOIValueStoreZipTests: XCTestCase {
 		)
 	}
 	
-	@MainActor
 	func testSave() async {
 		let scheduler = DispatchQueue.test
 
@@ -37,8 +38,7 @@ class SIOIValueStoreZipTests: XCTestCase {
 			scheduler
 		)
 		
-		vs
-		.save(1, (3, 4))
+		vs.save(1, (3, 4))
 		.assert(
 			{ (both: (Int, Int)) -> Bool in
 				both.0 == 3 && both.1 == 4
