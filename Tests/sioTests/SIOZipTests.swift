@@ -1,12 +1,8 @@
-//
-//  SIOZipTests.swift
-//  SioTests
-//
-//  Created by José Manuel Sánchez Peñarroja on 03/12/2019.
-//
-
 import Foundation
 import XCTest
+
+import Combine
+
 import Sio
 
 class SioZipTests: XCTestCase {
@@ -53,7 +49,7 @@ class SioZipTests: XCTestCase {
 	}
 	
 	func testSimpleZip() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let finish = expectation(description: "finish")
 		
@@ -75,7 +71,7 @@ class SioZipTests: XCTestCase {
 	}
 	
 	func testZip() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let finish = expectation(description: "finish")
 		
@@ -127,7 +123,7 @@ class SioZipTests: XCTestCase {
 	}
 	
 	func testZipWith() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let finish = expectation(description: "finish")
 		
@@ -173,7 +169,7 @@ class SioZipTests: XCTestCase {
 	}
 	
 	func testZip3AllFailed() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let finish = expectation(description: "finish")
 		
@@ -195,7 +191,7 @@ class SioZipTests: XCTestCase {
 	}
 	
 	func testZip3OneOK() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let finish = expectation(description: "finish")
 		
@@ -217,7 +213,7 @@ class SioZipTests: XCTestCase {
 	}
 	
 	func testZip3FirstOK() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let finish = expectation(description: "finish")
 		
@@ -239,7 +235,7 @@ class SioZipTests: XCTestCase {
 	}
 	
 	func testZip3AllOK() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let finish = expectation(description: "finish")
 		
@@ -264,7 +260,7 @@ class SioZipTests: XCTestCase {
 	}
 	
 	func testZip3With() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let finish = expectation(description: "finish")
 		
@@ -321,7 +317,7 @@ class SioZipTests: XCTestCase {
 	}
 	
 	func testZip4() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let finish = expectation(description: "finish")
 		
@@ -369,7 +365,7 @@ class SioZipTests: XCTestCase {
 	}
 	
 	func testZip4With() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let finish = expectation(description: "finish")
 		
@@ -418,7 +414,7 @@ class SioZipTests: XCTestCase {
 	
 	/// If one operation fails, the other one should be cancelled
 	func testZipCancels() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let cancelled = expectation(description: "cancelled")
 		let finish = expectation(description: "finish")

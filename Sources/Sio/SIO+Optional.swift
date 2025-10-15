@@ -30,13 +30,27 @@ public extension SIO {
 			.map { .some($0) }
 			.flatMapError { _ in
 				return SIO<R, Never, A?>.of(nil)
-		}
+			}
 	}
 	
 	@inlinable
 	func optional(default value: A) -> SIO<R, Never, A> {
 		self.optional()
 			.map { $0 ?? value }
+	}
+}
+
+public extension SIO where E == Void {
+	@inlinable
+	func fromOptional<Wrapped>() -> SIO<R, Void, Wrapped>
+	where A == Wrapped? {
+		self.flatMap { value -> SIO<R, Void, Wrapped> in
+			if let value {
+				return .of(value)
+			} else {
+				return .rejected(())
+			}
+		}
 	}
 }
 

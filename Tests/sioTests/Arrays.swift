@@ -1,17 +1,12 @@
-//
-//  Arrays.swift
-//  IO
-//
-//  Created by José Manuel Sánchez Peñarroja on 10/3/17.
-//  Copyright © 2017 CocoaPods. All rights reserved.
-//
-
 import XCTest
+
+import CombineSchedulers
+
 import Sio
 
 class Arrays: XCTestCase {
 	func testMap2() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 		
 		UIO<[Int]>.of([1, 2, 3]).map2 { $0*2 }
 			.assert([ 2, 4, 6 ], scheduler: scheduler)
@@ -22,18 +17,18 @@ class Arrays: XCTestCase {
 	}
 	
 	func testTraverseEmpty() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		[].traverse(scheduler) { IO<Never, Int>.of($0) }
 			.assert([], scheduler: scheduler)
 	}
 	
 	func testTraverse() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		[1, 2, 3]
 			.traverse(scheduler) { value in
-				IO.effectMain {
+				IO.effect {
 					print("Traversed")
 				}.flatMap { _ in
 					IO<Never, Int>.of(value)
@@ -41,18 +36,12 @@ class Arrays: XCTestCase {
 			}
 			.assert(
 				[1, 2, 3],
-				scheduler: scheduler,
-				prepare: {
-					scheduler.advance(
-						numSteps: 6,
-						queue: .main
-					)
-				}
+				scheduler: scheduler
 			)
 	}
 	
 	func testConcat() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		concat(
 			IO<Int, [Int]>.of([1, 2, 3]),
@@ -65,7 +54,7 @@ class Arrays: XCTestCase {
 	}
 	
 	func testParallel() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		parallel(
 			[
@@ -80,13 +69,13 @@ class Arrays: XCTestCase {
 			timeout: 3,
 			prepare: {
 				scheduler.advance()
-				scheduler.advance(0.5)
+				scheduler.advance(by: .seconds(0.5))
 			}
 		)
 	}
 	
 	func testSequenceEmpty() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let ios: [SIO<Void, Void, [Int]>] = []
 		sequence(ios)

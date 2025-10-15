@@ -1,29 +1,30 @@
 import Foundation
+import Combine
 
 @inlinable
-public func liftA2<R, E, A, B, C>(
+public func liftA2<R, E, A, B, C, S: Scheduler>(
 	_ iof: SIO<R, E, (A) -> (B) -> C>,
 	_ first: SIO<R, E, A>,
 	_ second: SIO<R, E, B>,
-	_ scheduler: Scheduler
+	_ scheduler: S
 ) -> SIO<R, E, C> {
 	ap(ap(iof, first, scheduler), second, scheduler)
 }
 
 @inlinable
-public func ap<R, E, A, B, C>(
+public func ap<R, E, A, B, C, S: Scheduler>(
 	_ iof: SIO<R, E, (A, B) -> C>,
 	_ first: SIO<R, E, A>,
 	_ second: SIO<R, E, B>,
-	_ scheduler: Scheduler
+	_ scheduler: S
 ) -> SIO<R, E, C> {
 	liftA2(iof.map(curry), first, second, scheduler)
 }
 
-public func ap<R, E, A, B>(
+public func ap<R, E, A, B, S: Scheduler>(
 	_ left: SIO<R, E, (A) -> B>,
 	_ right: SIO<R, E, A>,
-	_ scheduler: Scheduler
+	_ scheduler: S
 ) -> SIO<R, E, B> {
 	
 	let l = left

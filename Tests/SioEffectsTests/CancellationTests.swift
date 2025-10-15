@@ -1,18 +1,14 @@
-//
-//  CancellationTests.swift
-//  sio-iOS
-//
-//  Created by José Manuel Sánchez Peñarroja on 16/06/2019.
-//  Copyright © 2019 sio. All rights reserved.
-//
-
 import Foundation
 import XCTest
+import Combine
+
+import CombineSchedulers
+
 import Sio
 import SioEffects
 
 class CancellationTests: XCTestCase {
-	let scheduler = TestScheduler()
+	let scheduler = DispatchQueue.test
 	
 	func testNoCancellation() {
 		var lastValue: Int = 0
@@ -30,7 +26,7 @@ class CancellationTests: XCTestCase {
 							lastValue = int
 							return .right(int)
 						}
-				}.scheduleOn(.global()).forkOn(.global())
+				}.scheduleOn(DispatchQueue.global()).forkOn(.global())
 			}
 			.map(const(()))
 		}
@@ -39,6 +35,9 @@ class CancellationTests: XCTestCase {
 		
 		task?
 		.fork(absurd, { a in
+			
+			XCTAssertEqual(lastValue, 800)
+			
 			finish.fulfill()
 		})
 		
@@ -64,7 +63,7 @@ class CancellationTests: XCTestCase {
 						return .right(int)
 					}
 				}
-				.scheduleOn(.global())
+				.scheduleOn(DispatchQueue.global())
 			}
 			.map(const(()))
 		}
@@ -138,7 +137,7 @@ class CancellationTests: XCTestCase {
 		finish.isInverted = true
 		
 		let task = UIO<Int>.of(1)
-			.scheduleOn(.global())
+			.scheduleOn(DispatchQueue.global())
 			.delay(0.1, scheduler)
 		
 		task
@@ -148,7 +147,7 @@ class CancellationTests: XCTestCase {
 		
 		task.cancel()
 		
-		scheduler.advance(1)
+		scheduler.advance(by: .seconds(1))
 		
 		waitForExpectations(timeout: 0.1, handler: nil)
 	}
@@ -157,7 +156,7 @@ class CancellationTests: XCTestCase {
 		let finish = expectation(description: "finish")
 		
 		let left = IO<Void, Int>.rejected(())
-		let right = IO<Void,Int>.of(1).scheduleOn(.global()).delay(0.1)
+		let right = IO<Void,Int>.of(1).scheduleOn(DispatchQueue.global()).delay(0.1)
 		
 		let task = or(left, right)
 			
@@ -186,7 +185,7 @@ class CancellationTests: XCTestCase {
 		let task = UIO.sync {
 			.right(1)
 		}
-		.scheduleOn(.global())
+		.scheduleOn(DispatchQueue.global())
 		
 		task.cancel()
 			

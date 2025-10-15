@@ -43,20 +43,20 @@ class sioTests: XCTestCase {
 	}
 	
 	func testLazy() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 		SIO<Void, String, String>.lazy("ok")
 			.assert("ok", scheduler: scheduler)
 	}
 	
 	func testRejectedLazy() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		SIO<Void, String, String>.rejectedLazy("err")
 			.assertErr("err", scheduler: scheduler)
 	}
 	
 	func testFromFunc() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		SIO<String, Never, Int>.fromFunc { $0.count }
 			.provide("hello")
@@ -104,14 +104,14 @@ class sioTests: XCTestCase {
 	}
 	
 	func testConst() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		SIO<Void, Int, String>.of("ok").const("b")
 			.assert("b", scheduler: scheduler)
 	}
 	
 	func testConstError() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		SIO<Void, Int, String>.of("ok").constError(1)
 			.assert("ok", scheduler: scheduler)
@@ -121,35 +121,35 @@ class sioTests: XCTestCase {
 	}
 	
 	func testFlip() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		SIO<Void, String, Int>.rejected("ok").flip()
 			.assert("ok", scheduler: scheduler)
 	}
 	
 	func testFlipInverse() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		SIO<Void, String, Int>.of(1).flip()
 			.assertErr(1, scheduler: scheduler)
 	}
 	
 	func testEitherLeft() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		IO.from(Either<String, Int>.left("ok"))
 			.assertErr("ok", scheduler: scheduler)
 	}
 	
 	func testEitherRight() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		IO.from(Either<String, Int>.right(1))
 			.assert(1, scheduler: scheduler)
 	}
 	
 	func testToEitherLeft() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		IO<String, Int>.rejected("err")
 			.either()
@@ -159,7 +159,7 @@ class sioTests: XCTestCase {
 	}
 	
 	func testToEitherRight() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		IO<String, Int>.of(1)
 			.either()
@@ -439,7 +439,7 @@ class sioTests: XCTestCase {
 	}
 	
 	func testAccess() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let sio: SIO<(Int, Int), Never, Int> = SIO<(Int, Int), Never, Int>.access { $0.0 }
 			
@@ -449,7 +449,7 @@ class sioTests: XCTestCase {
 	}
 	
 	func testAccessPath() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let io: SIO<User, Void, String> = access(\User.name)
 		io
@@ -506,7 +506,7 @@ class sioTests: XCTestCase {
 	}
 	
 	func testBiFlatMapError() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		SIO<Void, Int, Int>.rejected(1)
 			.biFlatMap(IO<Never, String>.of("ok"))
@@ -514,7 +514,7 @@ class sioTests: XCTestCase {
 	}
 	
 	func testFlatMapError() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		IO<Int, Int>.rejected(1)
 			.flatMapError(IO<Int, Int>.of(2))
@@ -522,7 +522,7 @@ class sioTests: XCTestCase {
 	}
 	
 	func testBiFlatMapErrorToError() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		SIO<Void, Int, Int>.rejected(1)
 			.biFlatMap(IO<String, Never>.rejected("ok"))
@@ -530,7 +530,7 @@ class sioTests: XCTestCase {
 	}
 	
 	func testFlatMapErrorToError() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		SIO<Void, Int, Int>.rejected(1)
 			.flatMapError(IO<Int, Int>.rejected(2))
@@ -538,7 +538,7 @@ class sioTests: XCTestCase {
 	}
 	
 	func testBiFlatMapSuccess() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		SIO<Void, Int, Int>.of(1)
 			.biFlatMap(IO<Never, String>.of("ok"))
@@ -546,7 +546,7 @@ class sioTests: XCTestCase {
 	}
 	
 	func testBiFlatMapSuccessToError() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		SIO<Void, Int, Int>.of(1)
 			.biFlatMap(IO<Never, String>.of("ok"))
@@ -554,7 +554,7 @@ class sioTests: XCTestCase {
 	}
 	
 	func testFlatMapNever() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		SIO<Void, Never, Int>.of(1)
 			.flatMapNever { value in
@@ -564,7 +564,7 @@ class sioTests: XCTestCase {
 	}
 	
 	func testFlatMapNeverError() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		SIO<Void, Never, Int>.of(1)
 			.flatMapNever { value in
@@ -574,7 +574,7 @@ class sioTests: XCTestCase {
 	}
 	
 	func testFlatMapNeverIO() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		SIO<Void, Never, Int>.of(1)
 			.flatMapNever(SIO<Int, Int, Int>.of(2))
@@ -582,7 +582,7 @@ class sioTests: XCTestCase {
 	}
 	
 	func testFlatMapNeverErrorIO() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		SIO<Void, Never, Int>.of(1)
 			.flatMapNever(
@@ -592,7 +592,7 @@ class sioTests: XCTestCase {
 	}
 	
 	func testRunAll() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 		
 		runAll([
 			SIO<Void, Int, Int>.of(1),

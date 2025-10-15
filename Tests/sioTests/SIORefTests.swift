@@ -1,112 +1,81 @@
-//
-//  SIORefTests.swift
-//  Sio
-//
-//  Created by José Manuel Sánchez Peñarroja on 04/12/2019.
-//
-
 import Foundation
 import XCTest
 import Sio
 
 class SioRefTests: XCTestCase {
-	func testRefGetFree() {
-		let finish = expectation(description: "finish")
-		
+	@MainActor
+	func testRefGetFree() async throws {
 		let ref = Ref<Int>.init(1)
 		
-		get(SIO<Ref<Int>, Never, Void>.environment())
-			.provide(ref)
-			.fork(absurd) { (arg) in
-				let (value, _) = arg
-				XCTAssert(value == 1)
-				XCTAssert(ref.state == 1)
-				finish.fulfill()
-			}
+		let arg = try await get(SIO<Ref<Int>, Error, Void>.environment()).provide(ref).task
 		
+		let (value, _) = arg
+		XCTAssert(value == 1)
 		
-		waitForExpectations(timeout: 1, handler: nil)
+		let refValue = await ref.value()
+		XCTAssert(refValue == 1)
 	}
 	
-	func testRefModifyFree() {
-		let finish = expectation(description: "finish")
-		
+	@MainActor
+	func testRefModifyFree() async throws {
 		let ref = Ref<Int>.init(1)
 		
-		modify(SIO<Ref<Int>, Never, Void>.environment())({ (value: Int) in
+		let arg = try await modify(SIO<Ref<Int>, Never, Void>.environment())({ (value: Int) in
 				value * 2
-			})
-			.get()
-			.provide(ref)
-			.fork(absurd) { (arg) in
-				let (value, _) = arg
-				XCTAssert(value == 2)
-				XCTAssert(ref.state == 2)
-				finish.fulfill()
-			}
+			}).get().provide(ref).task
 		
+		let (value, _) = arg
+		XCTAssert(value == 2)
 		
-		waitForExpectations(timeout: 1, handler: nil)
+		let refValue = await ref.value()
+		XCTAssert(refValue == 2)
 	}
 	
-	func testRefModify() {
-		let finish = expectation(description: "finish")
-		
+	@MainActor
+	func testRefModify() async throws {
 		let ref = Ref<Int>.init(1)
 		
-		SIO<Ref<Int>, Never, Void>.environment()
+		let arg = try await SIO<Ref<Int>, Never, Void>.environment()
 			.modify { value in
 				value * 2
 			}
 			.get()
-			.provide(ref)
-			.fork(absurd) { (arg) in
-				let (value, _) = arg
-				XCTAssert(value == 2)
-				XCTAssert(ref.state == 2)
-				finish.fulfill()
-			}
+			.provide(ref).task
 		
+		let (value, _) = arg
+		XCTAssert(value == 2)
 		
-		waitForExpectations(timeout: 1, handler: nil)
+		let refValue = await ref.value()
+		XCTAssert(refValue == 2)
 	}
 	
-	func testRefSetFree() {
-		let finish = expectation(description: "finish")
-		
+	@MainActor
+	func testRefSetFree() async throws {
 		let ref = Ref<Int>.init(1)
 		
-		set(SIO<Ref<Int>, Never, Void>.environment())(2)
+		let arg = try await set(SIO<Ref<Int>, Never, Void>.environment())(2)
 			.get()
-			.provide(ref)
-			.fork(absurd) { (arg) in
-				let (value, _) = arg
-				XCTAssert(value == 2)
-				XCTAssert(ref.state == 2)
-				finish.fulfill()
-			}
-		
-		
-		waitForExpectations(timeout: 1, handler: nil)
+			.provide(ref).task
+
+		let (value, _) = arg
+		XCTAssert(value == 2)
+		let refValue = await ref.value()
+		XCTAssert(refValue == 2)
 	}
 	
-	func testRefSet() {
-		let finish = expectation(description: "finish")
-		
+	@MainActor
+	func testRefSet() async throws {
 		let ref = Ref<Int>.init(1)
 		
-		SIO<Ref<Int>, Never, Void>.environment()
+		let arg = try await SIO<Ref<Int>, Never, Void>.environment()
 			.set(2)
 			.get()
-			.provide(ref)
-			.fork(absurd) { (arg) in
-				let (value, _) = arg
-				XCTAssert(value == 2)
-				XCTAssert(ref.state == 2)
-				finish.fulfill()
-			}
+			.provide(ref).task
 		
+		let (value, _) = arg
+		XCTAssert(value == 2)
 		
-		waitForExpectations(timeout: 1, handler: nil)
+		let refValue = await ref.value()
+		XCTAssert(refValue == 2)
 	}
 }

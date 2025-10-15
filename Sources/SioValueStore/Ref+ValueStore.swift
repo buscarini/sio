@@ -1,28 +1,21 @@
-//
-//  Ref+ValueStore.swift
-//  Sio
-//
-//  Created by José Manuel Sánchez Peñarroja on 23/12/2019.
-//
-
 import Foundation
 import Sio
 
-public extension Ref where S: IsOptional {
-	func valueStore() -> ValueStoreA<Void, Void, S.Wrapped> {
+public extension Ref {
+	func valueStore<Wrapped>() -> ValueStoreA<Void, Void, Wrapped>
+	where S == Wrapped? {
 		.init(
-			load: .from {
-				self.state.some
-			},
+			load: SIO.await {
+				await self.value()
+			}.fromOptional(),
 			save: { newValue in
-				.init {
-					self.state.some = newValue
-					return .right(newValue)
+				SIO.await {
+					await self.modify(newValue)
+					return newValue
 				}
 			},
-			remove: .init{ _ in
-				self.state.some = nil
-				return .right(())
+			remove: .await {
+				await self.modify(nil)
 			}
 		)
 	}

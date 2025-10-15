@@ -64,7 +64,7 @@ class SIOEffectsTests: XCTestCase {
 	}*/
 	
 	func testTraverse() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 		
 		let values = Array(1...10)
 		

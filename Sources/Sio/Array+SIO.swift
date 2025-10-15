@@ -1,12 +1,6 @@
-//
-//  Array+SIO.swift
-//  sio-iOS
-//
-//  Created by José Manuel Sánchez Peñarroja on 20/05/2019.
-//  Copyright © 2019 sio. All rights reserved.
-//
-
 import Foundation
+
+import Combine
 
 extension Array {
 	@inlinable
@@ -15,8 +9,8 @@ extension Array {
 	}
 	
 	@inlinable
-	public func traverse<R, E, A>(
-		_ scheduler: Scheduler,
+	public func traverse<R, E, A, S: Scheduler>(
+		_ scheduler: S,
 		_ f: @escaping (Element) -> SIO<R, E, A>
 	) -> SIO<R, E, [A]> {
 		guard let first = self.first else {
@@ -41,8 +35,8 @@ extension Array {
 	}
 	
 	@inlinable
-	public func wither<R, E, A>(
-		_ scheduler: Scheduler,
+	public func wither<R, E, A, S: Scheduler>(
+		_ scheduler: S,
 		_ f: @escaping (Element) -> SIO<R, E, A?>
 	) -> SIO<R, E, [A]> {
 		guard let first = self.first else {
@@ -76,18 +70,18 @@ extension Array {
 }
 
 @inlinable
-public func parallel<R, E, A>(
+public func parallel<R, E, A, S: Scheduler>(
 	_ ios: [SIO<R, E, A>],
-	_ scheduler: Scheduler
+	_ scheduler: S
 ) -> SIO<R, E, [A]> {
 	ios.traverse(scheduler) { $0 }
 }
 
 @inlinable
-public func concat<R, E, A>(
+public func concat<R, E, A, S: Scheduler>(
 	_ first: SIO<R, E, [A]>,
 	_ second: SIO<R, E, [A]>,
-	_ scheduler: Scheduler
+	_ scheduler: S
 ) -> SIO<R, E, [A]> {
 	ap(SIO.of(+), first, second, scheduler)
 }
