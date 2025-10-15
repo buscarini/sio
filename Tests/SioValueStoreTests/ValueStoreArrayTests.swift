@@ -28,7 +28,7 @@ class SIOValueStoreArrayTests: XCTestCase {
 	}
 	
 	func testPrepend() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		SIOValueStoreArrayTests.arrayStore()
 			.prepend(2)
@@ -36,7 +36,7 @@ class SIOValueStoreArrayTests: XCTestCase {
 	}
 	
 	func testPrependUnique() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		SIOValueStoreArrayTests.arrayStore()
 			.prependUnique(1)
@@ -44,7 +44,7 @@ class SIOValueStoreArrayTests: XCTestCase {
 	}
 	
 	func testPrependUniqueRepeated() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		SIOValueStoreArrayTests.arrayStore()
 			.prependUnique(2)
@@ -52,7 +52,7 @@ class SIOValueStoreArrayTests: XCTestCase {
 	}
 	
 	func testAppend() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		SIOValueStoreArrayTests.arrayStore()
 			.append(2)
@@ -60,7 +60,7 @@ class SIOValueStoreArrayTests: XCTestCase {
 	}
 	
 	func testAppendUniqueRepeated() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		SIOValueStoreArrayTests.arrayStore()
 			.appendUnique(1)
@@ -68,7 +68,7 @@ class SIOValueStoreArrayTests: XCTestCase {
 	}
 	
 	func testAppendUnique() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		SIOValueStoreArrayTests.arrayStore()
 			.appendUnique(2)
@@ -76,7 +76,7 @@ class SIOValueStoreArrayTests: XCTestCase {
 	}
 	
 	func testRemove() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		SIOValueStoreArrayTests.arrayStore()
 			.remove(1)
@@ -84,7 +84,7 @@ class SIOValueStoreArrayTests: XCTestCase {
 	}
 	
 	func testLoadSingle() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let store = ValueStoreA<Void, ValueStoreError, [Int]>.of([1,2,3])
 		
@@ -94,7 +94,7 @@ class SIOValueStoreArrayTests: XCTestCase {
 	}
 	
 	func testFunctor() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		SIOValueStoreArrayTests.arrayStore()
 			.map { $0.count }
@@ -103,7 +103,7 @@ class SIOValueStoreArrayTests: XCTestCase {
 	}
 	
 	func testContravariantFunctor() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		SIOValueStoreArrayTests.arrayStore()
 			.pullback { (strings: [String]) in

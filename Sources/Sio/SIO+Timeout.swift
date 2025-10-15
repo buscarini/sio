@@ -1,18 +1,13 @@
-//
-//  SIO+Timeout.swift
-//  sio-iOS
-//
-//  Created by José Manuel Sánchez Peñarroja on 23/05/2019.
-//  Copyright © 2019 sio. All rights reserved.
-//
-
 import Foundation
+import Combine
+
+import CombineSchedulers
 
 public extension SIO {
 	@inlinable
-	func timeout(
+	func timeout<S: Scheduler>(
 		_ timeout: Seconds<TimeInterval>,
-		_ scheduler: Scheduler = QueueScheduler(queue: .global())
+		_ scheduler: S = DispatchQueue.global().eraseToAnyScheduler()
 	) -> SIO<R, E, A?> {
 		race(
 			self.either().mapError(absurd).map(Either<E, A>?.some),
@@ -29,10 +24,10 @@ public extension SIO {
 	}
 	
 	@inlinable
-	func timeoutTo(
+	func timeoutTo<S: Scheduler>(
 		_ value: A,
 		_ timeout: Seconds<TimeInterval>,
-		_ scheduler: Scheduler = QueueScheduler(queue: .global())
+		_ scheduler: S = DispatchQueue.global().eraseToAnyScheduler()
 	) -> SIO<R, E, A> {
 		race(
 			self.either().mapError(absurd),

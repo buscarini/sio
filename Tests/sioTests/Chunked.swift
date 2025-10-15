@@ -1,12 +1,7 @@
-//
-//  Chunked.swift
-//  Task
-//
-//  Created by José Manuel Sánchez Peñarroja on 13/3/17.
-//  Copyright © 2017 CocoaPods. All rights reserved.
-//
-
 import XCTest
+
+import CombineSchedulers
+
 import Sio
 
 class Chunked: XCTestCase {
@@ -20,7 +15,7 @@ class Chunked: XCTestCase {
     }
     
     func testChunks() {
-		let scheduler = TestScheduler()
+		 let scheduler = DispatchQueue.test
 
 		let values = Array(1...10)
 		let tasks = values
@@ -47,9 +42,9 @@ class Chunked: XCTestCase {
 				expectation.fulfill()
 			})
 
-		scheduler.advance(1)
-		scheduler.advance(1)
-
+		scheduler.advance(by: .seconds(1.0))
+		scheduler.advance(by: .seconds(1.0))
+		
 		self.waitForExpectations(timeout: 2.5, handler: nil)
     }
 }

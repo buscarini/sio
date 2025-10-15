@@ -1,33 +1,27 @@
-//
-//  SIO+Schedule.swift
-//  sio-iOS
-//
-//  Created by José Manuel Sánchez Peñarroja on 20/05/2019.
-//  Copyright © 2019 sio. All rights reserved.
-//
-
 import Foundation
+import Combine
+import CombineSchedulers
 
 public extension SIO {
 	@inlinable
 	func scheduleOn(_ queue: DispatchQueue) -> SIO<R, E, A> {
-		scheduleOn(QueueScheduler(queue: queue))
+		scheduleOn(queue.eraseToAnyScheduler())
 	}
 	
 	@inlinable
-	func scheduleOn(_ scheduler: Scheduler) -> SIO<R, E, A> {
+	func scheduleOn(_ scheduler: AnySchedulerOf<DispatchQueue>) -> SIO<R, E, A> {
 		let copy = self
-		copy.scheduler = AnyScheduler(scheduler)
+		copy.scheduler = scheduler.eraseToAnyScheduler()
 		return copy
 	}
 	
 	@inlinable
 	func forkOn(_ queue: DispatchQueue) -> SIO<R, E, A> {
-		forkOn(QueueScheduler(queue: queue))
+		forkOn(queue.eraseToAnyScheduler())
 	}
 	
 	@inlinable
-	func forkOn(_ scheduler: Scheduler) -> SIO<R, E, A> {
+	func forkOn<S: Scheduler>(_ scheduler: S) -> SIO<R, E, A> {
 		SIO({ (env, reject, resolve) in
 			self.fork(
 				env,

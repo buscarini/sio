@@ -1,25 +1,22 @@
-//
-//  ValueStoreZipTests.swift
-//  SioValueStoreTests
-//
-//  Created by José Manuel Sánchez Peñarroja on 20/12/2019.
-//
-
 import Foundation
 import XCTest
+
+import CombineSchedulers
+
 import Sio
 import SioIValueStore
 
 class SIOIValueStoreZipTests: XCTestCase {
-	func testLoad() {
-		let scheduler = TestScheduler()
+	@MainActor
+	func testLoad() async {
+		let scheduler = DispatchQueue.test
 		
 		let vs: IValueStoreA<Void, Int, Void, (Int, Int)> = zip(
-			Ref<[Int: Int]>.init([1: 1]).iValueStore(),
-			Ref<[Int: Int]>.init([1: 2]).iValueStore(),
+			await Ref<[Int: Int]>([1: 1]).iValueStore(),
+			await Ref<[Int: Int]>([1: 2]).iValueStore(),
 			scheduler
 		)
-		
+
 		vs
 		.load(1)
 		.assert(
@@ -30,12 +27,13 @@ class SIOIValueStoreZipTests: XCTestCase {
 		)
 	}
 	
-	func testSave() {
-		let scheduler = TestScheduler()
+	@MainActor
+	func testSave() async {
+		let scheduler = DispatchQueue.test
 
 		let vs: IValueStoreA<Void, Int, Void, (Int, Int)> = zip(
-			Ref<[Int: Int]>.init([:]).iValueStore(),
-			Ref<[Int: Int]>.init([:]).iValueStore(),
+			await Ref<[Int: Int]>([:]).iValueStore(),
+			await Ref<[Int: Int]>([:]).iValueStore(),
 			scheduler
 		)
 		

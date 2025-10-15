@@ -38,7 +38,7 @@ class SIOValueStoreIsoTests: XCTestCase {
 	})
 	
 	func testDimapRightOne() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let vs = dimap(
 			ValueStoreA<Void, String, Left>.of(.a),
@@ -51,7 +51,7 @@ class SIOValueStoreIsoTests: XCTestCase {
 	}
 	
 	func testDimapRightTwo() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let vs = dimap(
 			ValueStoreA<Void, String, Left>.of(.b),
@@ -64,7 +64,7 @@ class SIOValueStoreIsoTests: XCTestCase {
 	}
 	
 	func testComposeRightOne() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let vs = ValueStoreA<Void, String, Left>.of(.a)
 			>>> SIOValueStoreIsoTests.leftMiddle
@@ -75,7 +75,7 @@ class SIOValueStoreIsoTests: XCTestCase {
 	}
 	
 	func testComposeRightTwo() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let vs = ValueStoreA<Void, String, Left>.of(.b)
 			>>> SIOValueStoreIsoTests.leftMiddle
@@ -86,7 +86,7 @@ class SIOValueStoreIsoTests: XCTestCase {
 	}
 	
 	func testComposeRightIso() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let saves = expectation(description: "saves")
 		
@@ -101,7 +101,7 @@ class SIOValueStoreIsoTests: XCTestCase {
 	}
 
 	func testComposeRightTwoIso() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let saves = expectation(description: "saves")
 		
@@ -115,7 +115,7 @@ class SIOValueStoreIsoTests: XCTestCase {
 	}
 	
 	func testComposeLeft() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let vs = (SIOValueStoreIsoTests.leftMiddle.reversed <<< ValueStoreA<Void, String, Middle>.of(.one))
 			
@@ -125,7 +125,7 @@ class SIOValueStoreIsoTests: XCTestCase {
 	}
 	
 	func testComposeLeftTwo() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let vs = (SIOValueStoreIsoTests.leftMiddle.reversed <<< ValueStoreA<Void, String, Middle>.of(.two))
 			
@@ -135,7 +135,7 @@ class SIOValueStoreIsoTests: XCTestCase {
 	}
 	
 	func testComposeLeftIso() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let saves = expectation(description: "saves")
 		
@@ -150,7 +150,7 @@ class SIOValueStoreIsoTests: XCTestCase {
 	}
 
 	func testComposeLeftTwoIso() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let saves = expectation(description: "saves")
 		

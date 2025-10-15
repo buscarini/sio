@@ -65,7 +65,7 @@ public extension SIO where E == Never, A == Void {
 	
 	@inlinable
 	static func effectMain(_ f: @escaping (R) -> Void) -> SIO<R, Never, Void> {
-		effect(f).scheduleOn(.main)
+		effect(f).scheduleOn(DispatchQueue.main)
 	}
 }
 

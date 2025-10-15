@@ -1,10 +1,3 @@
-//
-//  ScheduleTests.swift
-//  Sio
-//
-//  Created by José Manuel Sánchez Peñarroja on 05/12/2019.
-//
-
 import Foundation
 import XCTest
 import Sio
@@ -18,7 +11,7 @@ class ScheduleTests: XCTestCase {
 				XCTAssert(Thread.isMainThread)
 				resolve("ok")
 			})
-			.scheduleOn(.main)
+			.scheduleOn(DispatchQueue.main)
 			.fork({ _ in
 				XCTFail()
 			}, { value in
@@ -65,7 +58,7 @@ class ScheduleTests: XCTestCase {
 		let finish = expectation(description: "finish tasks")
 
 		SIO<Void, String, String>.of("ok")
-		.scheduleOn(.global())
+		.scheduleOn(DispatchQueue.global())
 		.forkOn(.main)
 		.fork({ _ in
 			XCTFail()
@@ -82,7 +75,7 @@ class ScheduleTests: XCTestCase {
 		let finish = expectation(description: "finish tasks")
 
 		SIO<Void, String, String>.rejected("ok")
-		.scheduleOn(.global())
+		.scheduleOn(DispatchQueue.global())
 		.forkOn(.main)
 		.fork({ value in
 			XCTAssert(Thread.isMainThread)
@@ -99,7 +92,7 @@ class ScheduleTests: XCTestCase {
 		let finish = expectation(description: "finish tasks")
 
 		SIO<Void, String, String>.of("ok")
-		.scheduleOn(.global())
+		.scheduleOn(DispatchQueue.global())
 		.forkMain({ _ in
 			XCTFail()
 		}, { value in
@@ -115,7 +108,7 @@ class ScheduleTests: XCTestCase {
 		let finish = expectation(description: "finish tasks")
 
 		SIO<Void, String, String>.rejected("ok")
-		.scheduleOn(.global())
+		.scheduleOn(DispatchQueue.global())
 		.forkMain({ value in
 			XCTAssert(Thread.isMainThread)
 			XCTAssert(value == "ok")

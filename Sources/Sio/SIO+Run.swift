@@ -1,12 +1,5 @@
-//
-//  SIO+Never.swift
-//  sio-iOS
-//
-//  Created by José Manuel Sánchez Peñarroja on 20/05/2019.
-//  Copyright © 2019 sio. All rights reserved.
-//
-
 import Foundation
+import Combine
 
 extension SIO {
 	@inlinable
@@ -75,9 +68,9 @@ extension SIO where R == Void, E == Never {
 }
 
 @inlinable
-public func runAll<R, E, A>(
+public func runAll<R, E, A, S: Scheduler>(
 	_ tasks: [SIO<R, E, A>],
-	_ scheduler: Scheduler
+	_ scheduler: S
 ) -> SIO<R, E, [A]> {
 	tasks
 		.map { (task: SIO<R, E, A>) -> SIO<R, Never, Either<E, A>> in

@@ -1,12 +1,8 @@
-//
-//  SchedulerTests.swift
-//  Sio
-//
-//  Created by José Manuel Sánchez Peñarroja on 01/06/2020.
-//
-
 import Foundation
 import XCTest
+
+import CombineSchedulers
+
 import Sio
 
 class SchedulerTests: XCTestCase {
@@ -14,7 +10,7 @@ class SchedulerTests: XCTestCase {
 		let inverted = expectation(description: "Don't fulfill")
 		inverted.isInverted = true
 		
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 		scheduler.run {
 			inverted.fulfill()
 		}
@@ -25,7 +21,7 @@ class SchedulerTests: XCTestCase {
 	func testAdvance() {
 		let finish = expectation(description: "Fulfill")
 		
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 		scheduler.run {
 			finish.fulfill()
 		}
@@ -38,11 +34,12 @@ class SchedulerTests: XCTestCase {
 		let inverted = expectation(description: "Don't fulfill")
 		inverted.isInverted = true
 
-		let scheduler = TestScheduler()
-		scheduler.runAfter(after: 3) {
+		let scheduler = DispatchQueue.test
+		scheduler.run(after: 3) {
 			inverted.fulfill()
 		}
-		scheduler.advance(1)
+		
+		scheduler.advance(by: .seconds(1.0))
 		
 		waitForExpectations(timeout: 0.1, handler: nil)
 	}
@@ -50,15 +47,15 @@ class SchedulerTests: XCTestCase {
 	func testAfterRun() {
 		let finish = expectation(description: "Fulfill")
 
-		let scheduler = TestScheduler()
-		scheduler.runAfter(after: 3) {
+		let scheduler = DispatchQueue.test
+		scheduler.run(after: 3) {
 			finish.fulfill()
 		}
-		scheduler.advance(4)
+		scheduler.advance(by: .seconds(4.0))
 		
-		 // Check that the work is not done more than once
-		scheduler.advance(5)
-		scheduler.advance(6)
+		// Check that the work is not done more than once
+		scheduler.advance(by: .seconds(5.0))
+		scheduler.advance(by: .seconds(6.0))
 		
 		waitForExpectations(timeout: 0.1, handler: nil)
 	}

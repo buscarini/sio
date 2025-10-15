@@ -1,17 +1,12 @@
-//
-//  IValueStore+Zip.swift
-//  SioIValueStore
-//
-//  Created by José Manuel Sánchez Peñarroja on 15/2/21.
-//
-
 import Foundation
+import Combine
+
 import Sio
 
-public func zip<R, K: Hashable, E, LA, LB, RA, RB>(
+public func zip<R, K: Hashable, E, LA, LB, RA, RB, S: Scheduler>(
 	_ left: IValueStore<R, K, E, LA, LB>,
 	_ right: IValueStore<R, K, E, RA, RB>,
-	_ scheduler: Scheduler
+	_ scheduler: S
 ) -> IValueStore<R, K, E, (LA, RA), (LB, RB)> {
 	.init(
 		load: { k in

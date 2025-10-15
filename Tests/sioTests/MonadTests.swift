@@ -1,16 +1,11 @@
-//
-//  Monad.swift
-//  Task
-//
-//  Created by José Manuel Sánchez Peñarroja on 10/3/17.
-//  Copyright © 2017 CocoaPods. All rights reserved.
-//
-
 import XCTest
+
+import CombineSchedulers
+
 import Sio
 
 class MonadTests: XCTestCase {
-	let scheduler = TestScheduler()
+	let scheduler = DispatchQueue.test
 	
 	func exampleError() -> Error {
 		return NSError(domain: "tests", code: 1, userInfo: nil)
@@ -54,7 +49,7 @@ class MonadTests: XCTestCase {
 		
 		IO<Error, String>.rejected(self.exampleError())
 			.flatMap({ string in
-				return Task.of(string.count)
+				IO.of(string.count)
 			})
 			.fork((), { error in
 				expectation.fulfill()
@@ -93,14 +88,15 @@ class MonadTests: XCTestCase {
 			
 		task.runForget()
 		
-		scheduler.advance(1)
-		scheduler.advance(1)
-		scheduler.advance(1)
+		scheduler.advance(by: .seconds(1.0))
+		scheduler.advance(by: .seconds(1.0))
+		scheduler.advance(by: .seconds(1.0))
 		
 		task.cancel()
 		
 		repeated.isInverted = true
-		scheduler.advance(1)
+		
+		scheduler.advance(by: .seconds(1.0))
 		
 		self.waitForExpectations(timeout: 1, handler: nil)
 	}

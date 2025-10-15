@@ -1,16 +1,11 @@
-//
-//  Retry.swift
-//  Task
-//
-//  Created by José Manuel Sánchez Peñarroja on 10/3/17.
-//  Copyright © 2017 CocoaPods. All rights reserved.
-//
-
 import XCTest
+
+import CombineSchedulers
+
 import Sio
 
 class Retry: XCTestCase {
-	let scheduler = TestScheduler()
+	let scheduler = DispatchQueue.test
 	var value:Int = 0
 	
 	override func setUp() {
@@ -77,7 +72,7 @@ class Retry: XCTestCase {
 		let expectation = self.expectation(description: "task is retried with a delay")
 		
 		let task = fails2Times({
-			self.scheduler.advance(1)
+			self.scheduler.advance(by: .seconds(1.0))
 		})
 	
 		task.retry(times: 3, delay: 1, scheduler: scheduler)
@@ -89,8 +84,8 @@ class Retry: XCTestCase {
 				expectation.fulfill()
 			})
 		
-		scheduler.advance(1)
-		scheduler.advance(1)
+		scheduler.advance(by: .seconds(1.0))
+		scheduler.advance(by: .seconds(1.0))
 		
 		self.waitForExpectations(timeout: 5, handler: nil)
 	}

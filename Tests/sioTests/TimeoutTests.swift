@@ -1,11 +1,3 @@
-//
-//  TimeoutTests.swift
-//  sio-iOS Tests
-//
-//  Created by José Manuel Sánchez Peñarroja on 23/05/2019.
-//  Copyright © 2019 sio. All rights reserved.
-//
-
 import Foundation
 import XCTest
 import Sio
@@ -14,7 +6,7 @@ class TimeoutTests: XCTestCase {
 	func testTimeoutTo() {
 		let finish = expectation(description: "finish")
 
-		let task = UIO.of(1).delay(10, QueueScheduler.main).timeoutTo(0, 0.1)
+		let task = UIO.of(1).delay(10, DispatchQueue.main).timeoutTo(0, 0.1)
 		
 		task.run((), { value in
 			XCTAssert(value == 0)
@@ -27,7 +19,7 @@ class TimeoutTests: XCTestCase {
 	func testTimeout() {
 		let finish = expectation(description: "finish")
         
-		let task = UIO.of(1).delay(10, QueueScheduler.main).timeout(0.1)
+		let task = UIO.of(1).delay(10, DispatchQueue.main).timeout(0.1)
 		
 		task.run((), { value in
 			XCTAssert(value == nil)

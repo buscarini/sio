@@ -11,10 +11,10 @@ import XCTest
 import Sio
 
 class ConcurrencyTests: XCTestCase {
-	let scheduler = TestScheduler()
+	let scheduler = DispatchQueue.test
 	
 	func testZip() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 		
 		let finish = expectation(description: "finish")
 		
@@ -49,7 +49,7 @@ class ConcurrencyTests: XCTestCase {
 	}
 	
 	func testZipStackOverflow() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let finish = expectation(description: "finish")
 		
@@ -203,7 +203,7 @@ class ConcurrencyTests: XCTestCase {
 		let finish = expectation(description: "finish")
 		finish.isInverted = true
 		
-		let task = UIO.of(1).scheduleOn(scheduler)
+		let task = UIO.of(1).scheduleOn(scheduler.eraseToAnyScheduler())
 		
 		task.fork(absurd, { _ in
 			XCTFail()
@@ -211,21 +211,21 @@ class ConcurrencyTests: XCTestCase {
 		
 		task.cancel()
 		
-		scheduler.advance(1)
+		scheduler.advance(by: .seconds(1))
 		
 		wait(for: [finish], timeout: 5)
 	}
 	
 	func testCancelZip() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let finish = expectation(description: "finish")
 		finish.isInverted = true
 		
-		let left = UIO.of(1).scheduleOn(scheduler)
-		let right = UIO.of(2).scheduleOn(scheduler)
+		let left = UIO.of(1).scheduleOn(scheduler.eraseToAnyScheduler())
+		let right = UIO.of(2).scheduleOn(scheduler.eraseToAnyScheduler())
 		
-		let task = zip(left, right, scheduler)
+		let task = zip(left, right, scheduler.eraseToAnyScheduler())
 			
 		task.fork(absurd, { values in
 			print(values)
@@ -234,30 +234,29 @@ class ConcurrencyTests: XCTestCase {
 		
 		task.cancel()
 		
-		scheduler.advance(1)
+		scheduler.advance(by: .seconds(1))
 		
 		wait(for: [finish], timeout: 0.1)
 	}
 	
 	func testCancelZipLeft() {
-		let scheduler = TestScheduler()
+		let scheduler = DispatchQueue.test
 
 		let finish = expectation(description: "finish")
 		finish.isInverted = true
 
-		let left = UIO.of(1).scheduleOn(scheduler)
-		let right = UIO.of(2).scheduleOn(scheduler)
+		let left = UIO.of(1).scheduleOn(scheduler.eraseToAnyScheduler())
+		let right = UIO.of(2).scheduleOn(scheduler.eraseToAnyScheduler())
 		
 		left.cancel()
 		
-		zip(left, right, scheduler)
+		zip(left, right, scheduler.eraseToAnyScheduler())
 		.fork(absurd, { values in
 			print(values)
 			XCTFail()
 		})
 		
 		scheduler.advance()
-//		scheduler.advance()
 		
 		wait(for: [finish], timeout: 0.1)
 	}

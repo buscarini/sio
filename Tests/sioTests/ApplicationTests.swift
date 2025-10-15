@@ -1,18 +1,10 @@
-//
-//  ApplicationTests.swift
-//  Sio
-//
-//  Created by José Manuel Sánchez Peñarroja on 24/12/2019.
-//
-
 import Foundation
 import XCTest
 import Sio
 
 class ApplicationTests: XCTestCase {
-	
-	func incRef(_ ref: Ref<Int>) {
-		ref.state += 1
+	func inc(_ value: inout Int) {
+		value += 1
 	}
 	
 	func testRightApply() {
@@ -20,11 +12,16 @@ class ApplicationTests: XCTestCase {
 		XCTAssertEqual(result, 2)
 	}
 	
-	func testRightApplyRef() {
+	@MainActor
+	func testRightApplyRef() async {
 		let ref = Ref<Int>.init(1)
 
-		let result = ref |> incRef
-		XCTAssertEqual(result.state, 2)
+		let _ = await ref.update { value in
+			value |> inc
+		}
+		
+		let value = await ref.value()
+		XCTAssertEqual(value, 2)
 	}
 	
 	
@@ -33,11 +30,15 @@ class ApplicationTests: XCTestCase {
 		XCTAssertEqual(result, 2)
 	}
 	
-	func testLeftApplyRef() {
+	func testLeftApplyRef() async {
 		let ref = Ref<Int>.init(1)
 
-		let result = incRef <| ref
-		XCTAssertEqual(result.state, 2)
+		let _ = await ref.update { value in
+			inc <| value
+		}
+		
+		let result = await ref.value()
+		XCTAssertEqual(result, 2)
 	}
 	
 	func testApplyMutation() {
