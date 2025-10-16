@@ -2,7 +2,7 @@ import Foundation
 import Sio
 
 public extension Ref {
-	func iValueStore<K: Hashable, A>() -> IValueStoreA<Void, K, Void, A> where S == Dictionary<K, A> {
+	nonisolated func iValueStore<K: Hashable, A>() -> IValueStoreA<Void, K, Void, A> where S == Dictionary<K, A> {
 		.init(
 			load: { k in
 				SIO.await {

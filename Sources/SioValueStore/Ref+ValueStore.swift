@@ -2,10 +2,10 @@ import Foundation
 import Sio
 
 public extension Ref {
-	func valueStore<Wrapped>() -> ValueStoreA<Void, Void, Wrapped>
+	nonisolated func valueStore<Wrapped>() -> ValueStoreA<Void, Void, Wrapped>
 	where S == Wrapped? {
 		.init(
-			load: SIO.await {
+			load: IO<Void, Wrapped?>.await {
 				await self.value()
 			}.fromOptional(),
 			save: { newValue in
