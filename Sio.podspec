@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Sio"
-  s.version      = "0.3.4"
+  s.version      = "0.4.2"
   s.summary      = "Swift IO"
   s.description  = <<-DESC
     Swift Effects library, ala ZIO.
@@ -17,5 +17,5 @@ Pod::Spec.new do |s|
 
   s.frameworks  = "Foundation"
   s.source_files  = "Sources/Sio/**/*"
-	
+
 end

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SioCodec"
-  s.version      = "0.3.3"
+  s.version      = "0.4.2"
   s.summary      = "Swift IO"
   s.description  = <<-DESC
     Swift Effects library, ala ZIO.
@@ -18,5 +18,5 @@ Pod::Spec.new do |s|
   s.frameworks  = "Foundation"
   s.dependency 'Sio'
   s.source_files  = "Sources/SioCodec/**/*"
-  	
+
 end
