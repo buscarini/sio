@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SioNetwork"
-  s.version      = "0.3.3"
+  s.version      = "0.4.2"
   s.summary      = "Swift IO"
   s.description  = <<-DESC
     Swift SIO Network library.
@@ -20,5 +20,5 @@ Pod::Spec.new do |s|
   s.dependency 'SioCodec'
   s.dependency 'SioEffects'
   s.source_files  = "Sources/SioNetwork/**/*"
-  	
+
 end
